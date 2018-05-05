@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+header{
+    font-family: 'Abel', sans-serif;
+}
+#list-adm{
+    height: 140%;
+    background-color: #343a40;
+}
+nav{
+    background-color: white!important;
+    box-shadow: 1px 0px 6px 0px grey;
+}
+li, .nav-link{
+    color:black!important;
+}
+td{
+    font-size: 15px;
+}
+.to{
+    margin-top:10px;
+    padding-left:8px;
+    color:#868e96!important;
+}
+.eslogan{
+    color:black!important;
+}
+*{
+    overflow-y: hidden!important;
+}

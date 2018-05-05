@@ -1,0 +1,31 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-sh" id="mainNav">
+      <a class="navbar-brand eslogan" href="#"> Seca Construcciones </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav ml-auto" id="exampleAccordion">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Panel">
+                <a class="nav-link" (click)="closeSession()" style="cursor: pointer">
+                  <span class="nav-link-text">Cerrar sessión</span>
+                </a>
+              </li>
+        </ul>
+         
+      </div>
+    </nav>
+    </header>
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-2 pl-0" style="height:100vh" >
+      <ul id="list-adm" class="navbar-nav ">
+        <li class="nav-item to" style="margin-top:50%"><a class="nav-link to" (click)="goProductos()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Productos</p></a></li>
+      </ul>
+    </div>
+    <div class="col-10" style="height: 100vh; overflow-y:auto!important">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  </div>
+  
