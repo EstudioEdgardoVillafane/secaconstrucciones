@@ -24,8 +24,11 @@ export class SeccionService {
    * @param atributo number of atribute
    * @param id id of the seccion
    */
-  
+
   CrudFunction(functionPhp: number, nombre: string, atributo:number, id: number){
     return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
+  }
+  getJsonForName(name:string, json){
+    return of(json.find((primero => primero.s_nombre === name)));
   }
 }

@@ -4,6 +4,7 @@
       <ng-template #other_content>
          
 <!-- Add a new product -->
+<form id="formularioStore">
         <div *ngIf="BooleanAdd;else editar">
           
           <div class="row text-center">
@@ -12,14 +13,17 @@
               <hr>
             </div>
           </div>
-        
+
+        <input type="hidden" name="nameproducts" id="productName" value="">
+        <input type="text" name="sectionAdd"   id="SectionAdd" value="{{auxiliar.s_id}}">
+
           <div *ngIf="BoolAddProductOne"> 
             <div class="row">
               <div class="col-12 text-center">
                 <label>¿Cuál es el nombre de tu producto?</label>
               </div>
               <div class="col-8 offset-2 text-center">
-                <input type="text" placeholder="Titulo de tu producto" name="nameproduct" id="nameproduct" class="form-control" required>
+                <input type="text" placeholder="Titulo de tu producto" name="nameproduct" id="nameproduct" class="form-control" >
               </div>
               <div *ngIf="BooleanToAlertTitulo" class="alert alert-danger">
                 <div>
@@ -33,13 +37,13 @@
                 <label>Elija seccion</label>
               </div>  
               <div class="col-12">   
-                <input class="form-control" placeholder=" Buscar seccion " id="buscarSeccion">
+                <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccion" (keyup)="filterSection()">
               </div>
             </div>
 
             <div class="row mt-2" *ngIf="BooleanToCloseSeccion;else otra">
-              <div class="list-group col-2" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
-                <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}">
+              <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
+                <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
               </div>
               <a>Agregar otra seccion</a>
             </div> <!-- ./BooleanToCloseSeccion -->
@@ -74,9 +78,11 @@
             <div class="row mt-4"> 
               <div class="col-12">
                 <label>Elija uno o más atributos ya definidos para su producto <a>Agregar atributo</a></label>
+                <input type="text" value="{{CheckAtribute}}" name="atribute">  
               </div>
               <div class="list-group col-2" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
-                  <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}">
+                
+                <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}">
               </div>
             </div>
               
@@ -93,7 +99,7 @@
                   <label>Describa su producto</label>
                 </div>
                 <div class="col-12">
-                  <textarea id="descripcion" class="form-control" style="height: 350px" placeholder="Tiene 300 caracteres para describir su producto"></textarea>
+                  <textarea id="description" class="form-control" style="height: 350px" name="description" placeholder="Tiene 300 caracteres para describir su producto"></textarea>
                 </div>
               </div>
   
@@ -106,15 +112,17 @@
      
             <div class="row">
               <div class="col-12">
-                <button  class="pull-right btn btn-md btn-primary ml-1">Agregar <i class="	fa fa-chevron-right"></i></button>
+                <button class="pull-right btn btn-md btn-primary ml-1" (click)="StoreProduct()">Agregar <i class="	fa fa-chevron-right"></i></button>
                 <input type="button" class="pull-right btn btn-md btn-danger ml-1" (click)="ReturnToOne()" value="Volver">
               </div>
             </div>
           </div> <!-- ./BoolToAddTwo -->
-      </div>    
-    <ng-template #edit>
-      editar
-    </ng-template>
+        
+        </div>  
+      </form>  
+        <ng-template #edit>
+          editar
+        </ng-template>
       
   
       

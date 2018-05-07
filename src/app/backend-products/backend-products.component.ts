@@ -18,6 +18,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+
 @Component({
   selector: 'app-backend-products',
   templateUrl: './backend-products.component.html',
@@ -32,7 +33,7 @@ export class BackendProductsComponent implements OnInit {
  NumberAux = 0;
  PositionAux = 0;
  i=0;
- 
+ idNameProduct;
  seccionName;
  seccionNameToAdd;
  ListOfContent;
@@ -64,8 +65,7 @@ export class BackendProductsComponent implements OnInit {
   auxID;
  /** I am defining the services. */
  
- constructor(private seccionService: SeccionService, private atributoService : AtributoService) {
-    }
+ constructor(private seccionService: SeccionService, private atributoService : AtributoService) {}
 
  /** Calling the function ListContent to do the list of content. */
 
@@ -73,15 +73,32 @@ export class BackendProductsComponent implements OnInit {
   //  if(localStorage.getItem("keyTwo") != "1"){
   //    location.href="../../admin";
   //  }
+  
    this.ListContent();
    this.seccionList();
    this.atributoList();
  }
+auxvar;
+auxvar2;
+auxvar3;
+filterSection(value){
+  this.auxvar = document.getElementById("buscarSeccion");
+  
+  for(this.i=0; this.i < this.listSeccion.length ; this.i++){
+    if(this.listSeccion[this.i].s_nombre.match(this.auxvar.value)){
 
-
+      console.log("este va"+this.listSeccion[this.i].s_nombre);
+      this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
+      this.auxvar2.style.display = "block";
+    }else{
+      this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
+      console.log(this.auxvar2.value);
+      this.auxvar2.style.display = "none";
+    }
+  }
+}
  /** In this function, we get the values of the input fields to update the regist. */
  EditReg(id : number){
-  
    this.formElement = document.getElementById("Formulariod");
    this.request = new XMLHttpRequest();
    this.request.open("POST", "php/script/edit-content.php");
@@ -90,31 +107,7 @@ export class BackendProductsComponent implements OnInit {
    this.boolPrueb = true;
    
  }
- ValidateEditForm(){
-   this.titulo = document.getElementById('titulo-ed');
-   this.subtitulo = document.getElementById('subtitulo-ed');
-   this.parrafo = document.getElementById('parrafo-ed');
 
-   if(this.titulo.value == ""){
-     this.BooleanToAlertTitulo = true;
-   }else{
-     this.BooleanToAlertTitulo = false;
-   } 
-   if(this.subtitulo.value == ""){
-     this.BooleanToAlertSubTitulo = true;
-   }else{
-     this.BooleanToAlertSubTitulo = false;
-   } 
-   if(this.parrafo.value == ""){
-     this.BooleanToAlertParrafo = true;
-   }else{
-     this.BooleanToAlertParrafo = false;
-   }
-   if(this.titulo.value != "" && this.subtitulo.value != "" && this.parrafo.value !=""){
-     this.BooleanToValidate =true;
-   }
-   return this.BooleanToValidate;
- }
 
  /** This function is to change the list to the add form */
  ShowAdd(){
@@ -141,7 +134,7 @@ export class BackendProductsComponent implements OnInit {
    this.ListContent();
    this.boolPrueb=false;
  }
-
+auxiliar;
  seccionClicked(number : string){
   document.getElementById(number).style.backgroundColor = '#80ff80';
   this.BooleanToCloseSeccion = false;
@@ -152,8 +145,10 @@ export class BackendProductsComponent implements OnInit {
   console.log(this.seccionName.value);
   this.seccionNameToAdd.disabled = true
   this.seccionNameToAdd.value = this.seccionName.value; 
+  this.seccionService.getJsonForName(this.seccionName.value,this.listSeccion)
+  .subscribe(result => this.auxiliar = result );
  }
-
+varAuxInput;
  atributoClicked(id : string){
   this.boleeanToCheckAtribute=true;    
    if(this.arrayAtribute == 0){
@@ -177,6 +172,9 @@ export class BackendProductsComponent implements OnInit {
     }else{
       document.getElementById(id).style.backgroundColor = '#80ff80';    
     }
+    this.varAuxInput  = document.getElementsByName("atribute");
+    this.varAuxInput.value = this.CheckAtribute.toString();  
+    
  }
  returnSeccion(){
    this.BooleanToCloseSeccion=true;
@@ -184,9 +182,17 @@ export class BackendProductsComponent implements OnInit {
    this.seccionNameToAdd.disabled = false;
  }
 
- nextOne(){
-   this.nameProduct =  document.getElementById("nameproduct");
-   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
+VarInput3;
+VarInput4;
+AuxVarInput4; 
+nextOne(){
+  this.nameProduct =  document.getElementById("nameproduct");
+  document.getElementById("addproduct").innerHTML = this.nameProduct.value;
+  this.VarInput3 = document.getElementById("productName");
+  this.VarInput3.value = this.nameProduct.value; 
+  this.VarInput4 = document.getElementById("SectionAdd");
+  this.AuxVarInput4 = document.getElementById("buscarSeccion");
+  this.VarInput4.value = this.AuxVarInput4.value;
   this.BoolAddProductTwo = true;
   this.BoolAddProductOne =false;
   this.BooleanToCloseSeccion=false; 
@@ -198,7 +204,7 @@ export class BackendProductsComponent implements OnInit {
   this.BooleanToCloseSeccion = true;
   document.getElementById("addproduct").innerHTML = "Agregar nuevo producto";
  }
- 
+
  /** This fucntion is calling the database to do a list. CrudFunction is a function of service. He gets 6 parameter. */
  ListContent(){
   //  this.backendUserService.validateUser().subscribe((data) => {
@@ -272,45 +278,16 @@ export class BackendProductsComponent implements OnInit {
      location.reload();
    }
 /** Here we are validating the store form and creating the alert message */
-   ValidateForm(){
-     this.titulo = document.getElementById('nombre');
-     this.subtitulo = document.getElementById('precio');
-     this.parrafo = document.getElementById('descripcion');
-
-     if(this.titulo.value == ""){
-       this.BooleanToAlertTitulo = true;
-     }else{
-       this.BooleanToAlertTitulo = false;
-     } 
-     if(this.subtitulo.value == ""){
-       this.BooleanToAlertSubTitulo = true;
-     }else{
-       this.BooleanToAlertSubTitulo = false;
-     } 
-     if(this.parrafo.value == ""){
-       this.BooleanToAlertParrafo = true;
-     }else{
-       this.BooleanToAlertParrafo = false;
-     }
-     if(this.titulo.value != "" && this.subtitulo.value != "" && this.parrafo.value !=""){
-       this.BooleanToValidate =true;
-     }
-     console.log(this.parrafo.value);
-     return this.BooleanToValidate;
-   }
 
    /** This function is storing the new regist in a database */
    boolPrueb = false;
    
-   Store(){
-
-     if(this.ValidateForm()){
-     this.formElement = document.getElementById("Formulario");
+   StoreProduct(){
+       this.formElement = document.getElementById("formularioStore");
      this.request = new XMLHttpRequest();
-     this.request.open("POST", "php/script/store-content.php");
+     this.request.open("POST", "php/script/store-product.php");
      console.log(this.request.send(new FormData(this.formElement)));
      this.ListContent();
-     this.boolPrueb = true;
-     }
+     this.boolPrueb = true;    
    }
 }
