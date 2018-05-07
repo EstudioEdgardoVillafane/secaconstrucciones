@@ -1,3 +1,16 @@
+/**
+*  
+*******************************************
+*** Project Name: Seca Construcciones   ***
+*** Description: Ecomerce               ***
+*** Author: Cristian Hourcade           ***
+*** Tecnology: Angular5                 ***
+*** Year: 2018                          ***
+*** Version: 1.0.0                      ***
+*******************************************
+*
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({

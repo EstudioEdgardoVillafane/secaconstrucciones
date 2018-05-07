@@ -1,192 +1,124 @@
 <section class="pt-5 pb-5 my-5">
     <div class="container-fluid mt-5">
-      <div class="row text-center">
-        <div class="offset-6 col-6">
-        
-          </div>
-        
-      </div>
+
       <ng-template #other_content>
          
-  
-        <div *ngIf="BooleanAdd;else otr">
-            <form method="post" id="Formulario" enctype="multipart/form-data">
-          <div class="row text-center">
-          <div class="col-12">
-          <h2>Agregar nuevo uso</h2>
-          <hr>
-        </div>
-        </div>
-      
-      <div class="row">
-  
-        <div class="col-6">
-          <label>Titulo</label>
-        </div>
-        <div class="col-6">
-          <input type="text" id="nombre" placeholder="Titulo del uso" name="titulo" class="form-control" required>
-          <div *ngIf="BooleanToAlertTitulo" class="alert alert-danger">
-            <div>
-              * Debe ingresar un titulo.
-            </div>
-          </div>
-      </div>
-        </div>
-        <div class="row"> 
-          <div class="col-6">
-            <label>Subtitulo</label>
-          </div>
-        <div class="col-6">   
-          <input type="text" id="precio" value="" class="mt-2 form-control" name="subtitulo" placeholder="Subtitulo del uso" required>
-          <div *ngIf="BooleanToAlertSubTitulo" class="alert alert-danger">
-              <div>
-                * Debe ingresar un subtitulo.
-              </div>
-            </div>
-        </div>
-      </div>
-      <div class="row">
-          <div class="col-6">
-            <label>Parrafo</label>
-          </div>
-          <div class="col-6">
-  
-            <textarea id="descripcion" value="" placeholder="Texto descriptivo." name="parrafo" class="mt-2 form-control" required style="height:350px"></textarea>
-  
-            <div *ngIf="BooleanToAlertParrafo" class="alert alert-danger">
-                <div>
-                  * Debe ingresar un parrafo.
-                </div>
-              </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <label>Productos</label>
-            </div>
-            <div class="col-6">
-              <select class="form-control mt-1" name="producto">
-                <option *ngFor="let producto of List" value="{{producto.p_id}}">{{producto.p_nombre}}</option>
-                </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <label>Subir imagen</label>
-            </div>
-            <div class="col-6">
-              <input type="file" name="uploadedfile" class="mt-2 form-control">
-            </div>
-            </div>
-      <div class="row mb-2 text-center">
-        <div class="col-12">
-          <hr>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-              <div *ngIf="boolPrueb" class="alert alert-success">
-                  <div>
-                      Uso añadido correctamente.
-                  </div>
-                </div>
-            <input (click)="Store()" type="submit" value="Agregar" class="pull-right btn btn-md btn-primary ml-1">
-            <input type="button" class="pull-right btn btn-md btn-danger ml-1" (click)="Return()" value="Volver">
-          </div>
-        </div>
-      </form>
-      
-        </div>
-      
-  
-      <ng-template #otr>
-  <form id="Formulariod">
-        <div class="row text-center">
-              <div class="col-12">
-              <h2>Editar uso</h2>
-              <hr>
-            </div>
-            </div>
+<!-- Add a new product -->
+        <div *ngIf="BooleanAdd;else editar">
           
-          <div class="row">
-            <div class="col-6">
-              <label>Titulo</label>
-            </div>
-            <div class="col-6">
-                <input id="id-e" value="{{ListEdit.u_id}}" name="id-e" type="hidden" class="form-control">
-  
-              <input id="titulo-ed" value="{{ListEdit.u_titulo }}" name="titulo-ed" placeholder="Nombre" class="form-control">
-              <div *ngIf="BooleanToAlertTitulo" class="alert alert-danger">
-                  <div>
-                    * Debe ingresar un titulo.
-                  </div>
-              </div>
-            </div>
-            </div>
-            
-            
-            <div class="row"> 
-              <div class="col-6">
-                <label>Subtitulo</label>
-              </div>
-            <div class="col-6">   
-              <input id="subtitulo-ed" name="subtitulo-ed" value="{{ListEdit.u_subtitulo}}" class="mt-2 form-control" placeholder="Precio">
-              <div *ngIf="BooleanToAlertSubTitulo" class="alert alert-danger">
-                  <div>
-                    * Debe ingresar un subtitulo.
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <label>Productos</label>
-            </div>
-            <div class="col-6">
-              <select class="form-control mt-1" id="idproducto" name="producto-ed">
-                <option *ngFor="let idproducto of List" value="{{idproducto.p_id}}">{{idproducto.p_nombre}}</option>
-                </select>
-            </div>
-          </div>
-          <div class="row">
-              <div class="col-6">
-                <label>Parrafo</label>
-              </div>
-              <div class="col-6">
-                <textarea id="parrafo-ed" name="parrafo-ed" value="{{ListEdit.u_parrafo}}" placeholder="Descripcion" class="mt-2 form-control" style="height:350px"></textarea>
-                <div *ngIf="BooleanToAlertParrafo" class="alert alert-danger">
-                    <div>
-                      * Debe ingresar una descripcion.
-                    </div>
-                </div>
-              </div>
-              </div>
-              <div class="row">
-                  <div class="col-6">
-                      <label>Subir imagen</label>
-                    </div>
-                    <div class="col-6">
-                      <input type="file" name="uploadedfile" class="mt-2 form-control">
-                    </div>
-              </div>
-          <div class="row mb-2 text-center">
+          <div class="row text-center">
             <div class="col-12">
+              <h2 id="addproduct">Agregar nuevo producto</h2>
               <hr>
             </div>
+          </div>
+        
+          <div *ngIf="BoolAddProductOne"> 
+            <div class="row">
+              <div class="col-12 text-center">
+                <label>¿Cuál es el nombre de tu producto?</label>
+              </div>
+              <div class="col-8 offset-2 text-center">
+                <input type="text" placeholder="Titulo de tu producto" name="nameproduct" id="nameproduct" class="form-control" required>
+              </div>
+              <div *ngIf="BooleanToAlertTitulo" class="alert alert-danger">
+                <div>
+                  * Debe ingresar un nombre  para el producto.
+                </div>
+              </div>
+            </div> <!-- ./Row  -->
+
+            <div class="row"> 
+              <div class="col-12">
+                <label>Elija seccion</label>
+              </div>  
+              <div class="col-12">   
+                <input class="form-control" placeholder=" Buscar seccion " id="buscarSeccion">
+              </div>
             </div>
+
+            <div class="row mt-2" *ngIf="BooleanToCloseSeccion;else otra">
+              <div class="list-group col-2" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
+                <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}">
+              </div>
+              <a>Agregar otra seccion</a>
+            </div> <!-- ./BooleanToCloseSeccion -->
+              <ng-template #otra>
+                <a (click)="returnSeccion()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a>
+              </ng-template>
+            
+            
+            <div class="row mb-2 text-center">
+                <div class="col-12">
+                  <hr>
+                </div>
+              </div>
             <div class="row">
               <div class="col-12">
-                  <div *ngIf="boolPrueb" class="alert alert-success">
-                      <div>
-                          Uso añadido correctamente.
-                      </div>
-                    </div>
-                <button class="pull-right btn btn-md btn-danger ml-1" (click)="Return()">Volver</button>
-                <button class="pull-right btn btn-md btn-primary" (click)="EditReg(ListEdit.u_id)">Editar</button>
+                   
+              <button (click)="nextOne()" class="pull-right btn btn-md btn-primary ml-1">Siguiente <i class="	fa fa-chevron-right"></i></button>
+              <input type="button" class="pull-right btn btn-md btn-danger ml-1" (click)="Return()" value="Cancelar">
               </div>
-           </div>
-          </form>
-      </ng-template>
+            </div>
+          </div> <!-- ./BoleeanAddOne -->
+          
+       
+
+          <div *ngIf="BoolAddProductTwo">
+              <div class="row mt-4"> 
+                  <div class="col-12">
+                    <label>Suba una imagen de su producto</label>
+                  </div>                   
+                    <input type="file" name="uploadedfile" class="mt-2 form-control">  
+                </div>
+            <div class="row mt-4"> 
+              <div class="col-12">
+                <label>Elija uno o más atributos ya definidos para su producto <a>Agregar atributo</a></label>
+              </div>
+              <div class="list-group col-2" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
+                  <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}">
+              </div>
+            </div>
+              
+            <div class="row mt-4"> 
+                <div class="col-12">
+                  <label>Elija uno o más subatributos ya definidos para su producto <a>Agregar subatributo</a></label>
+                </div>  
+                <div class="list-group col-2" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
+                    <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}">
+                </div>
+            </div>
+            <div class="row text-center mt-4"> 
+                <div class="col-12">
+                  <label>Describa su producto</label>
+                </div>
+                <div class="col-12">
+                  <textarea id="descripcion" class="form-control" style="height: 350px" placeholder="Tiene 300 caracteres para describir su producto"></textarea>
+                </div>
+              </div>
+  
+              
+            <div class="row mb-2 text-center">
+              <div class="col-12">
+                <hr>
+              </div>
+            </div>
+     
+            <div class="row">
+              <div class="col-12">
+                <button  class="pull-right btn btn-md btn-primary ml-1">Agregar <i class="	fa fa-chevron-right"></i></button>
+                <input type="button" class="pull-right btn btn-md btn-danger ml-1" (click)="ReturnToOne()" value="Volver">
+              </div>
+            </div>
+          </div> <!-- ./BoolToAddTwo -->
+      </div>    
+    <ng-template #edit>
+      editar
+    </ng-template>
+      
+  
+      
+  
       </ng-template>
       <div *ngIf="BooleanTable;else other_content" class="mt-3">
       <div class="row">
