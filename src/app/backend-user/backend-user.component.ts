@@ -1,3 +1,15 @@
+/**
+*
+*******************************************
+*** Project Name: Seca Construcciones   ***
+*** @Description: Ecomerce              ***
+*** @Author: Matias Balboa              ***
+*** @Tecnology: Angular5                ***
+*** @Year: 2018                         ***
+*** @Version: 1.0.0                     ***
+*******************************************
+*
+*/
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -39,7 +51,7 @@ export class BackendUserComponent implements OnInit {
 
 
   EditPasswordVar = false;
-  
+
   var;
   CheckAcumulador = new Array();
   NumberAux=0;
@@ -62,7 +74,7 @@ export class BackendUserComponent implements OnInit {
     this.EditPasswordVar = true;
   }
 
-//this function show the Store form 
+//this function show the Store form
   ShowStoreForm(){
     this.ChangeTemplateEditar= false;
   }
@@ -88,7 +100,7 @@ export class BackendUserComponent implements OnInit {
   //     console.log(data.text());
   //       this.BackendUserService.Conect(5,0,"0","0","0")
   //         .map((response) => response.json())
-  //         .subscribe((data) => { 
+  //         .subscribe((data) => {
   //         this.listado = data;
   //       });
   //    });
@@ -96,7 +108,7 @@ export class BackendUserComponent implements OnInit {
     Listar(){
         this.BackendUserService.Conect(5,0,"0","0","0")
         .map((response) => response.json())
-        .subscribe((data) => { 
+        .subscribe((data) => {
           this.listado = data;
         });
       }
@@ -152,28 +164,28 @@ export class BackendUserComponent implements OnInit {
       if(this.Password.value == ""){
         this.AlertPassword = true;
       }else{
-        this.AlertPassword = false;        
+        this.AlertPassword = false;
       }
 
       if(this.ub_user.value != "" && this.ub_email.value != "" && this.ub_password.value == this.ConfirmNewPassword.value && this.ub_password != "" && this.Password.value != ""){
         this.BackendUserService.Confirm(8,ub_id,this.Password.value,"0")
         .subscribe((data)=>{
-          console.log(data.text()); 
+          console.log(data.text());
           if(data.text() == " 0"){
             this.AlertPassword = true;
           }else{
               this.BackendUserService.Conect(4,ub_id,this.ub_user.value,this.ub_email.value,this.ub_password.value)
               .subscribe((data)=>{ this.var=data;});
    //           location.reload();
-           
-          }  
+
+          }
         });
         }
-     } 
+     }
   }
 // this function accumulates the checks that are in the table to be deleted later
   Check(ub_id : number){
-     this.Booleano=true;    
+     this.Booleano=true;
     console.log("Contador: " + this.NumberAux);
     if(this.NumberAux == 0){
       this.CheckAcumulador[0] = ub_id;
@@ -203,7 +215,7 @@ export class BackendUserComponent implements OnInit {
         console.log("Indefinido");
       }else{
         this.BackendUserService.Conect(2, this.CheckAcumulador[this.i],"0","0","0")
-        .subscribe((data) => { 
+        .subscribe((data) => {
           this.var = data;
           console.log(data);
         });
@@ -220,17 +232,17 @@ export class BackendUserComponent implements OnInit {
     this.ub_email = document.getElementById("ub_email");
     this.ub_password = document.getElementById("ub_password");
     this.ConfirmPassword = document.getElementById("ConfirmPassword");
-    
+
     if(this.ub_user.value == ""){
       this.AlertUser = true;
     }else{
       this.AlertUser = false;
-    } 
+    }
     if(this.ub_email.value == "" ){
       this.AlertMail = true;
     }else{
       this.AlertMail = false;
-    } 
+    }
     if(this.ub_password.value != this.ConfirmPassword.value){
       this.AlertPassword = true;
     }else{
@@ -248,12 +260,12 @@ export class BackendUserComponent implements OnInit {
       .subscribe((result)=>{this.var=result;});
       // this.ListBackendUsers();
       location.reload();
-      
+
       this.ChangeTemplateEditar=true;
     }else{
       console.log("Falla al agregar");
     }
     }
-    
+
 
 }
