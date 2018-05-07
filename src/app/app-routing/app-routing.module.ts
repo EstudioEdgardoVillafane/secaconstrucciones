@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule} from '@angular/router';
 
-/*                Componentes                       */
+//Componentes                       
 import { HomeComponent } from '../home/home.component';
 import {BackendComponent} from '../backend/backend.component';
 import {BackendProductsComponent} from '../backend-products/backend-products.component';
+import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
 
-/*                Rutas                             */
+// Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
     { path: 'productos', component: BackendProductsComponent }
     ]
-  }
+  },
+  { path: 'detalle-producto/:id', component: ProductoDetalleComponent },
   
 ];
 
