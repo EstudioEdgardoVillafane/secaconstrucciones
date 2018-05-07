@@ -1,5 +1,23 @@
+/**
+*  
+*******************************************
+*** Project Name: Seca Construcciones   ***
+*** @Description: Ecomerce              ***
+*** @Author: Cristian Hourcade          ***
+*** @Tecnology: Angular5                ***
+*** @Year: 2018                         ***
+*** @Version: 1.0.0                     ***
+*******************************************
+*
+*/
 import { Component, OnInit } from '@angular/core';
-
+import { SeccionService } from '../seccion.service';
+import { AtributoService } from '../atributo.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-backend-products',
   templateUrl: './backend-products.component.html',
@@ -9,12 +27,19 @@ export class BackendProductsComponent implements OnInit {
  /** This is the declaration of the variables. */
 
  CheckAcumulador = new Array();
+ CheckAtribute = new Array();
+ CheckSubAtribute = new Array();
  NumberAux = 0;
  PositionAux = 0;
  i=0;
-
+ 
+ seccionName;
+ seccionNameToAdd;
  ListOfContent;
- Aux;
+ listSeccion;
+ listAtributo;
+  Aux;
+  nameProduct;
  titulo;
  parrafo;
  subtitulo;
@@ -23,7 +48,7 @@ export class BackendProductsComponent implements OnInit {
  formElement;
  request;
  idproducto;
-
+ BoolAddProductOne= false;
  BooleanAdd = true;
  Booleano = true;
  BooleanTable = true;
@@ -31,10 +56,15 @@ export class BackendProductsComponent implements OnInit {
  BooleanToAlertSubTitulo = false;
  BooleanToAlertParrafo = false;
  BooleanToValidate = false;
-
+  BooleanToCloseSeccion = false;
+  BoolAddProductTwo = false;
+  arrayAtribute = 0;
+  boleeanToCheckAtribute = false;
+  numberAuxToAtribute;
+  auxID;
  /** I am defining the services. */
  
- constructor() {
+ constructor(private seccionService: SeccionService, private atributoService : AtributoService) {
     }
 
  /** Calling the function ListContent to do the list of content. */
@@ -44,7 +74,8 @@ export class BackendProductsComponent implements OnInit {
   //    location.href="../../admin";
   //  }
    this.ListContent();
-   this.Listarproductos();
+   this.seccionList();
+   this.atributoList();
  }
 
 
@@ -87,7 +118,9 @@ export class BackendProductsComponent implements OnInit {
 
  /** This function is to change the list to the add form */
  ShowAdd(){
-   this.BooleanTable = false;    
+   this.BooleanTable = false;
+   this.BooleanToCloseSeccion = true;   
+   this.BoolAddProductOne = true;
  }
 
  /** This function is to change the list to the edit form */
@@ -108,6 +141,64 @@ export class BackendProductsComponent implements OnInit {
    this.ListContent();
    this.boolPrueb=false;
  }
+
+ seccionClicked(number : string){
+  document.getElementById(number).style.backgroundColor = '#80ff80';
+  this.BooleanToCloseSeccion = false;
+  this.seccionName = document.getElementById(number);
+  this.seccionNameToAdd = document.getElementById("buscarSeccion"); 
+  document.getElementById("buscarSeccion");
+  console.log(this.seccionNameToAdd.value);
+  console.log(this.seccionName.value);
+  this.seccionNameToAdd.disabled = true
+  this.seccionNameToAdd.value = this.seccionName.value; 
+ }
+
+ atributoClicked(id : string){
+  this.boleeanToCheckAtribute=true;    
+   if(this.arrayAtribute == 0){
+     this.CheckAtribute[0] = id;
+     this.arrayAtribute++;
+   }else{
+     for(this.i = 0; this.i<this.arrayAtribute ; this.i++){
+       if(id == this.CheckAtribute[this.i]){
+         this.CheckAtribute.splice(this.i, 1);
+         this.boleeanToCheckAtribute = false;
+         this.arrayAtribute++;
+       }
+     }
+     if(this.boleeanToCheckAtribute){
+         this.CheckAtribute[this.arrayAtribute] = id;
+         this.arrayAtribute++;
+       }
+     }
+     if(document.getElementById(id).style.backgroundColor == "rgb(128, 255, 128)"){
+      document.getElementById(id).style.backgroundColor = 'white';
+    }else{
+      document.getElementById(id).style.backgroundColor = '#80ff80';    
+    }
+ }
+ returnSeccion(){
+   this.BooleanToCloseSeccion=true;
+   this.seccionNameToAdd.value="";
+   this.seccionNameToAdd.disabled = false;
+ }
+
+ nextOne(){
+   this.nameProduct =  document.getElementById("nameproduct");
+   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
+  this.BoolAddProductTwo = true;
+  this.BoolAddProductOne =false;
+  this.BooleanToCloseSeccion=false; 
+ }
+
+ ReturnToOne(){
+  this.BoolAddProductOne = true;
+  this.BoolAddProductTwo = false;
+  this.BooleanToCloseSeccion = true;
+  document.getElementById("addproduct").innerHTML = "Agregar nuevo producto";
+ }
+ 
  /** This fucntion is calling the database to do a list. CrudFunction is a function of service. He gets 6 parameter. */
  ListContent(){
   //  this.backendUserService.validateUser().subscribe((data) => {
@@ -125,12 +216,23 @@ export class BackendProductsComponent implements OnInit {
   //  });
  }
 
- Listarproductos(){
-  //  this.contentService.listProduct()
-    // .map((response) => response.json())
-    // .subscribe((data) => { 
-      // this.List = data;
-    // });
+ /**
+  * Get a json to do a list.
+  */
+ seccionList(){ 
+    this.seccionService.CrudFunction(1,"",0,0)
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.listSeccion = data;
+    });
+  }
+
+  atributoList(){
+    this.atributoService.CrudFunction(1,"",0,0)
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.listAtributo = data;
+    });
   }
 
 

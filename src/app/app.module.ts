@@ -20,6 +20,11 @@ import { FooterComponent } from './footer/footer.component';
 
 //Services
 import { ProductosService } from './productos.service';
+import { SeccionService } from './seccion.service';
+import { AtributoService } from './atributo.service';
+import { BackendUserComponent } from './backend-user/backend-user.component';
+import { BackendUserService } from './backend-user.service';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +38,7 @@ import { ProductosService } from './productos.service';
     ProductosComponent,
     ProductoDetalleComponent,
     FooterComponent
+    BackendUserComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ import { ProductosService } from './productos.service';
     NgbModule.forRoot(),
     HttpClientModule
   ],
-  providers: [ProductosService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
