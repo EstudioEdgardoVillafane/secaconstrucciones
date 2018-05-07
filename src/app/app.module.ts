@@ -11,13 +11,17 @@ import { BackendProductsComponent } from './backend-products/backend-products.co
 import { BackendComponent } from './backend/backend.component';
 import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
+import { BackendUserComponent } from './backend-user/backend-user.component';
+import { BackendUserService } from './backend-user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     BackendProductsComponent,
-    BackendComponent
+    BackendComponent,
+    BackendUserComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { AtributoService } from './atributo.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [SeccionService,AtributoService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
