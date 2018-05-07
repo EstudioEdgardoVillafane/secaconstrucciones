@@ -9,23 +9,27 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { BackendProductsComponent } from './backend-products/backend-products.component';
 import { BackendComponent } from './backend/backend.component';
-
+import { BackendUserComponent } from './backend-user/backend-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BackendUserService } from './backend-user.service'
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     BackendProductsComponent,
-    BackendComponent
+    BackendComponent,
+    BackendUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
+    NgbModule,
     HttpClientModule
   ],
-  providers: [], //Services
+  providers: [BackendUserService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
