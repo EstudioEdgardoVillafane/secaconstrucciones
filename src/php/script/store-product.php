@@ -8,6 +8,7 @@ $NewConnect = new Seca();
 	$section = $_POST["sectionAdd"];
 	$description = $_POST["description"];
 	$atribute = $_POST["atribute"];
+	$precio = $_POST["precio"];
 	$subatributo = "5";
 	echo $nameProduct;
 	echo $section;
@@ -58,8 +59,8 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 imagedestroy ($img_redimensionada);
 imagedestroy ($nueva_img);
 
-	     $sql = "INSERT INTO producto (p_nombre,p_descripcion,p_section,p_atributo,p_subatributo,p_url,p_status) 
-		VALUES ('".$nameProduct."','".$description."','".$section."','".$atribute."','".$subatributo."','".$URL."','1')";
+	     $sql = "INSERT INTO producto (p_nombre,p_descripcion,p_section,p_atributo,p_subatributo,p_precio,p_url,p_status) 
+		VALUES ('".$nameProduct."','".$description."','".$section."','".$atribute."','".$subatributo."','".$precio."','".$URL."','1')";
          $NewConnect->ExecuteSql($sql);
 
  ?>

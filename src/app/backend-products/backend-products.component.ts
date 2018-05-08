@@ -76,7 +76,7 @@ export class BackendProductsComponent implements OnInit {
   
    this.ListContent();
    this.seccionList();
-   this.atributoList();
+   
  }
 auxvar;
 auxvar2;
@@ -120,9 +120,8 @@ filterSection(value){
  ShowEdit(id : number){
    this.BooleanAdd = false;
    this.BooleanTable=false;
-  //  this.contentService.getJsonForID(id,this.ListOfContent)
-  //  .subscribe(resultado => this.ListEdit = resultado);
-
+   this.seccionService.getJsonForID(id,this.ListOfContent)
+   .subscribe(resultado => this.ListEdit = resultado);
  }
  /** Return to the content list */
  Return(){
@@ -147,6 +146,7 @@ auxiliar;
   this.seccionNameToAdd.value = this.seccionName.value; 
   this.seccionService.getJsonForName(this.seccionName.value,this.listSeccion)
   .subscribe(result => this.auxiliar = result );
+  this.atributoList(this.auxiliar.s_id);
  }
 varAuxInput;
  atributoClicked(id : string){
@@ -185,6 +185,7 @@ varAuxInput;
 VarInput3;
 VarInput4;
 AuxVarInput4; 
+
 nextOne(){
   this.nameProduct =  document.getElementById("nameproduct");
   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
@@ -192,7 +193,6 @@ nextOne(){
   this.VarInput3.value = this.nameProduct.value; 
   this.VarInput4 = document.getElementById("SectionAdd");
   this.AuxVarInput4 = document.getElementById("buscarSeccion");
-  this.VarInput4.value = this.AuxVarInput4.value;
   this.BoolAddProductTwo = true;
   this.BoolAddProductOne =false;
   this.BooleanToCloseSeccion=false; 
@@ -207,20 +207,13 @@ nextOne(){
 
  /** This fucntion is calling the database to do a list. CrudFunction is a function of service. He gets 6 parameter. */
  ListContent(){
-  //  this.backendUserService.validateUser().subscribe((data) => {
-  //  console.log(data.text());
-   // if(data.text() == ""){
-   //   // location.href="../../admin";
-     
-   // }else{
-    //  this.contentService.CrudFunction(1,0,'','','','','')
-      //  .map((response) => response.json())
-      //  .subscribe((data) => { 
-      //  this.ListOfContent = data;
-    //  });
-   // }
-  //  });
- }
+     this.seccionService.listProduct()
+       .map((response) => response.json())
+       .subscribe((data) => { 
+       this.ListOfContent = data;
+     });
+   }
+ 
 
  /**
   * Get a json to do a list.
@@ -233,8 +226,8 @@ nextOne(){
     });
   }
 
-  atributoList(){
-    this.atributoService.CrudFunction(1,"",0,0)
+  atributoList(id){
+    this.atributoService.CrudFunction(1,"",id,0)
     .map((response) => response.json())
     .subscribe((data) => {
       this.listAtributo = data;

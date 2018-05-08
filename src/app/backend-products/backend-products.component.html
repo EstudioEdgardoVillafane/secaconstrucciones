@@ -5,7 +5,7 @@
          
 <!-- Add a new product -->
 <form id="formularioStore">
-        <div *ngIf="BooleanAdd;else editar">
+        <div *ngIf="BooleanAdd;else edit">
           
           <div class="row text-center">
             <div class="col-12">
@@ -15,7 +15,7 @@
           </div>
 
         <input type="hidden" name="nameproducts" id="productName" value="">
-        <input type="text" name="sectionAdd"   id="SectionAdd" value="{{auxiliar.s_id}}">
+        <input type="hidden" name="sectionAdd"   id="SectionAdd" value="{{auxiliar.s_id}}">
 
           <div *ngIf="BoolAddProductOne"> 
             <div class="row">
@@ -78,7 +78,7 @@
             <div class="row mt-4"> 
               <div class="col-12">
                 <label>Elija uno o más atributos ya definidos para su producto <a>Agregar atributo</a></label>
-                <input type="text" value="{{CheckAtribute}}" name="atribute">  
+                <input type="hidden" value="{{CheckAtribute}}" name="atribute">  
               </div>
               <div class="list-group col-2" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
                 
@@ -102,7 +102,20 @@
                   <textarea id="description" class="form-control" style="height: 350px" name="description" placeholder="Tiene 300 caracteres para describir su producto"></textarea>
                 </div>
               </div>
-  
+            <div class="row mt-3">
+              <div class="col-6">
+                <label>Precio del producto</label>
+              </div>
+              <div class="col-6">
+                  <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                      </div>
+                      <input type="text" name="precio" class="form-control" placeholder="Precio">
+                    </div>
+                
+              </div>
+            </div>
               
             <div class="row mb-2 text-center">
               <div class="col-12">
@@ -121,7 +134,68 @@
         </div>  
       </form>  
         <ng-template #edit>
-          editar
+          <div class="row">
+            <div class="col-12">
+              <h2>Editar producto</h2>
+            </div>
+            <div class="col-12">
+              <hr>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-6">
+              <label>Nombre del producto</label>
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" name="nameOfProduct" value="{{ListEdit.p_nombre}}">
+            </div>
+          </div>
+          
+          <div class="row mt-3">
+            <div class="col-6">
+              <img src="{{ListEdit.p_url}}" style="height:300px; width:300px">
+            </div>
+            <div class="col-6">
+              <label>Cambiar imagen</label>
+              <input type="file" class="form-control">
+            </div>
+          </div>
+          <div class="row mt-3">
+              <div class="col-12 text-center">
+                Editar descripción
+              </div>
+              <div class="col-12">
+                <textarea style="height:350px"  class="form-control" value="{{ListEdit.p_descripcion}}"></textarea>
+              </div>
+            </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <label>Precio</label>
+            </div>
+            <div class="col-6">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                    <input type="text" name="precioedit" class="form-control" value="{{ListEdit.p_precio}}">
+                  </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12">
+              <hr>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a>Editar secciones, atributos y subatributos...</a>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary btn-md pull-right">Editar</button>
+              <button type="button" class="btn btn-primary btn-md pull-right">Cancelar</button>
+            </div>
+          </div>
         </ng-template>
       
   
@@ -142,24 +216,22 @@
               <thead>
                 <tr>
                   <th style="width: 1px;">#</th>
-                  <th>Titulo</th>
-                  <th>Subtitulo</th>
-                  <th>Parrafo</th>
-                  <th>Producto</th>
-                  <th style="width:25px;">Foto</th>
+                  <th style="width:25px">Imagen</th>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Precio</th>
                   <th style="width: 25px">Editar</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let content of ListOfContent"> 
-                  <td><input type="checkbox" class="tilde" value="{{content.u_id}}" (click)="onCheck(content.u_id)"></td>
-                  <td>{{content.u_titulo }}</td>
-                  <td>{{content.u_subtitulo}}</td>
-                  <td>{{content.u_parrafo  }}</td>
-                  <td>{{content.p_nombre}}</td>
-                  <td style="height:80px"><img src="{{content.u_imagen}}" style="max-height: 100%"></td>
+                  <td><input type="checkbox" class="tilde" value="{{content.p_id}}" (click)="onCheck(content.p_id)"></td>
+                  <td style="height:80px"><img src="{{content.p_url}}" style="max-height: 100%"></td>
+                  <td>{{content.p_nombre }}</td>
+                  <td>{{content.p_descripcion}}</td>
+                  <td>{{content.p_precio}}</td>
                   <td>
-                    <button value="" (click)="ShowEdit(content.u_id)">
+                    <button value="" (click)="ShowEdit(content.p_id)">
                       <i class="fa fa-pencil"></i>
                     </button>
                   </td>
