@@ -23,7 +23,9 @@ import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendUserService } from './backend-user.service';
+import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
 import { FilterSecctionPipe } from './filter-secction.pipe';
+
 
 
 @NgModule({
@@ -34,14 +36,14 @@ import { FilterSecctionPipe } from './filter-secction.pipe';
     BackendProductsComponent,
     BackendComponent,
     BackendUserComponent,
+    BackendSeccionComponent
     FilterSecctionPipe,
     SideBarComponent,
     HeaderComponent,
     ProductosComponent,
     ProductoDetalleComponent,
     FooterComponent,
-    BackendUserComponent
-  ],
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,

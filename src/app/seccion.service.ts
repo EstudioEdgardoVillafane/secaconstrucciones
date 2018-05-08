@@ -15,16 +15,23 @@ export class SeccionService {
    * 
    * @param functionPhp get a number to do any function in php: 
    * 
-   *  1 = list
-   *  2 = delete
-   *  3 = edit
-   *  4 = store
+   *  1 = list,
+   *  2 = delete,
+   *  3 = Store,
+   *  4 = Edit
    * 
-   * @param nombre name of seccion
-   * @param atributo number of atribute
-   * @param id id of the seccion
+   * @param s_id id of the seccion
+   * @param s_name name of seccion
+   * @param s_attribute number of atribute
    */
-
+  
+//   CrudFunction(functionPhp: number, s_id: number, s_name: string, s_attribute:number){
+//     return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&s_id='+s_id+'&s_name='+s_name+'&s_attribute='+s_attribute);
+//   }
+    getJsonIDSeccion(s_id : number, json){
+      return of(json.find(primero => primero.s_id === s_id));
+    } 
+ 
   CrudFunction(functionPhp: number, nombre: string, atributo:number, id: number){
     return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
   }
