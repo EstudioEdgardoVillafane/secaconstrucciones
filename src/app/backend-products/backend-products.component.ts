@@ -220,7 +220,7 @@ export class BackendProductsComponent implements OnInit {
   * Get a json to do a list.
   */
  seccionList(){ 
-    this.seccionService.CrudFunction(1,"",0,0)
+    this.seccionService.CrudFunction(1,1,"0",0)//cambie esto (1,"",0,0) por que si no no compila, cualquier cosa cambienlo
     .map((response) => response.json())
     .subscribe((data) => {
       this.listSeccion = data;

@@ -42,7 +42,7 @@ session_start();
         ub_password = '".md5($_GET["ub_password"])."'
          WHERE ub_id = '".$_GET["ub_id"]."'";
 		$NewConnect->ExecuteSql($sql);
-	}elseif($_GET["data"]==7){
+	}elseif($_GET["data"]==7){			/**Edit */
 		$sql="UPDATE userb SET
         ub_user = '".$_GET["ub_user"]."',
         ub_email = '".$_GET["ub_email"]."'

@@ -13,6 +13,7 @@ import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendUserService } from './backend-user.service';
+import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BackendUserService } from './backend-user.service';
     LoginComponent,
     BackendProductsComponent,
     BackendComponent,
-    BackendUserComponent
+    BackendUserComponent,
+    BackendSeccionComponent
   ],
   imports: [
     BrowserModule,
