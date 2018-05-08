@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css?family=Bitter:700|Merriweather+Sans');
+
+body{
+    font-family: 'Merriweather Sans', sans-serif;
+}
+app-side-bar{
+    margin-top: 60px;
+}

@@ -1,0 +1,37 @@
+
+footer{
+    /* background-color:#2d3345; */
+    background-color: #011013;;
+    padding:30px;
+    font-family: 'Oxygen', sans-serif;
+}
+.nav-link{
+    color:#ffffff!important;
+}
+footer img{
+    width: 30%!important;
+}
+.sq{
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    transition: all .15s ease-in-out;
+}
+
+.sq:hover{
+    background-color: transparent;
+    border:solid 1px #fff;
+}
+
+.sq:hover >  a {
+    color: #ffffff!important;
+}
+
+.input-group span{
+    border-radius: 0 5px 5px 0;
+    background-color: rgb(145, 145, 145);
+   
+}
+.title-mini{
+    font-size: 18px;
+}

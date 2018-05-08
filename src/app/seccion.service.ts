@@ -25,11 +25,23 @@ export class SeccionService {
    * @param s_attribute number of atribute
    */
   
-  CrudFunction(functionPhp: number, s_id: number, s_name: string, s_attribute:number){
-    return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&s_id='+s_id+'&s_name='+s_name+'&s_attribute='+s_attribute);
-  }
+//   CrudFunction(functionPhp: number, s_id: number, s_name: string, s_attribute:number){
+//     return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&s_id='+s_id+'&s_name='+s_name+'&s_attribute='+s_attribute);
+//   }
     getJsonIDSeccion(s_id : number, json){
       return of(json.find(primero => primero.s_id === s_id));
     } 
+ 
+  CrudFunction(functionPhp: number, nombre: string, atributo:number, id: number){
+    return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
   }
-
+  listProduct(){
+    return this.http.get('php/script/list-producto.php');
+  }
+  getJsonForName(name:string, json){
+    return of(json.find((primero => primero.s_nombre === name)));
+  }
+  getJsonForID(id, json){
+    return of(json.find((primero => primero.p_id === id)));
+  }
+}
