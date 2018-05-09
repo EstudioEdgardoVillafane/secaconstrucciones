@@ -10,11 +10,15 @@ img{
 .bg-custom{
     background-color: #2b6939;
 }
-.bg-añil{
+.petroleum-blue{
     background-color: #103035;
-   
 }
-
+.icon{
+    color:#fff;
+}
+nav> ul> li{
+    cursor: pointer;
+}
 /* Rules for mobiles */
 @media screen and (max-width:425px) {
     .title{
@@ -22,6 +26,9 @@ img{
     }
     img{
         width: 75%;
+    }
+    .first-stripe{
+        font-size: .85rem;
     }
   }
   

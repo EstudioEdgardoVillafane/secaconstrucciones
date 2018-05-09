@@ -22,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 //Services
 import { ProductosService } from './productos.service';
 import { ComoLlegarComponent } from './como-llegar/como-llegar.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ComoLlegarComponent } from './como-llegar/como-llegar.component';
     ProductosComponent,
     ProductoDetalleComponent,
     FooterComponent,
-    ComoLlegarComponent
+    ComoLlegarComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
