@@ -7,6 +7,7 @@ import { HomeComponent } from '../home/home.component';
 import {BackendComponent} from '../backend/backend.component';
 import {BackendProductsComponent} from '../backend-products/backend-products.component';
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
+import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
 
 // Rutas                             
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     ]
   },
   { path: 'detalle-producto/:id', component: ProductoDetalleComponent },
+  { path: 'como-llegar', component: ComoLlegarComponent }
   
 ];
 

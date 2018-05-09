@@ -5,6 +5,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
 //Products
 import { HomeComponent } from './home/home.component';
@@ -20,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 
 //Services
 import { ProductosService } from './productos.service';
+import { ComoLlegarComponent } from './como-llegar/como-llegar.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +34,16 @@ import { ProductosService } from './productos.service';
     HeaderComponent,
     ProductosComponent,
     ProductoDetalleComponent,
-    FooterComponent
+    FooterComponent,
+    ComoLlegarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot(),
+    CollapseModule.forRoot(), 
+    BsDropdownModule.forRoot(),
     HttpClientModule
   ],
   providers: [ProductosService], //Services

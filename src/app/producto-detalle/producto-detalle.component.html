@@ -1,7 +1,59 @@
 <div class="row text-dark">
   <app-side-bar class="col-md-3"></app-side-bar>
   <section class="col-md-9">
-    <h2 class="text-center">{{producto.nombre}}</h2>
-    <p>{{producto.detalle}}</p>
+    <div class="row">
+      <div class="col-md-7 px-0">
+        <div class="col-md-12 border-bottom border-secondary">
+          <img src="{{producto.img}}" class="img-fluid " alt="">
+        </div>
+        <div class="col-md-12 py-3">
+          <h2>Descripción</h2>
+          <p>{{producto.detalle}}</p>
+        </div>
+      </div>
+      <div class="col-md-5 border-left border-secondary">
+        <h2 class="text-sm-left mb-3">{{producto.nombre}}</h2>
+        <h2 class="text-sm-left mb-4">$ {{producto.precio}}</h2>
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="mr-3">
+              <i class="fa fa-credit-card fa-lg"></i>
+            </div>
+            <div>
+              <h5>Empezás a pagar</h5>
+              <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus commodi quidem hic itaque cupiditate dicta
+                quod magni accusantium ex obcaecati quos expedita odio, eum, eius distinctio architecto repudiandae, beatae
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex">
+              <div class="mr-3">
+                <i class="fa fa-credit-card fa-lg"></i>
+              </div>
+              <div>
+                <h5>Empezás a pagar</h5>
+                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus commodi quidem hic itaque cupiditate dicta
+                  quod magni accusantium ex obcaecati quos expedita odio, eum, eius distinctio architecto repudiandae, beatae
+                </p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 border-top border-secondary py-3">
+        <h2>Ficha técnica</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas nostrum, nesciunt quidem incidunt consequuntur
+          labore ea qui dolor facere mollitia. Consequatur sed mollitia a, corporis tenetur aliquam nemo unde ullam?</p>
+      </div>
+      <br>
+      <div class="col-md-12 py-3">
+        <h2>Descripción</h2>
+        <p>{{producto.detalle}}</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas nostrum, nesciunt quidem incidunt consequuntur
+          labore ea qui dolor facere mollitia. Consequatur sed mollitia a, corporis tenetur aliquam nemo unde ullam?</p>
+      </div>
+    </div>
   </section>
 </div>

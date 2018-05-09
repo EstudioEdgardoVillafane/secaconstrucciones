@@ -1,10 +1,10 @@
 img{
-    width: 55%;
+    width: 45%;
 }
 .title{
     font-family: 'Bitter', serif!important;
     margin-left: 60px;
-    font-size: 3.7rem;
+    font-size: 3.4rem;
 }
 
 .bg-custom{
@@ -14,3 +14,14 @@ img{
     background-color: #103035;
    
 }
+
+/* Rules for mobiles */
+@media screen and (max-width:425px) {
+    .title{
+        font-size: 1.5rem;
+    }
+    img{
+        width: 75%;
+    }
+  }
+  

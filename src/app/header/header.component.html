@@ -1,57 +1,56 @@
-<header class="sticky-top text-white mb-4">
-  <div class="navbar bg-añil py-0 px-5">
-    <span>
-      <i class="fa fa-phone"></i>&nbsp;(011) 4844-0128</span>
-    <div class="ml-auto py-2">
-      <a class="nav-link text-white d-inline" routerLink="/#">Iniciar sesión</a>
-      <a class="nav-link text-white d-inline" routerLink="/#">
-        <span>
-          <i class="fa sign-in-alt"></i>
-        </span>Registrarse
-      </a>
-    </div>
-  </div>
-
-  <div class="container-fluid bg-custom py-2">
-    <div class="row">
-      <div class="col-md-2 w-100">
-        <a routerLink="/home">
-          <img src="../../assets/img/logo.jpg" alt="logo de seca" class="d-block mx-auto">
+<header class="container-fluid text-white sticky-top">
+  <div class="row">
+    <div class="col-12 bg-añil py-0 d-flex align-items-center">
+      <div>
+        <i class="fa fa-phone"></i>&nbsp;(011) 4844-0128
+      </div>
+      <div class="ml-auto py-1">
+        <a class="nav-link text-white d-inline py-0" routerLink="/#">Iniciar sesión</a>
+        <a class="nav-link text-white d-inline py-0" routerLink="/#">
+          <span>
+            <i class="fa sign-in-alt"></i>
+          </span>Registrarse
         </a>
       </div>
-      <div class="col-md-8 text-white d-flex justify-content-center align-items-center">
-        <h1 class="title">Seca Construcciones</h1>
+    </div>
+
+    <!-- 2da franja -->
+    <div class="col-12 bg-custom py-1">
+      <div class="row">
+        <div class="col-2 px-0">
+          <a routerLink="/home">
+            <img src="../../assets/img/logo.jpg" alt="logo de seca" class="d-flex mx-auto ">
+          </a>
+        </div>
+        <div class="col-10 text-white d-flex justify-content-center align-items-center">
+          <h1 class="title m-0">Seca Construcciones</h1>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="col-12 p-0">
+      <nav class="navbar navbar-expand-md navbar-toggleable-md bg-añil text-dark py-0 ">
 
-  <nav class="navbar navbar-expand-md navbar-toggleable-md bg-añil text-dark py-0 ">
+        <button class="navbar-toggler navbar-toggler-right rounded-0 btn-hamburger" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- Hamburger Button -->
-    <button class="navbar-toggler navbar-toggler-right rounded-0 btn-hamburger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="collapse navbar-collapse justify-content-center m-0" id="navbarSupportedContent">
+          <ul class="navbar-nav p-0 text-uppercase">
+            <li class="nav-item d-flex bd-dark">
+              <a class="nav-link text-white mx-auto align-self-center" routerLink="/home">Inicio</a>
+            </li>
+            <li class="nav-item d-flex">
+              <a class="nav-link text-white mx-auto align-self-center" style="white-space: pre" routerLink="/como-llegar">Cómo llegar</a>
+            </li>
 
-    <div class="collapse navbar-collapse justify-content-center m-0" id="navbarSupportedContent">
-      <ul class="navbar-nav p-0 text-uppercase">
-        <li class="nav-item d-flex bd-dark">
-          <a class="nav-link text-white mx-auto align-self-center" routerLink="/home">Inicio</a>
-        </li>
-        <li class="nav-item d-flex">
-          <a class="nav-link text-white mx-auto align-self-center" style="white-space: pre" routerLink="/como-llegar">Cómo llegar</a>
-        </li>
+            <li class="nav-item d-flex mr-2">
+              <a class="nav-link text-white mx-auto align-self-center" routerLink="/contacto">Contacto</a>
+            </li>
+          </ul>
+        </div>
 
-        <li class="nav-item d-flex mr-2">
-          <a class="nav-link text-white mx-auto align-self-center" routerLink="/contacto">Contacto</a>
-        </li>
-      </ul>
+      </nav>
     </div>
-    <form class="form-inline my-2 my-lg-0 ">
-      <input class="form-control mr-sm-2 p-0 pl-1 rounded-0" type="search" placeholder="Buscar" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0 py-0 rounded-0" type="submit">Buscar</button>
-    </form>
-
-  </nav>
-
+  </div>
 </header>
