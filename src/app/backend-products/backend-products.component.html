@@ -15,7 +15,7 @@
           </div>
 
         <input type="hidden" name="nameproducts" id="productName" value="">
-        <input type="hidden" name="sectionAdd"   id="SectionAdd" value="{{auxiliar.s_id}}">
+        <input type="text" name="sectionAdd"   id="SectionAdd" value="{{auxiliar.s_id}}">
 
           <div *ngIf="BoolAddProductOne"> 
             <div class="row">
@@ -92,7 +92,10 @@
                 </div>  
                 <div class="list-group col-2" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
                     <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}">
-                </div>
+                    <div *ngFor="let toto of ListSubAtribute">
+                    <input type="text" value="{{toto.su_id}}">
+                  </div>
+                  </div>
             </div>
             <div class="row text-center mt-4"> 
                 <div class="col-12">

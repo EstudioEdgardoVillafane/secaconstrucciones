@@ -1,4 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class ProductosService {
@@ -53,7 +59,7 @@ export class ProductosService {
      }
   ]
   
-  constructor() { }
+  constructor(private http: Http) { }
 
   getProductos(){
     return this.productos;
@@ -62,6 +68,14 @@ export class ProductosService {
   getProducto(idx: string){
     return this.productos[idx];
   }
+
+  listProduct(){
+    return this.http.get('php/script/list-producto.php');
+  }
+  CrudFunction( id: number){
+    return this.http.get('php/script/delete-producto.php?id='+id);
+  }
+
 }
 
 //Defining the format of the class with an Interface

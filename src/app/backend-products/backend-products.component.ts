@@ -18,7 +18,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
-
+import { ProductosService } from '../productos.service';
+import { SubatributoService } from '../subatributo.service';
 @Component({
   selector: 'app-backend-products',
   templateUrl: './backend-products.component.html',
@@ -63,9 +64,10 @@ export class BackendProductsComponent implements OnInit {
   boleeanToCheckAtribute = false;
   numberAuxToAtribute;
   auxID;
+  ListSubAtribute = new Array();
  /** I am defining the services. */
  
- constructor(private seccionService: SeccionService, private atributoService : AtributoService) {}
+ constructor(private seccionService: SeccionService, private productoService : ProductosService, private atributoService : AtributoService, private subatributeService : SubatributoService) {}
 
  /** Calling the function ListContent to do the list of content. */
 
@@ -103,9 +105,7 @@ filterSection(value){
    this.request = new XMLHttpRequest();
    this.request.open("POST", "php/script/edit-content.php");
    console.log(this.request.send(new FormData(this.formElement)));
-   this.ListContent();
-   this.boolPrueb = true;
-   
+   this.ListContent();   
  }
 
 
@@ -131,7 +131,6 @@ filterSection(value){
    this.BooleanToAlertSubTitulo = false;
    this.BooleanToAlertParrafo = false;
    this.ListContent();
-   this.boolPrueb=false;
  }
 auxiliar;
  seccionClicked(number : string){
@@ -140,16 +139,17 @@ auxiliar;
   this.seccionName = document.getElementById(number);
   this.seccionNameToAdd = document.getElementById("buscarSeccion"); 
   document.getElementById("buscarSeccion");
-  console.log(this.seccionNameToAdd.value);
-  console.log(this.seccionName.value);
   this.seccionNameToAdd.disabled = true
   this.seccionNameToAdd.value = this.seccionName.value; 
   this.seccionService.getJsonForName(this.seccionName.value,this.listSeccion)
-  .subscribe(result => this.auxiliar = result );
+  .subscribe(result => this.auxiliar = result  );
+  console.log(this.auxiliar);
+  console.log(this.auxiliar.s_id);
   this.atributoList(this.auxiliar.s_id);
  }
 varAuxInput;
- atributoClicked(id : string){
+ 
+atributoClicked(id : string){
   this.boleeanToCheckAtribute=true;    
    if(this.arrayAtribute == 0){
      this.CheckAtribute[0] = id;
@@ -175,7 +175,23 @@ varAuxInput;
     this.varAuxInput  = document.getElementsByName("atribute");
     this.varAuxInput.value = this.CheckAtribute.toString();  
     
+    for(this.i=0; this.i<this.arrayAtribute; this.i++){
+      if(this.CheckAtribute[this.i] == undefined){
+        console.log("Indefinido");
+      }else{
+        this.sumador = 0;
+        this.subatributeService.CrudFunction(1,this.CheckAtribute[this.i],"",0)
+        .map((response) => response.json())
+        .subscribe((data) => { 
+        this.ListSubAtribute[this.sumador] =  data;
+        console.log(this.ListSubAtribute[this.sumador]);
+        this.sumador++;
+        });
+      } 
+    }
+    console.log(this.ListSubAtribute);
  }
+sumador;
  returnSeccion(){
    this.BooleanToCloseSeccion=true;
    this.seccionNameToAdd.value="";
@@ -207,7 +223,7 @@ nextOne(){
 
  /** This fucntion is calling the database to do a list. CrudFunction is a function of service. He gets 6 parameter. */
  ListContent(){
-     this.seccionService.listProduct()
+     this.productoService.listProduct()
        .map((response) => response.json())
        .subscribe((data) => { 
        this.ListOfContent = data;
@@ -230,6 +246,7 @@ nextOne(){
     this.atributoService.CrudFunction(1,"",id,0)
     .map((response) => response.json())
     .subscribe((data) => {
+      console.log(data);
       this.listAtributo = data;
     });
   }
@@ -237,7 +254,7 @@ nextOne(){
 
  /** When we do a click on a checkbox, we add it in an array and after is delete. */
  onCheck(id : number){  
-   console.log(this.List);
+   console.log(this.CheckAcumulador);
    this.Booleano=true;    
    if(this.NumberAux == 0){
      this.CheckAcumulador[0] = id;
@@ -262,25 +279,23 @@ nextOne(){
        if(this.CheckAcumulador[this.i] == undefined){
          console.log("Indefinido");
        }else{
-        //  this.contentService.CrudFunction(2, this.CheckAcumulador[this.i],"","","","","")
-        //  .subscribe((data) => { 
-          //  this.Aux = data;
-        //  });
+         this.productoService.CrudFunction(this.CheckAcumulador[this.i])
+         .subscribe((data) => { 
+          console.log(data);
+        });
        }
      }
-     location.reload();
    }
 /** Here we are validating the store form and creating the alert message */
 
    /** This function is storing the new regist in a database */
-   boolPrueb = false;
+   
    
    StoreProduct(){
-       this.formElement = document.getElementById("formularioStore");
+     this.formElement = document.getElementById("formularioStore");
      this.request = new XMLHttpRequest();
      this.request.open("POST", "php/script/store-product.php");
      console.log(this.request.send(new FormData(this.formElement)));
-     this.ListContent();
-     this.boolPrueb = true;    
+     this.ListContent();    
    }
 }

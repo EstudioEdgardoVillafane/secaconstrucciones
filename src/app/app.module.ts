@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductosService } from './productos.service';
 import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
+import { SubatributoService } from './subatributo.service';
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendUserService } from './backend-user.service';
 import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
@@ -36,7 +37,7 @@ import { FilterSecctionPipe } from './filter-secction.pipe';
     BackendProductsComponent,
     BackendComponent,
     BackendUserComponent,
-    BackendSeccionComponent
+    BackendSeccionComponent,
     FilterSecctionPipe,
     SideBarComponent,
     HeaderComponent,
@@ -51,7 +52,7 @@ import { FilterSecctionPipe } from './filter-secction.pipe';
     HttpModule,
     HttpClientModule
   ],
-  providers: [SeccionService,AtributoService,BackendUserService,ProductosService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }

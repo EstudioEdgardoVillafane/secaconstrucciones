@@ -5,7 +5,7 @@
 	$NewConnect = new Seca();
 	
 	if($_GET["data"]==1){                   /** List    */
-		$sql="SELECT * FROM atributo WHERE a_status=1 AND a_seccion='".$_GET["atributo"]."'";	
+		$sql="SELECT * FROM subatributo WHERE su_status=1 AND su_atributo='".$_GET["id"]."'";	
 		$NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
 		$sqld = "UPDATE uso SET u_status = 0 WHERE u_id = '".$_GET["id"]."'";
