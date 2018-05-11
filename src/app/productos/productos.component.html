@@ -2,7 +2,7 @@
   <div class="col p-3">
     <h2 class="text-center">Productos</h2>
     <div class="row d-flex justify-content-center">
-      <div *ngFor="let producto of ListOfProducts" class="col-md-3 m-2 py-3 bg-light">
+      <!-- <div *ngFor="let producto of ListOfProducts" class="col-md-3 m-2 py-3 bg-light">
 
         <img src="{{producto.p_url}}" class="img-fluid mb-1" alt="">
 
@@ -12,11 +12,52 @@
 
         <button routerLink="/detalle-producto/{{producto.p_nombre}}" class="btn btn-success rounded-0 btn-sm d-flex mx-auto">Ver más</button>
 
-      </div>
+      </div> -->
+
+      
+      <div class="col-md-3 p-0 mx-3 rounded py-3 capsule">
+          <div class="d-flex rounded py-3 cont-img">
+            <img src="../../assets/img/beach.jpg" class="align-self-center mx-auto" alt="">
+          </div>
+          <hr id="hr m-0">
+          <div class="text-center ">
+            <h3>$ 400</h3>
+          </div>
+        </div>
+
+      <div class="col-md-3 p-0 mx-3 rounded py-3 capsule">
+          <div class="d-flex py-3 rounded cont-img">
+            <img src="../../assets/img/mortero.png" class=" align-self-center mx-auto" alt="">
+          </div>
+          <hr id="hr m-0">
+          <div class="text-center ">
+            <h3>$ 400</h3>
+          </div>
+        </div>
+        
+      <div class="col-md-3 p-0 mx-3 rounded py-3 capsule">
+          <div class="d-flex rounded py-3 cont-img">
+            <img src="../../assets/img/multifunc.png" class="align-self-center mx-auto" alt="">
+          </div>
+          <hr id="hr m-0">
+          <div class="text-center ">
+            <h3>$ 400</h3>
+          </div>
+        </div>
+
+        <div class="col-md-3 p-0 mx-3 rounded py-3 capsule">
+            <div class="d-flex rounded py-3 cont-img">
+              <img src="../../assets/img/tree.png" class="align-self-center mx-auto" alt="">
+            </div>
+            <hr id="hr m-0">
+            <div class="text-center ">
+              <h3>$ 400</h3>
+            </div>
+          </div>
+
+        
+
+
     </div>
   </div>
 </div>
-
-
-
-
