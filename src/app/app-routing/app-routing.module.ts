@@ -13,6 +13,8 @@ import { BackendSubatributoComponent } from '../backend-subatributo/backend-suba
 
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
+import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
+import {ContactoComponent} from '../contacto/contacto.component';
 
 // Rutas                             
 const routes: Routes = [
