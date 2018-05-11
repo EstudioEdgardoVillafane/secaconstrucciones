@@ -16,11 +16,24 @@
           <div *ngIf="AlertNombre" class="alert alert-danger">*Ingrese un nombre de atributo</div></div>
         </div>
   
-        <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="a_seccion">Seccion</label></div>
-          <div class="col-md-6 col-xs-12"><input id="a_seccion" value="" class="form-control" type="text" placeholder="Ingrese una seccion">
-          <div *ngIf="AlertSection" class="alert alert-danger">*Ingrese una seccion</div></div>
+        <div class="row"> 
+          <div class="col-12">
+            <label>Elija seccion</label>
+          </div>  
+          <div class="col-12">   
+            <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccion" (keyup)="filterSection()">
+          </div>
         </div>
+
+        <div class="row mt-2" *ngIf="BooleanToCloseSeccion;else otra">
+          <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
+            <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
+          </div>
+          <a>Agregar otra seccion</a>
+        </div> <!-- ./BooleanToCloseSeccion -->
+          <ng-template #otra>
+            <a (click)="returnSeccion()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a>
+          </ng-template>
     
        
   
