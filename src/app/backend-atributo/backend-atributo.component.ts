@@ -1,0 +1,219 @@
+/**
+*  
+*******************************************
+*** Project Name: Seca Construcciones   ***
+*** @Description: Ecomerce              ***
+*** @Author: Cristian Hourcade          ***
+*** @Tecnology: Angular5                ***
+*** @Year: 2018                         ***
+*** @Version: 1.0.0                     ***
+*******************************************
+*
+*/
+import { Component, OnInit } from '@angular/core';
+import { SeccionService } from '../seccion.service';
+import { AtributoService } from '../atributo.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
+import { BackendUserService } from '../backend-user.service';
+
+@Component({
+  selector: 'app-backend-atributo',
+  templateUrl: './backend-atributo.component.html',
+  styleUrls: ['./backend-atributo.component.css']
+})
+export class BackendAtributoComponent implements OnInit {
+
+  //these variables are used to change the back-end user table to the form of editing or the form of store
+  ChangeTemplateEditar=true;
+  ChangeTemplateAgregar=true;
+
+  //these variables are used to take the value of the id of the inputs in the HTML
+  //store
+  a_nombre;
+  a_seccion;
+
+
+
+  //edit
+ 
+  a_id;
+
+  Listed;
+//the function of these boleans are for validation alerts
+AlertNombre = false;
+AlertSection = false;
+ 
+  
+
+
+
+
+  var;
+  CheckAcumulador = new Array();
+  NumberAux=0;
+  PositionAux = 0;
+  i=0;
+  Booleano = true;
+  edit;
+  edit_atributo;
+  listado;
+  constructor( private AtributoService:AtributoService) { }
+
+  ngOnInit() {
+    if(localStorage.getItem("keyTwo") != "1"){
+     // location.href="../../admin";
+    }
+    this.Listar();
+  }
+
+ 
+//this function show the Store form
+  ShowStoreForm(){
+    this.ChangeTemplateEditar= false;
+  }
+
+//this funtion show the edit form and send the values of the data base in to the inputs of the forms
+  ShowEditForm(a_id : number){
+    this.ChangeTemplateAgregar=false;
+    this.ChangeTemplateEditar=false;
+    this.AtributoService.getJsonID(a_id,this.listado)
+    .subscribe(resultado => this.edit_atributo = resultado);
+  }
+
+//this funtion returns of the backend users table
+  ReturnToTheTableUsers(){
+    this.ChangeTemplateEditar=true;
+    this.ChangeTemplateAgregar=true;
+   
+  }
+
+
+  // Listar(){
+  //   this.BackendUserService.validateUser().subscribe((data) => {
+  //     console.log(data.text());
+  //       this.BackendUserService.Conect(5,0,"0","0","0")
+  //         .map((response) => response.json())
+  //         .subscribe((data) => {
+  //         this.listado = data;
+  //       });
+  //    });
+  // }
+    Listar(){
+        this.AtributoService.CrudFunction(1,"0",0,0)
+        .map((response) => response.json())
+        .subscribe((data) => {
+          this.listado = data;
+        });
+      }
+//this function take the values of the iputs and send the values of the data base
+  Edit(a_id : number){
+    this.a_nombre = document.getElementById("edit_nombre");
+    this.a_seccion = document.getElementById("edit_seccion");
+      
+    this.a_id = document.getElementById("a_id");
+
+  
+
+      if(this.a_nombre.value == ""){
+        this.AlertNombre = true;
+      }else{
+        this.AlertNombre = false;
+      }
+
+      if(this.a_seccion.value == ""){
+        this.AlertSection = true;
+      }else{
+        this.AlertSection = false;
+      }
+
+      
+
+     
+
+      
+     
+  }
+// this function accumulates the checks that are in the table to be deleted later
+  Check(a_id : number){
+     this.Booleano=true;
+    console.log("Contador: " + this.NumberAux);
+    if(this.NumberAux == 0){
+      this.CheckAcumulador[0] = a_id;
+      this.NumberAux++;
+      console.log("Primer numero en la lista: " + a_id)
+    }else{
+      for(this.i = 0; this.i<this.NumberAux ; this.i++){
+        if(a_id == this.CheckAcumulador[this.i]){
+          this.CheckAcumulador.splice(this.i, 1);
+          this.Booleano = false;
+          console.log("El numero: " + a_id + " está en la posicion: " + this.i);
+          this.NumberAux++;
+        }
+      }
+      if(this.Booleano){
+          this.CheckAcumulador[this.NumberAux] = a_id;
+          console.log("Se agrego en el numero: " + a_id + ", en la posicion: " + this.NumberAux);
+          this.NumberAux++;
+        }
+      }
+    }
+
+// this function delete the backend users of the table that are select whith the chek
+  Delete(){
+    for(this.i=0; this.i<this.NumberAux; this.i++){
+      if(this.CheckAcumulador[this.i] == undefined){
+        console.log("Indefinido");
+      }else{
+        this.AtributoService.CrudFunction(4, this.CheckAcumulador[this.i],0,0)
+        .subscribe((data) => {
+          this.var = data;
+          console.log(data);
+        });
+        // location.reload();
+      }
+
+  }
+    this.Listar();
+  }
+
+//this function add users in to the data base
+  Store(){
+    this.a_nombre = document.getElementById("a_nombre");
+    this.a_seccion = document.getElementById("a_seccion");
+   
+   
+
+    if(this.a_nombre.value == ""){
+      this.AlertNombre= true;
+    }else{
+      this.AlertNombre = false;
+    }
+    if(this.a_seccion.value == "" ){
+      this.AlertSection = true;
+    }else{
+      this.AlertSection = false;
+    }
+    
+    if(this.a_nombre.value != "" && this.a_seccion.value != ""){
+
+      this.AtributoService.CrudFunction(
+        3,
+       
+        this.a_nombre.value,
+        this.a_seccion.value,
+        0
+      )
+      .subscribe((result)=>{this.var=result;});
+      // this.ListBackendUsers();
+      //location.reload();
+      console.log(this.var);
+      this.ChangeTemplateEditar=true;
+    }else{
+      console.log("Falla al agregar");
+    }
+    }
+}

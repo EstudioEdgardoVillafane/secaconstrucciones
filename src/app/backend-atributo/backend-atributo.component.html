@@ -1,0 +1,133 @@
+<section class="pt-5 pb-5 my-5">
+  <div class="container mt-5">
+  
+  <!------------Here begins the form of the Store-------------->
+    <ng-template #Agregar>
+      <div *ngIf="ChangeTemplateAgregar;else Editar">
+  
+        <div class="container">
+          
+          <h2 align="center">Agregar Nuevo Atributo</h2>
+  
+    <hr>
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="a_nombre">Nombre</label></div>
+          <div class="col-md-6 col-xs-12"><input id="a_nombre" value="" class="form-control" type="text" placeholder="Ingrese un nombre de atributo">
+          <div *ngIf="AlertNombre" class="alert alert-danger">*Ingrese un nombre de atributo</div></div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="a_seccion">Seccion</label></div>
+          <div class="col-md-6 col-xs-12"><input id="a_seccion" value="" class="form-control" type="text" placeholder="Ingrese una seccion">
+          <div *ngIf="AlertSection" class="alert alert-danger">*Ingrese una seccion</div></div>
+        </div>
+    
+       
+  
+        
+        
+        <div class="row mb-2 text-center">
+          <div class="col-12"><hr></div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-12">
+            <button class="btn btn-lg btn-danger pull-right ml-1" (click)="ReturnToTheTableUsers()">Volver</button>
+            <button class="btn btn-lg btn-info pull-right" (click)="Store()">Agregar</button>
+          </div>
+        </div>
+  
+        </div>
+      </div>
+      <!------------------End form Store-------------------->
+      <!------------------Here begins the form of the Edit---------------------------->
+      <ng-template #Editar>
+  
+        <div class="container">
+          <h2 align="center">Editar Atributo</h2>
+          <hr>
+        <div class="row mt-2">
+          
+          <div class="col-md-6 col-xs-12"><label for="edit_nombre">Editar Nombre</label></div>
+          <div class="col-md-6 col-xs-12"><input id="edit_nombre" value="{{edit_atributo.a_nombre}}" class="form-control" type="text" placeholder="Ingrese un nombre">
+          <div *ngIf="AlertNombre" class="alert alert-danger">*Ingrese el nombre</div></div>     
+        </div>
+        
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="edit_seccion">Editar Seccion</label></div>
+          <div class="col-md-6 col-xs-12"><input id="edit_seccion" value="{{edit_atributo.a_seccion}}" class="form-control" type="text" placeholder="Ingrese una seccion">
+          <div *ngIf="AlertSection" class="alert alert-danger">*Ingresar seccion</div></div> 
+        </div>
+    
+       
+  
+        
+  
+                               
+          
+       
+  
+        <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="edit_subatributo">Subatributo</label></div>
+            <div class="col-md-6 col-xs-12"><input id="edit_subatributo" value="" type="text" class="form-control" placeholder="subatributo">
+            <div *ngIf="AlertSubatributo" class="alert alert-danger">*Ingresar subatributo</div></div>
+        </div>
+  
+        
+  
+        <div class="row mb-2 text-center">
+            <div class="col-12">
+              <hr>
+            </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <button class="btn btn-lg btn-danger ml-2" (click)="ReturnToTheTableUsers()">Volver</button>
+          <button class="btn btn-lg btn-info ml-3" (click)="Edit(edit_userb.ub_id)">Editar</button>
+        </div>
+    </div>
+  </div>
+    
+  </ng-template>
+  </ng-template>
+  <!----------End Edit Form---------->
+  
+  <div *ngIf="ChangeTemplateEditar;else Agregar" class="mt-4">
+  
+  
+      <div class="row">
+        <div class="col-5">
+        <h2>Tabla de Atributos.</h2>
+  
+      </div>
+      <div class="col-7">
+        <button class="btn btn-md btn-info pull-right ml-1" (click)="ShowStoreForm()">Agregar</button>
+        <button class="btn btn-md btn-danger pull-right ml-1" (click)="Delete()">Eliminar</button>
+      </div>
+    </div>
+    
+      <table class="table table-bordered mt-3"  width="100%">
+  
+        <thead>
+            <tr>
+              <th style="width: 1px;">#</th>
+              <th>Nombre</th>
+              <th>Seccion</th>
+            
+              <th style="width: 25px">Editar</th>
+            </tr>
+        </thead>
+  
+        <tbody>
+            <tr *ngFor="let atributo of listado"> 
+              <td><input type="checkbox" class="tilde" value="{{atributo.a_id}}" (click)="Check(atributo.a_id)"></td>
+              <td>{{atributo.a_nombre}}</td>
+              <td>{{atributo.a_seccion}}</td>
+             
+              <td><button value="{{atributo.a_id}}" (click)="ShowEditForm(atributo.a_id)"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  </section>
