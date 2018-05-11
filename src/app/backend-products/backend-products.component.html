@@ -15,10 +15,10 @@
             </div>
           </div>
 
-        <input type="text" name="nameproducts" id="productName" value="">
-        <input type="text" name="sectionAdd"   id="SectionAdd" value="{{seccionValue}}">
-        <input type="text" name="atributoAdd"   id="AtributoAdd" value="{{atributoValue}}">
-        <input type="text" name="subAtributoAdd"   id="subAtributoAdd" value="{{subatributoValue}}">
+        <input type="hidden" name="nameproducts" id="productName" value="">
+        <input type="hidden" name="sectionAdd"   id="SectionAdd" value="{{seccionValue}}">
+        <input type="hidden" name="atributoAdd"   id="AtributoAdd" value="{{atributoValue}}">
+        <input type="hidden" name="subAtributoAdd"   id="subAtributoAdd" value="{{subatributoValue}}">
 
           <div *ngIf="BoolAddProductOne"> 
             <div class="row">
@@ -278,9 +278,9 @@
                         </div>
                       </div>
                       </div>
-                      <input type="text" name="sectionAdd-ed"   id="SectionAdd" value="{{seccionValue}}">
-                      <input type="text" name="atributoAdd-ed"   id="AtributoAdd" value="{{atributoValue}}">
-                      <input type="text" name="subAtributoAdd-ed"   id="subAtributoAdd" value="{{subatributoValue}}">
+                      <input type="hidden" name="sectionAdd-ed"   id="SectionAdd" value="{{seccionValue}}">
+                      <input type="hidden" name="atributoAdd-ed"   id="AtributoAdd" value="{{atributoValue}}">
+                      <input type="hidden" name="subAtributoAdd-ed"   id="subAtributoAdd" value="{{subatributoValue}}">
              </div>
         </form>
         </ng-template>
@@ -323,7 +323,6 @@
                     </button>
                   </td>
                 </tr>
-                <button (click)="ShowEdit(1)">Toto</button>
               </tbody>
             </table>
       </div>
