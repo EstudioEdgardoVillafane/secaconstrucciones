@@ -29,7 +29,7 @@ const routes: Routes = [
     ]
   },
   { path: 'productos', component: BackendProductsComponent },
-  { path: 'detalle-producto/:id', component: ProductoDetalleComponent }
+  { path: 'detalle-producto/:nombre', component: ProductoDetalleComponent }
 ];
 
 @NgModule({

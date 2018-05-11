@@ -21,6 +21,7 @@ import { BackendSubatributoComponent } from './backend-subatributo/backend-subat
 import { ProductosService } from './productos.service';
 import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
+import { SubatributoService } from './subatributo.service';
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendUserService } from './backend-user.service';
 import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
@@ -37,6 +38,7 @@ import { SubAtributoService } from './sub-atributo.service';
     BackendProductsComponent,
     BackendComponent,
     BackendUserComponent,
+    BackendSeccionComponent,
     FilterSecctionPipe,
     SideBarComponent,
     HeaderComponent,
@@ -53,7 +55,7 @@ import { SubAtributoService } from './sub-atributo.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [SubAtributoService,SeccionService,AtributoService,BackendUserService,ProductosService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }

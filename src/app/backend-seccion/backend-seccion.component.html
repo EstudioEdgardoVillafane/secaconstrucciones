@@ -15,13 +15,7 @@
           <div class="col-md-6 col-xs-12"><input id="s_name" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
           <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>
         </div>
-  
-        <!-- <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="s_attribute">Atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="s_attribute" value="" class="form-control" type="text" placeholder="Ingrese un Atributo">
-          <div *ngIf="AlertAttribute" class="alert alert-danger">*Ingrese un atributo</div></div>
-        </div> -->
-        
+
         <div class="row mb-2 text-center">
           <div class="col-12"><hr></div>
         </div>
@@ -48,12 +42,6 @@
           <div class="col-md-6 col-xs-12"><input id="edit_name" value="{{edit_seccion.s_nombre}}" class="form-control" type="text" placeholder="Ingrese un Nombre">
           <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>     
         </div>
-        
-        <!-- <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="edit_attribute">Editar Atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="edit_attribute" value="{{edit_seccion.s_atributo}}" class="form-control" type="email" placeholder="Ingrese un Atributo">
-          <div *ngIf="AlertAttribute" class="alert alert-danger">*Ingresar un Atributo</div></div> 
-        </div>-->
   
         <div class="row mb-2 text-center">
             <div class="col-12">
@@ -92,7 +80,6 @@
             <tr>
               <th style="width: 1px;">#</th>
               <th>Sección nombre</th>
-              <th>Atributo</th>
               <th style="width: 25px">Editar</th>
             </tr>
         </thead>
@@ -101,7 +88,6 @@
             <tr *ngFor="let seccion of listado"> <!--put name of the data base-->
               <td><input type="checkbox" class="tilde" value="{{seccion.s_id}}" (click)="Check(seccion.s_id)"></td>
               <td>{{seccion.s_nombre}}</td>
-              <td>{{seccion.s_atributo}}</td>
               <td><button value="{{seccion.s_id}}" (click)="ShowEditForm(seccion.s_id)"><i class="fa fa-pencil"></i></button></td>
             </tr>
           </tbody>

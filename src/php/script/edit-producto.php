@@ -3,18 +3,19 @@ require_once '../class/seca.php';
 require_once '../class/connect.php';
 
 $NewConnect = new Seca();
+    
+    $ID = $_POST["id-ed"];
+	$nameProduct = $_POST["nameOfProduct-ed"];
+	$section = $_POST["sectionAdd-ed"];
+	$description = $_POST["description-ed"];
+	$atribute = $_POST["atributoAdd-ed"];
+	$precio = $_POST["precioedit"];
+	$subatributo = $_POST["subAtributoAdd-ed"];
 	
-	$nameProduct = $_POST["nameproducts"];
-	$section = $_POST["sectionAdd"];
-	$description = $_POST["description"];
-	$atribute = $_POST["atributoAdd"];
-	$precio = $_POST["precio"];
-	$subatributo = $_POST["subAtributoAdd"];
-	
-	$tipo = $_FILES['uploadedfile']['type'];
-	$tamano = $_FILES['uploadedfile']['size'];
-	$tmp = $_FILES['uploadedfile']['tmp_name'];
-	$file_name = $_FILES['uploadedfile']['name'];
+	$tipo = $_FILES['uploadedfile-ed']['type'];
+	$tamano = $_FILES['uploadedfile-ed']['size'];
+	$tmp = $_FILES['uploadedfile-ed']['tmp_name'];
+	$file_name = $_FILES['uploadedfile-ed']['name'];
 
 
 	$ancho_fijo=1920;
@@ -56,8 +57,13 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 imagedestroy ($img_redimensionada);
 imagedestroy ($nueva_img);
 
-	     $sql = "INSERT INTO producto (p_nombre,p_descripcion,p_section,p_atributo,p_subatributo,p_precio,p_url,p_status) 
-		VALUES ('".$nameProduct."','".$description."','".$section."','".$atribute."','".$subatributo."','".$precio."','".$URL."','1')";
-         $NewConnect->ExecuteSql($sql);
+if($tamano == 0){
+    $sql = "UPDATE producto SET p_nombre = '".$nameProduct."', p_descripcion = '".$description."', p_section = '".$section."', p_atributo = '".$atribute."', p_subatributo = '".$subatributo."', p_precio = '".$precio."' WHERE p_id ='".$ID."'";
+
+}else{
+    $sql = "UPDATE producto SET p_nombre = '".$nameProduct."', p_descripcion = '".$description."', p_section = '".$section."', p_atributo = '".$atribute."', p_subatributo = '".$subatributo."', p_precio = '".$precio."', p_url = '".$URL."' WHERE p_id ='".$ID."'";
+}
+$NewConnect->ExecuteSql($sql);
+
 
  ?>
