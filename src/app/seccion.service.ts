@@ -32,9 +32,15 @@ export class SeccionService {
       return of(json.find(primero => primero.s_id === s_id));
     } 
  
+
+  CrudFunction(functionPhp: number,  id: number,nombre: string, atributo:number){
+    return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
+  }
+
   // CrudFunction(functionPhp: number, nombre: string, atributo:number, id: number){
   //   return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
   // }
+
   listProduct(){
     return this.http.get('php/script/list-producto.php');
   }
