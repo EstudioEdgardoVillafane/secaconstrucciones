@@ -15,4 +15,7 @@ export class AtributoService {
   CrudFunction(functionPhp: number, nombre: string, atributo:number, id: number){
     return this.http.get('php/script/crud-atributo.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
   }
+  getJsonForName(name:string, json){
+    return of(json.find((primero => primero.a_nombre === name)));
+  }
 }
