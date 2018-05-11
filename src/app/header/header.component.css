@@ -10,32 +10,7 @@ img{
 .bg-custom{
     background-color: rgb(31, 31, 31);
 }
-<<<<<<< HEAD
-.petroleum-blue{
-    background-color: #103035;
-}
-.icon{
-    color:#fff;
-}
-nav> ul> li{
-    cursor: pointer;
-}
-/* Rules for mobiles */
-@media screen and (max-width:425px) {
-    .title{
-        font-size: 1.5rem;
-    }
-    img{
-        width: 75%;
-    }
-    .first-stripe{
-        font-size: .85rem;
-    }
-  }
-  
-=======
 .bg-añil{
     background-color: #011013;
    
 }
->>>>>>> 18a0afa5aed58c1348aecc235cc0c22021825ea4
