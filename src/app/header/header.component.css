@@ -1,0 +1,16 @@
+img{
+    width: 55%;
+}
+.title{
+    font-family: 'Bitter', serif!important;
+    margin-left: 60px;
+    font-size: 3.7rem;
+}
+
+.bg-custom{
+    background-color: rgb(31, 31, 31);
+}
+.bg-añil{
+    background-color: #011013;
+   
+}

@@ -4,24 +4,21 @@
 
 	$NewConnect = new Seca();
 	
-	if($_GET["data"]==1){                   /** List    */
-		$sql="SELECT s_id,s_nombre,s_atributo,s_status FROM seccion WHERE s_status=1";	
+	if($_GET["data"]==1){                   /** List   */
+		$sql="SELECT * FROM seccion WHERE s_status=1";	//falta el atributo
 		$NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
-		$sqld = "UPDATE uso SET u_status = 0 WHERE u_id = '".$_GET["id"]."'";
-		$NewConnect->Borrar($sqld);
-	}elseif($_GET["data"]==4){
-		$sql="UPDATE uso SET
-		u_titulo = '".$_GET["titulo"]."',
-		u_subtitulo = '".$_GET["subtitulo"]."',
-		u_parrafo = '".$_GET["descripcion"]."',
-		u_idproducto = '".$_GET["idproducto"]."'
-		WHERE u_id = '".$_GET["id"]."'";
+		$sqld = "UPDATE seccion SET s_status = 0 WHERE s_id = '".$_GET["s_id"]."'";
+		$NewConnect->Borrar($sqld);		
+	}elseif($_GET["data"]==3){				/** Store */
+		$sql = "INSERT INTO seccion (s_nombre,s_status) 
+		VALUES ('".$_GET["s_name"]."','1')";
 		$NewConnect->ExecuteSql($sql);
-
-	}elseif($_GET["data"]==5){
-		$sql = "SELECT * FROM uso WHERE u_idproducto = '".$_GET["id"]."' AND u_status=1";
-		$NewConnect->CreateJson($sql);
+	}elseif($_GET["data"]==4){  			/** Edit */
+		$sql="UPDATE seccion SET
+		s_nombre = '".$_GET["s_name"]."' 
+		WHERE s_id = '".$_GET["s_id"]."'";//falta atributo
+		$NewConnect->ExecuteSql($sql);
 	}
 
 ?>

@@ -176,7 +176,7 @@ export class BackendUserComponent implements OnInit {
           }else{
               this.BackendUserService.Conect(4,ub_id,this.ub_user.value,this.ub_email.value,this.ub_password.value)
               .subscribe((data)=>{ this.var=data;});
-   //           location.reload();
+             location.reload();
 
           }
         });

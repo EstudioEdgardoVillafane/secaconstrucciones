@@ -32,4 +32,10 @@ export class BackendComponent implements OnInit {
   goAtributo(){
     this.router.navigate(['atributo'], {relativeTo: this.route});
   }
+  goUsuarios(){
+    this.router.navigate(['usuarios'], {relativeTo: this.route});
+  }
+  goSeccion(){
+    this.router.navigate(['seccion'], {relativeTo: this.route});
+  }
 }

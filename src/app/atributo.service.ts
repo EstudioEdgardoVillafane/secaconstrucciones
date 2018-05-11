@@ -18,4 +18,7 @@ export class AtributoService {
   getJsonID(id : number, json){
     return of(json.find(primero => primero.a_id === id));
   } 
+  getJsonForName(name:string, json){
+    return of(json.find((primero => primero.a_nombre === name)));
+  }
 }
