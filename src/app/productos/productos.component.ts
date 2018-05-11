@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { ProductosService, Productos } from '../productos.service';
+import { ProductosService } from '../productos.service';
 
 @Component({
   selector: 'app-productos',
@@ -10,21 +10,18 @@ import { ProductosService, Productos } from '../productos.service';
 })
 export class ProductosComponent implements OnInit {
 
-  productos:any[]= [];
+  ListOfProducts;
 
- 
 
-  constructor(private _productosService:ProductosService,private _router:Router) { 
-    
-} 
+  constructor(private productService : ProductosService) { }
 
   ngOnInit() {
-    this.productos=this._productosService.getProductos();
+    this.productService.listProduct()
+    .map((response) => response.json())
+    .subscribe((data) => { 
+    this.ListOfProducts = data;
+  });
   }
-  verProducto(idx:number){
-    this._router.navigate(['/producto-detalle',idx]);
-  }
-
 
 
   

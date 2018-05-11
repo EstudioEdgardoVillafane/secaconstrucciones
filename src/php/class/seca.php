@@ -1,5 +1,5 @@
 <?php 
-class Abacor{
+class Seca{
 	public function ExecuteSql($sql){
 		$conex = New Connect();
 		$conex -> CreateConnection();

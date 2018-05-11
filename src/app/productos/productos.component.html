@@ -1,25 +1,17 @@
 <div class="row">
   <div class="col p-3">
-    <h2 class="text-center">Productos destacados</h2>
+    <h2 class="text-center">Productos</h2>
     <div class="row d-flex justify-content-center">
-      <div *ngFor="let producto of productos; let i= index" class="col-md-3 m-2 py-3 bg-light">
+      <div *ngFor="let producto of ListOfProducts" class="col-md-3 m-2 py-3 bg-light">
 
-        <img src="{{producto.img}}" class="img-fluid mb-1" alt="">
+        <img src="{{producto.p_url}}" class="img-fluid mb-1" alt="">
 
-        <h4 class="text-center">${{producto.precio}}</h4>
+        <h4 class="text-center">${{producto.p_precio}}</h4>
 
-        <h6 class="text-center mb-2">{{producto.nombre}}</h6>
+        <h6 class="text-center mb-2">{{producto.p_nombre}}</h6>
 
-        <input class="d-flex mx-auto mb-2 w-50" min="1" type="number">
+        <button routerLink="/detalle-producto/{{producto.p_nombre}}" class="btn btn-success rounded-0 btn-sm d-flex mx-auto">Ver más</button>
 
-        <button class="btn btn-success btn-sm rounded-0 d-flex mx-auto mb-2">
-          <span>
-            <i class="fa fa-shopping-cart"></i>
-          </span>
-        &nbsp;Agregar</button>
-
-        <button [routerLink]="['/detalle-producto',i]" class="btn btn-success rounded-0 btn-sm d-flex mx-auto">Ver más</button>
-        <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ver más</button> -->
       </div>
     </div>
   </div>

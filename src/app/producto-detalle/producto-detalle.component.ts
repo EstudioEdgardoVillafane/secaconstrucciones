@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { ProductosService, Productos } from '../productos.service';
+import { ProductosService } from '../productos.service';
 
 @Component({
   selector: 'app-producto-detalle',
@@ -10,21 +10,21 @@ import { ProductosService, Productos } from '../productos.service';
 })
 export class ProductoDetalleComponent implements OnInit {
 
-  producto:any = {};
 
-  constructor(private _activatedRoute:ActivatedRoute , private __productosService:ProductosService, private _location:Location) { 
-    
-      this._activatedRoute.paramMap.subscribe(params => {
-   
-      this.producto=this.__productosService.getProducto(params.get('id'));
-  
-    });
-  
-  }
+  constructor(private _activatedRoute:ActivatedRoute , private __productosService:ProductosService, private _location:Location) { }
+ 
+  ListOfProducts;
 
-  ngOnInit() {
+  ngOnInit() {  
+    console.log(this.Listar());
   }
-  back() {
-    this._location.back();
+  Listar(){
+    this.__productosService.listProduct()
+    .map((response) => response.json())
+    .subscribe((data) => { 
+      const name = this._activatedRoute.snapshot.paramMap.get('nombre');
+      this.__productosService.getJsonForNameTwo(name,data)
+      .subscribe((resultado) => { this.ListOfProducts = resultado });
+  });
   }
 }

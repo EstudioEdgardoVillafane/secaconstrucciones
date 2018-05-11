@@ -8,8 +8,9 @@ img{
 }
 
 .bg-custom{
-    background-color: #2b6939;
+    background-color: rgb(31, 31, 31);
 }
+<<<<<<< HEAD
 .petroleum-blue{
     background-color: #103035;
 }
@@ -32,3 +33,9 @@ nav> ul> li{
     }
   }
   
+=======
+.bg-añil{
+    background-color: #011013;
+   
+}
+>>>>>>> 18a0afa5aed58c1348aecc235cc0c22021825ea4
