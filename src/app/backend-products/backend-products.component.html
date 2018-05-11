@@ -80,7 +80,7 @@
                 </div>
             <div class="row mt-4"> 
                 <div class="col-12">
-                  <label>Elija atributo</label>
+                  <label>Seleccione o agrege caracteristica</label>
                 </div>  
                 <div class="col-12">   
                   <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributo" (keyup)="filterAtributo()">
@@ -90,16 +90,16 @@
                 <div class="list-group col-2" id="conta{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
                   <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="atributo{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
                 </div>
-                <a>Agregar otro atributo</a>
+                <a>Agregar otra caracteristica</a>
               </div>
               <ng-template #otroAtributo>
-                  <a (click)="returnAtributo()" style="cursor:pointer; color:cornflowerblue;">Cambiar atributo</a>
+                  <a (click)="returnAtributo()" style="cursor:pointer; color:cornflowerblue;">Cambiar caracteristica</a>
               </ng-template>
 
             <div class="row mt-4">
               <div class="col-8 offset-2">
                 <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center">
-                  <label class="my-0 pt-2 pb-2">Listado de subatributos.</label>
+                  <label class="my-0 pt-2 pb-2">Listado de opciones.</label>
                 </div>
                 <div style="overflow-y: auto; max-height: 120px;">
                     <ul class="list-group">
