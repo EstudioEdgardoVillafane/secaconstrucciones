@@ -1,60 +1,53 @@
-<header class=" text-white mb-4">
-  <div class="navbar bg-añil py-0 px-5">
-    <span>
-      <i class="fa fa-phone"></i>&nbsp;(011) 4844-0128</span>
-    <div class="ml-auto py-2">
-      <a class="nav-link text-white d-inline" routerLink="/#">Iniciar sesión</a>
-      <a class="nav-link text-white d-inline" routerLink="/#">
-        <span>
-          <i class="fa sign-in-alt"></i>
-        </span>Registrarse
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+  <div class="container py-1 py-md-2">
+
+    <div class="col-md-1 p-0 hidden-sm-down">
+      <a class="" href="#">
+        <img src="../../assets/img/logo.jpg" class="width d-flex mx-auto" alt="">
       </a>
     </div>
-  </div>
 
-  <div class="container-fluid bg-custom py-1">
-    <div class="row">
-      <div class="col-md-2 w-100">
-        <a routerLink="/home">
-          <img src="../../assets/img/logo.jpg" alt="logo de seca" class="d-block mx-auto">
-        </a>
-      </div>
-      <div class="ml-auto py-1">
-        <a class="nav-link text-white d-inline px-1 px-sm-2" routerLink="/#">Iniciar sesión</a>
-        <a class="nav-link text-white d-inline px-1 px-sm-2" routerLink="/#">
-          <span>
-            <i class="fa sign-in-alt"></i>
-          </span>Registrarse
-        </a>
+    <div class="col-9 col-md-11 input-group mx-auto mt-2 mt-md-0 ml-md-4 py-0 d-flex align-items-center buscador">
+      
+        <input type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2">
+        <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right">
+          <i class="fa fa-search fa-md my-auto p-0"></i>
+        </button>
+    
+      <div class="collapse navbar-collapse text-dark col-md-12 py-0 mt-2 cont-link pl-0" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mt-2 mt-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link text-white p-0"><b>Categorías </b> <span class="fa fa-angle-down"></span></a>
+          </li>
+          <!-- <app-sub-menu></app-sub-menu> -->
+        </ul>
+        <ul class="navbar-nav mt-2 mt-lg-0 ml-auto">
+            <li class="nav-item px-3 border-right">
+              <a class="nav-link text-white p-0" href="#">Iniciar sesión <span class="fa fa-login"></span></a>
+            </li>
+            <li class="nav-item px-3 border-right">
+                <a class="nav-link text-white p-0" href="#">Regístrese <span class="fa fa-signin"></span></a>
+              </li>
+              <li class="nav-item px-3">
+                  <a class="nav-link text-white p-0" href="#"> <span class="fa fa-shopping-cart fa-md"></span></a>
+                </li>
+           
+          </ul>
       </div>
     </div>
-  </div>
-  <nav>
-    <!-- Hamburger Button -->
-    <button class="navbar-toggler navbar-toggler-right rounded-0 btn-hamburger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-center m-0" id="navbarSupportedContent">
-      <ul class="navbar-nav p-0 text-uppercase">
-        <li class="nav-item d-flex bd-dark">
-          <a class="nav-link text-white mx-auto align-self-center" routerLink="/home">Inicio</a>
-        </li>
-        <li class="nav-item d-flex">
-          <a class="nav-link text-white mx-auto align-self-center" style="white-space: pre" routerLink="/admin771">Cómo llegar</a>
-        </li>
-
-        <li class="nav-item d-flex mr-2">
-          <a class="nav-link text-white mx-auto align-self-center" routerLink="/contacto">Contacto</a>
+    <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Categorías</a>
         </li>
       </ul>
-    </div>
-    <form class="form-inline my-2 my-lg-0 ">
-      <input class="form-control mr-sm-2 p-0 pl-1 rounded-0" type="search" placeholder="Buscar" aria-label="Search">
-      <button class="btn  my-2 my-sm-0 py-0 rounded-0" type="submit">Buscar</button>
-    </form>
+    </div> -->
 
-  </nav>
-
-</header>
+  </div>
+</nav>
