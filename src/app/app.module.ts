@@ -28,6 +28,7 @@ import { BackendUserService } from './backend-user.service';
 import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { SubAtributoService } from './sub-atributo.service';
+import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 
 
@@ -47,7 +48,8 @@ import { SubAtributoService } from './sub-atributo.service';
     ProductoDetalleComponent,
     FooterComponent,
     BackendSeccionComponent,
-    BackendSubatributoComponent
+    BackendSubatributoComponent,
+    SubMenuComponent
  ],
   imports: [
     BrowserModule,
