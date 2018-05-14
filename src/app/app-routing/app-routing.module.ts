@@ -21,13 +21,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'subatributo', component: BackendSubatributoComponent },
+  { path: 'productos', component: BackendProductsComponent },
+  { path: 'usuarios', component: BackendUserComponent },
+  { path: 'seccion', component: BackendSeccionComponent },
   { path: 'admin771',
   component: BackendComponent,
   children:[
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
-    { path: 'productos', component: BackendProductsComponent },
-    { path: 'usuarios', component: BackendUserComponent },
-    { path: 'seccion', component: BackendSeccionComponent },
     ]
   },
   { path: 'productos', component: BackendProductsComponent },

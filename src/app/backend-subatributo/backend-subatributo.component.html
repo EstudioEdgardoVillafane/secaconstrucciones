@@ -13,16 +13,17 @@
         <div class="row mt-2">
           <div class="col-md-6 col-xs-12"><label for="sa_name">Nombre del sub-atributo</label></div>
           <div class="col-md-6 col-xs-12"><input id="sa_name" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
-          <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>
+          <!-- <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div>--></div> 
         </div>
   
         <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="searchAttribute">Atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="searchAttribute" value="" class="form-control" type="text" placeholder="Buscar un Atributo" (keyup)="filterAtributte()"></div>
+          <div class="col-md-6 col-xs-12"><label>Atributo</label></div>
+          <div class="col-md-6 col-xs-12"><input id="searchAttribute" class="form-control" type="text" placeholder="Buscar un Atributo" (keyup)="filterAtributte()"></div>
         </div>
-        <div class="row">
-          <div class="list-group col-2" id="cont{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listadoAtributo"></div>
-          <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
+        <div class="row mt-2" >
+          <div class="list-group col-2" id="cont{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAttribute">
+            <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
+          </div>
         </div>
 
         <div class="row mb-2 text-center">
@@ -101,11 +102,11 @@
         </thead>
   
         <tbody>
-            <tr *ngFor="let atributo of listado"> <!--put name of the data base-->
-              <td><input type="checkbox" class="tilde" value="{{atributo.sa_id}}" (click)="Check(atributo.sa_id)"></td>
-              <td>{{atributo.sa_nombre}}</td>
-              <td>{{atributo.sa_idatributo}}</td>
-              <td><button value="{{atributo.sa_id}}" (click)="ShowEditForm(atributo.sa_id)"><i class="fa fa-pencil"></i></button></td>
+            <tr *ngFor="let subAtributo of listado"> <!--put name of the data base-->
+              <td><input type="checkbox" class="tilde" value="{{subAtributo.sa_id}}" (click)="Check(subAtributo.sa_id)"></td>
+              <td>{{subAtributo.sa_nombre}}</td>
+              <td>{{subAtributo.sa_idatributo}}</td>
+              <td><button value="{{subAtributo.sa_id}}" (click)="ShowEditForm(subAtributo.sa_id)"><i class="fa fa-pencil"></i></button></td>
             </tr>
           </tbody>
         </table>

@@ -31,13 +31,15 @@ export class BackendSubatributoComponent implements OnInit {
   AlertAttribute = false;
 //the functioon filter
   searchAtributte
-  listAtributte
+  listAttribute
   auxVar
 //atributteClicked
 nameAtribute
 nameAtributeToAdd
 atributoList
 
+
+BooleanToCloseSeccion = true;
   listadoAtributo;
   var;
   CheckAcumulador = new Array();
@@ -81,21 +83,21 @@ atributoList
       this.SubAtributoService.CrudFunction(1,0,"0",0)
        .map((response) => response.json())
       .subscribe((data) => {
-        console.log(data);
         this.listado = data;
       });
     }
 
-    filterAtributte(value){
+    filterAtributte(){
+
       this.searchAtributte = document.getElementById("searchAttribute");
-      for(this.i=0; this.i <this.listAtributte.length ; this.i++){//listAtributte vielve en secctionClicked
-        if(this.listAtributte[this.i].a_nombre.mactch(this.searchAtributte.value)){
-          console.log("este va"+this.listAtributte[this.i].a_nombre);
-          this.auxVar = document.getElementById("cont"+this.listAtributte[this.i].a_id);
-          this.auxVar.style.display = "none";
+
+      for(this.i=0; this.i <this.listAttribute.length ; this.i++){
+
+        if(this.listAttribute[this.i].a_nombre.mactch(this.searchAtributte.value)){
+          this.auxVar = document.getElementById("cont"+this.listAttribute[this.i].a_id);
+          this.auxVar.style.display = "block";
         }else{
-          this.auxVar = document.getElementById ("cont"+this.listAtributte[this.i].a_id);
-          console.log(this.auxVar.value);
+          this.auxVar = document.getElementById ("cont"+this.listAttribute[this.i].a_id);
           this.auxVar.style.display = "none";
         }
       }
@@ -105,20 +107,20 @@ atributoList
       this.AtributoService.CrudFunction(1,"0",0,1)
        .map((response) => response.json())
       .subscribe((data) => {
-        this.listAtributte = data;
+        this.listAttribute = data;
       });
     }
 Aux;
+attributevalue;
     atributoClicked(idAtributte : string){
-      document.getElementById(idAtributte).style.backgroundColor = '#80ff80';
+      this.attributevalue = idAtributte;
+      document.getElementById(idAtributte).style.backgroundColor = '#ffff80';
       this.nameAtribute = document.getElementById(idAtributte);
       this.nameAtributeToAdd = document.getElementById("searchAttribute");
       document.getElementById("searchAttribute");
-      console.log(this.nameAtributeToAdd.value);
-      console.log(this.nameAtribute.value);
-      this.nameAtributeToAdd.disabled = true
+      this.nameAtributeToAdd.disabled = true;
       this.nameAtributeToAdd.value = this.nameAtribute.value; 
-      this.AtributoService.getJsonForName(this.nameAtribute.value,this.listAtributte)
+      this.AtributoService.getJsonForName(this.nameAtribute.value,this.listAttribute)
       .subscribe(result => this.Aux = result );
       this.atributoList(this.Aux.a_id);
     }
@@ -193,25 +195,25 @@ Aux;
 //this function add users in to the data base
   Store(){
     this.sa_name = document.getElementById("sa_name");
-    // this.s_attribute = document.getElementById("s_attribute");
+    this.sa_attribute = document.getElementById("{{atributo.a_id}}");
     
     if(this.sa_name.value == ""){
       this.AlertName = true;
     }else{
       this.AlertName = false;
     }
-    // if(this.s_attribute.value == "" ){
-    //   this.AlertAttribute = true;
-    // }else{
-    //   this.AlertAttribute = false;
-    // }
+    if(this.sa_attribute.value == "" ){
+      this.AlertAttribute = true;
+    }else{
+      this.AlertAttribute = false;
+    }
     if(this.sa_name.value != "" ){
 
       this.SubAtributoService.CrudFunction(
         3,
         0,
         this.sa_name.value,
-        0)
+        this.sa_attribute.value)
       .subscribe((result)=>{this.var=result;});
       // this.ListBackendUsers();
       location.reload();

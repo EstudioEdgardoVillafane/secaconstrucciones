@@ -33,9 +33,9 @@ export class SeccionService {
     } 
  
 
-  CrudFunction(functionPhp: number,  id: number,nombre: string, atributo:number){
-    return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
-  }
+  // CrudFunction(functionPhp: number,  id: number,nombre: string, atributo:number){
+  //   return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
+  // }
 
   // CrudFunction(functionPhp: number, nombre: string, atributo:number, id: number){
   //   return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&atributo='+atributo);
