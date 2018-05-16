@@ -3,12 +3,12 @@
 	include '../class/connect.php';
 
 	$NewConnect = new Seca();
-	
+	// if($_GET["data"]==1){                   /** List   */
+	// 	// $sql="SELECT * FROM subatributo WHERE sa_status=1 A";	
+	// 	// $NewConnect->CreateJson($sql);
+	// }else
 
-	if($_GET["data"]==1){                   /** List   */
-		$sql="SELECT * FROM subatributo WHERE sa_status=1";	
-		$NewConnect->CreateJson($sql);
-	}elseif($_GET["data"]==2){              /** Delete  */
+	if($_GET["data"]==2){              /** Delete  */
 		$sqld = "UPDATE subatributo SET sa_status = 0 WHERE sa_id = '".$_GET["sa_id"]."'";
 		$NewConnect->Borrar($sqld);		
 	}elseif($_GET["data"]==3){				/** Store */

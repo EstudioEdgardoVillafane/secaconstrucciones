@@ -27,5 +27,8 @@
 		WHERE a_id = '".$_GET["a_id"]."'";
 		$NewConnect->ExecuteSql($sql);
 	}
-
+	if($_GET["data"]==8){                   /** List    */
+		$sql="SELECT * FROM atributo WHERE a_status=1";	
+		$NewConnect->CreateJson($sql);
+	}
 ?>

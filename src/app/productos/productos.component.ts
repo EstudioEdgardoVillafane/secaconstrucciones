@@ -16,7 +16,7 @@ export class ProductosComponent implements OnInit {
   constructor(private productService : ProductosService) { }
 
   ngOnInit() {
-    this.productService.listProduct()
+    this.productService.listProductToFront()
     .map((response) => response.json())
     .subscribe((data) => { 
     this.ListOfProducts = data;

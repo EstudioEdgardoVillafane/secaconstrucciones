@@ -17,8 +17,23 @@ export class ProductosService {
   CrudFunction( id: number){
     return this.http.get('php/script/delete-producto.php?id='+id);
   }
+  doFav(id,data){
+    return this.http.get('php/script/dofav.php?id='+id+'&data='+data);
+  }
   getJsonForNameTwo(name,json){
     return of(json.find((primero => primero.p_nombre === name)));
+  }
+  getJsonForSeccion(id,json){
+    return of(json.find((primero => primero.p_section === id)));
+  }
+  getJsonForId(id,json){
+    return of(json.find((primero => primero.p_id === id)));
+  }
+  duplicateReg(id, nombre, seccion, atributo, subatributo, precio, foto, descripcion){
+    return this.http.get('php/script/duplicate-reg.php?id='+id+'&nombre='+nombre+'&seccion='+seccion+'&atributo='+atributo+'&subatributo='+subatributo+'&precio='+precio+'&foto='+foto+'&desc='+descripcion);
+  }
+  listProductToFront(){
+    return this.http.get('php/script/list-product-front.php');
   }
 }
 
