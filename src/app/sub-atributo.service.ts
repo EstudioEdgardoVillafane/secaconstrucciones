@@ -25,11 +25,11 @@ export class SubAtributoService {
    * @param sa_idattribute number of atribute
    */
   
-   CrudFunction(functionPhp: number, sa_id: number, sa_name: string, sa_idattribute:number){
-      return this.http.get('php/script/crud-subatributo.php?data='+functionPhp+'&sa_id='+sa_id+'&sa_name='+sa_name+'&sa_idattribute='+sa_idattribute);
+   CrudFunction(functionPhp: number, su_id: number, su_nombre: string, su_atributo:number){
+      return this.http.get('php/script/crud-subatributo.php?data='+functionPhp+'&su_id='+su_id+'&su_nombre='+su_nombre+'&su_atributo='+su_atributo);
   }
 
-  getJsonIDSubAtributo(sa_id : number, json){
-    return of(json.find(primero => primero.sa_id === sa_id));
+  getJsonIDSubAtributo(su_id : number, json){
+    return of(json.find(primero => primero.su_id === su_id));
   } 
 }
