@@ -1,6 +1,5 @@
 <section class="pt-5 pb-5 my-5">
   <div class="container mt-5">
-  
   <!------------Here begins the form of the Store-------------->
     <ng-template #Agregar>
       <div *ngIf="ChangeTemplateAgregar;else Editar">
@@ -11,24 +10,22 @@
   
     <hr>
         <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="sa_name">Nombre del sub-atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="sa_name" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
-          <!-- <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div>--></div> 
-        </div>
-  
-        <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label>Atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="searchAttribute" class="form-control" type="text" placeholder="Buscar un Atributo" (keyup)="filterAtributte()"></div>
+          <div class="col-md-6 col-xs-12"><label for="su_nombre">Nombre del sub-atributo</label></div>
+          <div class="col-md-6 col-xs-12"><input id="su_nombre" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
+            <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div> 
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label>Atributo</label></div>
+            <div class="col-md-6 col-xs-12"><input id="searchAttribute" class="form-control" type="text" placeholder="Buscar un Atributo" (keyup)="filterStoreAtributte()"></div>
+            <a (click)="returnAttribute()" style="cursor:pointer; color:cornflowerblue;">cambiar</a>
         </div>
         <div class="row mt-2" >
           <div class="list-group col-2" id="cont{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAttribute">
-            <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
+            <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoStoreClicked(atributo.a_id)" id="{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
           </div>
         </div>
 
-        <div class="row mb-2 text-center">
-          <div class="col-12"><hr></div>
-        </div>
   
         <div class="row mt-2">
           <div class="col-12">
@@ -46,31 +43,50 @@
         <div class="container">
           <h2 align="center">Editar Sección</h2>
           <hr>
+
         <div class="row mt-2">
-          
           <div class="col-md-6 col-xs-12"><label for="edit_name">Editar Sub-atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="edit_name" value="{{edit_subAttribute.sa_nombre}}" class="form-control" type="text" placeholder="Ingrese un Nombre">
-          <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>     
+          <div class="col-md-6 col-xs-12"><input id="edit_name" value="{{edit_subAttribute.su_nombre}}" class="form-control" type="text" placeholder="Ingrese un Nombre"></div>
         </div>
-        
+
+        <div *ngIf="notEditAttributeAndShowInput">
         <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="edit_attribute">Editar Atributo</label></div>
-          <div class="col-md-6 col-xs-12"><input id="edit_attribute" value="{{edit_seccion.s_atributo}}" class="form-control" type="email" placeholder="Ingrese un Atributo">
-          <div *ngIf="AlertAttribute" class="alert alert-danger">*Ingresar un Atributo</div></div> 
+          <div class="col-md-6 col-xs-12"><label for="edit_name">Editar Atributo</label></div>
+          <div class="col-md-6 col-xs-12"><input id="edit_name" value="{{edit_subAttribute.a_nombre}}" style="display: block-none;" class="form-control" type="text" placeholder="Ingrese un Nombre"></div>
+        </div>
+        <div class="pull-right"><a (click)="editAttribute()" style="cursor:pointer; color:cornflowerblue;">editar</a></div></div>
+        
+
+        <div *ngIf="editAttributeAndShowInput">
+          <div class="row mt-2">
+              <div class="col-md-6 col-xs-12"><label>Editar Atributo</label></div>
+              <div class="col-md-6 col-xs-12"><input id="searchEditAttribute" class="form-control" type="text" placeholder="Buscar un Atributo" (keyup)="filterEditAttribute()"></div>
+            </div>
+            <div class="pull-right">
+              <a (click)="returnAttribute()" style="cursor:pointer; color:cornflowerblue;">cambiar</a>
+                <span>|</span>
+              <a (click)="CancelEditAttribute()" style="cursor:pointer; color:cornflowerblue;">cancelar</a>
+          </div>
+          <div class="row mt-2" >
+            <div class="list-group col-2" id="cont{{editarAtributo.a_id}}" style="padding-left:15px;" *ngFor="let editarAtributo of listAttribute">
+              <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="attributeClickedEdit(editarAtributo.a_id)" id="atributoEdit{{editarAtributo.a_id}}" value="{{editarAtributo.a_nombre}}" >
+            </div>
+          </div>
         </div>
   
-        <div class="row mb-2 text-center">
-            <div class="col-12">
-              <hr>
-            </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12">
-                <button class="btn btn-lg btn-danger ml-2" (click)="ReturnToTheTableUsers()">Volver</button>
-          <button class="btn btn-lg btn-info ml-3" (click)="Edit(edit_subAttribute.sa_id)">Editar</button>
+        <div class="row mt-2">
+          <div class="col-12">
+            <button class="btn btn-lg btn-danger ml-2" (click)="ReturnToTheTableUsers()">Volver</button>
+            <button class="btn btn-lg btn-info ml-3" (click)="Edit(edit_subAttribute.su_id)">Editar</button>
+          </div>
         </div>
-    </div>
-  </div>
+        
+          <div class="col-12">
+            <hr>
+          </div>
+
+
+      </div>
     
   </ng-template>
   </ng-template>
@@ -102,11 +118,11 @@
         </thead>
   
         <tbody>
-            <tr *ngFor="let subAtributo of listado"> <!--put name of the data base-->
-              <td><input type="checkbox" class="tilde" value="{{subAtributo.sa_id}}" (click)="Check(subAtributo.sa_id)"></td>
-              <td>{{subAtributo.sa_nombre}}</td>
-              <td>{{subAtributo.sa_idatributo}}</td>
-              <td><button value="{{subAtributo.sa_id}}" (click)="ShowEditForm(subAtributo.sa_id)"><i class="fa fa-pencil"></i></button></td>
+            <tr *ngFor="let subAtributo of listed"> <!--put name of the data base-->
+              <td><input type="checkbox" class="tilde" value="{{subAtributo.su_id}}" (click)="Check(subAtributo.su_id)"></td>
+              <td>{{subAtributo.su_nombre}}</td>
+              <td>{{subAtributo.a_nombre}}</td>
+              <td><button value="{{subAtributo.su_id}}" (click)="ShowEditForm(subAtributo.su_id)"><i class="fa fa-pencil"></i></button></td>
             </tr>
           </tbody>
         </table>
