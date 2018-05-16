@@ -109,6 +109,7 @@ export class BackendUserComponent implements OnInit {
         this.BackendUserService.Conect(5,0,"0","0","0")
         .map((response) => response.json())
         .subscribe((data) => {
+          console.log(data);
           this.listado = data;
         });
       }

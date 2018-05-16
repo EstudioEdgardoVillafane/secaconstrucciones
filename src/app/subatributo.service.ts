@@ -25,8 +25,8 @@ export class SubatributoService {
    * @param s_attribute number of atribute
    */
   
-  CrudFunction(functionPhp: number, s_id: number, s_name: string, s_attribute:number){
-    return this.http.get('php/script/crud-subatributo.php?data='+functionPhp+'&id='+s_id+'&name='+s_name+'&atributo='+s_attribute);
+  CrudFunction(functionPhp: number, sa_id: number, sa_nombre: string, sa_attribute:number){
+    return this.http.get('php/script/crud-subatributo.php?data='+functionPhp+'&sa_id='+sa_id+'&sa_nombre='+sa_nombre+'&sa_atributo='+sa_attribute);
   }
     getJsonIDSeccion(s_id : number, json){
       return of(json.find(primero => primero.s_id === s_id));
@@ -41,7 +41,13 @@ export class SubatributoService {
   getJsonForName(name:string, json){
     return of(json.find((primero => primero.s_nombre === name)));
   }
+  getJsonForAttribute(name:string, json){
+    return of(json.find((primero => primero.su_atributo === name)));
+  }
   getJsonForID(id, json){
     return of(json.find((primero => primero.p_id === id)));
   }
+  getJsonIDSubAtributo(su_id : number, json){
+    return of(json.find(primero => primero.su_id === su_id));
+  } 
 }

@@ -342,6 +342,7 @@ filterAtributo(value){
   }
 }
 
+
  returnSeccion(){
    this.BooleanToCloseSeccion=true;
    this.seccionNameToAdd.value="";
