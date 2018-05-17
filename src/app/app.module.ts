@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { BackendProductsComponent } from './backend-products/backend-products.component';
 import { BackendComponent } from './backend/backend.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
@@ -42,7 +41,6 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     BackendUserComponent,
     BackendSeccionComponent,
     FilterSecctionPipe,
-    SideBarComponent,
     HeaderComponent,
     ProductosComponent,
     ProductoDetalleComponent,

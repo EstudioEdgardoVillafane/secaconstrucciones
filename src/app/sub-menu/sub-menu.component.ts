@@ -7,7 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubMenuComponent implements OnInit {
 
-  constructor() { }
+  categorias :Array<object> 
+  headMessage : string;
+  selectedList : string;
+  setClickedList : Function;
+
+
+constructor(){
+    this.categorias = [
+      {
+        nombre : "Tecnología",
+        subCateg:[ 'celulares y telefonos','televisores','computación','elecgtronica, audio y video'
+        ]
+      },
+      {
+        nombre : "Música",
+        subCateg:[ 'celulares y telefonos','televisores','computación','elecgtronica, audio y video'
+        ]
+      },
+  
+  ];
+
+    this.setClickedList = function(index){
+        this.selectedList = index;
+    }
+};
 
   ngOnInit() {
   }
