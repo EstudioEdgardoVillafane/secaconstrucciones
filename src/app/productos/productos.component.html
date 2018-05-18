@@ -1,64 +1,11 @@
-<<<<<<< HEAD
 <div class="container-fluid main-text-color">
-  <div class="row">
-    <div class="col p-3">
-      <p class="text-center">Productos</p>
-      <div class="row d-flex justify-content-center">
-
-        <div class="col-md-2 px-0 mx-3 border py-3 capsule mb-3">
-          <div class="d-flex rounded py-3 px-1 cont-img">
-            <img src="../../assets/img/multifunc.png" class="align-self-center img-fluid mx-auto" alt="">
-          </div>
-          <hr id="hr m-0">
-          <div class="text-center ">
-            <h3>$ 400</h3>
-          </div>
-        </div>
-
-        <div class="col-md-2 px-0 mx-3 border py-3 capsule mb-3">
-          <div class="d-flex rounded py-3 px-1 cont-img">
-            <img src="../../assets/img/mortero.png" class="align-self-center img-fluid mx-auto" alt="">
-          </div>
-          <hr id="hr m-0">
-          <div class="text-center ">
-            <h3>$ 400</h3>
-          </div>
-        </div>
-
-        <div class="col-md-2 px-0 mx-3 border py-3 capsule mb-3">
-          <div class="d-flex rounded py-3 px-1 cont-img">
-            <img src="../../assets/img/multifunc.png" class="align-self-center img-fluid mx-auto" alt="">
-          </div>
-          <hr id="hr m-0">
-          <div class="text-center ">
-            <h3>$ 400</h3>
-          </div>
-        </div>
-        <div class="col-md-2 px-0 mx-3 border py-3 capsule mb-3">
-          <div class="d-flex rounded py-3 px-1 cont-img">
-            <img src="../../assets/img/tree.png" class="align-self-center img-fluid mx-auto" alt="">
-          </div>
-          <hr id="hr m-0">
-          <div class="text-center ">
-            <h3>$ 400</h3>
-          </div>
-=======
+ 
 <div class="row">
-  <div class="col p-3">
-    <h2 class="">Productos destacados</h2>
+  <div class="col ">
+    <h2>Productos destacados</h2>
+    </div>
+    </div>
     <div class="row d-flex">
-      <!-- <div *ngFor="let producto of ListOfProducts" class="col-md-3 m-2 py-3 bg-light">
-
-        <img src="{{producto.p_url}}" class="img-fluid mb-1" alt="">
-
-        <h4 class="text-center">${{producto.p_precio}}</h4>
-
-        <h6 class="text-center mb-2">{{producto.p_nombre}}</h6>
-
-        <button routerLink="/detalle-producto/{{producto.p_nombre}}" class="btn btn-success rounded-0 btn-sm d-flex mx-auto">Ver más</button>
-
-      </div> -->
-
       <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule" *ngFor="let producto of ListOfProducts">
         <div class="d-flex rounded py-3 cont-img">
           <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
@@ -68,37 +15,25 @@
           <h5>${{producto.p_precio}}</h5>
         </div>
       </div>
-
-      <!-- <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule">
-        <div class="d-flex py-3 rounded cont-img">
-          <img src="../../assets/img/mortero.png" class=" align-self-center mx-auto" alt="">
-        </div>
-        <hr id="hr m-0">
-        <div class="text-center ">
-          <h3>$ 400</h3>
-        </div>
-      </div> -->
-<!-- 
-      <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule">
-        <div class="d-flex rounded py-3 cont-img">
-          <img src="../../assets/img/multifunc.png" class="align-self-center mx-auto" alt="">
-        </div>
-        <hr id="hr m-0">
-        <div class="text-center ">
-          <h3>$ 400</h3>
-        </div>
       </div>
-
-      <div class="col-md-3 p-0 mx-3 rounded py-3 capsule">
-        <div class="d-flex rounded py-3 cont-img">
-          <img src="../../assets/img/tree.png" class="align-self-center mx-auto" alt="">
-        </div>
-        <hr id="hr m-0">
-        <div class="text-center ">
-          <h3>$ 400</h3>
->>>>>>> master
-        </div>
-      </div> -->
+      <div class="row pt-5">
+          <div class="col ">
+            <h2>Productos</h2>
+            </div>
+            </div>
+            <div class="row d-flex">
+      
+              <div class="col-md-3 px-0 mx-3 border py-3 capsule mb-3">
+                <div class="d-flex rounded py-3 px-1 cont-img">
+                  <img src="../../assets/img/multifunc.png" class="align-self-center img-fluid mx-auto" alt="">
+                </div>
+                <hr id="hr m-0">
+                <div class="text-center ">
+                  <h3>$ 400</h3>
+                </div>
+              </div>
+      </div>
+   
     </div>
-  </div>
-</div>
+  
+
