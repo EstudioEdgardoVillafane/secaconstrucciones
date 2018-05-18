@@ -43,9 +43,6 @@ export class BackendSeccionComponent implements OnInit {
   AlertName = false;
   AlertAttribute = false;
 
-
-
-
   var;
   CheckAcumulador = new Array();
   NumberAux=0;
@@ -73,7 +70,7 @@ export class BackendSeccionComponent implements OnInit {
   ShowEditForm(s_id : number){
     this.ChangeTemplateAgregar=false;
     this.ChangeTemplateEditar=false;
-    this.SeccionService.getJsonIDSeccion(s_id,this.listado)
+    this.SeccionService.getJsonForID(s_id,this.listado)
     .subscribe(resultado => this.edit_seccion = resultado);
 }
 

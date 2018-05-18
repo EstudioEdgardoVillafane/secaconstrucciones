@@ -1,18 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-custom">
-  <div class="container py-1 py-md-2">
+<div class="container-fluid px-4 py-md-2 bg-custom sticky-top">
 
-    <div class="col-md-1 p-0 hidden-sm-down">
-      <a class="" href="#">
-        <img src="../../assets/img/logo.jpg" class="width d-flex mx-auto" alt="">
+  <div class="row">
+    <!-- Logo -->
+    <div class="col-3 col-md-2 px-2 p-md-0">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/img/logo.jpg" class="logo-img img-fluid" alt="">
       </a>
     </div>
 
-    <div class="col-9 col-md-11 input-group mx-auto mt-2 mt-md-0 ml-md-4 py-0 d-flex align-items-center buscador">
-      
-        <input type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2">
-        <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right">
+    <!-- contenedor input y barra inferior -->
+    <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
+
+      <!-- input -->
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+
+        <input type="text" class="form-control rounded-custom font-italic p-2" placeholder="Buscar producto..." aria-describedby="basic-addon2">
+        <button class="py-0 px-2 px-md-4 bg-white border-top border-right border-bottom rounded-right">
           <i class="fa fa-search fa-md my-auto p-0"></i>
         </button>
+<<<<<<< HEAD
+      </div>
+
+      <!-- botón hamburguesa -->
+      <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
+        <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-white"></span>
+        </button>
+      </div>
+
+      <!-- barra inferior -->
+      <div class="col-12 col-md-12 p-0 mt-2 navbar-light navbar-expand-lg">
+
+        <div class="col-md-12 collapse navbar-collapse text-center" id="barra-inferior">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Categorías&nbsp;<i class="fa fa-angle-down"></i>
+              </a>
+=======
     
       <div class="collapse navbar-collapse text-dark col-md-12 py-0 mt-2 cont-link pl-0" id="navbarTogglerDemo01">
         <ul class="navbar-nav mt-2 mt-lg-0 ">
@@ -24,30 +49,30 @@
         <ul class="navbar-nav mt-2 mt-lg-0 ml-auto">
             <li class="nav-item px-3 border-right">
               <a class="nav-link text-white p-0" routerLink="/admin771">Iniciar sesión <span class="fa fa-login"></span></a>
+>>>>>>> master
             </li>
-            <li class="nav-item px-3 border-right">
-                <a class="nav-link text-white p-0" href="#">Regístrese <span class="fa fa-signin"></span></a>
-              </li>
-              <li class="nav-item px-3">
-                  <a class="nav-link text-white p-0" href="#"> <span class="fa fa-shopping-cart fa-md"></span></a>
-                </li>
-           
           </ul>
+          <ul class="navbar-nav ml-lg-auto ">
+            <li class="nav-item border-right">
+              <a class="nav-link" href="#">Iniciar sesión</a>
+            </li>
+            <li class="nav-item border-right">
+              <a class="nav-link" href="#">Registrarse</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fa fa-shopping-cart"></i>
+                </a>
+              </li>
+          </ul>
+        </div>
+        <!-- end navbar -->
       </div>
+
     </div>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">Categorías</a>
-        </li>
-      </ul>
-    </div> -->
-
   </div>
-</nav>
+
+
+
+
+</div>
