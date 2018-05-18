@@ -5,11 +5,11 @@
 	$NewConnect = new Seca();
 	
 
-//	if($_GET["data"]==1){                   /** List   */
-	//	$sql="SELECT * FROM atributo WHERE a_status=1";	
+	if($_GET["data"]==1){                   /** List   */
+		$sql="SELECT * FROM atributo WHERE a_status=1";	
 
-	if($_GET["data"]==1){                   /** List    */
-		$sql="SELECT * FROM atributo WHERE a_status=1 AND a_seccion='".$_GET["atributo"]."'";	
+	// if($_GET["data"]==1){                   /** List    */
+	// 	$sql="SELECT * FROM atributo WHERE a_status=1 AND a_seccion='".$_GET["atributo"]."'";	
 
 		$NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
@@ -27,5 +27,8 @@
 		WHERE a_id = '".$_GET["a_id"]."'";
 		$NewConnect->ExecuteSql($sql);
 	}
-
+	if($_GET["data"]==8){                   /** List    */
+		$sql="SELECT * FROM atributo WHERE a_status=1";	
+		$NewConnect->CreateJson($sql);
+	}
 ?>

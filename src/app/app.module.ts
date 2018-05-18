@@ -4,7 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
+// import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
 //Products
 import { HomeComponent } from './home/home.component';
@@ -28,6 +28,7 @@ import { BackendSeccionComponent } from './backend-seccion/backend-seccion.compo
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { SubAtributoService } from './sub-atributo.service';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
+import { PrioritySelectPipe } from './priority-select.pipe';
 
 
 
@@ -47,7 +48,8 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     FooterComponent,
     BackendSeccionComponent,
     BackendSubatributoComponent,
-    SubMenuComponent
+    SubMenuComponent,
+    PrioritySelectPipe
  ],
   imports: [
     BrowserModule,
