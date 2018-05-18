@@ -11,7 +11,7 @@
 *
 */
 import { Component, OnInit } from '@angular/core';
-import { SeccionService } from '../seccion.service';
+import { SeccionService} from '../seccion.service';
 import { AtributoService } from '../atributo.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -35,9 +35,15 @@ export class BackendAtributoComponent implements OnInit {
   //store
   a_nombre;
   a_seccion;
-
-
-
+  seccionValue;
+  BooleanToCloseSeccionEdit=true;
+  seccionName;
+  seccionNameToAdd;
+  seccionClickedIDEdit;
+  atributoListEdit;
+  BoolToAtributeEdit;
+  buscarSeccion
+  valorseccion;
   //edit
  
   a_id;
@@ -61,13 +67,16 @@ AlertSection = false;
   edit;
   edit_atributo;
   listado;
-  constructor( private AtributoService:AtributoService) { }
+  listadoseccion;
+  listadoseccioneditar;
+  constructor( private AtributoService:AtributoService,private seccionService:SeccionService) { }
 
   ngOnInit() {
     if(localStorage.getItem("keyTwo") != "1"){
      // location.href="../../admin";
     }
     this.Listar();
+    this.Listarseccion();
   }
 
  
@@ -77,11 +86,18 @@ AlertSection = false;
   }
 
 //this funtion show the edit form and send the values of the data base in to the inputs of the forms
-  ShowEditForm(a_id : number){
+ varn;
+ seccioninput;
+ seccioninputToAdd;
+ShowEditForm(a_id : number){
+
     this.ChangeTemplateAgregar=false;
     this.ChangeTemplateEditar=false;
     this.AtributoService.getJsonID(a_id,this.listado)
     .subscribe(resultado => this.edit_atributo = resultado);
+
+    
+   
   }
 
 //this funtion returns of the backend users table
@@ -103,35 +119,44 @@ AlertSection = false;
   //    });
   // }
     Listar(){
-        this.AtributoService.CrudFunction(1,"0",0,0)
+        this.AtributoService.CrudFunction(5,"0",0,0)
         .map((response) => response.json())
         .subscribe((data) => {
           this.listado = data;
+          console.log(data)
+        });
+      }
+      Listarseccion(){
+        this.seccionService.CrudFunction(1,0,"0",0)
+        .map((response) => response.json())
+        .subscribe((data) => {
+          this.listadoseccion = data;
         });
       }
 //this function take the values of the iputs and send the values of the data base
+varaux;
   Edit(a_id : number){
     this.a_nombre = document.getElementById("edit_nombre");
-    this.a_seccion = document.getElementById("edit_seccion");
-      
+    this.a_seccion = document.getElementById("editarSeccion");
+
     this.a_id = document.getElementById("a_id");
 
+    this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
+    .subscribe(data => this.varaux=data);
   
-
-      if(this.a_nombre.value == ""){
-        this.AlertNombre = true;
-      }else{
-        this.AlertNombre = false;
-      }
-
-      if(this.a_seccion.value == ""){
-        this.AlertSection = true;
-      }else{
-        this.AlertSection = false;
-      }
+    
+     
 
       
-
+      
+        this.AtributoService.CrudFunction(4,this.a_nombre.value,this.varaux.s_id,a_id)
+        .subscribe((data)=>{ 
+          this.var=data;
+          console.log(data);
+        });
+            // this.ListBackendUsers();
+         // location.reload();
+        
      
 
       
@@ -168,22 +193,22 @@ AlertSection = false;
       if(this.CheckAcumulador[this.i] == undefined){
         console.log("Indefinido");
       }else{
-        this.AtributoService.CrudFunction(4, this.CheckAcumulador[this.i],0,0)
+        this.AtributoService.CrudFunction(2,"0",0,this.CheckAcumulador[this.i])
         .subscribe((data) => {
           this.var = data;
           console.log(data);
         });
-        // location.reload();
+        this.Listar();
       }
 
   }
-    this.Listar();
+    
   }
 
 //this function add users in to the data base
   Store(){
     this.a_nombre = document.getElementById("a_nombre");
-    this.a_seccion = document.getElementById("a_seccion");
+    this.a_seccion = document.getElementById("buscarSeccion");
    
    
 
@@ -199,21 +224,93 @@ AlertSection = false;
     }
     
     if(this.a_nombre.value != "" && this.a_seccion.value != ""){
-
+this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
+.subscribe(result=>this.valorseccion=result);
       this.AtributoService.CrudFunction(
         3,
        
         this.a_nombre.value,
-        this.a_seccion.value,
+        this.valorseccion.s_id,
         0
       )
       .subscribe((result)=>{this.var=result;});
       // this.ListBackendUsers();
-      //location.reload();
+     //location.reload(); 
       console.log(this.var);
       this.ChangeTemplateEditar=true;
     }else{
       console.log("Falla al agregar");
     }
+    
+    this.Listar();
+    location.reload();
     }
+
+    seccionClicked(number : string){
+      this.seccionValue = number;
+      this.BooleanToCloseSeccionEdit = false;
+      this.seccionName = document.getElementById(number);
+      this.seccionNameToAdd = document.getElementById("buscarSeccion"); 
+      this.seccionNameToAdd.disabled = true;
+      this.seccionNameToAdd.value = this.seccionName.value; 
+      this.seccionService.getJsonForName(this.seccionName.value,this.listadoseccion)
+      .subscribe(result => this.seccionClickedIDEdit = result);
+      this.atributoListEdit = this.seccionClickedIDEdit.s_id;
+      
+      this.BoolToAtributeEdit = true;
+  }
+  EditarClicked(number : string){
+    this.seccionValue = number;
+    this.BooleanToCloseSeccionEdit = false;
+    this.seccionName = document.getElementById(number);
+    this.seccionNameToAdd = document.getElementById("editarSeccion"); 
+    this.seccionNameToAdd.disabled = true;
+    this.seccionNameToAdd.value = this.seccionName.value; 
+    this.seccionService.getJsonForName(this.seccionName.value,this.listadoseccion)
+    .subscribe(result => this.seccionClickedIDEdit = result);
+    this.atributoListEdit = this.seccionClickedIDEdit.s_id;
+    
+    this.BoolToAtributeEdit = true;
+}
+  auxvar;
+  
+  auxvar2;
+
+  filterSection(value){
+
+    this.auxvar = document.getElementById("buscarSeccion");  
+  
+    for(this.i=0; this.i < this.listadoseccion.length ; this.i++){
+    
+      if(this.listadoseccion[this.i].s_nombre.match(this.auxvar.value)){
+        this.auxvar2 = document.getElementById("cont"+this.listadoseccion[this.i].s_id);
+        this.auxvar2.style.display = "block";
+      }else{
+        this.auxvar2 = document.getElementById("cont"+this.listadoseccion[this.i].s_id);
+        this.auxvar2.style.display = "none";
+      }
+    }
+  }
+
+  
+  auxvareditaratr;
+  auxvareditaratr2;
+
+  filtersectioneditar(value){
+
+    this.auxvareditaratr = document.getElementById("editarSeccion");  
+  
+    for(this.i=0; this.i < this.listadoseccion.length ; this.i++){
+    
+      if(this.listadoseccion[this.i].s_nombre.match(this.auxvareditaratr.value)){
+        this.auxvareditaratr2 = document.getElementById("cont"+this.listadoseccion[this.i].s_id);
+        this.auxvareditaratr2.style.display = "block";
+      }else{
+        this.auxvareditaratr2 = document.getElementById("cont"+this.listadoseccion[this.i].s_id);
+        this.auxvareditaratr2.style.display = "none";
+      }
+    }
+  }
+
+
 }

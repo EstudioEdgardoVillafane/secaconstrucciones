@@ -15,6 +15,11 @@ export class AtributoService {
   CrudFunction(functionPhp: number, nombre: string, seccion:number, id: number){
     return this.http.get('php/script/crud-atributo.php?data='+functionPhp+'&id='+id+'&nombre='+nombre+'&seccion='+seccion);
   }
+
+  
+
+
+
   getJsonID(id : number, json){
     return of(json.find(primero => primero.a_id === id));
   } 

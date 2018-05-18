@@ -13,32 +13,20 @@
 
 		$NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
-		$sqld = "UPDATE atributo SET a_status = 0 WHERE a_id = '".$_GET["a_id"]."'";
+		$sqld = "UPDATE atributo SET a_status=0 WHERE a_id = '".$_GET["id"]."'";
 		$NewConnect->Borrar($sqld);
-	}elseif($_GET["data"]==4){
-		$sql="UPDATE atributo SET
-		a_nombre = '".$_GET["a_nombre"]."',
-		a_seccion = '".$_GET["a_seccion"]."',
-		a_subatributo = '".$_GET["a_subatributo"]."',		
-		WHERE a_id = '".$_GET["a_id"]."'";
-		$NewConnect->ExecuteSql($sql);
-
-		$NewConnect->Borrar($sqld);		
-	}elseif($_GET["data"]==3){				/** Store */
-		$sql = "INSERT INTO atributo (a_nombre,a_seccion,a_subatributo,a_status) 
-		VALUES ('".$_GET["a_nombre"]."','".$_GET["a_seccion"]."','".$_GET["a_atributo"]."','1')";
-		$NewConnect->ExecuteSql($sql);
 	}elseif($_GET["data"]==4){  			/** Edit */
-		$sql="UPDATE atributo SET
-        a_nombre = '".$_GET["a_nombre"]."',
-		a_seccion = '".$_GET["a_seccion"]."',
-		a_subatributo = '".$_GET["a_subatributo"]."' 
-		WHERE a_id = '".$_GET["a_id"]."'";
+		 $sql="UPDATE atributo SET a_nombre='".$_GET["nombre"]."',a_seccion='".$_GET["seccion"]."' WHERE a_id='".$_GET["id"]."'";
 		$NewConnect->ExecuteSql($sql);
 	}
 	elseif($_GET["data"]==3){
 		$sql1= "INSERT INTO atributo (a_nombre,a_seccion,a_status) 
 		VALUES ('".$_GET["nombre"]."','".$_GET["seccion"]."','1')";
 		$NewConnect->ExecuteSql($sql1);
+	}
+	if($_GET["data"]==5){                   /** List    */
+		$sql="SELECT a_id,a_nombre,a_seccion,a_status,s_id,s_nombre FROM atributo,seccion WHERE a_status=1 and s_id=a_seccion";	
+
+		$NewConnect->CreateJson($sql);
 	}
 ?>
