@@ -8,11 +8,17 @@
     </div>
 
     <div class="col-9 col-md-11 input-group mx-auto mt-2 mt-md-0 ml-md-4 py-0 d-flex align-items-center buscador">
-      
-        <input type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2">
-        <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right">
-          <i class="fa fa-search fa-md my-auto p-0"></i>
-        </button>
+  <div class="row">
+
+    <input id="searchProduct" type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2" (keyup)="SearchEngineProducts()">
+    <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right">
+      <i class="fa fa-search fa-md my-auto p-0"></i>
+    </button>
+  </div>    
+  
+  <ul id="cont{{atributo.p_id}}" *ngFor="let atributo of listProductsInTheSearchEngine">
+    <li ><a>{{atributo.p_nombre}}</a></li>
+  </ul>
     
       <div class="collapse navbar-collapse text-dark col-md-12 py-0 mt-2 cont-link pl-0" id="navbarTogglerDemo01">
         <ul class="navbar-nav mt-2 mt-lg-0 ">

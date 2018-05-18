@@ -11,13 +11,14 @@
 *
 */
 import { Component, OnInit } from '@angular/core';
-import { SeccionService } from '../seccion.service';
-import { AtributoService } from '../atributo.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+/**services */
+import { SeccionService } from '../seccion.service';
+import { AtributoService } from '../atributo.service';
 import { ProductosService } from '../productos.service';
 import { SubatributoService } from '../subatributo.service';
 @Component({
