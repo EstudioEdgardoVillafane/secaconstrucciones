@@ -10,7 +10,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductosService {
 
   constructor(private http: Http) { }
-
+  listProductFront(functionPhp: number, id: number){
+    return this.http.get('php/script/list-producto.php?data='+functionPhp+'&id'+id)
+  }
   listProduct(){
     return this.http.get('php/script/list-producto.php');
   }
