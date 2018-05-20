@@ -10,8 +10,7 @@ import { ProductosService } from '../productos.service';
 })
 export class ProductosComponent implements OnInit {
 
-  ListOfProducts;
-
+  ListOfProducts:any;
 
   constructor(private productService : ProductosService) { }
 
