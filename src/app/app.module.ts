@@ -24,6 +24,7 @@ import { AtributoService } from './atributo.service';
 import { SubatributoService } from './subatributo.service';
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendUserService } from './backend-user.service';
+import { BackendAtributoComponent } from './backend-atributo/backend-atributo.component';
 import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { SubAtributoService } from './sub-atributo.service';
@@ -40,7 +41,7 @@ import { PrioritySelectPipe } from './priority-select.pipe';
     BackendProductsComponent,
     BackendComponent,
     BackendUserComponent,
-    BackendSeccionComponent,
+    BackendAtributoComponent,
     FilterSecctionPipe,
     HeaderComponent,
     ProductosComponent,
