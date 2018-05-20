@@ -8,9 +8,9 @@ export class PrioritySelectPipe implements PipeTransform {
   transform(value: any): any {
     console.log(value);
     if(value == 1){
-      return "favorite"
+      return "star"
     }else{
-      return "favorite_border"
+      return "star_border"
     }
     // return null;
   }

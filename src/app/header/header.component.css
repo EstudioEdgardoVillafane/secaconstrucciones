@@ -3,7 +3,9 @@
   margin-left: 60px;
   font-size: 3.4rem;
 }
-
+.productSlect:hover{
+  background-color: rgb(32, 114, 255);
+}
 .logo-img {
   position: absolute;
   top: 0px;

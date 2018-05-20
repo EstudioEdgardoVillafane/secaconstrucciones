@@ -102,20 +102,60 @@ export class BackendProductsComponent implements OnInit {
  *  
  * */
 
- 
-filterSection(value){
+ inputAux;
 
-  this.auxvar = document.getElementById("buscarSeccion");  
-
-  for(this.i=0; this.i < this.listSeccion.length ; this.i++){
+toUp(id : string){
+  this.inputAux = document.getElementById("ordenP"+id);
+  if( parseInt(this.inputAux.value) >= 0){
+  this.inputAux.value = parseInt(this.inputAux.value) + 1;
+  this.productoService.updateOrden(id,this.inputAux.value)
+  .subscribe(data => console.log(data) );
+  }
   
+}
+toDown(id : string){
+  this.inputAux = document.getElementById("ordenP"+id);
+  if( parseInt(this.inputAux.value) > 0){
+  this.inputAux.value = parseInt(this.inputAux.value) - 1;
+  this.productoService.updateOrden(id,this.inputAux.value)
+  .subscribe(data => console.log(data) );
+  
+  }
+}
+
+InputStoreSeccion;
+addSection(){
+  this.InputStoreSeccion = document.getElementById("buscarSeccion");
+  this.seccionService.CrudFunction(3,0,this.InputStoreSeccion.value,0)
+  .subscribe((data) => {
+    this.seccionList();
+    this.InputStoreSeccion.disabled = true;
+    this.BooleanToCloseSeccion = false;
+  }); 
+}
+contador = 0;
+ButtonStoreSeccion;
+filterSection(value){
+  this.auxvar = document.getElementById("buscarSeccion");  
+  this.contador = 0;
+  for(this.i=0; this.i < this.listSeccion.length ; this.i++){
+    
     if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
       this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
       this.auxvar2.style.display = "block";
+      this.contador = this.contador + 1;
     }else{
       this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
       this.auxvar2.style.display = "none";
-    }
+    } 
+  }
+  this.ButtonStoreSeccion = document.getElementById("AgregarSeccion");
+  if(this.contador > 0){
+    this.ButtonStoreSeccion.disabled = true;
+    this.ButtonStoreSeccion.style.background = "rgb(67, 67, 67)";
+  }else{
+    this.ButtonStoreSeccion.disabled = false;
+    this.ButtonStoreSeccion.style.background = "#007bff";
   }
 }
 
@@ -306,6 +346,7 @@ atributoClicked(id : string){
   this.atributoNameToAdd.value = this.atributoName.value; 
   this.atributoService.getJsonForName(this.atributoName.value,this.listAtributo)
   .subscribe(result => this.atributoID = result  );
+  console.log(this.atributoID);
   this.subAtributoList(this.atributoID.a_id);
 }
 subatributoValue;
@@ -381,6 +422,7 @@ nextOne(){
      this.productoService.listProduct()
        .map((response) => response.json())
        .subscribe((data) => { 
+         console.log(data)
        this.ListOfContent = data;
      });
    }
@@ -414,7 +456,7 @@ nextOne(){
 
   listSubAtributo;
   subAtributoList(id){
-    this.subatributeService.CrudFunction(1,id,"",0)
+    this.subatributeService.CrudFunction(6,0,"",id)
     .map((response) => response.json())
     .subscribe((data) => {
       this.listSubAtributo = data;
@@ -488,7 +530,6 @@ auxDuplicate;
      this.request.open("POST", "php/script/store-product.php");
      console.log(this.request.send(new FormData(this.formElement)));
       this.ListContent();    
-      location.reload();
     }
 
 

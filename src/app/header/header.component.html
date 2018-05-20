@@ -18,12 +18,16 @@
           <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right">
             <i class="fa fa-search fa-md my-auto p-0"></i>
           </button>
-          
-  <ul id="cont{{atributo.p_id}}" *ngFor="let atributo of listProductsInTheSearchEngine">
-      <li ><a>{{atributo.p_nombre}}</a></li>
-    </ul>
+         
       </div>
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
 
+      <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
+          <ul class="pl-0 ml-0 mb-2 mt-2">
+            <li id="cont{{atributo.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let atributo of listProductsInTheSearchEngine" style="display:block; cursor:pointer"><a>{{atributo.p_nombre}}</a></li>
+          </ul>
+          </div>
+          </div>
       <!-- botón hamburguesa -->
       <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
         <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
@@ -38,7 +42,7 @@
         <div class="col-md-12 collapse navbar-collapse text-center" id="barra-inferior">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Categorías&nbsp;<i class="fa fa-angle-down"></i>
+              <a class="nav-link" routerLink="/admin771">Categorías&nbsp;<i class="fa fa-angle-down"></i>
               </a>
     </li>
     </ul>

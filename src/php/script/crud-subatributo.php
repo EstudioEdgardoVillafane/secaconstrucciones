@@ -24,7 +24,9 @@
 		su_atributo = '".$_GET["sa_atributo"]."'
 		WHERE su_id = '".$_GET["sa_id"]."'";
 		$NewConnect->ExecuteSql($sql);
-
 	}
-
+	if($_GET["data"]==6){
+		$sql="SELECT * FROM subatributo WHERE su_status = 1 AND su_atributo ='".$_GET["sa_atributo"]."'";	
+		$NewConnect->CreateJson($sql);
+	}
 ?>

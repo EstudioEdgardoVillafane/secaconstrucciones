@@ -22,6 +22,9 @@ export class ProductosService {
   doFav(id,data){
     return this.http.get('php/script/dofav.php?id='+id+'&data='+data);
   }
+  updateOrden(id,orden){
+    return this.http.get('php/script/update-orden.php?id='+id+'&orden='+orden)
+  }
   getJsonForNameTwo(name,json){
     return of(json.find((primero => primero.p_nombre === name)));
   }
