@@ -1,0 +1,159 @@
+<section class="pt-5 pb-5 my-5">
+  <div class="container mt-5">
+  
+  <!------------Here begins the form of the Store-------------->
+    <ng-template #Agregar>
+      <div *ngIf="ChangeTemplateAgregar;else Editar">
+  
+        <div class="container">
+          
+          <h2 align="center">Agregar Nuevo Atributo</h2>
+  
+    <hr>
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="a_nombre">Nombre</label></div>
+          <div class="col-md-6 col-xs-12"><input id="a_nombre" value="" class="form-control" type="text" placeholder="Ingrese un nombre de atributo">
+          <div *ngIf="AlertNombre" class="alert alert-danger">*Ingrese un nombre de atributo</div></div>
+        </div>
+  
+        <div class="row"> 
+          <div class="col-12">
+            <label>Elija seccion</label>
+          </div>  
+          <div class="col-12">   
+            <input class="form-control" name="section" placeholder="Buscar seccion" id="buscarSeccion" (keyup)="filterSection()">
+            <div *ngIf="AlertSection" class="alert alert-danger">*Ingrese seccion</div></div>
+          </div>
+        </div>
+
+        <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit">
+          <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listadoseccion">
+            <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
+          </div>
+          <a>Agregar otra seccion</a>
+        </div> <!-- ./BooleanToCloseSeccion -->
+          <!-- <ng-template #otra> -->
+            <!-- <a (click)="returnSeccion()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a> -->
+          <!-- </ng-template> -->
+    
+       
+  
+        
+        
+        <div class="row mb-2 text-center">
+          <div class="col-12"><hr></div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-12">
+            <button class="btn btn-lg btn-danger pull-right ml-1" (click)="ReturnToTheTableUsers()">Volver</button>
+            <button class="btn btn-lg btn-info pull-right" (click)="Store()">Agregar</button>
+          </div>
+        </div>
+  
+        </div>
+      
+      <!------------------End form Store-------------------->
+      <!------------------Here begins the form of the Edit---------------------------->
+      <ng-template #Editar>
+  
+        <div *ngIf="Editar;else ChangeTemplateAgregar">
+  
+          <div class="container">
+            
+            <h2 align="center">Editar Atributo</h2>
+    
+      <hr>
+      <div class="row mt-2">
+          
+        <div class="col-md-6 col-xs-12"><label for="edit_nombre">Editar Nombre</label></div>
+        <div class="col-md-6 col-xs-12"><input id="edit_nombre" value="{{edit_atributo.a_nombre}}" class="form-control" type="text" placeholder="Ingrese un nombre" >
+        <div *ngIf="AlertNombre" class="alert alert-danger">*Ingrese el nombre</div></div>     
+      </div>
+    
+          <div class="row"> 
+            <div class="col-12">
+              <label>Elija seccion</label>
+            </div>  
+            <div class="col-12">   
+              
+              <input class="form-control" name="section" placeholder="Buscar seccion" id="editarSeccion" (keyup)="filtersectioneditar()" value="{{edit_atributo.s_nombre}}">
+              <div *ngIf="AlertSection" class="alert alert-danger">*Ingrese seccion</div></div>
+            </div>
+          </div>
+  
+          <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit">
+            <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listadoseccion">
+              <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="EditarClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
+            </div>
+            <a>Editar otra seccion</a>
+          </div>    
+          
+       
+  
+        
+  
+                               
+          
+       
+  
+        
+  
+        
+  
+        <div class="row mb-2 text-center">
+            <div class="col-12">
+              <hr>
+            </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <button class="btn btn-lg btn-danger ml-2" (click)="ReturnToTheTableUsers()">Volver</button>
+          <button class="btn btn-lg btn-info ml-3" (click)="Edit(edit_atributo.a_id)">Editar</button>
+        </div>
+    </div>
+  </div>
+    
+  </ng-template>
+  </ng-template>
+  <!----------End Edit Form---------->
+  
+  <div *ngIf="ChangeTemplateEditar;else Agregar" class="mt-4">
+  
+  
+      <div class="row">
+        <div class="col-5">
+        <h2>Tabla de Atributos.</h2>
+  
+      </div>
+      <div class="col-7">
+        <button class="btn btn-md btn-info pull-right ml-1" (click)="ShowStoreForm()">Agregar</button>
+        <button class="btn btn-md btn-danger pull-right ml-1" (click)="Delete()">Eliminar</button>
+      </div>
+    </div>
+    
+      <table class="table table-bordered mt-3"  width="100%">
+  
+        <thead>
+            <tr>
+              <th style="width: 1px;">#</th>
+              <th>Nombre</th>
+              <th>Seccion</th>
+            
+              <th style="width: 25px">Editar</th>
+            </tr>
+        </thead>
+  
+        <tbody>
+            <tr *ngFor="let atributo of listado"> 
+              <td><input type="checkbox" class="tilde" value="{{atributo.a_id}}" (click)="Check(atributo.a_id)"></td>
+              <td>{{atributo.a_nombre}}</td>
+              <td>{{atributo.s_nombre}}</td>
+             
+              <td><button value="{{atributo.a_id}}" (click)="ShowEditForm(atributo.a_id)"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  </section>
