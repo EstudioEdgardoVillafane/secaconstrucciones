@@ -7,7 +7,7 @@
     </div>
     </div>
     <div class="row d-flex">
-      <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListOfProducts">
+      <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado">
         <div class="d-flex rounded py-3 cont-img">
           <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
         </div>
@@ -29,7 +29,7 @@
             </div>
            
             <div class="row d-flex">
-                <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListOfProducts">
+                <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListProducts">
                   <a routerLink="/detalle-producto/{{producto.p_nombre}}">
                   <div class="d-flex rounded py-3 cont-img">
                     <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
