@@ -1,22 +1,48 @@
-<div class="row">
-  <div class="col p-3">
-    <h2 class="text-center">Productos</h2>
-    <div class="row d-flex justify-content-center">
-      <div *ngFor="let producto of ListOfProducts" class="col-md-3 m-2 py-3 bg-light">
-
-        <img src="{{producto.p_url}}" class="img-fluid mb-1" alt="">
-
-        <h4 class="text-center">${{producto.p_precio}}</h4>
-
-        <h6 class="text-center mb-2">{{producto.p_nombre}}</h6>
-
-        <button routerLink="/detalle-producto/{{producto.p_nombre}}" class="btn btn-success rounded-0 btn-sm d-flex mx-auto">Ver más</button>
-
+ 
+<section class="pb-4">
+  <div class="container">
+<div class="row pt-5">
+  <div class="col ">
+    <h2>Productos destacados</h2>
+    </div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListOfProducts">
+        <div class="d-flex rounded py-3 cont-img">
+          <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+        </div>
+        <hr id="hr m-0">
+        <div class="text-center ">
+          <h5>${{producto.p_precio}}</h5>
+        </div>
+      </div>
       </div>
     </div>
-  </div>
-</div>
+      </section>
+      <section id="grey-bg" class="pb-4">
+          <div class="container">
 
+      <div class="row pt-5">
+          <div class="col ">
+            <h2>Productos</h2>
+            </div>
+            </div>
+           
+            <div class="row d-flex">
+                <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListOfProducts">
+                  <a routerLink="/detalle-producto/{{producto.p_nombre}}">
+                  <div class="d-flex rounded py-3 cont-img">
+                    <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+                  </div>
+                  <hr id="hr m-0">
+                  <div class="text-center ">
+                    <h5>${{producto.p_precio}}</h5>
+                  </div>
+                  </a>
+                </div>
+                </div>
+                </div>
+              </section>
 
-
+  
 

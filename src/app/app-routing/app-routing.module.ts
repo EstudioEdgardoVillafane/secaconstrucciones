@@ -14,20 +14,22 @@ import { BackendSubatributoComponent } from '../backend-subatributo/backend-suba
 
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
+import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
+import {ContactoComponent} from '../contacto/contacto.component';
 
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'subatributo', component: BackendSubatributoComponent },
+  { path: 'seccion', component: BackendSeccionComponent },
   { path: 'admin771',
   component: BackendComponent,
   children:[
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
+    { path: 'subatributo', component: BackendSubatributoComponent },
     { path: 'productos', component: BackendProductsComponent },
     { path: 'atributo', component: BackendAtributoComponent },
     { path: 'usuarios', component: BackendUserComponent },
-    { path: 'seccion', component: BackendSeccionComponent },
     ]
   },
   { path: 'productos', component: BackendProductsComponent },

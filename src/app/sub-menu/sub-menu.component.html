@@ -1,0 +1,22 @@
+<!-- Submenú -->
+<li>
+      <div class="row">
+        <div class="submenu-wrapper col-md-12 bg-info position-absolute mx-auto text-white">
+          <div class="row">
+          <section class="col-md-4 bg-dark h-100 px-3 py-2">
+                <ul *ngFor="let catego of categorias; let i = index" (mouseover)="setClickedList(catego)" [class.active]="i == selectedList">
+                        <li>{{catego.nombre}}</li>
+                       
+                </ul>
+        </section>
+        <section class="col-md-8 bg-success h-100 px-3 py-2">
+            <div *ngIf="">
+                <ul *ngFor="let catego of categorias; let i = index">
+                    <li>{{selectedList.subCateg}}</li>
+                </ul>
+        </div>
+        </section>
+      </div>
+      </div>
+      </div>
+  </li>

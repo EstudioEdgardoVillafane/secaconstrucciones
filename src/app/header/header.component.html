@@ -1,57 +1,60 @@
-<header class=" text-white mb-4">
-  <div class="navbar bg-añil py-0 px-5">
-    <span>
-      <i class="fa fa-phone"></i>&nbsp;(011) 4844-0128</span>
-    <div class="ml-auto py-2">
-      <a class="nav-link text-white d-inline" routerLink="/#">Iniciar sesión</a>
-      <a class="nav-link text-white d-inline" routerLink="/#">
-        <span>
-          <i class="fa sign-in-alt"></i>
-        </span>Registrarse
+<div class="container-fluid px-4 py-md-2 bg-custom ">
+
+  <div class="row">
+    <!-- Logo -->
+    <div class="col-3 col-md-2 px-2 p-md-0">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/img/logo.jpg" class="logo-img img-fluid" alt="">
       </a>
     </div>
-  </div>
 
-  <div class="container-fluid bg-custom py-1">
-    <div class="row">
-      <div class="col-md-2 w-100">
-        <a routerLink="/home">
-          <img src="../../assets/img/logo.jpg" alt="logo de seca" class="d-block mx-auto">
-        </a>
+    <!-- contenedor input y barra inferior -->
+    <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
+
+      <!-- input -->
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+
+          <input id="searchProduct" type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2" (keyup)="SearchEngineProducts()">
+          <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right">
+            <i class="fa fa-search fa-md my-auto p-0"></i>
+          </button>
+         
       </div>
-      <div class="col-md-8 text-white d-flex justify-content-center align-items-center">
-        <h1 class="title">Seca Construcciones</h1>
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+
+      <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
+          <ul class="pl-0 ml-0 mb-2 mt-2">
+            <li id="cont{{atributo.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let atributo of listProductsInTheSearchEngine" style="display:block; cursor:pointer"><a>{{atributo.p_nombre}}</a></li>
+          </ul>
+          </div>
+          </div>
+      <!-- botón hamburguesa -->
+      <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
+        <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-white"></span>
+        </button>
       </div>
+
+      <!-- barra inferior -->
+      <div class="col-12 col-md-12 p-0 mt-2 navbar-light navbar-expand-lg">
+
+        <div class="col-md-12 collapse navbar-collapse text-center" id="barra-inferior">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/admin771">Categorías&nbsp;<i class="fa fa-angle-down"></i>
+              </a>
+    </li>
+    </ul>
+  
+        <!-- end navbar -->
+      </div>
+
     </div>
   </div>
 
-  <nav class="navbar navbar-expand-md navbar-toggleable-md bg-añil text-dark py-0 ">
 
-    <!-- Hamburger Button -->
-    <button class="navbar-toggler navbar-toggler-right rounded-0 btn-hamburger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse justify-content-center m-0" id="navbarSupportedContent">
-      <ul class="navbar-nav p-0 text-uppercase">
-        <li class="nav-item d-flex bd-dark">
-          <a class="nav-link text-white mx-auto align-self-center" routerLink="/home">Inicio</a>
-        </li>
-        <li class="nav-item d-flex">
-          <a class="nav-link text-white mx-auto align-self-center" style="white-space: pre" routerLink="/admin771">Cómo llegar</a>
-        </li>
 
-        <li class="nav-item d-flex mr-2">
-          <a class="nav-link text-white mx-auto align-self-center" routerLink="/contacto">Contacto</a>
-        </li>
-      </ul>
-    </div>
-    <form class="form-inline my-2 my-lg-0 ">
-      <input class="form-control mr-sm-2 p-0 pl-1 rounded-0" type="search" placeholder="Buscar" aria-label="Search">
-      <button class="btn  my-2 my-sm-0 py-0 rounded-0" type="submit">Buscar</button>
-    </form>
-
-  </nav>
-
-</header>
+</div>
+</div>

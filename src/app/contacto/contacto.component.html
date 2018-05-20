@@ -1,0 +1,58 @@
+<div class="row text-dark">
+  <app-side-bar class="col-md-3 "></app-side-bar>
+  <section class="col-md-9">
+    <div class="row pt-1 pt-sm-5">
+      <div class="col-md-6 px-0 ">
+        <!-- formulario -->
+        <form action="" class="p-0 px-sm-3 mx-auto bg-white formulario">
+          <div class="form-group">
+            <input class="form-control" type="text" id="name" placeholder="Nombre">
+
+          </div>
+          <div *ngIf="BooleanToAlertNombre" class="alert alert-danger">
+            <div>
+              * Debe ingresar un nombre.
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="email" id="email" placeholder="Email">
+
+          </div>
+          <div *ngIf="BooleanToAlertEmail" class="alert alert-danger">
+            <div>
+              * Debe ingresar un email.
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="phone" placeholder="Teléfono">
+          </div>
+          <div *ngIf="BooleanToAlertTelefono" class="alert alert-danger">
+            <div>
+              * Debe ingresar un telefono.
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="question" placeholder="Mensaje"></textarea>
+          </div>
+          <div *ngIf="BooleanToAlertMensaje" class="alert alert-danger">
+            <div>
+              * Debe ingresar un mensaje.
+            </div>
+          </div>
+          <button type="button" class="d-flex btn solid btn-block petroleum-blue block text-white" (click)="onSend()">
+            <div class="mx-auto">
+              <i class="fa fa-envelope-o fa-lg text-white mr-2 align-items-center"></i>
+              <span class="d-inline-flex">ENVIAR</span>
+            </div>
+          </button>
+        </form>
+        <!--/ formulario -->
+      </div>
+      <div class="col-md-6 order-first order-md-last">
+        <p class="leyenda text-center text-sm-left ml-lg-3">
+          Por favor deje su consulta
+          <br> y le responderemos a la brevedad.</p>
+      </div>
+    </div>
+  </section>
+</div>

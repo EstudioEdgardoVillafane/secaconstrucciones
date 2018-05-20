@@ -11,13 +11,14 @@
 *
 */
 import { Component, OnInit } from '@angular/core';
-import { SeccionService } from '../seccion.service';
-import { AtributoService } from '../atributo.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
+/**services */
+import { SeccionService } from '../seccion.service';
+import { AtributoService } from '../atributo.service';
 import { ProductosService } from '../productos.service';
 import { SubatributoService } from '../subatributo.service';
 @Component({
@@ -100,22 +101,98 @@ export class BackendProductsComponent implements OnInit {
  * 
  *  
  * */
-filterSection(value){
 
-  this.auxvar = document.getElementById("buscarSeccion");  
+ inputAux;
 
-  for(this.i=0; this.i < this.listSeccion.length ; this.i++){
+toUp(id : string){
+  this.inputAux = document.getElementById("ordenP"+id);
+  if( parseInt(this.inputAux.value) >= 0){
+  this.inputAux.value = parseInt(this.inputAux.value) + 1;
+  this.productoService.updateOrden(id,this.inputAux.value)
+  .subscribe(data => console.log(data) );
+  }
   
-    if(this.listSeccion[this.i].s_nombre.match(this.auxvar.value)){
-      this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
-      this.auxvar2.style.display = "block";
-    }else{
-      this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
-      this.auxvar2.style.display = "none";
-    }
+}
+toDown(id : string){
+  this.inputAux = document.getElementById("ordenP"+id);
+  if( parseInt(this.inputAux.value) > 0){
+  this.inputAux.value = parseInt(this.inputAux.value) - 1;
+  this.productoService.updateOrden(id,this.inputAux.value)
+  .subscribe(data => console.log(data) );
+  
   }
 }
 
+InputStoreSeccion;
+addSection(){
+  this.InputStoreSeccion = document.getElementById("buscarSeccion");
+  this.seccionService.CrudFunction(3,0,this.InputStoreSeccion.value,0)
+  .subscribe((data) => {
+    this.seccionList();
+    this.InputStoreSeccion.disabled = true;
+    this.BooleanToCloseSeccion = false;
+  }); 
+}
+contador = 0;
+ButtonStoreSeccion;
+filterSection(value){
+  this.auxvar = document.getElementById("buscarSeccion");  
+  this.contador = 0;
+  for(this.i=0; this.i < this.listSeccion.length ; this.i++){
+    
+    if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
+      this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
+      this.auxvar2.style.display = "block";
+      this.contador = this.contador + 1;
+    }else{
+      this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
+      this.auxvar2.style.display = "none";
+    } 
+  }
+  this.ButtonStoreSeccion = document.getElementById("AgregarSeccion");
+  if(this.contador > 0){
+    this.ButtonStoreSeccion.disabled = true;
+    this.ButtonStoreSeccion.style.background = "rgb(67, 67, 67)";
+  }else{
+    this.ButtonStoreSeccion.disabled = false;
+    this.ButtonStoreSeccion.style.background = "#007bff";
+  }
+}
+
+doFavorite(id, prioridad){
+    this.productoService.doFav(id,prioridad)
+    .subscribe(result => this.ListContent() );
+}
+
+
+
+
+searchNameProduct(){
+ 
+  this.auxvar = document.getElementById("searchProductName");  
+  console.log(this.auxvar.value.toUpperCase());
+  for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
+    
+    if(this.ListOfContent[this.i].p_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
+      if(this.inputFiltler.value == 1 && this.sectionValueFilter != undefined){
+        if(this.ListOfContent[this.i].p_section == this.sectionValueFilter ){
+          
+          this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+          this.auxvar2.style.display = "table-row";
+        }else{
+          this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+          this.auxvar2.style.display = "none";
+        }
+      }else{
+        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+        this.auxvar2.style.display = "table-row";
+      }
+    }else{
+        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+        this.auxvar2.style.display = "none";
+    }
+  }
+}
  /** In this function, we get the values of the input fields to update the regist. */
  
  EditReg(){
@@ -133,6 +210,92 @@ filterSection(value){
    this.BooleanToCloseSeccion = true;   
    this.BoolAddProductOne = true;
  }
+
+
+inputFiltler;
+listadoSelect;
+
+filterProduct(text : string){
+  
+
+}
+seccionBool = false;
+auxProd;
+selectCategoria(){
+  this.inputFiltler = document.getElementById("filterProduct");
+  console.log(this.inputFiltler.value);
+  if(this.inputFiltler.value == 1){
+    this.seccionBool = true;
+    this.seccionService.CrudFunction(1,0,"0",0)
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.listadoSelect = data;
+    });    
+  }else if(this.inputFiltler.value == 0){
+    this.auxProd = document.getElementsByClassName("hereVisi");
+    for(this.i = 0; this.i < this.auxProd.length; this.i++) {
+      /*Si la clase es encontrada modificar el tamaño de fuente*/
+      if (this.auxProd[this.i].className == "hereVisi") {
+        this.auxProd[this.i].style.display = "table-row";
+      }
+    }
+    this.listadoSelect = null;
+  }else{    
+      this.listFilterAtributo();
+      this.seccionBool = false;
+  }
+
+}
+listadoSeleccionado;
+subatributoClikeds
+sectionValueFilter;
+seccionFilterToProduct(id : string){
+  if(this.subatributoClikeds == undefined){
+    console.log("toto")
+  }else{
+    this.subatributoClikeds.className = "list-group-item";
+  }
+    this.sectionValueFilter = id;
+    this.subatributoClick = document.getElementById("seccionFilter"+id);
+    this.subatributoClick.className = "list-group-item active";
+    this.subatributoClikeds = this.subatributoClick;
+
+
+    for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
+    
+      if(this.ListOfContent[this.i].p_section.match(id)){
+        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+        this.auxvar2.style.display = "table-row";
+      }else{
+        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+        this.auxvar2.style.display = "none";
+      }
+    }
+  }
+  atributoFilterToProduct(id : string){
+    if(this.subatributoCliked == undefined){
+      console.log("toto")
+    }else{
+      this.subatributoCliked.className = "list-group-item";
+    }
+      this.subatributoClick = document.getElementById("atributoFilter"+id);
+      this.subatributoClick.className = "list-group-item active";
+      this.subatributoCliked = this.subatributoClick;
+
+  
+      for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
+      
+        if(this.ListOfContent[this.i].p_atributo.match(id)){
+          this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+          this.auxvar2.style.display = "table-row";
+          console.log("toto: " + "listProductCont"+this.ListOfContent[this.i].p_id);
+        }else{
+          this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
+          this.auxvar2.style.display = "none";
+        }
+      }
+
+  }
 
  /** This function is to change the list to the edit form 
   *  *
@@ -183,6 +346,7 @@ atributoClicked(id : string){
   this.atributoNameToAdd.value = this.atributoName.value; 
   this.atributoService.getJsonForName(this.atributoName.value,this.listAtributo)
   .subscribe(result => this.atributoID = result  );
+  console.log(this.atributoID);
   this.subAtributoList(this.atributoID.a_id);
 }
 subatributoValue;
@@ -210,7 +374,7 @@ filterAtributo(value){
 
   for(this.i=0; this.i < this.listAtributo.length ; this.i++){
   
-    if(this.listSeccion[this.i].s_nombre.match(this.auxvar.value)){
+    if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
       this.auxvar2 = document.getElementById("conta"+this.listSeccion[this.i].a_id);
       this.auxvar2.style.display = "block";
     }else{
@@ -219,6 +383,7 @@ filterAtributo(value){
     }
   }
 }
+
 
  returnSeccion(){
    this.BooleanToCloseSeccion=true;
@@ -257,6 +422,7 @@ nextOne(){
      this.productoService.listProduct()
        .map((response) => response.json())
        .subscribe((data) => { 
+         console.log(data)
        this.ListOfContent = data;
      });
    }
@@ -266,13 +432,20 @@ nextOne(){
   * Get a json to do a list.
   */
  seccionList(){ 
-    this.seccionService.CrudFunction(1,1,"0",0)//cambie esto (1,"",0,0) por que si no no compila, cualquier cosa cambienlo
+    this.seccionService.CrudFunction(1,0,"0",0)//cambie esto (1,"",0,0) por que si no no compila, cualquier cosa cambienlo
     .map((response) => response.json())
     .subscribe((data) => {
       this.listSeccion = data;
     });
   }
 
+  listFilterAtributo(){
+    this.atributoService.CrudFunction(8,"",0,0)
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.listadoSelect = data;
+    });
+  }
   atributoList(id){
     this.atributoService.CrudFunction(1,"",id,0)
     .map((response) => response.json())
@@ -283,7 +456,7 @@ nextOne(){
 
   listSubAtributo;
   subAtributoList(id){
-    this.subatributeService.CrudFunction(1,id,"",0)
+    this.subatributeService.CrudFunction(6,0,"",id)
     .map((response) => response.json())
     .subscribe((data) => {
       this.listSubAtributo = data;
@@ -318,11 +491,35 @@ nextOne(){
        }else{
          this.productoService.CrudFunction(this.CheckAcumulador[this.i])
          .subscribe((data) => { 
-          console.log(data);
         });
        }
      }
+     this.ListContent();
    }
+
+auxDuplicate;
+
+   DuplicateReg(){
+    for(this.i=0; this.i<this.NumberAux; this.i++){
+      if(this.CheckAcumulador[this.i] == undefined){
+        console.log("Indefinido");
+      }else{
+        this.productoService.getJsonForId(this.CheckAcumulador[this.i],this.ListOfContent)
+        .subscribe( data => this.auxDuplicate = data);
+        this.productoService.duplicateReg(
+          this.auxDuplicate.p_id,
+          this.auxDuplicate.p_nombre,
+          this.auxDuplicate.p_section,
+          this.auxDuplicate.p_atributo,
+          this.auxDuplicate.p_subatributo,
+          this.auxDuplicate.p_precio,
+          this.auxDuplicate.p_url,
+          this.auxDuplicate.p_descripcion
+        )
+        .subscribe( data => this.ListContent() );
+      }
+    }
+  }
 /** Here we are validating the store form and creating the alert message */
 
    /** This function is storing the new regist in a database */
@@ -332,8 +529,8 @@ nextOne(){
      this.request = new XMLHttpRequest();
      this.request.open("POST", "php/script/store-product.php");
      console.log(this.request.send(new FormData(this.formElement)));
-     this.ListContent();    
-   }
+      this.ListContent();    
+    }
 
 
   /****************************************************** EDIT COMPONENT ********************************************/
@@ -361,7 +558,7 @@ nextOne(){
   
     for(this.i=0; this.i < this.listSeccion.length ; this.i++){
     
-      if(this.listSeccion[this.i].s_nombre.match(this.auxvar.value)){
+      if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
         this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
         this.auxvar2.style.display = "block";
       }else{
@@ -401,7 +598,7 @@ filterAtributoEdit(value){
 
   for(this.i=0; this.i < this.listAtributo.length ; this.i++){
   
-    if(this.listSeccion[this.i].s_nombre.match(this.auxvar.value)){
+    if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
       this.auxvar2 = document.getElementById("contaEdit"+this.listSeccion[this.i].a_id);
       this.auxvar2.style.display = "block";
     }else{
