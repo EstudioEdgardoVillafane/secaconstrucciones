@@ -1,25 +1,22 @@
 <!-- Submenú -->
-<div class="container-fluid bg-warning">
-  <div class="row">
-    <div class="submenu-wrapper col-md-8 mx-auto">
+<li>
       <div class="row">
-        <section class="col-md-4 bg-dark px-0 py-2">
-          <ul class="nav pl-2" *ngFor="let categoria of categorias; let i = index" (mouseover)="setClickedItem(categoria)" [class.active]="i == selectedItem">
-            <li class="nav-item px-2 flex-row">
-              <a class="nav-link py-2 text-white text-capitalize d-flex align-items-end">{{categoria.nombre}}
-              </a>
-            </li>
-          </ul>
+        <div class="submenu-wrapper col-md-12 bg-info position-absolute mx-auto text-white">
+          <div class="row">
+          <section class="col-md-4 bg-dark h-100 px-3 py-2">
+                <ul *ngFor="let catego of categorias; let i = index" (mouseover)="setClickedList(catego)" [class.active]="i == selectedList">
+                        <li>{{catego.nombre}}</li>
+                       
+                </ul>
         </section>
-        <section class="col-md-8 bg-light h-100 px-3 py-2">
-          <p>{{nombre}}</p>
-          <ul class="nav" *ngFor="let itemDerecha of selectedItem.subCategoria">
-            <li class="nav-item">
-              <a class="nav-link text-capitalize">{{itemDerecha}} </a>
-            </li>
-          </ul>
+        <section class="col-md-8 bg-success h-100 px-3 py-2">
+            <div *ngIf="">
+                <ul *ngFor="let catego of categorias; let i = index">
+                    <li>{{selectedList.subCateg}}</li>
+                </ul>
+        </div>
         </section>
       </div>
-    </div>
-  </div>
-</div>
+      </div>
+      </div>
+  </li>

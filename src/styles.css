@@ -1,18 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-@import url('https://fonts.googleapis.com/css?family=Lato');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Bitter:700|Merriweather+Sans');
+@import url('https://fonts.googleapis.com/css?family=Rubik');
 
 body{
-
-   
-    font-family: 'Nunito Sans', sans-serif!important;
-    font-family: 'PT Sans', sans-serif!important;
-    font-family: 'Lato', sans-serif!important;
-
     /* font-family: 'Merriweather Sans', sans-serif; */
-/*     font-family: 'Rubik', sans-serif!important; */
-
+    font-family: 'Rubik', sans-serif!important;
     
 }

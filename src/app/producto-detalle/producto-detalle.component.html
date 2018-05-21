@@ -6,7 +6,7 @@
       <div class="row">
 
         <!-- parte izquierda -->
-        <div class="col-lg-7 border-right">
+        <div class="col-md-7 border-right">
           <div class="row p-4">
             <div class="py-3 mx-auto">
               <img src="{{ListOfProducts.p_url}}" class="img-fluid" alt="">
@@ -16,41 +16,25 @@
               <p>{{ListOfProducts.p_descripcion}}</p>
             </div>
           </div>
-          <div id="preguntas" class="flex-column py-4">
-            <h4 class="mb-3">Preguntas al vendedor</h4>
-            <div class="row">
-              <div class="col-md-12 mb-4">
-                <div class="row px-2 pl-md-3 flex-row">
-                  <textarea id="question" class="col-7 col-md-8 rounded border border-info" name="question" type="text" placeholder="Escribí una pregunta..."
-                    title="Escribí una pregunta" maxlength="2000"></textarea>
-                  <button class="btn btn-info btn-md ml-2 ml-md-3">Preguntar</button>
-                </div>
+          <div id="preguntas" class="flex-column p-4">
+              <h4 class="mb-3">Preguntas al vendedor</h4>
+                <i class="fa fa-question-circle fa-lg float-left mr-3 "></i>
+                <p class="p-0">Lorem ipsum?</p>
+              <div class="">
+                <i class="fa fa-question-circle fa-lg float-left mr-3" ></i>
+                <p class="p-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse distinctio tempora nostrum libero, rem iste
+                  quibusdam sit soluta exercitationem saepe ipsam dicta, fugiat voluptatibus quod. Recusandae eius laudantium
+                  quia maxime!</p>
               </div>
-            </div>
-            <h4>Últimas preguntas de nuestros clientes</h4>
-            <div class="row mt-4 question">
-              <div class="col-md-12">
-                <i class="fa fa-question-circle fa-lg float-left mr-3"></i>
-                <p class="p-0">Envían productos a Zárate?</p>
-              </div>
-              <div class="col-md-12 answer">
-                <div class="ml-3">
-                  <i class="fa fa-bullhorn fa-lg float-left mr-3"></i>
-                  <p class="p-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse distinctio tempora nostrum libero, rem iste
-                    quibusdam sit soluta exercitationem saepe ipsam dicta, fugiat voluptatibus quod. Recusandae eius laudantium
-                    quia maxime!</p>
-                </div>
-              </div>
-            </div>
           </div>
+         
         </div>
+
         <!-- parte derecha -->
-
-        <div class="col-lg-5 py-3 order-first order-lg-last right-side">
-          <div class="d-flex align-items-center align-items-lg-start flex-column">
-            <h2 class="mb-1 mb-lg-2">Nombre del producto</h2>
-            <h2 class="mb-2 mb-lg-3">$1.600</h2>
-
+        <div class="col-md-5 py-3">
+          <div class="d-flex flex-column">
+            <h2 class="mb-1 mb-lg-2">{{ListOfProducts.p_nombre}}</h2>
+            <h2 class="mb-2 mb-lg-3">{{ListOfProducts.p_precio}}</h2>
             <div class="flex-row">
               <i class="fa fa-star fa-lg"></i>
               <i class="fa fa-star fa-lg"></i>
@@ -59,7 +43,7 @@
               <i class="fa fa-star-o fa-lg"></i>
             </div>
             <br>
-            <div>
+            <div class="">
               <i class="fa fa-credit-card fa-lg float-left mr-3"></i>
               <p class="p-0">Pagá hasta en 12 cuotas
               </p>
