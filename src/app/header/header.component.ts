@@ -36,10 +36,16 @@ export class HeaderComponent implements OnInit {
     });
   }
 auxVar
+BoolList = false;
   SearchEngineProducts(){
     this.searchProduct = document.getElementById("searchProduct");
+    if(this.searchProduct.value.length >= 3){
+      this.BoolList = true;
+    }else{
+      this.BoolList = false;
+    }
     for(this.i=0; this.i < this.listProductsInTheSearchEngine.length ; this.i++){
-      if(this.listProductsInTheSearchEngine[this.i].p_nombre.match(this.searchProduct.value) && this.searchProduct.value.length > 3){
+      if(this.listProductsInTheSearchEngine[this.i].p_nombre.toUpperCase().match(this.searchProduct.value.toUpperCase()) && this.searchProduct.value.length >= 3){
         this.result = document.getElementById("cont"+this.listProductsInTheSearchEngine[this.i].p_id);
         this.result.style.display = "block";
       }else{

@@ -1,11 +1,12 @@
-<div class="container-fluid main-text-color">
  
-<div class="row">
+<section class="pb-4">
+  <div class="container">
+<div class="row pt-5">
   <div class="col ">
     </div>
     </div>
     <div class="row d-flex">
-      <div class=" p-0 mx-0 mx-md-3 border rounded py-3 capsule" *ngFor="let producto of ListOfProducts">
+      <div class=" p-0 mx-0 mx-md-3 border rounded py-3 capsule" *ngFor="let producto of ListDestacado">
         <div class="d-flex rounded py-3 cont-img">
           <img src="{{producto.p_url}}" class="align-self-center img-fluid mx-auto" alt="">
         </div>
@@ -15,24 +16,36 @@
         </div>
       </div>
       </div>
-      <div class="row">
+
+
+
+    </div>
+      </section>
+      <section id="grey-bg" class="pb-4">
+          <div class="container">
+
+      <div class="row pt-5">
+
           <div class="col ">
             <h3>Productos</h3>
             </div>
             </div>
+           
             <div class="row d-flex">
-      
-              <div class="col-md-3 px-0 mx-3 border py-3 capsule mb-3">
-                <div class="d-flex rounded py-3 px-1 cont-img">
-                  <img src="../../assets/img/multifunc.png" class="align-self-center img-fluid mx-auto" alt="">
+                <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListProducts">
+                  <a routerLink="/detalle-producto/{{producto.p_nombre}}">
+                  <div class="d-flex rounded py-3 cont-img">
+                    <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+                  </div>
+                  <hr id="hr m-0">
+                  <div class="text-center ">
+                    <h5>${{producto.p_precio}}</h5>
+                  </div>
+                  </a>
                 </div>
-                <hr id="hr m-0">
-                <div class="text-center ">
-                  <h3>$ 400</h3>
                 </div>
-              </div>
-      </div>
-   
-    </div>
+                </div>
+              </section>
+
   
 

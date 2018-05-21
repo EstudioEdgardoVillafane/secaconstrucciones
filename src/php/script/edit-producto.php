@@ -64,6 +64,8 @@ if($tamano == 0){
     $sql = "UPDATE producto SET p_nombre = '".$nameProduct."', p_descripcion = '".$description."', p_section = '".$section."', p_atributo = '".$atribute."', p_subatributo = '".$subatributo."', p_precio = '".$precio."', p_url = '".$URL."' WHERE p_id ='".$ID."'";
 }
 $NewConnect->ExecuteSql($sql);
-
+	$sql = "SELECT * FROM producto WHERE p_status = 1 ORDER BY p_orden ASC";
+	$varAux = $NewConnect->CreateJson($sql);
+	$NewConnect->SaveJson($varAux);
 
  ?>

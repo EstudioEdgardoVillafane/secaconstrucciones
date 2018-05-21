@@ -5,9 +5,14 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 body{
-    background-color: #ebebeb!important;
+
+   
     font-family: 'Nunito Sans', sans-serif!important;
     font-family: 'PT Sans', sans-serif!important;
     font-family: 'Lato', sans-serif!important;
+
+    /* font-family: 'Merriweather Sans', sans-serif; */
+/*     font-family: 'Rubik', sans-serif!important; */
+
     
 }

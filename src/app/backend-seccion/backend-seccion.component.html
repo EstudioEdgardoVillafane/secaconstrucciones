@@ -22,8 +22,8 @@
   
         <div class="row mt-2">
           <div class="col-12">
-            <button class="btn btn-lg btn-danger pull-right ml-1" (click)="ReturnToTheTableUsers()">Volver</button>
-            <button class="btn btn-lg btn-info pull-right" (click)="Store()">Agregar</button>
+            <button class="btn btn-lg btn-danger pull-right ml-1" (click)="returnToTheTableUsers()">Volver</button>
+            <button class="btn btn-lg btn-info pull-right" (click)="store()">Agregar</button>
           </div>
         </div>
   
@@ -50,8 +50,8 @@
             </div>
             <div class="row mt-2">
               <div class="col-12">
-                <button class="btn btn-lg btn-danger ml-2" (click)="ReturnToTheTableUsers()">Volver</button>
-          <button class="btn btn-lg btn-info ml-3" (click)="Edit(edit_seccion.s_id)">Editar</button>
+                <button class="btn btn-lg btn-danger ml-2" (click)="returnToTheTableUsers()">Volver</button>
+          <button class="btn btn-lg btn-info ml-3" (click)="edit(edit_seccion.s_id)">Editar</button>
         </div>
     </div>
   </div>
@@ -69,8 +69,8 @@
   
       </div>
       <div class="col-7">
-        <button class="btn btn-md btn-info pull-right ml-1" (click)="ShowStoreForm()">Agregar</button>
-        <button class="btn btn-md btn-danger pull-right ml-1" (click)="Delete()">Eliminar</button>
+        <button class="btn btn-md btn-info pull-right ml-1" (click)="showStoreForm()">Agregar</button>
+        <button class="btn btn-md btn-danger pull-right ml-1" (click)="delete()">Eliminar</button>
       </div>
     </div>
     
@@ -86,9 +86,9 @@
   
         <tbody>
             <tr *ngFor="let seccion of listado"> <!--put name of the data base-->
-              <td><input type="checkbox" class="tilde" value="{{seccion.s_id}}" (click)="Check(seccion.s_id)"></td>
+              <td><input type="checkbox" class="tilde" value="{{seccion.s_id}}" (click)="check(seccion.s_id)"></td>
               <td>{{seccion.s_nombre}}</td>
-              <td><button value="{{seccion.s_id}}" (click)="ShowEditForm(seccion.s_id)"><i class="fa fa-pencil"></i></button></td>
+              <td><button value="{{seccion.s_id}}" (click)="showEditForm(seccion.s_id)"><i class="fa fa-pencil"></i></button></td>
             </tr>
           </tbody>
         </table>

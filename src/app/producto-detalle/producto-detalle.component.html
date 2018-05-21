@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container-fluid py-5">
 
   <div class="row text-dark">
@@ -8,12 +9,11 @@
         <div class="col-lg-7 border-right">
           <div class="row p-4">
             <div class="py-3 mx-auto">
-              <img src="../../assets/img/multifunc.png" class="img-fluid" alt="">
+              <img src="{{ListOfProducts.p_url}}" class="img-fluid" alt="">
             </div>
             <div class="">
               <h3 class="">Características</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quam nesciunt nostrum neque unde animi laboriosam
-                tempore voluptatum aliquid praesentium. Ullam similique ab qui illo soluta. Velit eos asperiores non?</p>
+              <p>{{ListOfProducts.p_descripcion}}</p>
             </div>
           </div>
           <div id="preguntas" class="flex-column py-4">
@@ -45,10 +45,12 @@
           </div>
         </div>
         <!-- parte derecha -->
+
         <div class="col-lg-5 py-3 order-first order-lg-last right-side">
           <div class="d-flex align-items-center align-items-lg-start flex-column">
             <h2 class="mb-1 mb-lg-2">Nombre del producto</h2>
             <h2 class="mb-2 mb-lg-3">$1.600</h2>
+
             <div class="flex-row">
               <i class="fa fa-star fa-lg"></i>
               <i class="fa fa-star fa-lg"></i>
@@ -78,3 +80,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

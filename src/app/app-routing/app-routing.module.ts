@@ -4,9 +4,10 @@ import { Routes, RouterModule} from '@angular/router';
 
 //Componentes                       
 import { HomeComponent } from '../home/home.component';
+import {BackendComponent} from '../backend/backend.component';
+import {BackendProductsComponent} from '../backend-products/backend-products.component';
+import {BackendAtributoComponent} from '../backend-atributo/backend-atributo.component';
 
-import { BackendComponent } from '../backend/backend.component';
-import { BackendProductsComponent } from '../backend-products/backend-products.component';
 import { BackendSeccionComponent } from '../backend-seccion/backend-seccion.component';
 import { BackendUserComponent } from '../backend-user/backend-user.component';
 import { BackendSubatributoComponent } from '../backend-subatributo/backend-subatributo.component';
@@ -26,8 +27,9 @@ const routes: Routes = [
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
     { path: 'subatributo', component: BackendSubatributoComponent },
     { path: 'productos', component: BackendProductsComponent },
-    { path: 'usuarios', component: BackendUserComponent },
     { path: 'seccion', component: BackendSeccionComponent },
+    { path: 'atributo', component: BackendAtributoComponent },
+    { path: 'usuarios', component: BackendUserComponent },
     ]
   },
   { path: 'productos', component: BackendProductsComponent },

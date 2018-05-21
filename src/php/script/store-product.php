@@ -4,6 +4,9 @@ require_once '../class/connect.php';
 
 $NewConnect = new Seca();
 	
+$countProduct = "SELECT * FROM producto WHERE p_status=1";
+echo $numberProduct = $NewConnect->Search($countProduct);
+
 	$nameProduct = $_POST["nameproducts"];
 	$section = $_POST["sectionAdd"];
 	$description = $_POST["description"];
@@ -56,8 +59,11 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 imagedestroy ($img_redimensionada);
 imagedestroy ($nueva_img);
 
-	     $sql = "INSERT INTO producto (p_nombre,p_descripcion,p_section,p_atributo,p_subatributo,p_precio,p_url,p_status) 
-		VALUES ('".$nameProduct."','".$description."','".$section."','".$atribute."','".$subatributo."','".$precio."','".$URL."','1')";
-         $NewConnect->ExecuteSql($sql);
-
+	     $sql = "INSERT INTO producto (p_nombre,p_descripcion,p_section,p_atributo,p_subatributo,p_precio,p_url,p_orden,p_status) 
+		VALUES ('".$nameProduct."','".$description."','".$section."','".$atribute."','".$subatributo."','".$precio."','".$URL."','".$numberProduct."','1')";
+		 $NewConnect->ExecuteSql($sql);
+		 $sql = "SELECT * FROM producto WHERE p_status = 1 ORDER BY p_orden ASC";
+		 $varAux = $NewConnect->CreateJson($sql);
+		 $NewConnect->SaveJson($varAux);
  ?>
+
