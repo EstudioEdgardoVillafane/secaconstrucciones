@@ -10,12 +10,14 @@ import { ProductosService } from '../productos.service';
 })
 export class ProductosComponent implements OnInit {
 
+
   ListOfProducts;
   i;
   k;
   ListProducts = new Array();
   ListDestacado = new Array();
   
+
   constructor(private productService : ProductosService) { }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
-.container-fluid{
-    padding:2rem 4rem !important;
+.container{
+    padding:4rem 0 !important;
 }
 .main-text-color{
     color:#666;
@@ -13,7 +13,12 @@
     border:solid .3px #666;
   
 }
-
+.tag{
+    font-size: 1rem!important;
+    font-weight: normal;
+    cursor: pointer;
+    color:#666!important;
+}
 .cont-img{
     /* height: 250px; */
 }
