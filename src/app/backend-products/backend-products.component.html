@@ -103,7 +103,7 @@
               </ng-template>
 
             <div class="row mt-4">
-              <div class="col-8 offset-2">
+              <div class="col-6">
                 <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center">
                   <label class="my-0 pt-2 pb-2">Listado de opciones.</label>
                 </div>
@@ -113,6 +113,14 @@
                     </ul>
                 </div>
                 <div style="border:solid 1px #ced4da;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; height:50px" class="text-center"></div>
+              </div>
+              <div class="col-6">
+                <div class="input-group">
+                <div class="input.group-prepend">
+                  <button  class="input-group-text btn-primary" type="button" id="btn-addoption" (click)="addOpcion()">Agregar</button>
+                </div>
+                <input type="text" id="storeOpcion" placeholder="Agregar nueva opcion" class="form-control">
+              </div>
               </div>
             </div>
 

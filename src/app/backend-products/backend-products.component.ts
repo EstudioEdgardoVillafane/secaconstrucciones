@@ -383,14 +383,26 @@ addAtributo(){
     .map((response) => response.json())
     .subscribe((data) => {
       this.listAtributo = data;
+      this.atributoValue = this.listAtributo.a_id;
       this.BooleanToCloseAtributo = false;
       this.InputStoreAtributo.disabled = true;
       this.atributoStore.disabled = true;
       this.BooleanToCloseAtributo = false;
+      console.log(this.atributoValue);
     });    
   }); 
 }
 
+varOptionToStore;
+
+addOpcion(){
+this.varOptionToStore = document.getElementById("storeOpcion");
+this.subatributeService.CrudFunction(3,0,this.varOptionToStore.value,this.atributoValue)
+.subscribe((data) => {
+console.log(data);
+this.subAtributoList(this.atributoValue);
+});
+}
 ButtonStoreAtributo;
 
 filterAtributo(){
@@ -524,6 +536,7 @@ nextOne(){
     .map((response) => response.json())
     .subscribe((data) => {
       this.listSubAtributo = data;
+      console.log(data);
     });
   }
  /** When we do a click on a checkbox, we add it in an array and after is delete. */
