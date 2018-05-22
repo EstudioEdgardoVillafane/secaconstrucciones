@@ -60,7 +60,7 @@ export class BackendProductsComponent implements OnInit {
  BooleanToAlertSubTitulo = false;
  BooleanToAlertParrafo = false;
  BooleanToValidate = false;
-  BooleanToCloseSeccion = false;
+  BooleanToCloseSeccion = true;
   BoolAddProductTwo = false;
   arrayAtribute = 0;
   boleeanToCheckAtribute = false;
@@ -130,12 +130,16 @@ addSection(){
   this.InputStoreSeccion = document.getElementById("buscarSeccion");
   this.seccionService.CrudFunction(3,0,this.InputStoreSeccion.value,0)
   .subscribe((data) => {
-    this.seccionList();
     this.InputStoreSeccion.disabled = true;
     this.seccionStore.disabled = true;
     this.BooleanToCloseSeccion = false;
+    this.seccionList();
   }); 
 }
+
+atributoStore;
+InputStoreAtributo;
+
 contador = 0;
 ButtonStoreSeccion;
 filterSection(value){
@@ -327,17 +331,15 @@ seccionFilterToProduct(id : string){
   */
 seccionValue;
  seccionClicked(number : string){
+  this.BooleanToCloseSeccion = false;
   this.seccionValue = number;
   document.getElementById(number).style.backgroundColor = '#80ff80';
-  this.BooleanToCloseSeccion = false;
   this.seccionName = document.getElementById(number);
   this.seccionNameToAdd = document.getElementById("buscarSeccion"); 
   document.getElementById("buscarSeccion");
   this.seccionNameToAdd.disabled = true
   this.seccionNameToAdd.value = this.seccionName.value; 
-  this.seccionService.getJsonForName(this.seccionName.value,this.listSeccion)
-  .subscribe(result => this.seccionClickedID = result  );
-  this.atributoList(this.seccionClickedID.s_id);
+  this.atributoList(number);
  }
 
 atributoID;
@@ -372,34 +374,65 @@ subatributoClicked(id:string){
     this.subatributoCliked = this.subatributoClick;
     
 }
+addAtributo(){
+  this.atributoStore = document.getElementById("AgregarAtributo");
+  this.InputStoreAtributo = document.getElementById("buscarAtributo");
+  this.atributoService.CrudFunction(3,this.InputStoreAtributo.value,this.seccionValue,0)
+  .subscribe((data) => {
+    this.seccionList();
+    this.InputStoreAtributo.disabled = true;
+    this.atributoStore.disabled = true;
+    this.BooleanToCloseAtributo = false;
+  }); 
+}
 
-filterAtributo(value){
+ButtonStoreAtributo;
+
+filterAtributo(){
 
   this.auxvar = document.getElementById("buscarAtributo");  
-
+  this.contador = 0;
+  if(this.listAtributo != undefined){
   for(this.i=0; this.i < this.listAtributo.length ; this.i++){
-  
-    if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
-      this.auxvar2 = document.getElementById("conta"+this.listSeccion[this.i].a_id);
+    if(this.listAtributo[this.i].a_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
+      this.auxvar2 = document.getElementById("conta"+this.listAtributo[this.i].a_id);
       this.auxvar2.style.display = "block";
+      this.contador = this.contador + 1;
     }else{
-      this.auxvar2 = document.getElementById("conta"+this.listSeccion[this.i].a_id);
+      this.auxvar2 = document.getElementById("conta"+this.listAtributo[this.i].a_id);
       this.auxvar2.style.display = "none";
     }
   }
+  }
+  this.ButtonStoreAtributo = document.getElementById("AgregarAtributoT");
+
+    if(this.contador > 0){
+      this.ButtonStoreAtributo.disabled = true;
+      this.ButtonStoreAtributo.value = "Buscar ";
+      this.ButtonStoreAtributo.style.background = "rgb(67, 67, 67)";
+    }else{
+      this.ButtonStoreAtributo.disabled = false;
+      this.ButtonStoreAtributo.value = "Agregar ";
+      this.ButtonStoreAtributo.style.background = "#007bff";
+    }  
 }
 
 
  returnSeccion(){
+   this.BooleanToCloseSeccion = true;
    this.seccionNameToAdd = document.getElementById("buscarSeccion");
-   this.seccionStore.value = "Buscar";
-   this.seccionStore.style.background = "rgb(67, 67, 67)";
-   this.BooleanToCloseSeccion=true;
    this.seccionNameToAdd.value="";
    this.seccionNameToAdd.disabled = false;
+
+   this.seccionStore.value = "Buscar";
+   this.seccionStore.style.background = "rgb(67, 67, 67)";
  }
 
  returnAtributo(){
+  this.atributoNameToAdd = document.getElementById("buscarSeccion");
+  this.ButtonStoreAtributo = document.getElementById("AgregarSeccion");
+  this.ButtonStoreAtributo.value = "Buscar ";
+  this.ButtonStoreAtributo.style.background = "rgb(67, 67, 67)";
   this.BooleanToCloseAtributo=true;
   this.atributoNameToAdd.value="";
   this.atributoNameToAdd.disabled = false;
@@ -411,12 +444,28 @@ nextOne(){
   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
   this.VarInput3 = document.getElementById("productName");
   this.VarInput3.value = this.nameProduct.value; 
-  this.VarInput4 = document.getElementById("SectionAdd");
   this.AuxVarInput4 = document.getElementById("buscarSeccion");
   this.BoolAddProductTwo = true;
   this.BoolAddProductOne =false;
   this.BooleanToCloseSeccion=false; 
- }
+  this.InputStoreSeccion = document.getElementById("buscarSeccion");
+  this.seccionService.getJsonForName(this.InputStoreSeccion.value,this.listSeccion)
+  .subscribe(result => this.seccionValue = result.s_id);
+  this.atributoService.CrudFunction(1,"",this.seccionValue,0)
+  .map((response) => response.json())
+  .subscribe((data) => {
+  this.listAtributo = data;
+  this.filterAtributo();
+  });
+  
+  
+  
+//   if(this.listAtributo == undefined){
+//     this.VarInput4 = document.getElementById("AgregarAtributo");
+// console.log(this.VarInput4.value);
+//     this.VarInput4.style.background = "red";
+//   }
+}
 
  ReturnToOne(){
   this.BoolAddProductOne = true;

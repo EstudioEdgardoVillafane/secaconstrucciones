@@ -6,11 +6,8 @@
 	
 
 	if($_GET["data"]==1){                   /** List   */
-		$sql="SELECT * FROM atributo WHERE a_status=1";	
 
-	// if($_GET["data"]==1){                   /** List    */
-	// 	$sql="SELECT * FROM atributo WHERE a_status=1 AND a_seccion='".$_GET["atributo"]."'";	
-
+		$sql="SELECT * FROM atributo WHERE a_status=1 AND a_seccion='".$_GET["seccion"]."'";	
 		$NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
 		$sqld = "UPDATE atributo SET a_status=0 WHERE a_id = '".$_GET["id"]."'";

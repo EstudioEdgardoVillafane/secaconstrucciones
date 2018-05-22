@@ -3,7 +3,7 @@
     font-size:16px!important;
     cursor: pointer!important;
 }
-#AgregarSeccion{
+#AgregarSeccion,#AgregarAtributo{
     background-color: rgb(67, 67, 67);
 }
 .cursor-return{

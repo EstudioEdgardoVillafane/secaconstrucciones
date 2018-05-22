@@ -16,7 +16,7 @@
           </div>
 
         <input type="hidden" name="nameproducts" id="productName" value="">
-        <input type="hidden" name="sectionAdd"   id="SectionAdd" value="{{seccionValue}}">
+        <input type="text" name="sectionAdd"   id="SectionAdd" value="{{seccionValue}}">
         <input type="hidden" name="atributoAdd"   id="AtributoAdd" value="{{atributoValue}}">
         <input type="hidden" name="subAtributoAdd"   id="subAtributoAdd" value="{{subatributoValue}}">
 
@@ -86,15 +86,17 @@
                 <div class="col-12">
                   <label>Seleccione o agrege caracteristica</label>
                 </div>  
-                <div class="col-12">   
+                <div class="col-12 input-group">   
+                    <div class="input-group-prepend">
+                        <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addAtributo()" id="AgregarAtributoT" type="button" value="Buscar ">
+                    </div>  
                   <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributo" (keyup)="filterAtributo()">
                 </div>
               </div>
               <div class="row mt-2" *ngIf="BooleanToCloseAtributo;else otroAtributo">
-                <div class="list-group col-2" id="conta{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
+                <div *ngFor="let atributo of listAtributo" class="list-group col-2" id="conta{{atributo.a_id}}" style="padding-left:15px;" >
                   <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="atributo{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
                 </div>
-                <a>Agregar otra caracteristica</a>
               </div>
               <ng-template #otroAtributo>
                   <a (click)="returnAtributo()" style="cursor:pointer; color:cornflowerblue;">Cambiar caracteristica</a>
