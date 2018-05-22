@@ -107,9 +107,9 @@ export class BackendProductsComponent implements OnInit {
 toUp(id : string){
   this.inputAux = document.getElementById("ordenP"+id);
   if( parseInt(this.inputAux.value) >= 0){
-  this.inputAux.value = parseInt(this.inputAux.value) + 1;
-  this.productoService.updateOrden(id,this.inputAux.value)
-  .subscribe(data => console.log(data) );
+    this.inputAux.value = parseInt(this.inputAux.value) + 1;
+    this.productoService.updateOrden(id,this.inputAux.value)
+  .subscribe(data => console.log(data));
   }
   
 }

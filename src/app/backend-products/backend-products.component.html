@@ -311,7 +311,14 @@
         </div>
         </div>
         <div class="row">
-        <div class="offset-4 col-3">
+          <div class="col-3">
+              <select class="form-control">
+                  <option>Filtrar por secciones</option>
+                  <option *ngFor="let seccion of listSeccion" value="{{seccion.s_id}}">{{seccion.s_nombre}}</option>
+                </select>
+          </div>
+        <div class="col-4">
+          
           <input placeholder="Buscar por nombre" type="text" class="form-control" id="searchProductName" (keyup)="searchNameProduct()">
         </div>  
         <div class="col-5">
@@ -323,30 +330,8 @@
         </div>
       </div>  
       <div class="row">
-          <div class="col-3">
-            <div class="row mt-3">
-            
-            <div class="col-4">
-              <p>Filtrar por:</p>
-              </div>
-              <div class="col-8">
-            <select class="form-control filterProduct" id="filterProduct" (click)="selectCategoria()">
-              <option value="0">Sin filtros</option>
-              <option value="1">Secciones</option>
-            </select>
-          </div>
-          </div>
-              <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center mt-3">
-                <label class="my-0 pt-2 pb-2">Seleccione para filtrar.</label>
-              </div>
-              <div style="overflow-y: auto; max-height: 350px;">
-                  <ul class="list-group" *ngIf="seccionBool" >
-                      <li class="list-group-item" *ngFor="let seccion of listadoSelect" id="seccionFilter{{seccion.s_id}}" (click)="seccionFilterToProduct(seccion.s_id)">{{seccion.s_nombre}}</li>
-                  </ul>
-              </div>
-              <div style="border:solid 1px #ced4da;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; height:50px" class="text-center"></div>
-            </div>
-      <div class="col-9">
+  
+      <div class="col-12">
               <table class="table table-bordered mt-3"  width="100%">
               <thead>
                 <tr>
@@ -355,8 +340,8 @@
                   <th>Nombre</th>
                   
                   <th>Precio</th>
-                  <th>Destacado</th>
-                  <th>Orden</th>
+                  <th style="width: 130px">Orden</th>
+                  <th style="width:25px;">Dest</th>
                   <th style="width: 25px">Editar</th>
                 </tr>
               </thead>
@@ -366,20 +351,20 @@
                   <td style="height:80px"><img src="{{content.p_url}}" style="max-height: 100%"></td>
                   <td>{{content.p_nombre }}</td>
                   <td>${{content.p_precio}}</td>
-                  <td class="text-center"><i class='material-icons' (click)="doFavorite(content.p_id, content.p_prioridad)">{{content.p_prioridad | prioritySelect}}</i></td>
                   <td>
-                  <div class="row">
-                    <div class="col-8 pr-1">
-                    <input type="text" class="form-control" id="ordenP{{content.p_id}}" style="width: 100%" value="{{content.p_orden}}">
-                    
-                  </div>
-                  <div class="col-4 pl-0">
-                      <i class="fa fa-caret-up" style="position: relative;bottom: 8px;  cursor:pointer" (click)="toUp(content.p_id)"></i>
-                      <br>
-                      <i class="fa fa-caret-down" style="position: relative;bottom: 7px; cursor:pointer" (click)="toDown(content.p_id)"></i>
-                  </div>
-                  </div>
+                    <div class="row">
+                      <div class="col-9 pr-1">
+                        <input type="text" class="form-control" id="ordenP{{content.p_id}}" style="width: 100%" value="{{content.p_orden}}">
+                        
+                      </div>
+                      <div class="col-3 pl-0">
+                        <i class="fa fa-caret-up" style="position: relative;bottom: 8px;  cursor:pointer" (click)="toUp(content.p_id)"></i>
+                        <br>
+                        <i class="fa fa-caret-down" style="position: relative;bottom: 7px; cursor:pointer" (click)="toDown(content.p_id)"></i>
+                      </div>
+                    </div>
                   </td>
+                  <td class="text-center"><i class='material-icons cursor-pointer' (click)="doFavorite(content.p_id, content.p_prioridad)">{{content.p_prioridad | prioritySelect}}</i></td>
                   
                     <td>
                     <button value="" (click)="ShowEdit(content.p_id)">
