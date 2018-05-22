@@ -54,5 +54,20 @@ BoolList = false;
       }
     }
   }
-
+  product
+  nameProduct
+  nameProductToAdd
+  Aux
+  atributoList
+  productClicked(id : string){
+    document.getElementById(id).style.backgroundColor = '';
+    this.BoolList = false;
+    this.nameProduct = document.getElementById(id);
+    this.nameProductToAdd = document.getElementById("searchProduct");
+    this.nameProductToAdd.disabled = true;
+    this.nameProductToAdd.value = this.nameProduct.value; 
+    this.productService.getJsonForNameTwo(this.nameProduct.value,this.listProductsInTheSearchEngine)
+    .subscribe(result => this.Aux = result );
+    this.atributoList(this.Aux.p_id);
+  }
 }

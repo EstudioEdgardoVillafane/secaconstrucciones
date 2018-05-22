@@ -24,7 +24,9 @@
 
       <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
           <ul class="pl-0 ml-0 mb-2 mt-2">
-            <li id="cont{{atributo.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let atributo of listProductsInTheSearchEngine" style="display:block; cursor:pointer"><a>{{atributo.p_nombre}}</a></li>
+            <li id="cont{{product.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let product of listProductsInTheSearchEngine" style="display:block; cursor:pointer">
+              <a (click)="productClicked(product.p_id)" id="{{product.p_id}}">{{product.p_nombre}}</a>
+            </li>
           </ul>
           </div>
           </div>
