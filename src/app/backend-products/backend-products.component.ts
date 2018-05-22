@@ -375,14 +375,19 @@ subatributoClicked(id:string){
     
 }
 addAtributo(){
-  this.atributoStore = document.getElementById("AgregarAtributo");
+  this.atributoStore = document.getElementById("AgregarAtributoT");
   this.InputStoreAtributo = document.getElementById("buscarAtributo");
   this.atributoService.CrudFunction(3,this.InputStoreAtributo.value,this.seccionValue,0)
   .subscribe((data) => {
-    this.seccionList();
-    this.InputStoreAtributo.disabled = true;
-    this.atributoStore.disabled = true;
-    this.BooleanToCloseAtributo = false;
+    this.atributoService.CrudFunction(1,"",this.seccionValue,0)
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.listAtributo = data;
+      this.BooleanToCloseAtributo = false;
+      this.InputStoreAtributo.disabled = true;
+      this.atributoStore.disabled = true;
+      this.BooleanToCloseAtributo = false;
+    });    
   }); 
 }
 
@@ -429,13 +434,15 @@ filterAtributo(){
  }
 
  returnAtributo(){
-  this.atributoNameToAdd = document.getElementById("buscarSeccion");
-  this.ButtonStoreAtributo = document.getElementById("AgregarSeccion");
+  this.BooleanToCloseAtributo = true;
+  this.atributoNameToAdd = document.getElementById("buscarAtributo");
+  this.atributoNameToAdd.disabled = false;
+  this.atributoNameToAdd.value = "";
+
+  this.ButtonStoreAtributo = document.getElementById("AgregarSeccionT");
   this.ButtonStoreAtributo.value = "Buscar ";
   this.ButtonStoreAtributo.style.background = "rgb(67, 67, 67)";
-  this.BooleanToCloseAtributo=true;
-  this.atributoNameToAdd.value="";
-  this.atributoNameToAdd.disabled = false;
+
 }
  
 
