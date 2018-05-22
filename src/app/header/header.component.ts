@@ -37,8 +37,8 @@ export class HeaderComponent implements OnInit {
   }
 auxVar
 BoolList = false;
-  SearchEngineProducts(){
-    this.searchProduct = document.getElementById("searchProduct");
+SearchEngineProducts(){
+  this.searchProduct = document.getElementById("searchProduct");
     if(this.searchProduct.value.length >= 3){
       this.BoolList = true;
     }else{
@@ -55,4 +55,18 @@ BoolList = false;
     }
   }
 
+  product
+  nameProduct
+  nameProductToAdd
+  Aux
+  qwe
+  atributoList
+  productClicked(idAtributte : string){
+    this.nameProduct = idAtributte;
+    this.nameProductToAdd = document.getElementById("searchProduct");
+    this.productService.getJsonForId(this.nameProduct,this.listProductsInTheSearchEngine)
+    .subscribe(result => this.Aux = result);
+    this.nameProductToAdd.value = this.Aux.p_nombre;
+    this.BoolList = false;  
+  }
 }
