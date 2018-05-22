@@ -41,7 +41,7 @@
               </div>  
               <div class="col-12 input-group"> 
                 <div class="input-group-prepend">
-                    <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addSection()" id="AgregarSeccion" type="button" value="Agregar">
+                    <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addSection()" id="AgregarSeccion" type="button" value="Buscar ">
 
                 </div>  
                 <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccion" (keyup)="filterSection()">
@@ -49,13 +49,13 @@
             </div>
             
             <div class="row mt-2" *ngIf="BooleanToCloseSeccion;else otra">
-              <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
+              <div class="list-group col-2 mt-1" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
                 <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
               </div>
               
             </div> <!-- ./BooleanToCloseSeccion -->
               <ng-template #otra>
-                <a (click)="returnSeccion()"  >Cambiar seccion</a>
+                <a (click)="returnSeccion()" class="cursor-return">Cambiar seleción</a>
               </ng-template>
             
             

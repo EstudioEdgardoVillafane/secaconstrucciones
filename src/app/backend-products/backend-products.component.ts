@@ -124,12 +124,15 @@ toDown(id : string){
 }
 
 InputStoreSeccion;
+seccionStore;
 addSection(){
+  this.seccionStore = document.getElementById("AgregarSeccion");
   this.InputStoreSeccion = document.getElementById("buscarSeccion");
   this.seccionService.CrudFunction(3,0,this.InputStoreSeccion.value,0)
   .subscribe((data) => {
     this.seccionList();
     this.InputStoreSeccion.disabled = true;
+    this.seccionStore.disabled = true;
     this.BooleanToCloseSeccion = false;
   }); 
 }
@@ -152,9 +155,11 @@ filterSection(value){
   this.ButtonStoreSeccion = document.getElementById("AgregarSeccion");
   if(this.contador > 0){
     this.ButtonStoreSeccion.disabled = true;
+    this.ButtonStoreSeccion.value = "Buscar ";
     this.ButtonStoreSeccion.style.background = "rgb(67, 67, 67)";
   }else{
     this.ButtonStoreSeccion.disabled = false;
+    this.ButtonStoreSeccion.value = "Agregar ";
     this.ButtonStoreSeccion.style.background = "#007bff";
   }
 }
@@ -386,6 +391,9 @@ filterAtributo(value){
 
 
  returnSeccion(){
+   this.seccionNameToAdd = document.getElementById("buscarSeccion");
+   this.seccionStore.value = "Buscar";
+   this.seccionStore.style.background = "rgb(67, 67, 67)";
    this.BooleanToCloseSeccion=true;
    this.seccionNameToAdd.value="";
    this.seccionNameToAdd.disabled = false;

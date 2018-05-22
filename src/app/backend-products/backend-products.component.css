@@ -4,5 +4,9 @@
     cursor: pointer!important;
 }
 #AgregarSeccion{
-    background-color: rgb(67, 67, 67)!important;
+    background-color: rgb(67, 67, 67);
+}
+.cursor-return{
+    color: rgb(0, 145, 255)!important;
+    cursor: pointer;
 }
