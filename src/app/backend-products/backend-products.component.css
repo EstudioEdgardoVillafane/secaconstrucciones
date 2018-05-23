@@ -3,6 +3,15 @@
     font-size:16px!important;
     cursor: pointer!important;
 }
-#AgregarSeccion{
-    background-color: rgb(67, 67, 67)!important;
+#AgregarSeccion,#AgregarAtributoT{
+    background-color: rgb(67, 67, 67);
+}
+.cursor-return{
+    color: rgb(0, 145, 255)!important;
+    cursor: pointer;
+}
+.cursor-pointer{
+    cursor: pointer;
+    color:rgb(255, 247, 0);
+    text-shadow: 0px 0px 0.25px black;
 }

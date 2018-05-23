@@ -15,7 +15,7 @@
 		$sqld = "UPDATE subatributo SET su_status = 0 WHERE su_id = '".$_GET["sa_id"]."'";
 		$NewConnect->Borrar($sqld);
 	}elseif($_GET["data"]==3){				/** Store */
-		$sql = "INSERT INTO subatributo (su_nombre,su_atributo,su_status) 
+echo		$sql = "INSERT INTO subatributo (su_nombre,su_atributo,su_status) 
 		VALUES ('".$_GET["sa_nombre"]."','".$_GET["sa_atributo"]."','1')";
 		$NewConnect->ExecuteSql($sql);
 	}elseif($_GET["data"]==4){ 				/** Edit */

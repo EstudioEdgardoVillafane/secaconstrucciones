@@ -41,7 +41,7 @@
               </div>  
               <div class="col-12 input-group"> 
                 <div class="input-group-prepend">
-                    <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addSection()" id="AgregarSeccion" type="button" value="Agregar">
+                    <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addSection()" id="AgregarSeccion" type="button" value="Buscar ">
 
                 </div>  
                 <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccion" (keyup)="filterSection()">
@@ -49,13 +49,13 @@
             </div>
             
             <div class="row mt-2" *ngIf="BooleanToCloseSeccion;else otra">
-              <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
+              <div class="list-group col-2 mt-1" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
                 <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
               </div>
               
             </div> <!-- ./BooleanToCloseSeccion -->
               <ng-template #otra>
-                <a (click)="returnSeccion()"  >Cambiar seccion</a>
+                <a (click)="returnSeccion()" class="cursor-return">Cambiar selección</a>
               </ng-template>
             
             
@@ -86,22 +86,24 @@
                 <div class="col-12">
                   <label>Seleccione o agrege caracteristica</label>
                 </div>  
-                <div class="col-12">   
+                <div class="col-12 input-group">   
+                    <div class="input-group-prepend">
+                        <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addAtributo()" id="AgregarAtributoT" type="button" value="Buscar ">
+                    </div>  
                   <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributo" (keyup)="filterAtributo()">
                 </div>
               </div>
               <div class="row mt-2" *ngIf="BooleanToCloseAtributo;else otroAtributo">
-                <div class="list-group col-2" id="conta{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
+                <div *ngFor="let atributo of listAtributo" class="list-group col-2" id="conta{{atributo.a_id}}" style="padding-left:15px;" >
                   <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClicked(atributo.a_id)" id="atributo{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
                 </div>
-                <a>Agregar otra caracteristica</a>
               </div>
               <ng-template #otroAtributo>
                   <a (click)="returnAtributo()" style="cursor:pointer; color:cornflowerblue;">Cambiar caracteristica</a>
               </ng-template>
 
             <div class="row mt-4">
-              <div class="col-8 offset-2">
+              <div class="col-6">
                 <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center">
                   <label class="my-0 pt-2 pb-2">Listado de opciones.</label>
                 </div>
@@ -111,6 +113,14 @@
                     </ul>
                 </div>
                 <div style="border:solid 1px #ced4da;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; height:50px" class="text-center"></div>
+              </div>
+              <div class="col-6">
+                <div class="input-group">
+                <div class="input.group-prepend">
+                  <button  class="input-group-text btn-primary" type="button" id="btn-addoption" (click)="addOpcion()">Agregar</button>
+                </div>
+                <input type="text" id="storeOpcion" placeholder="Agregar nueva opcion" class="form-control">
+              </div>
               </div>
             </div>
 
@@ -301,7 +311,14 @@
         </div>
         </div>
         <div class="row">
-        <div class="offset-4 col-3">
+          <div class="col-3">
+              <select class="form-control">
+                  <option>Filtrar por secciones</option>
+                  <option *ngFor="let seccion of listSeccion" value="{{seccion.s_id}}">{{seccion.s_nombre}}</option>
+                </select>
+          </div>
+        <div class="col-4">
+          
           <input placeholder="Buscar por nombre" type="text" class="form-control" id="searchProductName" (keyup)="searchNameProduct()">
         </div>  
         <div class="col-5">
@@ -313,30 +330,8 @@
         </div>
       </div>  
       <div class="row">
-          <div class="col-3">
-            <div class="row mt-3">
-            
-            <div class="col-4">
-              <p>Filtrar por:</p>
-              </div>
-              <div class="col-8">
-            <select class="form-control filterProduct" id="filterProduct" (click)="selectCategoria()">
-              <option value="0">Sin filtros</option>
-              <option value="1">Secciones</option>
-            </select>
-          </div>
-          </div>
-              <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center mt-3">
-                <label class="my-0 pt-2 pb-2">Seleccione para filtrar.</label>
-              </div>
-              <div style="overflow-y: auto; max-height: 350px;">
-                  <ul class="list-group" *ngIf="seccionBool" >
-                      <li class="list-group-item" *ngFor="let seccion of listadoSelect" id="seccionFilter{{seccion.s_id}}" (click)="seccionFilterToProduct(seccion.s_id)">{{seccion.s_nombre}}</li>
-                  </ul>
-              </div>
-              <div style="border:solid 1px #ced4da;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; height:50px" class="text-center"></div>
-            </div>
-      <div class="col-9">
+  
+      <div class="col-12">
               <table class="table table-bordered mt-3"  width="100%">
               <thead>
                 <tr>
@@ -345,8 +340,8 @@
                   <th>Nombre</th>
                   
                   <th>Precio</th>
-                  <th>Destacado</th>
-                  <th>Orden</th>
+                  <th style="width: 130px">Orden</th>
+                  <th style="width:25px;">Dest</th>
                   <th style="width: 25px">Editar</th>
                 </tr>
               </thead>
@@ -356,20 +351,20 @@
                   <td style="height:80px"><img src="{{content.p_url}}" style="max-height: 100%"></td>
                   <td>{{content.p_nombre }}</td>
                   <td>${{content.p_precio}}</td>
-                  <td class="text-center"><i class='material-icons' (click)="doFavorite(content.p_id, content.p_prioridad)">{{content.p_prioridad | prioritySelect}}</i></td>
                   <td>
-                  <div class="row">
-                    <div class="col-8 pr-1">
-                    <input type="text" class="form-control" id="ordenP{{content.p_id}}" style="width: 100%" value="{{content.p_orden}}">
-                    
-                  </div>
-                  <div class="col-4 pl-0">
-                      <i class="fa fa-caret-up" style="position: relative;bottom: 8px;  cursor:pointer" (click)="toUp(content.p_id)"></i>
-                      <br>
-                      <i class="fa fa-caret-down" style="position: relative;bottom: 7px; cursor:pointer" (click)="toDown(content.p_id)"></i>
-                  </div>
-                  </div>
+                    <div class="row">
+                      <div class="col-9 pr-1">
+                        <input type="text" class="form-control" id="ordenP{{content.p_id}}" style="width: 100%" value="{{content.p_orden}}">
+                        
+                      </div>
+                      <div class="col-3 pl-0">
+                        <i class="fa fa-caret-up" style="position: relative;bottom: 8px;  cursor:pointer" (click)="toUp(content.p_id)"></i>
+                        <br>
+                        <i class="fa fa-caret-down" style="position: relative;bottom: 7px; cursor:pointer" (click)="toDown(content.p_id)"></i>
+                      </div>
+                    </div>
                   </td>
+                  <td class="text-center"><i class='material-icons cursor-pointer' (click)="doFavorite(content.p_id, content.p_prioridad)">{{content.p_prioridad | prioritySelect}}</i></td>
                   
                     <td>
                     <button value="" (click)="ShowEdit(content.p_id)">
