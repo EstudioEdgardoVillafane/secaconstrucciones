@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit {
   i;
   result;
   searchProducts = false;
+  show:Boolean;
+
   constructor(private productService : ProductosService) { }
 
   ngOnInit() {
@@ -53,6 +55,10 @@ BoolList = false;
         this.result.style.display = "none";
       }
     }
+  }
+
+  mostrarMegaMenu():void{
+    this.show=!this.show;
   }
 
 }
