@@ -37,6 +37,7 @@ class Connect{
 	}
 	public function Search($sql){
 		$result = $this->conn->query($sql);
+		
 		return mysqli_num_rows($result);
 	}
 }

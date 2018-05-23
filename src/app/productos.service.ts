@@ -28,6 +28,9 @@ export class ProductosService {
   getJsonForNameTwo(name,json){
     return of(json.find((primero => primero.p_nombre === name)));
   }
+  getJsonForNameT(id,json){
+    return of(json.find((primero => primero.p_nombre = id)));
+  }
   getJsonForSeccion(id,json){
     return of(json.find((primero => primero.p_section === id)));
   }
