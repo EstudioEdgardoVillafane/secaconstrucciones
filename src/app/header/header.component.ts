@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 /*** Services ****/
 import {ProductosService} from '../productos.service';
+import { when } from 'q';
 
 @Component({
   selector: 'app-header',
@@ -37,22 +38,33 @@ export class HeaderComponent implements OnInit {
   }
 auxVar
 BoolList = false;
-SearchEngineProducts(){
-  this.searchProduct = document.getElementById("searchProduct");
+contador
+jsonSearch = new Array();
+searchProductAux;
+
+  SearchEngineProducts(){
+    this.searchProduct = document.getElementById("searchProduct");
     if(this.searchProduct.value.length >= 3){
-      this.BoolList = true;
+      this.jsonSearch.length = 0;
+      this.contador = 0;
+      this.searchProductAux  = document.getElementById("searchProduct");
+      for(this.i=0; this.i < this.listProductsInTheSearchEngine.length ; this.i++){
+        if(this.listProductsInTheSearchEngine[this.i].p_nombre.toUpperCase().match(this.searchProductAux.value.toUpperCase())){
+          this.jsonSearch[this.contador] = this.listProductsInTheSearchEngine[this.i];
+          this.contador++;
+        }
+      }
+    }
+    if(this.searchProduct.value.length >= 3 && this.jsonSearch.length != 0){
+    this.BoolList = true;  
     }else{
       this.BoolList = false;
     }
-    for(this.i=0; this.i < this.listProductsInTheSearchEngine.length ; this.i++){
-      if(this.listProductsInTheSearchEngine[this.i].p_nombre.toUpperCase().match(this.searchProduct.value.toUpperCase()) && this.searchProduct.value.length >= 3){
-        this.result = document.getElementById("cont"+this.listProductsInTheSearchEngine[this.i].p_id);
-        this.result.style.display = "block";
-      }else{
-        this.result = document.getElementById("cont"+this.listProductsInTheSearchEngine[this.i].p_id);
-        this.result.style.display = "none";
-      }
-    }
+  
+    console.log(this.jsonSearch.values)
+  }
+  closeList(){
+    this.BoolList = false;
   }
 
   product
