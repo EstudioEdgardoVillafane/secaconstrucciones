@@ -52,6 +52,7 @@ export class BackendProductsComponent implements OnInit {
  formElement;
  request;
  idproducto;
+ BoolOfSearch = true;
  BoolAddProductOne= false;
  BooleanAdd = true;
  Booleano = true;
@@ -88,12 +89,53 @@ export class BackendProductsComponent implements OnInit {
 
  /** Calling the function ListContent to do the list of content. */
 
+ 
  ngOnInit() {
-
    this.ListContent();
    this.seccionList();
-   
  }
+
+ CantidadDePaginas : number;
+ CantidadDePaginasSeccion;
+ PaginaActualSeccion = 1;
+ PaginaActual = 1;
+ProbandoJson = new Array();
+selectTr;
+j;
+Desde = 0;
+Hasta = 8;
+auxToProbandoJson = 0;
+nextPag(){
+  if(this.PaginaActual < this.CantidadDePaginas){
+    this.PaginaActual++;
+    this.Desde = this.Desde + 8;
+    this.Hasta = this.Hasta + 8;
+  }
+}
+prevPag(){
+  if(this.PaginaActual > 1){
+    this.PaginaActual--;
+    this.Desde = this.Desde - 8;
+    this.Hasta = this.Hasta - 8;
+  }
+}
+nextPagSeccion(){
+  if(this.PaginaActualSeccion < this.CantidadDePaginasSeccion){
+    this.PaginaActualSeccion++;
+    this.DesdeSeccion = this.DesdeSeccion + 8;
+    this.HastaSeccion = this.HastaSeccion + 8;
+  }
+}
+prevPagSeccion(){
+  if(this.PaginaActualSeccion > 1){
+    this.PaginaActualSeccion--;
+    this.DesdeSeccion = this.DesdeSeccion - 8;
+    this.HastaSeccion = this.HastaSeccion - 8;
+  }
+}
+
+
+
 
 /**
  * When someone div with class "cont+id" is clicked, return a background color;
@@ -106,15 +148,17 @@ export class BackendProductsComponent implements OnInit {
 
 toUp(id : string){
   this.inputAux = document.getElementById("ordenP"+id);
+
   if( parseInt(this.inputAux.value) >= 0){
     this.inputAux.value = parseInt(this.inputAux.value) + 1;
     this.productoService.updateOrden(id,this.inputAux.value)
-  .subscribe(data => console.log(data));
+  .subscribe(data => console.log("toto"));
   }
   
 }
 toDown(id : string){
   this.inputAux = document.getElementById("ordenP"+id);
+
   if( parseInt(this.inputAux.value) > 0){
   this.inputAux.value = parseInt(this.inputAux.value) - 1;
   this.productoService.updateOrden(id,this.inputAux.value)
@@ -173,35 +217,96 @@ doFavorite(id, prioridad){
     .subscribe(result => this.ListContent() );
 }
 
+auxSelectFilter;
+k;
+JsonFilterSeccion = new Array();
+BoolOfSearchTrue = false;
+BoolForSearchForSeccion =false;
 
 
 
-searchNameProduct(){
+DesdeSeccion = 0;
+HastaSeccion = 8;
+filterSeccionToProduct(){
  
-  this.auxvar = document.getElementById("searchProductName");  
-  console.log(this.auxvar.value.toUpperCase());
-  for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
-    
-    if(this.ListOfContent[this.i].p_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
-      if(this.inputFiltler.value == 1 && this.sectionValueFilter != undefined){
-        if(this.ListOfContent[this.i].p_section == this.sectionValueFilter ){
-          
-          this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
-          this.auxvar2.style.display = "table-row";
-        }else{
-          this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
-          this.auxvar2.style.display = "none";
-        }
-      }else{
-        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
-        this.auxvar2.style.display = "table-row";
+  this.k = 0;
+  this.JsonFilterSeccion.length = 0;
+  this.auxSelectFilter = document.getElementById("filterToSection");
+  if(this.auxSelectFilter.value != 0){
+
+    this.sectionValueFilter = this.auxSelectFilter.value;
+
+    for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
+      if(this.ListOfContent[this.i].p_section.match(this.sectionValueFilter)){
+        this.JsonFilterSeccion[this.k] = this.ListOfContent[this.i];
+        this.k++;    
       }
-    }else{
-        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
-        this.auxvar2.style.display = "none";
     }
+    if(this.k > 0){
+      this.BoolForSearchForSeccion = true;
+      this.BoolOfSearch = false;
+      this.BoolOfSearchTrue = false;
+      this.CantidadDePaginasSeccion = this.JsonFilterSeccion.length/8;
+      this.CantidadDePaginasSeccion = Math.ceil(this.CantidadDePaginasSeccion)
+    }
+  }else{
+    this.BoolForSearchForSeccion = false;
+    this.BoolOfSearch = true;
+    this.BoolOfSearchTrue = false;
+    this.searchNameProduct();
   }
 }
+
+
+jsonSearch = new Array();
+anyContador = 0;
+inputToSearchProduct;
+BoolToList = false;
+
+searchNameProduct(){
+  this.BoolOfSearch = true;
+  this.BoolOfSearchTrue = false;
+  this.inputToSearchProduct = document.getElementById("searchProductName");
+  if(this.inputToSearchProduct.value.length > 2){
+  this.jsonSearch.length = 0;
+ this.anyContador = 0;
+  this.auxvar = document.getElementById("searchProductName");  
+  for(this.i=0; this.i < this.ListOfContent.length ; this.i++){    
+    if(this.ListOfContent[this.i].p_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
+      this.jsonSearch[this.anyContador] = this.ListOfContent[this.i];    
+      this.anyContador++;
+    }
+  }
+  }
+  if(this.inputToSearchProduct.value.length > 3){
+    this.BoolToList = true;
+  }else{
+    this.BoolToList =false;
+  }
+  if(this.jsonSearch.length == 0){
+    this.BoolToList = false;;
+  }
+  console.log(this.jsonSearch);
+}
+
+inputOfSearchProduct;
+JsonFind;
+clickOnList(productName){
+
+  this.inputOfSearchProduct = document.getElementById("searchProductName");
+  this.inputOfSearchProduct.value = productName;
+  
+  this.productoService.getJsonForNameTwo(productName,this.ListOfContent)
+  .subscribe((data) => {
+    this.JsonFind = data;
+    this.BoolOfSearchTrue = true;
+    this.BoolToList = false;
+    this.BoolOfSearch = false;
+    console.log(this.JsonFind);
+  });
+
+}
+
  /** In this function, we get the values of the input fields to update the regist. */
  
  EditReg(){
@@ -223,13 +328,9 @@ searchNameProduct(){
 
 inputFiltler;
 listadoSelect;
-
-filterProduct(text : string){
-  
-
-}
 seccionBool = false;
 auxProd;
+
 selectCategoria(){
   this.inputFiltler = document.getElementById("filterProduct");
   console.log(this.inputFiltler.value);
@@ -258,29 +359,7 @@ selectCategoria(){
 listadoSeleccionado;
 subatributoClikeds
 sectionValueFilter;
-seccionFilterToProduct(id : string){
-  if(this.subatributoClikeds == undefined){
-    console.log("toto")
-  }else{
-    this.subatributoClikeds.className = "list-group-item";
-  }
-    this.sectionValueFilter = id;
-    this.subatributoClick = document.getElementById("seccionFilter"+id);
-    this.subatributoClick.className = "list-group-item active";
-    this.subatributoClikeds = this.subatributoClick;
 
-
-    for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
-    
-      if(this.ListOfContent[this.i].p_section.match(id)){
-        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
-        this.auxvar2.style.display = "table-row";
-      }else{
-        this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
-        this.auxvar2.style.display = "none";
-      }
-    }
-  }
   atributoFilterToProduct(id : string){
     if(this.subatributoCliked == undefined){
       console.log("toto")
@@ -500,6 +579,8 @@ nextOne(){
        .subscribe((data) => { 
          console.log(data)
        this.ListOfContent = data;
+       this.CantidadDePaginas = this.ListOfContent.length/8;
+       this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas)
      });
    }
  
