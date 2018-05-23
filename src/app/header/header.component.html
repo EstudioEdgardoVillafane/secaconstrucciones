@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-custom sticky-top">
 
+
   <div class="col-sm-2 d-none d-sm-block">
     <a class="navbar-brand" href="#">
       <img src="../../assets/img/logo.jpg" class=" logo-img img-fluid" alt="">
@@ -11,6 +12,52 @@
       <img src="../../assets/img/logo.jpg" class="img-fluid d-flex mx-auto img-mobile" alt="">
     </a>
   </div>
+
+    <!-- contenedor input y barra inferior -->
+    <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
+
+      <!-- input -->
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+
+          <input id="searchProduct" type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2" (blur)="closeList()" (keyup)="SearchEngineProducts()">
+          <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right"  >
+            <i class="fa fa-search fa-md my-auto p-0"></i>
+          </button>
+         
+      </div>
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+
+      <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
+          <ul class="pl-0 ml-0 mb-2 mt-2">
+            <li id="cont{{product.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let product of jsonSearch" style="display:block; cursor:pointer" (click)="productClicked(product.p_id)" >
+              <a id="p{{product.p_id}}">{{product.p_nombre}}</a>
+            </li>
+          </ul>
+          </div>
+          </div>
+      <!-- botón hamburguesa -->
+      <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
+        <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-white"></span>
+          
+        </button>
+      </div>
+
+      <!-- barra inferior -->
+      <div class="col-12 col-md-12 p-0 mt-2 navbar-light navbar-expand-lg">
+
+        <div class="col-md-12 collapse navbar-collapse text-center" id="barra-inferior">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/admin771">Categorías&nbsp;<i class="fa fa-angle-down"></i>
+              </a>
+    </li>
+    </ul>
+  
+        <!-- end navbar -->
+      </div>
+
 
   <div class="col-10 col-md-8 col-lg-6 my-2 my-lg-0 p-0 buscador-y-atributos">
     <form class="d-flex col-12 p-0">

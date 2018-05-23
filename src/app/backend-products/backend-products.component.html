@@ -132,6 +132,18 @@
                   <textarea id="description" class="form-control" style="height: 350px" name="description" placeholder="Tiene 300 caracteres para describir su producto"></textarea>
                 </div>
               </div>
+              <div class="row mt-3">
+                <div class="col-12 input-group">
+                  
+                    <div class="input.group-prepend">
+                      <a type="button" class="input-group-text storeEtiqueta">Buscar</a>
+                    </div>
+                    <input type="text" placeholder="Buscar etiqueta" class="form-control">
+                    <p>Debe agregar 1 o más etiquetas</p>
+                </div>
+              </div>
+
+
             <div class="row mt-3">
               <div class="col-6">
                 <label>Precio del producto</label>
@@ -312,15 +324,20 @@
         </div>
         <div class="row">
           <div class="col-3">
-              <select class="form-control">
-                  <option>Filtrar por secciones</option>
-                  <option *ngFor="let seccion of listSeccion" value="{{seccion.s_id}}">{{seccion.s_nombre}}</option>
+              <select class="form-control" id="filterToSection" (change)="filterSeccionToProduct()">
+                  <option value="0">Filtrar por secciones</option>
+                  <option *ngFor="let seccion of listSeccion" value="{{seccion.s_id}}" >{{seccion.s_nombre}}</option>
                 </select>
           </div>
-        <div class="col-4">
-          
+        <div class="col-4">        
           <input placeholder="Buscar por nombre" type="text" class="form-control" id="searchProductName" (keyup)="searchNameProduct()">
+          <div class="contenedor-listado" *ngIf="BoolToList">
+              <ul class="pl-0 ml-0 mb-2 mt-2">
+                <li *ngFor="let json of jsonSearch | slice : 0 : 4" id="JsonSelect{{json.p_nombre}}" (click)="clickOnList(json.p_nombre)" value="{{json.p_nombre}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"   style="display:block; cursor:pointer"><a>{{json.p_nombre}}</a></li>
+              </ul>
+              </div>
         </div>  
+        
         <div class="col-5">
 
             <button class="btn btn-md btn-primary pull-right ml-1" (click)="ShowAdd()"><i class="fa fa-plus" style="font-size:17px"></i> Agregar</button>
@@ -345,10 +362,10 @@
                   <th style="width: 25px">Editar</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr  *ngFor="let content of ListOfContent" id="listProductCont{{content.p_id}}" class="searchNameProduct{{content.p_id}}" > 
+              <tbody *ngIf="BoolOfSearch; else otherTable">
+                <tr  *ngFor="let content of ListOfContent | slice : Desde : Hasta" id="listProductCont{{content.p_id}}" class="searchNameProduct{{content.p_id}}" > 
                   <td><input type="checkbox" class="tilde" value="{{content.p_id}}" (click)="onCheck(content.p_id)"></td>
-                  <td style="height:80px"><img src="{{content.p_url}}" style="max-height: 100%"></td>
+                  <td style="height:80px" class="text-center"><img src="{{content.p_url}}" style="max-height: 100%"></td>
                   <td>{{content.p_nombre }}</td>
                   <td>${{content.p_precio}}</td>
                   <td>
@@ -373,9 +390,75 @@
                   </td>
                 </tr>
               </tbody>
+                <tbody *ngIf="BoolOfSearchTrue">
+                    <tr> 
+                        <td><input type="checkbox" class="tilde" value="{{JsonFind.p_id}}" (click)="onCheck(JsonFind.p_id)"></td>
+                        <td style="height:80px" class="text-center"><img src="{{JsonFind.p_url}}" style="max-height: 100%"></td>
+                        <td>{{JsonFind.p_nombre }}</td>
+                        <td>${{JsonFind.p_precio}}</td>
+                        <td>
+                          <div class="row">
+                            <div class="col-9 pr-1">
+                              <input type="text" class="form-control" id="ordenP{{JsonFind.p_id}}" style="width: 100%" value="{{JsonFind.p_orden}}">
+                              
+                            </div>
+                            <div class="col-3 pl-0">
+                              <i class="fa fa-caret-up" style="position: relative;bottom: 8px;  cursor:pointer" (click)="toUp(JsonFind.p_id)"></i>
+                              <br>
+                              <i class="fa fa-caret-down" style="position: relative;bottom: 7px; cursor:pointer" (click)="toDown(JsonFind.p_id)"></i>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-center"><i class='material-icons cursor-pointer' (click)="doFavorite(JsonFind.p_id, JsonFind.p_prioridad)">{{JsonFind.p_prioridad | prioritySelect}}</i></td>
+                        
+                          <td>
+                          <button value="" (click)="ShowEdit(JsonFind.p_id)">
+                            <i class="fa fa-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                </tbody>
+              
+                <tbody *ngIf="BoolForSearchForSeccion">
+                    <tr *ngFor=" let jsonFilter of JsonFilterSeccion | slice : DesdeSeccion : HastaSeccion"> 
+                        <td><input type="checkbox" class="tilde" value="{{jsonFilter.p_id}}" (click)="onCheck(jsonFilter.p_id)"></td>
+                        <td style="height:80px" class="text-center"><img src="{{jsonFilter.p_url}}" style="max-height: 100%"></td>
+                        <td>{{jsonFilter.p_nombre }}</td>
+                        <td>${{jsonFilter.p_precio}}</td>
+                        <td>
+                          <div class="row">
+                            <div class="col-9 pr-1">
+                              <input type="text" class="form-control" id="ordenP{{jsonFilter.p_id}}" style="width: 100%" value="{{jsonFilter.p_orden}}">
+                              
+                            </div>
+                            <div class="col-3 pl-0">
+                              <i class="fa fa-caret-up" style="position: relative;bottom: 8px;  cursor:pointer" (click)="toUp(jsonFilter.p_id)"></i>
+                              <br>
+                              <i class="fa fa-caret-down" style="position: relative;bottom: 7px; cursor:pointer" (click)="toDown(jsonFilter.p_id)"></i>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-center"><i class='material-icons cursor-pointer' (click)="doFavorite(jsonFilter.p_id, jsonFilter.p_prioridad)">{{jsonFilter.p_prioridad | prioritySelect}}</i></td>
+                        
+                          <td>
+                          <button value="" (click)="ShowEdit(jsonFilter.p_id)">
+                            <i class="fa fa-pencil"></i>
+                          </button>
+                        </td>
+                      </tr>
+                </tbody>
+
             </table>
             </div>
+            <div class="col-12 text-center" *ngIf="BoolOfSearch">
+                Paginador: {{PaginaActual}} de {{CantidadDePaginas}} <a (click)="prevPag()" class="cp btn btn-sm"> << </a> <a (click)="nextPag()" class="cp btn btn-sm"> >> </a>
+              </div>
+              <div class="col-12 text-center" *ngIf="BoolForSearchForSeccion">
+                  Paginador: {{PaginaActualSeccion}} de {{CantidadDePaginasSeccion}} <a (click)="prevPagSeccion()" class="cp btn btn-sm"> << </a> <a (click)="nextPagSeccion()" class="cp btn btn-sm"> >> </a>
+                </div>
             </div>
+
+
       </div>
           
         
