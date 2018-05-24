@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 	include '../class/seca.php';
 	include '../class/connect.php';
@@ -10,10 +10,9 @@ session_start();
 		
 		$AuxVar;
 		$AuxVar = md5($_GET["ub_password"]);
-		$SQL = "SELECT * FROM userb WHERE ub_user = '".$_GET["ub_user"]."' AND ub_password = '".$AuxVar."' AND ub_status=1";	
+	  $SQL = "SELECT * FROM userb WHERE ub_user = '".$_GET["ub_user"]."' AND ub_password = '".$AuxVar."' AND ub_status=1";	
 		$Row = $NewConnect->Search($SQL);
 		if($Row == 1){
-			$_SESSION["usuario"] = $_GET["ub_user"];
 			echo $Row;
 		}else{
 			echo 0;
