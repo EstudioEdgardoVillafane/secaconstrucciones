@@ -21,15 +21,18 @@ import { BackendSubatributoComponent } from './backend-subatributo/backend-subat
 import { ProductosService } from './productos.service';
 import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
+import { LoginService } from './login.service';
 import { SubatributoService } from './subatributo.service';
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendUserService } from './backend-user.service';
 import { BackendAtributoComponent } from './backend-atributo/backend-atributo.component';
 import { BackendSeccionComponent } from './backend-seccion/backend-seccion.component';
+
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { SubAtributoService } from './sub-atributo.service';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { PrioritySelectPipe } from './priority-select.pipe';
+import { EtiquetaService } from './etiqueta.service';
 
 
 
@@ -59,7 +62,7 @@ import { PrioritySelectPipe } from './priority-select.pipe';
     HttpModule,
     HttpClientModule
   ],
-  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }

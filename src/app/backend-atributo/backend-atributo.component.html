@@ -32,9 +32,9 @@
           </div>
           <a>Agregar otra seccion</a>
         </div> <!-- ./BooleanToCloseSeccion -->
-          <!-- <ng-template #otra> -->
-            <!-- <a (click)="returnSeccion()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a> -->
-          <!-- </ng-template> -->
+           <ng-template #otra> 
+             <a (click)="returnSeccion()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a> -->
+          </ng-template> 
     
        
   
@@ -82,15 +82,19 @@
             </div>
           </div>
   
-          <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit">
+          <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit;else otra">
             <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listadoseccion">
               <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="EditarClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
             </div>
-            <a>Editar otra seccion</a>
-          </div>    
+  
+          </div>
+            <ng-template #otra> 
+              <a (click)="returnSeccion()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a>
+           </ng-template> 
+              
           
        
-  
+         
         
   
                                

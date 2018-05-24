@@ -152,13 +152,15 @@ varaux;
         this.AtributoService.CrudFunction(4,this.a_nombre.value,this.varaux.s_id,a_id)
         .subscribe((data)=>{ 
           this.var=data;
-          console.log(data);
+         // console.log(data);
+         //this.Listar();
+         location.reload();
+        
+         this.Listar();
+
         });
             // this.ListBackendUsers();
-         // location.reload();
-        
-     
-
+          
       
      
   }
@@ -197,8 +199,9 @@ varaux;
         .subscribe((data) => {
           this.var = data;
           console.log(data);
+          this.Listar();
         });
-        this.Listar();
+        
       }
 
   }
@@ -311,6 +314,13 @@ this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
       }
     }
   }
+
+  returnSeccion(){
+    this.BooleanToCloseSeccionEdit=true;
+    this.seccionNameToAdd.value="";
+    this.seccionNameToAdd.disabled = false;
+  }
+
 
 
 }

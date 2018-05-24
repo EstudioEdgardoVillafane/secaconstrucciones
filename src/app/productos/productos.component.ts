@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProductosService } from '../productos.service';
+import { EtiquetaService } from '../etiqueta.service';
 
 @Component({
   selector: 'app-productos',
@@ -13,12 +14,14 @@ export class ProductosComponent implements OnInit {
   ListOfProducts;
   i;
   k;
+  ListEtiqueta;
   ListProducts = new Array();
   ListDestacado = new Array();
   
-  constructor(private productService : ProductosService) { }
+  constructor(private productService : ProductosService, private etiquetaService : EtiquetaService) { }
 
   ngOnInit() {
+    this.doListEtiqueta();
     this.productService.listProductToFront()
     .map((response) => response.json())
     .subscribe((data) => { 
@@ -47,6 +50,15 @@ export class ProductosComponent implements OnInit {
         this.k++;
       }
     }
+  }
+
+  
+  doListEtiqueta(){
+  this.etiquetaService.listEtiquetas()
+  .map((response) => response.json())
+  .subscribe((data) => {
+    this.ListEtiqueta = data;
+  });
   }
 
   

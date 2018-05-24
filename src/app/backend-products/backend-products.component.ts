@@ -21,6 +21,7 @@ import { SeccionService } from '../seccion.service';
 import { AtributoService } from '../atributo.service';
 import { ProductosService } from '../productos.service';
 import { SubatributoService } from '../subatributo.service';
+import { EtiquetaService } from '../etiqueta.service';
 @Component({
   selector: 'app-backend-products',
   templateUrl: './backend-products.component.html',
@@ -85,15 +86,30 @@ export class BackendProductsComponent implements OnInit {
 
   /** I am defining the services. */
  
- constructor(private seccionService: SeccionService, private productoService : ProductosService, private atributoService : AtributoService, private subatributeService : SubatributoService) {}
+ constructor(private seccionService: SeccionService, private productoService : ProductosService, private atributoService : AtributoService, private etiquetaService: EtiquetaService ,private subatributeService : SubatributoService) {}
 
  /** Calling the function ListContent to do the list of content. */
 
  
- ngOnInit() {
-   this.ListContent();
-   this.seccionList();
- }
+ngOnInit() {
+  this.ListContent();
+  this.seccionList();
+  this.etiquetaList();
+}
+
+
+JsonEtiquetas;
+
+etiquetaList(){
+this.etiquetaService.listEtiquetas()
+.map((response) => response.json())
+.subscribe((data) => {
+  this.JsonEtiquetas = data;
+});
+}
+
+
+
 
  CantidadDePaginas : number;
  CantidadDePaginasSeccion;
@@ -420,6 +436,78 @@ seccionValue;
   this.seccionNameToAdd.value = this.seccionName.value; 
   this.atributoList(number);
  }
+
+ BooleanToCloseEtiqueta = true;
+ etiquetaValue;
+ etiquetaName;
+ etiquetaNameToAdd;
+ etiquetaClicked(number : string){
+  this.BooleanToCloseEtiquetas = false;
+  this.etiquetaValue = number;
+  this.etiquetaName = document.getElementById("Etiqueta"+number);
+  this.etiquetaNameToAdd = document.getElementById("searchEtiqueta"); 
+  this.etiquetaNameToAdd.disabled = true
+  this.etiquetaNameToAdd.value = this.etiquetaName.value; 
+ }
+ filterEtiqueta(){
+  this.ButtonStoreSeccion = document.getElementById("storeEtiqueta");
+
+  this.auxvar = document.getElementById("searchEtiqueta");  
+  this.contador = 0;
+  if(this.JsonEtiquetas != undefined){
+  for(this.i=0; this.i < this.JsonEtiquetas.length ; this.i++){
+    if(this.JsonEtiquetas[this.i].e_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
+      this.auxvar2 = document.getElementById("EtiquetaShow"+this.JsonEtiquetas[this.i].e_id);
+      this.auxvar2.style.display = "block";
+      this.contador = this.contador + 1;
+    }else{
+      this.auxvar2 = document.getElementById("EtiquetaShow"+this.JsonEtiquetas[this.i].e_id);
+      this.auxvar2.style.display = "none";
+    }
+  }
+
+  }
+  if(this.contador > 0){
+    this.ButtonStoreSeccion.disabled = true;
+    this.ButtonStoreSeccion.value = "Buscar ";
+    this.ButtonStoreSeccion.style.background = "rgb(67, 67, 67)";
+  }else{
+    this.ButtonStoreSeccion.disabled = false;
+    this.ButtonStoreSeccion.value = "Agregar ";
+    this.ButtonStoreSeccion.style.background = "#007bff";
+  }
+  console.log(this.contador);
+}
+BooleanToCloseEtiquetas = true;
+storeEtiqueta(){
+this.auxvar = document.getElementById("searchEtiqueta");
+this.auxvar2 = document.getElementById("storeEtiqueta");
+  this.etiquetaService.storeEtiqueta(this.auxvar.value)
+  .subscribe((data) => {
+    this.BooleanToCloseEtiquetas = false;
+    this.auxvar.disabled = true;
+    this.auxvar2.disabled = true;
+    this.etiquetaService.listEtiquetas()
+      .map((response) => response.json())
+      .subscribe((data) => {
+      this.JsonEtiquetas = data;
+      this.etiquetaService.getJsonForName(this.auxvar.value,this.JsonEtiquetas)
+      .subscribe(data => this.etiquetaValue = data.e_id)
+      console.log(this.JsonEtiquetas);
+    });
+    
+  });
+}
+
+returnEtiqueta(){
+  this.BooleanToCloseEtiquetas = true;
+  this.seccionNameToAdd = document.getElementById("searchEtiqueta");
+  this.seccionNameToAdd.value="";
+  this.seccionNameToAdd.disabled = false;
+  this.auxvar = document.getElementById("storeEtiqueta");
+  this.auxvar.value = "Buscar";
+  this.auxvar.style.background = "rgb(67, 67, 67)";
+}
 
 atributoID;
 atributoValue;
