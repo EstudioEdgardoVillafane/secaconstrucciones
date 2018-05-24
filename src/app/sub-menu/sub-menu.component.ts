@@ -9,27 +9,33 @@ export class SubMenuComponent implements OnInit {
 
   categorias :Array<object> 
   headMessage : string;
-  selectedList : string;
-  setClickedList : Function;
+  selectedItem : string;
+  setClickedItem : Function;
 
 
 constructor(){
     this.categorias = [
       {
         nombre : "Tecnología",
-        subCateg:[ 'celulares y telefonos','televisores','computación','elecgtronica, audio y video'
-        ]
+        subCategoria:[ 'enero','febrero','marzo','abril']
       },
       {
         nombre : "Música",
-        subCateg:[ 'celulares y telefonos','televisores','computación','elecgtronica, audio y video'
-        ]
+        subCategoria:[ 'mayo','junio','julio','agosto']
+      },
+      {
+        nombre : "Arte",
+        subCategoria:[ 'septiembre','octubre','noviembre','diciembre']
+      },
+      {
+        nombre : "Televisión",
+        subCategoria:[ 'lunes','martes','miércoles','jueves']
       },
   
   ];
 
-    this.setClickedList = function(index){
-        this.selectedList = index;
+    this.setClickedItem = function(index){
+        this.selectedItem = index;
     }
 };
 
@@ -37,3 +43,4 @@ constructor(){
   }
 
 }
+
