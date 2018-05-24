@@ -41,6 +41,7 @@ BoolList = false;
 contador
 jsonSearch = new Array();
 searchProductAux;
+show:Boolean;
 
   SearchEngineProducts(){
     this.searchProduct = document.getElementById("searchProduct");
@@ -80,5 +81,8 @@ searchProductAux;
     .subscribe(result => this.Aux = result);
     this.nameProductToAdd.value = this.Aux.p_nombre;
     this.BoolList = false;  
+  }
+  mostrarMegaMenu():void{
+    this.show=!this.show;
   }
 }

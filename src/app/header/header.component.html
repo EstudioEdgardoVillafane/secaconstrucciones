@@ -1,13 +1,21 @@
-<div class="container-fluid px-4 py-md-2 bg-custom ">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom sticky-top">
 
-  <div class="row">
-    <!-- Logo -->
-    <div class="col-3 col-md-2 px-2 p-md-0">
-      <a class="navbar-brand" href="#">
-        <img src="../../assets/img/logo.jpg" class="logo-img img-fluid" alt="">
-      </a>
-    </div>
+  <div class="col-sm-2 d-none d-sm-block">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/img/logo.jpg" class=" logo-img img-fluid" alt="">
+    </a>
+  </div>
 
+  <div class="col-12 d-block d-sm-none">
+    <a href="#">
+      <img src="../../assets/img/logo.jpg" class="img-fluid d-flex mx-auto img-mobile" alt="">
+    </a>
+  </div>
+
+  <div class="col-10 col-md-8 col-lg-6 my-2 my-lg-0 p-0 buscador-y-atributos">
+    <form class="d-flex col-12 p-0">
+      <input id="searchProduct" class="form-control rounded-0 rounded-left" type="search" placeholder="Buscar producto..." aria-label="Search"
+        aria-describedby="basic-addon2" (blur)="closeList()" (keyup)="SearchEngineProducts()">
     <!-- contenedor input y barra inferior -->
     <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
 
@@ -50,12 +58,60 @@
             </li>
           </ul>
         </div>
+      <button class="btn px-3 bg-white border-top border-right border-bottom rounded-right" type="submit">
+        <i class="fa fa-search fa-md my-auto p-0"></i>
+      </button>
+    </form>
 
+    <!-- atributos -->
+    <div class="cont-atributos bg-light col-12 px-0 py-2" *ngIf="BoolList">
+      <ul class="list-group p-0 m-0 text-dark">
+
+        <li id="cont{{atributo.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch">
+          <a id="p{{product.p_id}}" class="text-muted">{{atributo.p_nombre}}</a>
+        </li>
+      </ul>
     </div>
+    <!-- fin atributos -->
   </div>
 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+    <ul class="navbar-nav text-uppercase text-white">
+      <li class="nav-item">
 
+        <a class="nav-link" routerLink="/admin771">Categorías&nbsp;
+          <i class="fa fa-angle-down"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="mostrarMegaMenu()">Mega Menú&nbsp;
+          <i class="fa fa-angle-down"></i>
+        </a>
 
-</div>
-</div>
+        <div *ngIf="show">
+          <app-sub-menu></app-sub-menu>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav text-uppercase text-white ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Iniciar sesión</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Registrarse</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fa fa-shopping-cart fa-lg"></i>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
