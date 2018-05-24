@@ -3,7 +3,7 @@
     font-size:16px!important;
     cursor: pointer!important;
 }
-#AgregarSeccion,#AgregarAtributoT{
+#AgregarSeccion,#AgregarAtributoT,#storeEtiqueta{
     background-color: rgb(67, 67, 67);
 }
 .cursor-return{
