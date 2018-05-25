@@ -26,21 +26,37 @@ import { BackendClienteService } from './../backend-cliente.service';
 })
 export class BackendClienteComponent implements OnInit {
 /**Functions Generics vars */
-//listClientes()
+//alerts()
+  userStoreAlert = false;
+  userStore;
+  userEditAlert = false;  
+  userEdit;
+  emailStoreAlert = false;
+  emailStore;  
+  emailEditAlert = false;
+  emailEdit;
+  passwordStoreAlert = false;
+  passwordStore;
+  passwordStoreConfirm;
+  passwordEditAlert = false;
+  passwordEdit;
+  passwordEditConfirm;
+  oldPassword;
+  imageAlert = false;
+  imageStore;
+
+  //listClientes()
   listCliente
 /**Functions change the templates */
-  editPasswordVar;
+  editPasswordVar = false;
   changeTemplateEditar = true;
-  changeTemplateAgregar = false;
- 
+  changeTemplateAgregar = false; 
 /**Store function vars */
   formClient
   request
-
 /**Edit functions vars */
   editCliente;
   formEditCliente
-
 /*Delete fuctions vars */
 //check()
   Booleano = true;
@@ -53,7 +69,7 @@ export class BackendClienteComponent implements OnInit {
   constructor(private backendClienteSrevice : BackendClienteService) { }
 
   ngOnInit() {
-  this.listClientes();
+    this.listClientes();
   }
 
 /*------- Generic Functions------*/
@@ -65,6 +81,49 @@ export class BackendClienteComponent implements OnInit {
       this.listCliente = data;
     })
   }
+/**When the variables are true, show the alerts in the frontend */
+  alerts(){
+//Store
+    this.userStore = document.getElementById("userStore");
+    this.emailStore = document.getElementById("emailStore");
+    this.passwordStore = document.getElementById("passwordStore");
+    this.passwordStoreConfirm = document.getElementById("passwordStoreConfirm");
+    this.imageStore = document.getElementById("imageStore");
+//Edit
+    this.userEdit = document.getElementById("userEdit");
+    this.emailEdit = document.getElementById("emailEdit");
+    this.passwordEdit = document.getElementById("passwordEdit");
+    this.passwordEditConfirm = document.getElementById("passwordEditConfirm");
+    this.oldPassword = document.getElementById("oldPassword")
+    
+
+    if(this.userStore.value == "" || this.userEdit.value ==""){
+      this.userStoreAlert = true;
+      this.userEditAlert = true;      
+    }else{
+      this.userStoreAlert = false;      
+      this.userEditAlert = false;
+    }
+    if(this.emailStore.value == "" || this.emailEdit.value == ""){
+      this.emailStoreAlert = true;
+      this.emailEditAlert = true;
+    }else{
+      this.emailStoreAlert = false;
+      this.emailEditAlert = false;      
+    }
+    if(this.passwordStore.value != this.passwordStoreConfirm.value || this.passwordEdit.value != this.passwordEditConfirm.value){
+      this.passwordStoreAlert = true;
+      this.passwordEditAlert = true;
+    }else{
+      this.passwordStoreAlert = false;
+      this.passwordEditAlert = false;
+    }
+    if(this.imageStore.value == null){
+      this.imageAlert = true;
+    }else{
+      this.imageAlert = false;
+    }
+  }
 /** --------------This functions change the templates------------ */
 /*this function show the Store form*/
   showStoreForm(){
@@ -73,9 +132,16 @@ export class BackendClienteComponent implements OnInit {
 
 /*this funtion returns of the backend users table*/
   returnToTheTableUsers(){
-    this.changeTemplateEditar=true;
-      this.changeTemplateAgregar=true;
-      this.editPasswordVar = false;
+    this.changeTemplateEditar = true;
+    this.changeTemplateAgregar = true;
+    this.editPasswordVar = false;
+    this.userStoreAlert = false;
+    this.userEditAlert = false;
+    this.emailStoreAlert = false;
+    this.emailEditAlert = false;
+    this.passwordStoreAlert = false;
+    this.passwordEditAlert = false;
+    this.imageAlert = false;
     }
 /**This function show the edit form */
   showEditForm(c_id : number){
@@ -88,23 +154,38 @@ export class BackendClienteComponent implements OnInit {
   
 /**This funtion add the new client in the db  */
   store(){
-    this.formClient = document.getElementById("formStoreCliente");
-    this.request = new XMLHttpRequest();
-    this.request.open("POST", "php/script/store-cliente.php");
-    console.log(this.request.send(new FormData(this.formClient)));
-    this.listClientes();
+    this.alerts();
+    if(this.userStore.value != "" && this.emailStore.value != "" && this.passwordStore.value != "" && this.imageStore.value != null){
+      this.formClient = document.getElementById("formStoreCliente");
+      this.request = new XMLHttpRequest();
+      this.request.open("POST", "php/script/store-cliente.php");
+      console.log(this.request.send(new FormData(this.formClient)));
+      this.listClientes();
+    }
   }
   
   /*--------------------Edit--------------------- */
   /**This function edit the client */
   edit(){
-    this.formEditCliente = document.getElementById("formEditCliente");
-    this.request = new XMLHttpRequest();
-    this.request.open("POST", "php/script/edit-cliente.php");
-    console.log(this.request.send(new FormData(this.formEditCliente)));
-    this.listClientes();   
-  }  
-  
+    this.alerts();
+    if(this.editPasswordVar == true){
+      if(this.userEdit.value != "" && this.emailEdit.value != "" && this.passwordEdit.value != "" && this.oldPassword.value != ""){
+        this.formEditCliente = document.getElementById("formEditCliente");
+        this.request = new XMLHttpRequest();
+        this.request.open("POST", "php/script/edit-cliente.php");
+        console.log(this.request.send(new FormData(this.formEditCliente)));
+        this.listClientes();
+      } 
+    }else{
+      if(this.userEdit.value != "" && this.emailEdit.value != "" && this.passwordEdit.value != "" ){
+        this.formEditCliente = document.getElementById("formEditCliente");
+        this.request = new XMLHttpRequest();
+        this.request.open("POST", "php/script/edit-cliente.php");
+        console.log(this.request.send(new FormData(this.formEditCliente)));
+        this.listClientes();
+      }
+    }
+  }   
 /**When you press the "cambiar contraseña" in the edit form, this function show input from edit pasword */
   editPassword(){
     this.editPasswordVar = true;

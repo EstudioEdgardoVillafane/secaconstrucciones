@@ -12,32 +12,32 @@
 
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="c_usuario">Usuario</label></div>
-            <div class="col-md-6 col-xs-12"><input name="c_usuario" value="" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
-            <div *ngIf="AlertUser" class="alert alert-danger">*Ingrese un nombre de usuario</div></div>
+            <div class="col-md-6 col-xs-12"><input name="c_usuario" id="userStore" value="" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
+            <div *ngIf="userStoreAlert" class="alert alert-danger">*Ingrese un nombre de usuario</div></div>
           </div>
         
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="c_email">E-mail</label></div>
-            <div class="col-md-6 col-xs-12"><input name="c_email" value="" class="form-control" type="text" placeholder="Ingrese un E-mail">
-            <div *ngIf="AlertMail" class="alert alert-danger">*Ingrese un mail</div></div>
+            <div class="col-md-6 col-xs-12"><input name="c_email" id="emailStore" value="" class="form-control" type="text" placeholder="Ingrese un E-mail">
+            <div *ngIf="emailStoreAlert" class="alert alert-danger">*Ingrese un mail</div></div>
           </div>
     
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="c_contrasena">Contraseña</label></div>
-            <div class="col-md-6 col-xs-12"><input name="c_contrasena" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
-            <div *ngIf="AlertPassword" class="alert alert-danger">*Las contraseñas no coinciden</div></div>     
+            <div class="col-md-6 col-xs-12"><input name="c_contrasena" id="passwordStore" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
+            <div *ngIf="passwordStoreAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>     
           </div>
   
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="ConfirmPassword">Confirmar Contraseña</label></div>
-            <div class="col-md-6 col-xs-12"><input id="ConfirmPassword" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
-            <div *ngIf="AlertPassword" class="alert alert-danger">*Las contraseñas no coinciden</div></div>     
+            <div class="col-md-6 col-xs-12"><input id="ConfirmPassword" id="passwordStoreConfirm" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
+            <div *ngIf="passwordStoreAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>     
           </div>
           
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label class="mt-2">Agregar Foto</label></div>
-            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" value="" type="file" class="form-control" placeholder="Confirmar Contraseña">
-            <div *ngIf="AlertMail" class="alert alert-danger">*Ingresar el Email</div></div> 
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" id="imageStore" value="" type="file" class="form-control">
+            <div *ngIf="imageAlert" class="alert alert-danger">*agregar una imagen</div></div> 
           </div>
               
           <div class="row mb-2 text-center">
@@ -66,20 +66,19 @@
 
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="editUsuario">Editar Usuario</label></div>
-            <div class="col-md-6 col-xs-12"><input name="editUsuario" value="{{editCliente.c_usuario}}" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
-            <div *ngIf="AlertUser" class="alert alert-danger">*Ingrese el nombre de usuario</div></div>     
+            <div class="col-md-6 col-xs-12"><input name="editUsuario" id="userEdit" value="{{editCliente.c_usuario}}" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
+            <div *ngIf="userEditAlert" class="alert alert-danger">*Ingrese el nombre de usuario</div></div>     
           </div>
       
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="editMail">Editar E-mail</label></div>
-            <div class="col-md-6 col-xs-12"><input name="editMail" value="{{editCliente.c_email}}" class="form-control" type="text" placeholder="Ingrese un E-mail">
-            <div *ngIf="AlertMail" class="alert alert-danger">*Ingresar el Email</div></div> 
+            <div class="col-md-6 col-xs-12"><input name="editMail" id="emailEdit" value="{{editCliente.c_email}}" class="form-control" type="text" placeholder="Ingrese un E-mail">
+            <div *ngIf="emailEditAlert" class="alert alert-danger">*Ingresar el Email</div></div> 
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label>Cambiar foto</label></div>
-            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed"  type="file" class="mt-2 form-control" placeholder="Ingrese una Foto">
-            <div *ngIf="AlertMail" class="alert alert-danger">*Ingresar el Email</div></div> 
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" type="file" class="mt-2 form-control" placeholder="Ingrese una Foto"></div> 
           </div>
             
           <div class="row mt-2">
@@ -90,20 +89,20 @@
         <div *ngIf="EditPasswordVar">
               
           <div class="row mt-2">
-            <div class="col-md-6 col-xs-12"><label for="NewPassword">Nueva Contraseña</label></div>
-            <div class="col-md-6 col-xs-12"><input id="NewPassword" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
-            <div *ngIf="AlertNewPassword" class="alert alert-danger">*Las contraseñas no coinciden</div></div>
+            <div class="col-md-6 col-xs-12"><label for="passwordEdit">Nueva Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input id="passwordEdit" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
+            <div *ngIf="passwordEditAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>
           </div>                      
               
           <div class="row mt-2">
-            <div class="col-md-6 col-xs-12"><label for="ConfirmNewPassword">Confirmar Contraseña</label></div>
-            <div class="col-md-6 col-xs-12"><input id="ConfirmNewPassword" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
-            <div *ngIf="AlertNewPassword" class="alert alert-danger">*Las contraseñas no coinciden</div></div>        
+            <div class="col-md-6 col-xs-12"><label for="PasswordEditConfirm">Confirmar Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input id="PasswordEditConfirm" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
+            <div *ngIf="passwordEditAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>        
           </div>
                 
           <div class="row mt-2">
-            <div class="col-md-6 col-xs-12"><label for="Password">Contraseña Actual</label></div>
-            <div class="col-md-6 col-xs-12"><input id="Password" value="" type="password" class="form-control" placeholder="Contraseña Actual">
+            <div class="col-md-6 col-xs-12"><label for="oldPassword">Contraseña Actual</label></div>
+            <div class="col-md-6 col-xs-12"><input id="oldPassword" value="" type="password" class="form-control" placeholder="Contraseña Actual">
             <div *ngIf="AlertPassword" class="alert alert-danger">*Contraseña incorrecta</div></div>
           </div>
 
