@@ -11,7 +11,7 @@ import { LoginComponent} from '../login/login.component';
 import { BackendSeccionComponent } from '../backend-seccion/backend-seccion.component';
 import { BackendUserComponent } from '../backend-user/backend-user.component';
 import { BackendSubatributoComponent } from '../backend-subatributo/backend-subatributo.component';
-
+import { BackendClienteComponent } from '../backend-cliente/backend-cliente.component';
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
 import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
@@ -22,6 +22,7 @@ import {ContactoComponent} from '../contacto/contacto.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'clientes', component: BackendClienteComponent},
   { path: 'login', component: LoginComponent },
   { path: 'admin771',
   component: BackendComponent,

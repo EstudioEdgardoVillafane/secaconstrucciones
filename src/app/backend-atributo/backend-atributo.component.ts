@@ -107,17 +107,6 @@ ShowEditForm(a_id : number){
    
   }
 
-
-  // Listar(){
-  //   this.BackendUserService.validateUser().subscribe((data) => {
-  //     console.log(data.text());
-  //       this.BackendUserService.Conect(5,0,"0","0","0")
-  //         .map((response) => response.json())
-  //         .subscribe((data) => {
-  //         this.listado = data;
-  //       });
-  //    });
-  // }
     Listar(){
         this.AtributoService.CrudFunction(5,"0",0,0)
         .map((response) => response.json())
