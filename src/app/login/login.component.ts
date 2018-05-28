@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
        this.BooleanAlertLogin = true;
       }else{
         console.log(data);
-      //localStorage.setItem("keyTwo","1");    
+      localStorage.setItem("loginValidaton","true");    
         location.href="admin771/productos";
       
 
@@ -61,9 +61,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    //if(localStorage.getItem("keyTwo") == "1"){
-      //location.href="admin771/productos";
-    //}
+    if(localStorage.getItem("loginValidaton") == "true"){
+      location.href="admin771/productos";
+    }
   }
 
 }
