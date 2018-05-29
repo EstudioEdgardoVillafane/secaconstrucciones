@@ -6,6 +6,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import {BackendComponent} from '../backend/backend.component';
 import {BackendProductsComponent} from '../backend-products/backend-products.component';
+import {BackendPreguntasComponent} from '../backend-preguntas/backend-preguntas.component';
 import {BackendAtributoComponent} from '../backend-atributo/backend-atributo.component';
 import { LoginComponent} from '../login/login.component';
 import { BackendSeccionComponent } from '../backend-seccion/backend-seccion.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'seccion', component: BackendSeccionComponent },
     { path: 'atributo', component: BackendAtributoComponent },
     { path: 'usuarios', component: BackendUserComponent },
+    { path: 'preguntas', component: BackendPreguntasComponent },
     ]
   },
   { path: 'productos', component: BackendProductsComponent },

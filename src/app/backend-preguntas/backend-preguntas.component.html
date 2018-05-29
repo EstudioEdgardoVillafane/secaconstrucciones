@@ -1,0 +1,140 @@
+<section class="pt-5 pb-5 my-5">
+  <div class="container mt-5">
+  
+  <!------------Here begins the form of the Store-------------->
+    <ng-template #Agregar>
+      <div *ngIf="ChangeTemplateAgregar;else Editar">
+  
+        <div class="container">
+          
+          <h2 align="center">Agregar Nueva Seccion</h2>
+  
+    <hr>
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="s_name">Nombre Sección</label></div>
+          <div class="col-md-6 col-xs-12"><input id="s_name" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
+          <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>
+        </div>
+
+        <div class="row mb-2 text-center">
+          <div class="col-12"><hr></div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-12">
+            <button class="btn btn-lg btn-danger pull-right ml-1" (click)="returnToTheTableUsers()">Volver</button>
+            <button class="btn btn-lg btn-info pull-right" (click)="store()">Agregar</button>
+          </div>
+        </div>
+  
+        </div>
+      </div>
+      <!------------------End form Store-------------------->
+      <!------------------Here begins the form of the Edit---------------------------->
+      <ng-template #Editar>
+  
+        
+  
+          <div class="container">
+            
+            <h2 align="center">Editar Preguntas</h2>
+    
+      <hr>
+      <div class="row mt-2">
+          
+        <div class="col-md-6 col-xs-12"><label for="edit_preguntas">Pregunta</label></div>
+        <div class="col-md-6 col-xs-12"><input id="edit_preguntas" value="{{edit_preguntas.p_pregunta}}" class="form-control" type="text">
+            
+      </div>
+    
+         
+          </div>
+
+          <div class="row mt-2">
+          
+            <div class="col-md-6 col-xs-12"><label for="edit_respuestas">Respuesta</label></div>
+            <div class="col-md-6 col-xs-12"><input id="edit_respuestas" value="{{edit_preguntas.p_respuesta}}" class="form-control" type="text" placeholder="Ingrese un respuesta" >
+              <input id="edit_fecha" value="{{edit_preguntas.p_fecha}}" class="form-control" type="hidden" placeholder="Ingrese un respuesta" >
+              <input id="edit_hora" value="{{edit_preguntas.p_hora}}" class="form-control" type="hidden" placeholder="Ingrese un respuesta" >
+          </div>
+        
+             
+              </div>
+  
+          
+            
+              
+          
+       
+         
+        
+  
+                               
+          
+       
+  
+        
+  
+        
+  
+        <div class="row mb-2 text-center">
+            <div class="col-12">
+              <hr>
+            </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <button class="btn btn-lg btn-danger ml-2" (click)="returnToTheTableUsers()">Volver</button>
+          <button class="btn btn-lg btn-info ml-3" (click)="Edit(edit_preguntas.p_id)">Editar</button>
+        </div>
+    </div>
+  </div>
+    
+    
+  </ng-template>
+  </ng-template>
+  <!----------End Edit Form---------->
+  
+  <div *ngIf="ChangeTemplateEditar;else Agregar" class="mt-4">
+  
+  
+      <div class="row">
+        <div class="col-5">
+          <h2>Tabla de Preguntas.</h2>
+  
+      </div>
+      
+    </div>
+    <table class="table table-bordered mt-3"  width="100%">
+  
+      <thead>
+          <tr>
+            <th style="width: 1px;">#</th>
+            <th>Preguntas</th>
+            <th>Respuesta</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Producto</th>
+          
+            <th style="width: 25px">Editar</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <tr *ngFor="let preguntas of listado"> 
+              <td>{{preguntas.p_id}}</td>
+            <td>{{preguntas.p_pregunta}}</td>
+            <td>{{preguntas.p_respuesta}}</td>
+            <td>{{preguntas.p_idcliente}}</td>
+            <td>{{preguntas.p_fecha}}</td>
+            <td>{{preguntas.p_hora}}</td>
+            <td>{{preguntas.p_idproducto}}</td>
+            
+            <td><button value="{{preguntas.p_id}}" (click)="ShowEditForm(preguntas.p_id)"><i class="fa fa-pencil"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </section>

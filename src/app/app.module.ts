@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { BackendProductsComponent } from './backend-products/backend-products.component';
+import { BackendPreguntasComponent } from './backend-preguntas/backend-preguntas.component';
 import { BackendComponent } from './backend/backend.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductosComponent } from './productos/productos.component';
@@ -33,6 +34,8 @@ import { SubAtributoService } from './sub-atributo.service';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { PrioritySelectPipe } from './priority-select.pipe';
 
+import { PreguntasService } from './preguntas.service';
+
 
 
 @NgModule({
@@ -52,7 +55,8 @@ import { PrioritySelectPipe } from './priority-select.pipe';
     BackendSeccionComponent,
     BackendSubatributoComponent,
     SubMenuComponent,
-    PrioritySelectPipe
+    PrioritySelectPipe,
+    BackendPreguntasComponent,
  ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import { PrioritySelectPipe } from './priority-select.pipe';
     HttpModule,
     HttpClientModule
   ],
-  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,LoginService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,LoginService,PreguntasService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
