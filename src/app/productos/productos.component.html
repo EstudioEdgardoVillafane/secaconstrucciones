@@ -1,41 +1,60 @@
- <section class="mt-5">
-   <div class="container">
-     
-    <div class="row">
-      <div class="col-5">
-      <h3>Etiquetas sugeridas</h3>
-    </div>
-    <div class="col-6">
-      <h3>Ofertas</h3>
-    </div>
-    </div>
-     <div class="row">
-       <div class="col-5">
-       <a *ngFor="let etiqueta of ListEtiqueta" class="btn btn-primary text-white mr-2 mt-2">{{etiqueta.e_nombre}}</a>
-      </div>
-     
-          <div class="col-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado | slice : 0 : 2">
-              <div class="d-flex rounded py-3 cont-img">
-                <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
-              </div>
-              <hr id="hr m-0">
-              <div class="text-center ">
-                <h5>${{producto.p_precio}}</h5>
-              </div>
-            </div>  
-      
-     </div>
-   </div>
- </section>
-<section class="pb-4">
+<div class="container-fluid py-5 bg-custo">
   <div class="container">
-<div class="row pt-5">
-  <div class="col ">
-    <h2>Productos destacados</h2>
-    </div>
-    </div>
-    <div class="row d-flex">
-      <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado">
+    <div class="row">
+      <div class="col-md-2">
+        <!-- sección etiquetas -->
+        <section class="mb-5 well">
+          <div class="row">
+            <h3 class="">Filtros sugeridos</h3>
+            <div class="col-md-12">
+              <div class="row p-md-0">
+                <div class="col-md-12 px-0 d-flex flex-wrap">
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Cementícias</span>
+                  </div>
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Exterior</span>
+                  </div>
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Liso</span>
+                  </div>
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Mayor a $ 1.000</span>
+                  </div>
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Anti-humedad</span>
+                  </div>
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Ignífugo</span>
+                  </div>
+                  <div class="tag p-2 badge badge-light m-1">
+                    <span class="mr-2">X</span>
+                    <span class="inline-block">Cubritivo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <a *ngFor="let etiqueta of ListEtiqueta" class="btn btn-primary text-white mr-2 mt-2">{{etiqueta.e_nombre}}</a>
+            </div>
+          </div>
+        </section>
+        <!-- fin sección etiquetas -->
+      </div>
+
+      <div class="col-md-9">
+
+        <!-- sección productos -->
+        <section>
+          <!-- <div class="col-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado | slice : 0 : 2">
         <div class="d-flex rounded py-3 cont-img">
           <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
         </div>
@@ -43,34 +62,81 @@
         <div class="text-center ">
           <h5>${{producto.p_precio}}</h5>
         </div>
-      </div>
+      </div> -->
+          <h3 class="">Productos más vendidos</h3>
+          <div class="row">
+            <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let i of [0,1,2,3,4,5]">
+              <a class="nav-link text-dark" href="">
+                <!-- <div class="d-flex rounded py-3 cont-img"> -->
+                <img src="../../assets/img/mortero.png" class="img-fluid d-flex mx-auto" alt="">
+                <!-- </div> -->
+                <hr id="hr m-0">
+                <h4 class="text-center">Árbol</h4>
+                <div class="text-center ">
+                  <h5>$ 500</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- fin sección productos -->
+
+        <!-- sección ofertas -->
+        <section class="my-5">
+          <h3>Ofertas</h3>
+          <div class="row">
+            <div class="col-6">
+            </div>
+          </div>
+        </section>
+        <!-- fin sección ofertas -->
+
+        <!-- sección productos destacados -->
+        <section class="my-5">
+          <h3>Productos destacados</h3>
+          <div class="row">
+            <div class="col ">
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado">
+              <div class="d-flex rounded py-3 cont-img">
+                <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+              </div>
+              <hr id="hr m-0">
+              <div class="text-center ">
+                <h5>${{producto.p_precio}}</h5>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- fin sección productos destacados -->
+
+        <!-- sección productos II -->
+        <section id="grey-bg" class="my-5">
+          <h3>Productos</h3>
+          <div class="row">
+            <div class="col ">
+            </div>
+          </div>
+
+          <div class="row d-flex">
+            <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListProducts">
+              <a routerLink="/detalle-producto/{{producto.p_nombre}}">
+                <div class="d-flex rounded py-3 cont-img">
+                  <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+                </div>
+                <hr id="hr m-0">
+                <div class="text-center ">
+                  <h5>${{producto.p_precio}}</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- fin sección productos II -->
+
       </div>
     </div>
-      </section>
-      <section id="grey-bg" class="pb-4">
-          <div class="container">
-
-      <div class="row pt-5">
-          <div class="col ">
-            <h2>Productos</h2>
-            </div>
-            </div>
-           
-            <div class="row d-flex">
-                <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListProducts">
-                  <a routerLink="/detalle-producto/{{producto.p_nombre}}">
-                  <div class="d-flex rounded py-3 cont-img">
-                    <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
-                  </div>
-                  <hr id="hr m-0">
-                  <div class="text-center ">
-                    <h5>${{producto.p_precio}}</h5>
-                  </div>
-                  </a>
-                </div>
-                </div>
-                </div>
-              </section>
-
-  
-
+  </div>
+</div>

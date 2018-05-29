@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sub-menu',
@@ -11,7 +11,8 @@ export class SubMenuComponent implements OnInit {
   headMessage : string;
   selectedItem : string;
   setClickedItem : Function;
-
+  
+  
 
 constructor(){
     this.categorias = [
@@ -21,7 +22,8 @@ constructor(){
       },
       {
         nombre : "Música",
-        subCategoria:[ 'mayo','junio','julio','agosto']
+        subCategoria:[ 'mayo','junio','julio','agosto'],
+        subCategoria2:[ 'gfjjj','sdsdasd','34324','kjjkjk','wedqejkjdkjkj','42234','djijknkcjj','sdersg']
       },
       {
         nombre : "Arte",
@@ -37,10 +39,12 @@ constructor(){
     this.setClickedItem = function(index){
         this.selectedItem = index;
     }
+   
 };
 
   ngOnInit() {
   }
+
 
 }
 
