@@ -36,7 +36,7 @@
           
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label class="mt-2">Agregar Foto</label></div>
-            <div class="col-md-6 col-xs-12"><input name="uploadedfile" value="" type="file" class="form-control" placeholder="Confirmar Contraseña">
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" value="" type="file" class="form-control" placeholder="Confirmar Contraseña">
             <div *ngIf="AlertMail" class="alert alert-danger">*Ingresar el Email</div></div> 
           </div>
               
@@ -72,13 +72,13 @@
       
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="editMail">Editar E-mail</label></div>
-            <div class="col-md-6 col-xs-12"><input name="editMail" value="{{editCliente.c_email}}" class="form-control" type="email" placeholder="Ingrese un E-mail">
+            <div class="col-md-6 col-xs-12"><input name="editMail" value="{{editCliente.c_email}}" class="form-control" type="text" placeholder="Ingrese un E-mail">
             <div *ngIf="AlertMail" class="alert alert-danger">*Ingresar el Email</div></div> 
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label>Cambiar foto</label></div>
-            <div class="col-md-6 col-xs-12"><input name="editUploadedFile-ed" value="{{editCliente.c_foto}}" type="file" class="mt-2 form-control" placeholder="Ingrese una Foto">
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed"  type="file" class="mt-2 form-control" placeholder="Ingrese una Foto">
             <div *ngIf="AlertMail" class="alert alert-danger">*Ingresar el Email</div></div> 
           </div>
             

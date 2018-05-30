@@ -7,7 +7,6 @@ $NewConnect = new Seca();
     $Id = $_POST["editId"];
 	$editUsuario = $_POST["editUsuario"];
 	$editMail = $_POST["editMail"];
-	// $description = $_POST["description-ed"];
 	
 	$tipo = $_FILES['uploadedfile-ed']['type'];
 	$tamano = $_FILES['uploadedfile-ed']['size'];
@@ -62,7 +61,8 @@ imagedestroy ($nueva_img);
 // }
 $sql="UPDATE cliente SET
 c_usuario = '".$editUsuario."',
-c_email = '".$editMail."'
+c_email = '".$editMail."',
+c_imagen = '".$URL."'
 WHERE c_id = '".$Id."'";
 $NewConnect->ExecuteSql($sql);
 $NewConnect->ExecuteSql($sql);
