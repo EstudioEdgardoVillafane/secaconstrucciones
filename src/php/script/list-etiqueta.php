@@ -6,6 +6,6 @@
     $NewConnect = new Seca();
 
     $sql = "SELECT * FROM etiqueta";
-    $NewConnect->CreateJson($sql);
+    echo $NewConnect->CreateJson($sql);
 
 ?>

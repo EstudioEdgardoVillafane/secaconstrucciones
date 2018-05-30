@@ -10,7 +10,7 @@
 
 	if($_GET["data"]==1){                   /** List    */
 		$sql="SELECT * FROM subatributo, atributo WHERE su_status = 1 AND a_id= su_atributo ";	
-		$NewConnect->CreateJson($sql);
+		echo $NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
 		$sqld = "UPDATE subatributo SET su_status = 0 WHERE su_id = '".$_GET["sa_id"]."'";
 		$NewConnect->Borrar($sqld);
@@ -27,6 +27,6 @@ echo		$sql = "INSERT INTO subatributo (su_nombre,su_atributo,su_status)
 	}
 	if($_GET["data"]==6){
 		$sql="SELECT * FROM subatributo WHERE su_status = 1 AND su_atributo ='".$_GET["sa_atributo"]."'";	
-		$NewConnect->CreateJson($sql);
+		echo $NewConnect->CreateJson($sql);
 	}
 ?>
