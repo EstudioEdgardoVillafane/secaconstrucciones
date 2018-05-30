@@ -134,15 +134,27 @@
                 </div>
               </div>
               <div class="row mt-3">
+                <div class="col-12">
+                  <h3>Etiquetas</h3>
+                </div>
                 <div class="col-12 input-group">
                   
                     <div class="input.group-prepend">
-                      <input (click)="storeEtiqueta()" type="button" class="input-group-text text-white " style="cursor:pointer" id="storeEtiqueta" disabled value="Buscar">
+                      <input (click)="storeEtiqueta()" type="button" class="input-group-text text-white " style="cursor:pointer" id="storeEtiqueta"  value="Buscar">
                     </div>
                     <input type="text" placeholder="Buscar etiqueta" class="form-control" id="searchEtiqueta"  (keyup)="filterEtiqueta()">
                 
                   </div>
                   </div>
+               <input value="{{ArrayOfEtiquetas}}">
+                  <div class="row mt-2"> 
+                    <div class="col-12">
+                      <h5>Etiquetas seleccionadas:</h5>
+                      <a *ngFor="let etiqueta of ArrayOfEtiquetas" class="btn btn-primary text-white mr-1 mt-1" (click)="deleteEtiqueta(etiqueta)">{{etiqueta}} <i class="fa fa-close"></i></a>  
+                    </div>
+                  </div>
+                    
+                    
                   <div class="row mt-2" *ngIf="BooleanToCloseEtiquetas">
                       <div *ngFor="let jsonEtiqueta of JsonEtiquetas" class="list-group col-2 mt-2" id="EtiquetaShow{{jsonEtiqueta.e_id}}" style="padding-left:15px;" >
                           <input type="button" class="list-group-item list-group-item-action text-white" style="background-color: #3429ff; box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="etiquetaClicked(jsonEtiqueta.e_id)" id="Etiqueta{{jsonEtiqueta.e_id}}" value="{{jsonEtiqueta.e_nombre}}" >

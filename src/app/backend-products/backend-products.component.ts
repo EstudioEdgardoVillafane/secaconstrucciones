@@ -441,14 +441,36 @@ seccionValue;
  etiquetaValue;
  etiquetaName;
  etiquetaNameToAdd;
+ ArrayOfEtiquetas = new Array();
+ CountOfEtiquetas = 0;
+
  etiquetaClicked(number : string){
-  this.BooleanToCloseEtiquetas = false;
+  this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
+
   this.etiquetaValue = number;
   this.etiquetaName = document.getElementById("Etiqueta"+number);
   this.etiquetaNameToAdd = document.getElementById("searchEtiqueta"); 
-  this.etiquetaNameToAdd.disabled = true
-  this.etiquetaNameToAdd.value = this.etiquetaName.value; 
+  if(this.etiquetaName.style.background != "red"){
+  this.etiquetaName.style.background="red";
+  this.ArrayOfEtiquetas[this.CountOfEtiquetas] = this.etiquetaName.value;
+  this.CountOfEtiquetas++;
+  }else{
+    console.log("ERROR :D");
+  }
+  this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
+
  }
+
+ PositionOfElementToSearch;
+ deleteEtiqueta(nameOfEtiqueta){
+  this.PositionOfElementToSearch = this.ArrayOfEtiquetas.indexOf(nameOfEtiqueta);
+  this.ArrayOfEtiquetas.splice(this.PositionOfElementToSearch,1);
+  this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
+ }
+ diferenceUndefined(data){
+   return data != undefined;
+ }
+
  filterEtiqueta(){
   this.ButtonStoreSeccion = document.getElementById("storeEtiqueta");
 
@@ -484,21 +506,19 @@ this.auxvar = document.getElementById("searchEtiqueta");
 this.auxvar2 = document.getElementById("storeEtiqueta");
   this.etiquetaService.storeEtiqueta(this.auxvar.value)
   .subscribe((data) => {
-    this.BooleanToCloseEtiquetas = false;
-    this.auxvar.disabled = true;
     this.auxvar2.disabled = true;
     this.etiquetaService.listEtiquetas()
       .map((response) => response.json())
       .subscribe((data) => {
       this.JsonEtiquetas = data;
       this.etiquetaService.getJsonForName(this.auxvar.value,this.JsonEtiquetas)
-      .subscribe(data => this.etiquetaValue = data.e_id)
-      console.log(this.JsonEtiquetas);
+      .subscribe(data => this.ArrayOfEtiquetas[this.CountOfEtiquetas] = data.e_nombre)
+      console.log(this.ArrayOfEtiquetas[this.CountOfEtiquetas]);
+      this.CountOfEtiquetas++;
     });
     
   });
 }
-
 returnEtiqueta(){
   this.BooleanToCloseEtiquetas = true;
   this.seccionNameToAdd = document.getElementById("searchEtiqueta");
@@ -769,12 +789,15 @@ auxDuplicate;
 /** Here we are validating the store form and creating the alert message */
 
    /** This function is storing the new regist in a database */
-   
+   IdInsert;
    StoreProduct(){
      this.formElement = document.getElementById("formularioStore");
      this.request = new XMLHttpRequest();
+     console.log(this.request.responseText)
+     console.log(this.IdInsert);
      this.request.open("POST", "php/script/store-product.php");
-     console.log(this.request.send(new FormData(this.formElement)));
+
+     this.IdInsert = this.request.send(new FormData(this.formElement));
       this.ListContent();    
     }
 
