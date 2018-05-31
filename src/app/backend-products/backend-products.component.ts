@@ -856,7 +856,17 @@ auxDuplicate;
       this.atributoListEdit(this.seccionClickedIDEdit.s_id);
       this.BoolToAtributeEdit = true;
   }
-
+  addSectionEdit(){
+    this.seccionStore = document.getElementById("AgregarSeccionEdit");
+    this.InputStoreSeccion = document.getElementById("buscarSeccionEdit");
+    this.seccionService.CrudFunction(3,0,this.InputStoreSeccion.value,0)
+    .subscribe((data) => {
+      this.InputStoreSeccion.disabled = true;
+      this.seccionStore.disabled = true;
+      this.BooleanToCloseSeccionEdit = false;
+      this.seccionList();
+    }); 
+  }
   filterSectionEdit(value){
 
     this.auxvar = document.getElementById("buscarSeccionEdit");  
@@ -871,11 +881,26 @@ auxDuplicate;
         this.auxvar2.style.display = "none";
       }
     }
+    this.ButtonStoreSeccion = document.getElementById("AgregarSeccionEdit");
+    if(this.contador > 0){
+      this.ButtonStoreSeccion.disabled = true;
+      this.ButtonStoreSeccion.value = "Buscar ";
+      this.ButtonStoreSeccion.style.background = "rgb(67, 67, 67)";
+    }else{
+      this.ButtonStoreSeccion.disabled = false;
+      this.ButtonStoreSeccion.value = "Agregar ";
+      this.ButtonStoreSeccion.style.background = "#007bff";
+    }
   }
   returnSeccionEdit(){
       this.BooleanToCloseSeccionEdit=true;
+      this.seccionNameToAdd = document.getElementById("buscarSeccionEdit");
       this.seccionNameToAdd.value="";
       this.seccionNameToAdd.disabled = false;
+
+      this.seccionStore = document.getElementById("AgregarSeccionEdit")
+      this.seccionStore.value = "Buscar";
+      this.seccionStore.style.background = "rgb(67, 67, 67)";
   }
 
 /********************************************** ATRIBUTOS ********************************************************/
@@ -936,7 +961,7 @@ ShowAtribute(){
 }
 
 subAtributoListEdit(id){
-  this.subatributeService.CrudFunction(1,id,"",0)
+  this.subatributeService.CrudFunction(6,id,"",0)
   .map((response) => response.json())
   .subscribe((data) => {
     this.listSubAtributo = data;

@@ -267,19 +267,24 @@
           <div *ngIf="BoolEditAtributes">
 
               <div class="row"> 
+                
                   <div class="col-12">
                     <label>Elija seccion</label>
                   </div>  
-                  <div class="col-12">   
-                    <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccionEdit" (keyup)="filterSection()">
-                  </div>
+                  <div class="col-12 input-group"> 
+                      <div class="input-group-prepend">
+                          <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addSectionEdit()" id="AgregarSeccionEdit" type="button" value="Buscar ">
+      
+                      </div>  
+                      <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccionEdit" (keyup)="filterSectionEdit()">
+                    </div>
+      
                 </div>
     
                 <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit;else seccionEdit">
                   <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
                     <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClickedEdit(seccion.s_id)" id="editSection{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
                   </div>
-                  <a>Agregar otra seccion</a>
                 </div> <!-- ./BooleanToCloseSeccion -->
                   <ng-template #seccionEdit>
                     <a (click)="returnSeccionEdit()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a>
@@ -289,6 +294,12 @@
                       <div class="col-12">
                         <label>Elija atributo</label>
                       </div>  
+                      <div class="col-12 input-group">   
+                          <div class="input-group-prepend">
+                              <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addAtributoEdit()" id="AgregarAtributoEdit" type="button" value="Buscar ">
+                          </div>  
+                        <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributoEdit" (keyup)="filterAtributoEdit()">
+                      </div>
                       <div class="col-12">   
                         <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributoEdit" (keyup)="filterAtributoEdit()">
                       </div>
