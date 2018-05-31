@@ -5,7 +5,10 @@
 
     $NewConnect = new Seca();
     
-    echo $SQL = "INSERT INTO relacionetiqueta (re_producto,re_etiqueta) VALUES ('".$IDProducto."',1)";
+    $IDProducto = $_GET["rl_producto"];
+    $IDEtiqueta = $_GET["rl_etiqueta"];
+
+    echo $SQL = "INSERT INTO relacionetiqueta (re_idproducto,re_etiqueta) VALUES ('".$IDProducto."','".$IDEtiqueta."')";
     $NewConnect->ExecuteSql($SQL);
 
 ?>

@@ -41,7 +41,7 @@ class Seca{
 	public function IDinsert($sql){
 		$con = new Connect();
 		$con->CreateConnection();
-		echo $con->ExecuteTr($sql);
+		return $con->ExecuteTr($sql);
 		$con->CloseConnection();
 	}
 }

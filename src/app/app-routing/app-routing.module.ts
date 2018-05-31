@@ -22,8 +22,8 @@ import {ContactoComponent} from '../contacto/contacto.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'admin771',
+  { path: 'admin771', component: LoginComponent },
+  { path: 'backend',
   component: BackendComponent,
   children:[
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
@@ -31,6 +31,7 @@ const routes: Routes = [
     { path: 'productos', component: BackendProductsComponent },
     { path: 'seccion', component: BackendSeccionComponent },
     { path: 'atributo', component: BackendAtributoComponent },
+
     { path: 'usuarios', component: BackendUserComponent },
     ]
   },

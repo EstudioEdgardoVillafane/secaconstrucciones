@@ -449,16 +449,22 @@ seccionValue;
 
   this.etiquetaValue = number;
   this.etiquetaName = document.getElementById("Etiqueta"+number);
-  this.etiquetaNameToAdd = document.getElementById("searchEtiqueta"); 
-  if(this.etiquetaName.style.background != "red"){
-  this.etiquetaName.style.background="red";
+ if(this.ArrayOfEtiquetas.length == 0){
   this.ArrayOfEtiquetas[this.CountOfEtiquetas] = this.etiquetaName.value;
   this.CountOfEtiquetas++;
-  }else{
-    console.log("ERROR :D");
+ }else{
+   this.anyContador = 0;
+  for(this.i=0;this.i<this.ArrayOfEtiquetas.length;this.i++){
+    if(this.ArrayOfEtiquetas[this.i] == this.etiquetaName.value){
+      this.anyContador++;
+    }
   }
+  if(this.anyContador==0){
+    this.ArrayOfEtiquetas[this.CountOfEtiquetas] = this.etiquetaName.value;
+    this.CountOfEtiquetas++;
+  }
+}
   this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
-
  }
 
  PositionOfElementToSearch;
@@ -790,17 +796,47 @@ auxDuplicate;
 
    /** This function is storing the new regist in a database */
    IdInsert;
-   StoreProduct(){
-     this.formElement = document.getElementById("formularioStore");
-     this.request = new XMLHttpRequest();
-     console.log(this.request.responseText)
-     console.log(this.IdInsert);
-     this.request.open("POST", "php/script/store-product.php");
+   IdEtiqueta;
+   formulario;
+   ArrayOfEtiquetasForId = new Array();
 
-     this.IdInsert = this.request.send(new FormData(this.formElement));
+   StoreProduct(){
+   this.contador = 0;
+   for(this.i=0;this.i<this.ArrayOfEtiquetas.length;this.i++){
+    if(this.ArrayOfEtiquetas[this.i] != undefined){
+      this.etiquetaService.getJsonForName(this.ArrayOfEtiquetas[this.i],this.JsonEtiquetas)
+      .subscribe((data) => {
+        this.ArrayOfEtiquetasForId[this.contador] = data.e_id;
+        this.contador++;
+      });
+    }
+    }
+   
+    this.formElement = document.getElementById("formularioStore");
+    this.formulario = new FormData(this.formElement);
+    this.formulario.append("arrayEtiqueta", this.ArrayOfEtiquetasForId);
+     this.request = new XMLHttpRequest();
+     this.request.open("POST", "php/script/store-product.php", true);
+      console.log(this.request.send(this.formulario));
       this.ListContent();    
+   
     }
 
+
+
+
+    // doStoreToEtiquetas(IdInsert){
+    //   console.log("anda toto");
+    //   for(this.i = 0; this.i<this.ArrayOfEtiquetas.length; this.i++){
+    //     if(this.ArrayOfEtiquetas[this.i] != undefined){
+    //       this.etiquetaService.getJsonForName(this.ArrayOfEtiquetas[this.i], this.JsonEtiquetas)
+    //       .subscribe((data) => {
+    //         this.etiquetaService.storeEtiquetaToProduct(IdInsert, data.e_id)
+    //         .subscribe(data => console.log(data));
+    //       });
+    //     }
+    //   }
+    // }
 
   /****************************************************** EDIT COMPONENT ********************************************/
 

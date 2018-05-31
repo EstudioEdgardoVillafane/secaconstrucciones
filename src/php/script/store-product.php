@@ -13,7 +13,7 @@ $numberProduct = $NewConnect->Search($countProduct);
 	@$atribute = $_POST["atributoAdd"];
 	@$precio = $_POST["precio"];
 	@$subatributo = $_POST["subAtributoAdd"];
-	
+	 $arrayEtiqueta = $_POST["arrayEtiqueta"];
 	@$tipo = $_FILES['uploadedfile']['type'];
 	@$tamano = $_FILES['uploadedfile']['size'];
 	@$tmp = $_FILES['uploadedfile']['tmp_name'];
@@ -61,10 +61,18 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 
 	     $sql = "INSERT INTO producto (p_nombre,p_descripcion,p_section,p_atributo,p_subatributo,p_precio,p_url,p_orden,p_status) 
 		VALUES ('".$nameProduct."','".$description."','".$section."','".$atribute."','".$subatributo."','".$precio."','".$URL."','".$numberProduct."','1')";
-		 $NewConnect->IDinsert($sql);
+		$ValueID = $NewConnect->IDinsert($sql);
 		//  $IDProducto = $NewConnect->IDinsert();
 		 @$sql = "SELECT * FROM producto WHERE p_status = 1 ORDER BY p_orden ASC";
 		 @$varAux = @$NewConnect->CreateJson($sql);
 		 @$NewConnect->SaveJson(@$varAux);
+ 
+
+		 $seleccion = explode(",",$arrayEtiqueta);
+		 for($x=0;$x<count($seleccion);$x++){
+
+		$SQL = "INSERT INTO relacionetiqueta (re_idproducto,re_etiqueta) VALUES ('".$ValueID."','".$seleccion[$x]."')";
+		$NewConnect->ExecuteSql($SQL);
+		 }
  ?>
 

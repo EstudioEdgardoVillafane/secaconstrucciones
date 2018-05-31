@@ -49,7 +49,7 @@
 		$NewConnect->ExecuteSql($sql);
 	}elseif($_GET["data"]==5){
 			$SQL = "SELECT * FROM userb WHERE ub_status=1";	
-			$NewConnect->CreateJson($SQL);			
+			echo $NewConnect->CreateJson($SQL);			
 	}elseif($_GET["data"]==6){
 		echo $_SESSION["usuario"];
 	}
