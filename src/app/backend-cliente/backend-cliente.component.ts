@@ -81,56 +81,13 @@ export class BackendClienteComponent implements OnInit {
       this.listCliente = data;
     })
   }
-/**When the variables are true, show the alerts in the frontend */
-  alerts(){
-//Store
-    this.userStore = document.getElementById("userStore");
-    this.emailStore = document.getElementById("emailStore");
-    this.passwordStore = document.getElementById("passwordStore");
-    this.passwordStoreConfirm = document.getElementById("passwordStoreConfirm");
-    this.imageStore = document.getElementById("imageStore");
-//Edit
-    this.userEdit = document.getElementById("userEdit");
-    this.emailEdit = document.getElementById("emailEdit");
-    this.passwordEdit = document.getElementById("passwordEdit");
-    this.passwordEditConfirm = document.getElementById("passwordEditConfirm");
-    this.oldPassword = document.getElementById("oldPassword")
-    
-
-    if(this.userStore.value == "" || this.userEdit.value ==""){
-      this.userStoreAlert = true;
-      this.userEditAlert = true;      
-    }else{
-      this.userStoreAlert = false;      
-      this.userEditAlert = false;
-    }
-    if(this.emailStore.value == "" || this.emailEdit.value == ""){
-      this.emailStoreAlert = true;
-      this.emailEditAlert = true;
-    }else{
-      this.emailStoreAlert = false;
-      this.emailEditAlert = false;      
-    }
-    if(this.passwordStore.value != this.passwordStoreConfirm.value || this.passwordEdit.value != this.passwordEditConfirm.value){
-      this.passwordStoreAlert = true;
-      this.passwordEditAlert = true;
-    }else{
-      this.passwordStoreAlert = false;
-      this.passwordEditAlert = false;
-    }
-    if(this.imageStore.value == null){
-      this.imageAlert = true;
-    }else{
-      this.imageAlert = false;
-    }
-  }
-/** --------------This functions change the templates------------ */
-/*this function show the Store form*/
+  /** --------------This functions change the templates------------ */
+  /*this function show the Store form*/
   showStoreForm(){
     this.changeTemplateEditar= false;
   }
-
-/*this funtion returns of the backend users table*/
+  
+  /*this funtion returns of the backend users table*/
   returnToTheTableUsers(){
     this.changeTemplateEditar = true;
     this.changeTemplateAgregar = true;
@@ -144,7 +101,7 @@ export class BackendClienteComponent implements OnInit {
     this.imageAlert = false;
     }
 /**This function show the edit form */
-  showEditForm(c_id : number){
+showEditForm(c_id : number){
     this.changeTemplateAgregar=false;
     this.changeTemplateEditar=false;
     this.backendClienteSrevice.getJsonID(c_id,this.listCliente)
@@ -154,7 +111,32 @@ export class BackendClienteComponent implements OnInit {
   
 /**This funtion add the new client in the db  */
   store(){
-    this.alerts();
+    this.userStore = document.getElementById("userStore");
+    this.emailStore = document.getElementById("emailStore");
+    this.passwordStore = document.getElementById("passwordStore");
+    this.passwordStoreConfirm = document.getElementById("passwordStoreConfirm");
+    this.imageStore = document.getElementById("imageStore");
+//Alerts
+    if(this.userStore.value == ""){
+      this.userStoreAlert = true;
+    }else{
+      this.userStoreAlert = false;      
+    }
+    if(this.emailStore.value == ""){
+      this.emailStoreAlert = true;
+    }else{
+      this.emailStoreAlert = false;
+    }
+    if(this.passwordStore.value != this.passwordStoreConfirm.value){
+      this.passwordStoreAlert = true;
+    }else{
+      this.passwordStoreAlert = false;
+    }
+    if(this.imageStore.value == null){
+      this.imageAlert = true;
+    }else{
+      this.imageAlert = false;
+    }
     if(this.userStore.value != "" && this.emailStore.value != "" && this.passwordStore.value != "" && this.imageStore.value != null){
       this.formClient = document.getElementById("formStoreCliente");
       this.request = new XMLHttpRequest();
@@ -162,14 +144,29 @@ export class BackendClienteComponent implements OnInit {
       console.log(this.request.send(new FormData(this.formClient)));
       this.listClientes();
     }
-  }
-  
+  } 
   /*--------------------Edit--------------------- */
   /**This function edit the client */
   edit(){
-    this.alerts();
-    if(this.editPasswordVar == true){
-      if(this.userEdit.value != "" && this.emailEdit.value != "" && this.passwordEdit.value != "" && this.oldPassword.value != ""){
+    this.userEdit = document.getElementById("userEdit");
+    this.emailEdit = document.getElementById("emailEdit");
+    this.passwordEdit = document.getElementById("passwordEdit");
+    this.passwordEditConfirm = document.getElementById("passwordEditConfirm");
+    this.oldPassword = document.getElementById("oldPassword");
+//Alerts
+    if(this.userEdit.value =="" ){
+      this.userEditAlert = true;
+    }else{
+      this.userEditAlert = false;
+    }
+    if(this.emailEdit.value == ""){
+      this.emailEditAlert = true;
+    }else{
+      this.emailEditAlert = false;      
+    }
+
+    if(this.editPasswordVar == false){
+      if(this.userEdit.value != "" && this.emailEdit.value != "" ){
         this.formEditCliente = document.getElementById("formEditCliente");
         this.request = new XMLHttpRequest();
         this.request.open("POST", "php/script/edit-cliente.php");
@@ -177,7 +174,13 @@ export class BackendClienteComponent implements OnInit {
         this.listClientes();
       } 
     }else{
-      if(this.userEdit.value != "" && this.emailEdit.value != "" && this.passwordEdit.value != "" ){
+//Alerts
+      if(this.passwordEdit.value != this.passwordEditConfirm.value){
+        this.passwordEditAlert = true;      
+      }else{
+        this.passwordEditAlert = false;      
+      }
+      if(this.userEdit.value != "" && this.emailEdit.value != "" && this.passwordEdit.value != "" && this.oldPassword.value != ""){
         this.formEditCliente = document.getElementById("formEditCliente");
         this.request = new XMLHttpRequest();
         this.request.open("POST", "php/script/edit-cliente.php");
@@ -185,7 +188,7 @@ export class BackendClienteComponent implements OnInit {
         this.listClientes();
       }
     }
-  }   
+  }
 /**When you press the "cambiar contraseña" in the edit form, this function show input from edit pasword */
   editPassword(){
     this.editPasswordVar = true;

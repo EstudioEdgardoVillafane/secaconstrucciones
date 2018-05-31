@@ -7,7 +7,9 @@ $NewConnect = new Seca();
     $Id = $_POST["editId"];
 	$editUsuario = $_POST["editUsuario"];
 	$editMail = $_POST["editMail"];
-	
+	$editPassword = $_POST["editPassword"]
+	$oldPassword = $_POST["oldPassword"]
+
 	$tipo = $_FILES['uploadedfile-ed']['type'];
 	$tamano = $_FILES['uploadedfile-ed']['size'];
 	$tmp = $_FILES['uploadedfile-ed']['tmp_name'];
@@ -53,18 +55,20 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 imagedestroy ($img_redimensionada);
 imagedestroy ($nueva_img);
 
-// if($tamano == 0){
-//     $sql = "UPDATE cliente SET c_usuario = '".$editUsuario."', c_editUsuario = '".$editUsuario."', p_atributo = '".$atribute."', p_subatributo = '".$subatributo."', p_precio = '".$precio."' WHERE p_id ='".$ID."'";
+if($tamano == 0){
+	$sql="UPDATE cliente SET
+	c_usuario = '".$editUsuario."',
+	c_email = '".$editMail."',
+	WHERE c_id = '".$Id."'";
 
-// }else{
-//     $sql = "UPDATE cliente SET c_usuario = '".$editUsuario."', c_editUsuario = '".$editUsuario."', p_atributo = '".$atribute."', p_subatributo = '".$subatributo."', p_precio = '".$precio."', p_url = '".$URL."' WHERE p_id ='".$ID."'";
-// }
-$sql="UPDATE cliente SET
-c_usuario = '".$editUsuario."',
-c_email = '".$editMail."',
-c_imagen = '".$URL."'
-WHERE c_id = '".$Id."'";
-$NewConnect->ExecuteSql($sql);
+}else{
+    $sql = "UPDATE cliente SET 
+	c_usuario = '".$editUsuario."',
+	c_editUsuario = '".$editUsuario."',
+	c_contrasena = '".$editPassword."',
+	c_imagen = '".$URL."'
+	WHERE c_id ='".$Id."' AND c_contrasena ='".md5($oldPassword)."' ";
+}
 $NewConnect->ExecuteSql($sql);
 
 

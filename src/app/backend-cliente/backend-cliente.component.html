@@ -78,7 +78,7 @@
 
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label>Cambiar foto</label></div>
-            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" type="file" class="mt-2 form-control" placeholder="Ingrese una Foto"></div> 
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" value="" type="file" class="mt-2 form-control" placeholder="Ingrese una Foto"></div> 
           </div>
             
           <div class="row mt-2">
@@ -86,23 +86,23 @@
           </div>
             
             
-        <div *ngIf="EditPasswordVar">
+        <div *ngIf="editPasswordVar">
               
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="passwordEdit">Nueva Contraseña</label></div>
-            <div class="col-md-6 col-xs-12"><input id="passwordEdit" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
+            <div class="col-md-6 col-xs-12"><input id="passwordEdit" name="editPassword" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
             <div *ngIf="passwordEditAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>
           </div>                      
               
           <div class="row mt-2">
-            <div class="col-md-6 col-xs-12"><label for="PasswordEditConfirm">Confirmar Contraseña</label></div>
-            <div class="col-md-6 col-xs-12"><input id="PasswordEditConfirm" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
+            <div class="col-md-6 col-xs-12"><label for="passwordEditConfirm">Confirmar Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input id="passwordEditConfirm" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
             <div *ngIf="passwordEditAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>        
           </div>
                 
           <div class="row mt-2">
             <div class="col-md-6 col-xs-12"><label for="oldPassword">Contraseña Actual</label></div>
-            <div class="col-md-6 col-xs-12"><input id="oldPassword" value="" type="password" class="form-control" placeholder="Contraseña Actual">
+            <div class="col-md-6 col-xs-12"><input name="oldPassword" id="oldPassword" value="" type="password" class="form-control" placeholder="Contraseña Actual">
             <div *ngIf="AlertPassword" class="alert alert-danger">*Contraseña incorrecta</div></div>
           </div>
 
@@ -120,7 +120,7 @@
           <div class="row mt-2">
             <div class="col-12">
               <button class="btn btn-lg btn-danger ml-2" (click)="returnToTheTableUsers()">Volver</button>
-              <button class="btn btn-lg btn-info ml-3" (click)="edit(editCliente.c_id)">Editar</button>
+              <button class="btn btn-lg btn-info ml-3" (click)="edit()">Editar</button>
             </div>
           </div>
 
