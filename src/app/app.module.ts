@@ -4,7 +4,6 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
-// import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
 //Products
 import { HomeComponent } from './home/home.component';
@@ -61,6 +60,7 @@ import { EtiquetaService } from './etiqueta.service';
     FormsModule,
     HttpModule,
     HttpClientModule
+    
   ],
   providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService], //Services
   bootstrap: [AppComponent]
