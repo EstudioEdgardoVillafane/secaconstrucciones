@@ -654,6 +654,7 @@ filterAtributo(){
 nextOne(){
   this.nameProduct =  document.getElementById("nameproduct");
   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
+  this.globalSlug = document.getElementById("slugP")
   this.VarInput3 = document.getElementById("productName");
   this.VarInput3.value = this.nameProduct.value; 
   this.AuxVarInput4 = document.getElementById("buscarSeccion");
@@ -693,6 +694,7 @@ nextOne(){
        .subscribe((data) => { 
          console.log(data)
        this.ListOfContent = data;
+    
        this.CantidadDePaginas = this.ListOfContent.length/8;
        this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas)
      });
@@ -795,6 +797,7 @@ auxDuplicate;
 /** Here we are validating the store form and creating the alert message */
 
    /** This function is storing the new regist in a database */
+   globalSlug;
    IdInsert;
    IdEtiqueta;
    formulario;
@@ -813,7 +816,9 @@ auxDuplicate;
     }
    
     this.formElement = document.getElementById("formularioStore");
+    
     this.formulario = new FormData(this.formElement);
+    this.formulario.append("slug", this.globalSlug.value);
     this.formulario.append("arrayEtiqueta", this.ArrayOfEtiquetasForId);
      this.request = new XMLHttpRequest();
      this.request.open("POST", "php/script/store-product.php", true);
