@@ -3,7 +3,7 @@ class Seca{
 	public function ExecuteSql($sql){
 		$conex = New Connect();
 		$conex -> CreateConnection();
-		$conex -> Execute($sql);
+		return $conex -> Execute($sql);
 		$conex -> CloseConnection();
 	}	  
 	public function Search($sql){

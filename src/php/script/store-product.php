@@ -65,14 +65,22 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 		$ValueID = $NewConnect->IDinsert($sql);
 		//  $IDProducto = $NewConnect->IDinsert();
 
- 
-
 		 $seleccion = explode(",",$arrayEtiqueta);
 		 for($x=0;$x<count($seleccion);$x++){
 
 		$SQL = "INSERT INTO relacionetiqueta (re_idproducto,re_etiqueta) VALUES ('".$ValueID."','".$seleccion[$x]."')";
 		$NewConnect->ExecuteSql($SQL);
 		 }
+
+		 for($x=0;$x<count($seleccion);$x++){
+			$auxVar = 0;
+			echo $sql = "SELECT e_id,e_uso FROM etiqueta WHERE e_id = '".$seleccion[$x]."'";
+			$fila = mysqli_fetch_assoc($NewConnect->ExecuteSql($sql));
+			echo $auxVar = $fila["e_uso"] + 1;
+			$sql = "UPDATE etiqueta SET e_uso = '".$auxVar."' WHERE e_id = '".$seleccion[$x]."'";
+			$NewConnect->ExecuteSql($sql);
+		 }
+
 		 @$sql = "SELECT * FROM producto,relacionetiqueta WHERE p_status = 1 AND p_id=re_idproducto ORDER BY p_orden ASC";
 		 @$varAux = @$NewConnect->CreateJson($sql);
 		 @$NewConnect->SaveJson(@$varAux);

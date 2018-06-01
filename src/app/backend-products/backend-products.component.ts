@@ -90,7 +90,14 @@ export class BackendProductsComponent implements OnInit {
 
  /** Calling the function ListContent to do the list of content. */
 
+
  
+/**
+ * 
+ *  OBJETOS EN JAVASCRIPT
+ * 
+ */
+
 ngOnInit() {
   this.ListContent();
   this.seccionList();
@@ -823,7 +830,7 @@ auxDuplicate;
      this.request = new XMLHttpRequest();
      this.request.open("POST", "php/script/store-product.php", true);
       console.log(this.request.send(this.formulario));
-      this.ListContent();    
+      this.ListContent();   - 
    
     }
 
