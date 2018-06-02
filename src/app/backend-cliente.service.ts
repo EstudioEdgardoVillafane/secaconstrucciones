@@ -10,16 +10,21 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class BackendClienteService {
 
   constructor(private http: Http) { }
-/**This function list the clients in the table */
+
+  /**This function list the clients in the table */
   listClientesInTheTable(){
     return this.http.get('php/script/list-cliente.php');
   }
-/**The function "delete()" in the "backend-cliente.ts" call this fuction to delet clients in the db*/
+  /**The function "delete()" in the "backend-cliente.ts" call this fuction to delet clients in the db*/
   deleteClient(id : number){
     return this.http.get('php/script/delete-cliente.php?id='+id)
   }
-/**the fuction "showEditForm()" call this function to edit clients */
-getJsonID(id : number,json){
-  return of(json.find(cliente => cliente.c_id === id));
-}
+  /**the fuction "showEditForm()" call this function to edit clients */
+  getJsonID(id : number,json){
+    return of(json.find(cliente => cliente.c_id === id));
+  }
+  /**This function send email from client */
+  sendEmailToCliente(userName : string,email : string){
+    return this.http.get('php/script/send-mail.php?userName='+userName+'&email='+email);
+  }
 }

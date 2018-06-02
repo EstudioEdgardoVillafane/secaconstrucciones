@@ -26,44 +26,50 @@ import { BackendClienteService } from './../backend-cliente.service';
 })
 export class BackendClienteComponent implements OnInit {
 /**Functions Generics vars */
-//alerts()
-  userStoreAlert = false;
-  userStore;
-  userEditAlert = false;  
-  userEdit;
-  emailStoreAlert = false;
-  emailStore;  
-  emailEditAlert = false;
-  emailEdit;
-  passwordStoreAlert = false;
-  passwordStore;
-  passwordStoreConfirm;
-  passwordEditAlert = false;
-  passwordEdit;
-  passwordEditConfirm;
-  oldPassword;
-  imageAlert = false;
-  imageStore;
-
   //listClientes()
   listCliente
+  //sendClienteEmail()
+  sendClienteEmailObject = new Object;
+
 /**Functions change the templates */
   editPasswordVar = false;
   changeTemplateEditar = true;
   changeTemplateAgregar = false; 
+
 /**Store function vars */
   formClient
   request
-/**Edit functions vars */
+  //Alerts
+  userStoreAlert = false;
+  userStore;
+  emailStoreAlert = false;
+  emailStore;  
+  passwordStoreAlert = false;
+  passwordStore;
+  passwordStoreConfirm;
+  imageAlert = false;
+  imageStore;
+
+ /**Edit functions vars */
   editCliente;
   formEditCliente
+ //Alerts
+  userEditAlert = false;  
+  userEdit;
+  emailEditAlert = false;
+  emailEdit;
+  passwordEditAlert = false;
+  passwordEdit;
+  passwordEditConfirm;
+  oldPassword;
+
 /*Delete fuctions vars */
-//check()
+  //check()
   Booleano = true;
   NumberAux = 0;
   CheckAcumulador = new Array();
   i = 0;
-//delete() 
+  //delete() 
   aux;
 
   constructor(private backendClienteSrevice : BackendClienteService) { }
@@ -73,7 +79,7 @@ export class BackendClienteComponent implements OnInit {
   }
 
 /*------- Generic Functions------*/
-/**This function list the clients on the table*/  
+  /**This function list the clients on the table*/  
   listClientes(){
     this.backendClienteSrevice.listClientesInTheTable()
     .map((response) => response.json())
@@ -81,12 +87,25 @@ export class BackendClienteComponent implements OnInit {
       this.listCliente = data;
     })
   }
-  /** --------------This functions change the templates------------ */
+  /**This function send email from validate acount*/
+  sendClienteEmail(){
+    this.userStore = document.getElementById("userStore");
+    this.emailStore = document.getElementById("emailStore");
+
+    this.sendClienteEmailObject["userName"] = this.userStore.value;
+    this.sendClienteEmailObject["email"] = this.emailStore.value;
+
+    this.backendClienteSrevice.sendEmailToCliente(this.sendClienteEmailObject["userName"],this.sendClienteEmailObject["email"])
+    .subscribe((data)=>{
+      console.log(data)
+    });
+  }
+/** --------------This functions change the templates------------ */
   /*this function show the Store form*/
   showStoreForm(){
     this.changeTemplateEditar= false;
-  }
-  
+    
+  }  
   /*this funtion returns of the backend users table*/
   returnToTheTableUsers(){
     this.changeTemplateEditar = true;
@@ -100,23 +119,23 @@ export class BackendClienteComponent implements OnInit {
     this.passwordEditAlert = false;
     this.imageAlert = false;
     }
-/**This function show the edit form */
-showEditForm(c_id : number){
+  /**This function show the edit form */
+  showEditForm(c_id : number){
     this.changeTemplateAgregar=false;
     this.changeTemplateEditar=false;
     this.backendClienteSrevice.getJsonID(c_id,this.listCliente)
     .subscribe(resultado => this.editCliente = resultado);
   }
-  /*--------------------Store-------------------- */
-  
-/**This funtion add the new client in the db  */
+
+/*--------------------Store-------------------- */  
+  /**This funtion add the new client in the db  */
   store(){
     this.userStore = document.getElementById("userStore");
     this.emailStore = document.getElementById("emailStore");
     this.passwordStore = document.getElementById("passwordStore");
     this.passwordStoreConfirm = document.getElementById("passwordStoreConfirm");
     this.imageStore = document.getElementById("imageStore");
-//Alerts
+    //Alerts
     if(this.userStore.value == ""){
       this.userStoreAlert = true;
     }else{
@@ -142,10 +161,11 @@ showEditForm(c_id : number){
       this.request = new XMLHttpRequest();
       this.request.open("POST", "php/script/store-cliente.php");
       console.log(this.request.send(new FormData(this.formClient)));
+      this.sendClienteEmail();
       this.listClientes();
     }
   } 
-  /*--------------------Edit--------------------- */
+/*--------------------Edit--------------------- */
   /**This function edit the client */
   edit(){
     this.userEdit = document.getElementById("userEdit");
@@ -153,7 +173,7 @@ showEditForm(c_id : number){
     this.passwordEdit = document.getElementById("passwordEdit");
     this.passwordEditConfirm = document.getElementById("passwordEditConfirm");
     this.oldPassword = document.getElementById("oldPassword");
-//Alerts
+    //Alerts
     if(this.userEdit.value =="" ){
       this.userEditAlert = true;
     }else{
@@ -174,7 +194,7 @@ showEditForm(c_id : number){
         this.listClientes();
       } 
     }else{
-//Alerts
+      //Alerts
       if(this.passwordEdit.value != this.passwordEditConfirm.value){
         this.passwordEditAlert = true;      
       }else{
@@ -189,12 +209,12 @@ showEditForm(c_id : number){
       }
     }
   }
-/**When you press the "cambiar contraseña" in the edit form, this function show input from edit pasword */
+  /**When you press the "cambiar contraseña" in the edit form, this function show input from edit pasword */
   editPassword(){
     this.editPasswordVar = true;
   }  
 /*------------------Delete--------------------- */
-/**this function accumulates the checks that are in the table to be deleted later*/
+  /**this function accumulates the checks that are in the table to be deleted later*/
   checkBox(c_id : number){
     this.Booleano=true;
     console.log("Contador: " + this.NumberAux);
@@ -219,7 +239,7 @@ showEditForm(c_id : number){
     }
   }
 
-/** this function delete the backend users of the table that are select whith the check*/
+  /** this function delete the backend users of the table that are select whith the check*/
   delete(){
     for(this.i=0; this.i<this.NumberAux; this.i++){
       if(this.CheckAcumulador[this.i] == undefined){
