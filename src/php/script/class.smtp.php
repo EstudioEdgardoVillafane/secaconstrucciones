@@ -1247,3 +1247,4 @@ class SMTP
 		return false;
     }
 }
+?>

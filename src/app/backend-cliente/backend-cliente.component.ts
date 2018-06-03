@@ -161,9 +161,9 @@ export class BackendClienteComponent implements OnInit {
       this.request = new XMLHttpRequest();
       this.request.open("POST", "php/script/store-cliente.php");
       console.log(this.request.send(new FormData(this.formClient)));
-      this.sendClienteEmail();
-      this.listClientes();
     }
+    this.listClientes();
+    this.sendClienteEmail();
   } 
 /*--------------------Edit--------------------- */
   /**This function edit the client */
@@ -205,9 +205,9 @@ export class BackendClienteComponent implements OnInit {
         this.request = new XMLHttpRequest();
         this.request.open("POST", "php/script/edit-cliente.php");
         console.log(this.request.send(new FormData(this.formEditCliente)));
-        this.listClientes();
       }
     }
+    this.listClientes();
   }
   /**When you press the "cambiar contraseña" in the edit form, this function show input from edit pasword */
   editPassword(){
@@ -249,10 +249,10 @@ export class BackendClienteComponent implements OnInit {
         .subscribe((data) => {
         this.aux = data;
         console.log(data);
-        this.listClientes();
         });
       }
     }
+    this.listClientes();
   }
 
 
