@@ -35,6 +35,7 @@ import { BackendClienteService } from './backend-cliente.service';
 
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { PrioritySelectPipe } from './priority-select.pipe';
+import { ValidacionClienteComponent } from './validacion-cliente/validacion-cliente.component';
 
 
 
@@ -56,7 +57,8 @@ import { PrioritySelectPipe } from './priority-select.pipe';
     BackendSubatributoComponent,
     SubMenuComponent,
     PrioritySelectPipe,
-    BackendClienteComponent
+    BackendClienteComponent,
+    ValidacionClienteComponent
  ],
   imports: [
     BrowserModule,

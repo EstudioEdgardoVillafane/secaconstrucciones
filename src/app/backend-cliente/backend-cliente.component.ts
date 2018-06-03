@@ -40,6 +40,18 @@ export class BackendClienteComponent implements OnInit {
   formClient
   request
   //Alerts
+  nameStoreAlert = false;
+  nameStore
+  lastNameStoreAlert = false;
+  lastNameStore;
+  provinceStoreAlert = false;
+  provinceStore;
+  locationStoreAlert = false;
+  locationStore;
+  neighborhoodStoreAlert = false;
+  neighborhoodStore;
+  postalCodeStoreAlert = false;
+  postalCodeStore;
   userStoreAlert = false;
   userStore;
   emailStoreAlert = false;
@@ -51,9 +63,22 @@ export class BackendClienteComponent implements OnInit {
   imageStore;
 
  /**Edit functions vars */
+  //edit()
   editCliente;
   formEditCliente
- //Alerts
+  //Alerts
+  nameEditAlert = false;
+  nameEdit
+  lastNameEditAlert = false;
+  lastNameEdit;
+  provinceEditAlert = false;
+  provinceEdit;
+  locationEditAlert = false;
+  locationEdit;
+  neighborhoodEditAlert = false;
+  neighborhoodEdit;
+  postalCodeEditAlert = false;
+  postalCodeEdit;
   userEditAlert = false;  
   userEdit;
   emailEditAlert = false;
@@ -135,11 +160,48 @@ export class BackendClienteComponent implements OnInit {
     this.passwordStore = document.getElementById("passwordStore");
     this.passwordStoreConfirm = document.getElementById("passwordStoreConfirm");
     this.imageStore = document.getElementById("imageStore");
+    this.nameStore = document.getElementById("nameStore");
+    this.lastNameStore = document.getElementById("lastNameStore");
+    this.provinceStore = document.getElementById("provinceStore");
+    this.locationStore = document.getElementById("locationStore");
+    this.neighborhoodStore = document.getElementById("neighborhoodStore");
+    this.postalCodeStore = document.getElementById("postalCodeStore");
+
     //Alerts
     if(this.userStore.value == ""){
       this.userStoreAlert = true;
     }else{
       this.userStoreAlert = false;      
+    }
+    if(this.nameStore.value == ""){
+      this.nameStoreAlert = true;
+    }else{
+      this.nameStoreAlert = false;
+    }
+    if(this.lastNameStore.value == ""){
+      this.lastNameStoreAlert = true;
+    }else{
+      this.lastNameStoreAlert = false;      
+    }
+    if(this.provinceStore.value == ""){ 
+      this.provinceStoreAlert = true;
+    }else{
+      this.provinceStoreAlert = false;
+    }
+    if(this.locationStore.value == ""){
+      this.locationStoreAlert = true;
+    }else{
+      this.locationStoreAlert = false;
+    }
+    if(this.neighborhoodStore.value == ""){
+      this.neighborhoodStoreAlert = true;
+    }else{
+      this.neighborhoodStoreAlert = false;      
+    }
+    if(this.postalCodeStore.value == ""){
+      this.postalCodeStoreAlert = true;
+    }else{
+      this.postalCodeStoreAlert = false;
     }
     if(this.emailStore.value == ""){
       this.emailStoreAlert = true;
@@ -156,11 +218,23 @@ export class BackendClienteComponent implements OnInit {
     }else{
       this.imageAlert = false;
     }
-    if(this.userStore.value != "" && this.emailStore.value != "" && this.passwordStore.value != "" && this.imageStore.value != null){
+    //validation
+    if(this.postalCodeStore.value != "" && 
+       this.neighborhoodStore.value != "" && 
+       this.locationStore.value != "" && 
+       this.provinceStore.value != "" && 
+       this.lastNameStore.value != "" && 
+       this.nameStore.value != "" && 
+       this.userStore.value != "" && 
+       this.emailStore.value != "" && 
+       this.passwordStore.value != "" && 
+       this.imageStore.value != null){
+
       this.formClient = document.getElementById("formStoreCliente");
       this.request = new XMLHttpRequest();
       this.request.open("POST", "php/script/store-cliente.php");
       console.log(this.request.send(new FormData(this.formClient)));
+
     }
     this.listClientes();
     this.sendClienteEmail();
@@ -173,6 +247,12 @@ export class BackendClienteComponent implements OnInit {
     this.passwordEdit = document.getElementById("passwordEdit");
     this.passwordEditConfirm = document.getElementById("passwordEditConfirm");
     this.oldPassword = document.getElementById("oldPassword");
+    this.nameEdit = document.getElementById("nameEdit");
+    this.lastNameEdit = document.getElementById("lastNameEdit");
+    this.provinceEdit = document.getElementById("provinceEdit");
+    this.locationEdit = document.getElementById("locationEdit");
+    this.neighborhoodEdit = document.getElementById("neighborhoodEdit");
+    this.postalCodeEdit = document.getElementById("postalCodeEdit");
     //Alerts
     if(this.userEdit.value =="" ){
       this.userEditAlert = true;
@@ -184,15 +264,52 @@ export class BackendClienteComponent implements OnInit {
     }else{
       this.emailEditAlert = false;      
     }
-
+    if(this.nameEdit.value == ""){
+      this.nameEditAlert = true;
+    }else{
+      this.nameEditAlert = false;
+    }
+    if(this.lastNameEdit.value == ""){
+      this.lastNameEditAlert = true;
+    }else{
+      this.lastNameEditAlert = false;      
+    }
+    if(this.provinceEdit.value == ""){ 
+      this.provinceEditAlert = true;
+    }else{
+      this.provinceEditAlert = false;
+    }
+    if(this.locationEdit.value == ""){
+      this.locationEditAlert = true;
+    }else{
+      this.locationEditAlert = false;
+    }
+    if(this.neighborhoodEdit.value == ""){
+      this.neighborhoodEditAlert = true;
+    }else{
+      this.neighborhoodEditAlert = false;      
+    }
+    if(this.postalCodeEdit.value == ""){
+      this.postalCodeEditAlert = true;
+    }else{
+      this.postalCodeEditAlert = false;
+    }
+    //validacion
     if(this.editPasswordVar == false){
-      if(this.userEdit.value != "" && this.emailEdit.value != "" ){
+      if(this.userEdit.value != "" &&
+         this.emailEdit.value != ""&&
+         this.postalCodeEdit.value != "" && 
+         this.neighborhoodEdit.value != "" && 
+         this.locationEdit.value != "" && 
+         this.provinceEdit.value != "" && 
+         this.lastNameEdit.value != "" && 
+         this.nameEdit.value != ""){
+console.log("1er if")
         this.formEditCliente = document.getElementById("formEditCliente");
         this.request = new XMLHttpRequest();
         this.request.open("POST", "php/script/edit-cliente.php");
         console.log(this.request.send(new FormData(this.formEditCliente)));
-        this.listClientes();
-      } 
+      }
     }else{
       //Alerts
       if(this.passwordEdit.value != this.passwordEditConfirm.value){
@@ -200,14 +317,25 @@ export class BackendClienteComponent implements OnInit {
       }else{
         this.passwordEditAlert = false;      
       }
-      if(this.userEdit.value != "" && this.emailEdit.value != "" && this.passwordEdit.value != "" && this.oldPassword.value != ""){
+      if(this.userEdit.value != "" && 
+         this.emailEdit.value != "" && 
+         this.passwordEdit.value != "" &&
+         this.oldPassword.value != "" &&
+         this.postalCodeEdit.value != "" && 
+         this.neighborhoodEdit.value != "" && 
+         this.locationEdit.value != "" && 
+         this.provinceEdit.value != "" && 
+         this.lastNameEdit.value != "" && 
+         this.nameEdit.value != ""){
+console.log("2do if")
+           
         this.formEditCliente = document.getElementById("formEditCliente");
         this.request = new XMLHttpRequest();
         this.request.open("POST", "php/script/edit-cliente.php");
         console.log(this.request.send(new FormData(this.formEditCliente)));
       }
     }
-    this.listClientes();
+    this.listClientes();    
   }
   /**When you press the "cambiar contraseña" in the edit form, this function show input from edit pasword */
   editPassword(){

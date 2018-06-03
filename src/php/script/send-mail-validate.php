@@ -2,6 +2,15 @@
 $Name = $_GET["userName"];
 $Email = $_GET["email"];
 
+require_once '../class/connect.php';
+require_once '../class/seca.php';
+
+$NewConnect = new Seca();
+
+$sql = "SELECT c_codigo_validacion FROM cliente WHERE c_status=1 AND  c_usuario = '".$Name."' ";
+$resultado = $NewConnect->ExecuteSql($sql);
+$fila = mysqli_fetch_assoc($resultado);
+
 date_default_timezone_set("America/Argentina/Buenos_Aires");
 $time=time();
 $fecha=date("Y-m-d",$time);
@@ -44,7 +53,7 @@ $mail->AddAddress($emailDestino); // Esta es la dirección a donde enviamos los 
 $mail->AddReplyTo($Email); // Esto es para que al recibir el correo y poner Responder, lo haga a la cuenta del visitante. 
 $mail->Subject = "Seca Construcciones - confirmacion de Cuenta"; // Este es el titulo del email.
 $mensajeHtml = nl2br($mensaje);
-$mail->Body = "{$mensajeHtml} <br /><br />Que tal ".$Name.", para confirmar tu cienta entra aca"; // Texto del email en formato HTML
+$mail->Body = "{$mensajeHtml} <br /><br />Que tal ".$Name.",  ingresa tu codigo ".$fila["c_codigo_validacion"]." <a href='validation-acout.php?$Name='+$Name+'&$fila='+$fila'>haga click aca</a>"; // Texto del email en formato HTML
 $mail->AltBody = "{$mensaje} ?????"; // Texto sin formato HTML
 // FIN - VALORES A MODIFICAR //
 $mail->SMTPOptions = array(
@@ -60,4 +69,5 @@ if($estadoEnvio){
 } else {
     echo "Oc";
 }
+header("Location: http://www.secaconstrucciones.com.ar/home");
 ?>

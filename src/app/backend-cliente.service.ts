@@ -25,6 +25,10 @@ export class BackendClienteService {
   }
   /**This function send email from client */
   sendEmailToCliente(userName : string,email : string){
-    return this.http.get('php/script/send-mail.php?userName='+userName+'&email='+email);
+    return this.http.get('php/script/send-mail-validate.php?userName='+userName+'&email='+email);
+  }
+  /**This function send parameter from php to validate acount */
+  validationAcout(validationCode : string){
+    return this.http.get('php/script/validation-acout.php?validationCode='+validationCode);
   }
 }

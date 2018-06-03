@@ -7,8 +7,15 @@ $NewConnect = new Seca();
     $Id = $_POST["editId"];
 	$editUsuario = $_POST["editUsuario"];
 	$editMail = $_POST["editMail"];
-	$editPassword = $_POST["editPassword"]
-	$oldPassword = $_POST["oldPassword"]
+	// $editPassword = $_POST["editPassword"];
+	// $oldPassword = $_POST["oldPassword"];
+	$editName = $_POST["editName"];
+	$editLastName = $_POST["editLastName"];
+	$editProvince = $_POST["editProvince"];
+	$editLocation = $_POST["editLocation"];
+	$editNeighborhood = $_POST["editNeighborhood"];
+	$editPostalCode = $_POST["editPostalCode"];
+
 
 	$tipo = $_FILES['uploadedfile-ed']['type'];
 	$tamano = $_FILES['uploadedfile-ed']['size'];
@@ -55,21 +62,31 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 imagedestroy ($img_redimensionada);
 imagedestroy ($nueva_img);
 
-if($tamano == 0){
+// if($tamano == 0){
 	$sql="UPDATE cliente SET
 	c_usuario = '".$editUsuario."',
 	c_email = '".$editMail."',
+	c_nombre = '".$editName."',
+	c_apellido = '".$editLastName."',
+	c_provincia = '".$editProvince."',
+	c_localidad = '".$editLocation."',
+	c_barrio = '".$editNeighborhood."',
+	c_cogigo_postal = '".$editPostalCode."'
 	WHERE c_id = '".$Id."'";
 
-}else{
-    $sql = "UPDATE cliente SET 
-	c_usuario = '".$editUsuario."',
-	c_editUsuario = '".$editUsuario."',
-	c_contrasena = '".$editPassword."',
-	c_imagen = '".$URL."'
-	WHERE c_id ='".$Id."' AND c_contrasena ='".md5($oldPassword)."' ";
-}
-$NewConnect->ExecuteSql($sql);
-
+// }else{
+//     $sql = "UPDATE cliente SET 
+// 	c_usuario = '".$editUsuario."',
+// 	c_email = '".$editMail."',
+// 	c_imagen = '".$URL."',
+// 	c_nombre = '".$editName."',
+// 	c_apellido = '".$editLastName."',
+// 	c_provincia = '".$editProvince."',
+// 	c_localidad = '".$editLocation."',
+// 	c_barrio = '".$editNeighborhood."',
+// 	c_cogigo_postal = '".$editPostalCode."'
+// 	WHERE c_id ='".$Id."' ";
+// }
+echo $NewConnect->ExecuteSql($sql);
 
  ?>
