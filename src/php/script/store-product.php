@@ -74,9 +74,9 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 
 		 for($x=0;$x<count($seleccion);$x++){
 			$auxVar = 0;
-			echo $sql = "SELECT e_id,e_uso FROM etiqueta WHERE e_id = '".$seleccion[$x]."'";
+			$sql = "SELECT e_id,e_uso FROM etiqueta WHERE e_id = '".$seleccion[$x]."'";
 			$fila = mysqli_fetch_assoc($NewConnect->ExecuteSql($sql));
-			echo $auxVar = $fila["e_uso"] + 1;
+			$auxVar = $fila["e_uso"] + 1;
 			$sql = "UPDATE etiqueta SET e_uso = '".$auxVar."' WHERE e_id = '".$seleccion[$x]."'";
 			$NewConnect->ExecuteSql($sql);
 		 }

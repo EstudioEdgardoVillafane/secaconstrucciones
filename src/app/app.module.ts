@@ -34,6 +34,7 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { PrioritySelectPipe } from './priority-select.pipe';
 import { EtiquetaService } from './etiqueta.service';
 import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta.component';
+import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
 
 
 
@@ -55,7 +56,8 @@ import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta
     BackendSubatributoComponent,
     SubMenuComponent,
     PrioritySelectPipe,
-    ProductoEtiquetaComponent
+    ProductoEtiquetaComponent,
+    MostrarMitadStringPipe
  ],
   imports: [
     BrowserModule,

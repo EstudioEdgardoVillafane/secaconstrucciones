@@ -11,7 +11,7 @@
     </div>
      <div class="row">
        <div class="col-5">
-       <a *ngFor="let etiqueta of ListEtiqueta" class="btn btn-primary text-white mr-2 mt-2" routerLink="/producto-etiqueta/{{etiqueta.e_nombre}}">{{etiqueta.e_nombre}}</a>
+       <a *ngFor="let etiqueta of ListEtiqueta | slice : 0 : 20" class="btn btn-primary btn-sm text-white mr-2 mt-2" routerLink="/producto-etiqueta/{{etiqueta.e_nombre}}">{{etiqueta.e_nombre}}</a>
       </div>
      
           <div class="col-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado | slice : 0 : 2">
@@ -23,7 +23,6 @@
                 <h5>${{producto.p_precio}}</h5>
               </div>
             </div>  
-      
      </div>
    </div>
  </section>

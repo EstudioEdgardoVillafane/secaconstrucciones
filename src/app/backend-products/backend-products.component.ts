@@ -90,14 +90,7 @@ export class BackendProductsComponent implements OnInit {
 
  /** Calling the function ListContent to do the list of content. */
 
-
  
-/**
- * 
- *  OBJETOS EN JAVASCRIPT
- * 
- */
-
 ngOnInit() {
   this.ListContent();
   this.seccionList();
@@ -128,6 +121,9 @@ j;
 Desde = 0;
 Hasta = 8;
 auxToProbandoJson = 0;
+limiteEtiqueta = 15;
+
+
 nextPag(){
   if(this.PaginaActual < this.CantidadDePaginas){
     this.PaginaActual++;
@@ -485,6 +481,7 @@ seccionValue;
  }
 
  filterEtiqueta(){
+  
   this.ButtonStoreSeccion = document.getElementById("storeEtiqueta");
 
   this.auxvar = document.getElementById("searchEtiqueta");  
@@ -510,6 +507,11 @@ seccionValue;
     this.ButtonStoreSeccion.disabled = false;
     this.ButtonStoreSeccion.value = "Agregar ";
     this.ButtonStoreSeccion.style.background = "#007bff";
+  }
+  if(this.auxvar.value != ""){
+    this.limiteEtiqueta = 100;
+  }else{
+    this.limiteEtiqueta = 15;
   }
   console.log(this.contador);
 }
@@ -830,7 +832,7 @@ auxDuplicate;
      this.request = new XMLHttpRequest();
      this.request.open("POST", "php/script/store-product.php", true);
       console.log(this.request.send(this.formulario));
-      this.ListContent();   - 
+      this.ListContent();    
    
     }
 
