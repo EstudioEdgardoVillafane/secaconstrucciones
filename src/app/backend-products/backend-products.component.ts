@@ -121,6 +121,9 @@ j;
 Desde = 0;
 Hasta = 8;
 auxToProbandoJson = 0;
+limiteEtiqueta = 15;
+
+
 nextPag(){
   if(this.PaginaActual < this.CantidadDePaginas){
     this.PaginaActual++;
@@ -441,15 +444,44 @@ seccionValue;
  etiquetaValue;
  etiquetaName;
  etiquetaNameToAdd;
+ ArrayOfEtiquetas = new Array();
+ CountOfEtiquetas = 0;
+
  etiquetaClicked(number : string){
-  this.BooleanToCloseEtiquetas = false;
+  this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
+
   this.etiquetaValue = number;
   this.etiquetaName = document.getElementById("Etiqueta"+number);
-  this.etiquetaNameToAdd = document.getElementById("searchEtiqueta"); 
-  this.etiquetaNameToAdd.disabled = true
-  this.etiquetaNameToAdd.value = this.etiquetaName.value; 
+ if(this.ArrayOfEtiquetas.length == 0){
+  this.ArrayOfEtiquetas[this.CountOfEtiquetas] = this.etiquetaName.value;
+  this.CountOfEtiquetas++;
+ }else{
+   this.anyContador = 0;
+  for(this.i=0;this.i<this.ArrayOfEtiquetas.length;this.i++){
+    if(this.ArrayOfEtiquetas[this.i] == this.etiquetaName.value){
+      this.anyContador++;
+    }
+  }
+  if(this.anyContador==0){
+    this.ArrayOfEtiquetas[this.CountOfEtiquetas] = this.etiquetaName.value;
+    this.CountOfEtiquetas++;
+  }
+}
+  this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
  }
+
+ PositionOfElementToSearch;
+ deleteEtiqueta(nameOfEtiqueta){
+  this.PositionOfElementToSearch = this.ArrayOfEtiquetas.indexOf(nameOfEtiqueta);
+  this.ArrayOfEtiquetas.splice(this.PositionOfElementToSearch,1);
+  this.ArrayOfEtiquetas = this.ArrayOfEtiquetas.filter(this.diferenceUndefined)
+ }
+ diferenceUndefined(data){
+   return data != undefined;
+ }
+
  filterEtiqueta(){
+  
   this.ButtonStoreSeccion = document.getElementById("storeEtiqueta");
 
   this.auxvar = document.getElementById("searchEtiqueta");  
@@ -476,6 +508,11 @@ seccionValue;
     this.ButtonStoreSeccion.value = "Agregar ";
     this.ButtonStoreSeccion.style.background = "#007bff";
   }
+  if(this.auxvar.value != ""){
+    this.limiteEtiqueta = 100;
+  }else{
+    this.limiteEtiqueta = 15;
+  }
   console.log(this.contador);
 }
 BooleanToCloseEtiquetas = true;
@@ -484,21 +521,19 @@ this.auxvar = document.getElementById("searchEtiqueta");
 this.auxvar2 = document.getElementById("storeEtiqueta");
   this.etiquetaService.storeEtiqueta(this.auxvar.value)
   .subscribe((data) => {
-    this.BooleanToCloseEtiquetas = false;
-    this.auxvar.disabled = true;
     this.auxvar2.disabled = true;
     this.etiquetaService.listEtiquetas()
       .map((response) => response.json())
       .subscribe((data) => {
       this.JsonEtiquetas = data;
       this.etiquetaService.getJsonForName(this.auxvar.value,this.JsonEtiquetas)
-      .subscribe(data => this.etiquetaValue = data.e_id)
-      console.log(this.JsonEtiquetas);
+      .subscribe(data => this.ArrayOfEtiquetas[this.CountOfEtiquetas] = data.e_nombre)
+      console.log(this.ArrayOfEtiquetas[this.CountOfEtiquetas]);
+      this.CountOfEtiquetas++;
     });
     
   });
 }
-
 returnEtiqueta(){
   this.BooleanToCloseEtiquetas = true;
   this.seccionNameToAdd = document.getElementById("searchEtiqueta");
@@ -628,6 +663,7 @@ filterAtributo(){
 nextOne(){
   this.nameProduct =  document.getElementById("nameproduct");
   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
+  this.globalSlug = document.getElementById("slugP")
   this.VarInput3 = document.getElementById("productName");
   this.VarInput3.value = this.nameProduct.value; 
   this.AuxVarInput4 = document.getElementById("buscarSeccion");
@@ -667,6 +703,7 @@ nextOne(){
        .subscribe((data) => { 
          console.log(data)
        this.ListOfContent = data;
+    
        this.CantidadDePaginas = this.ListOfContent.length/8;
        this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas)
      });
@@ -769,15 +806,51 @@ auxDuplicate;
 /** Here we are validating the store form and creating the alert message */
 
    /** This function is storing the new regist in a database */
-   
+   globalSlug;
+   IdInsert;
+   IdEtiqueta;
+   formulario;
+   ArrayOfEtiquetasForId = new Array();
+
    StoreProduct(){
-     this.formElement = document.getElementById("formularioStore");
+   this.contador = 0;
+   for(this.i=0;this.i<this.ArrayOfEtiquetas.length;this.i++){
+    if(this.ArrayOfEtiquetas[this.i] != undefined){
+      this.etiquetaService.getJsonForName(this.ArrayOfEtiquetas[this.i],this.JsonEtiquetas)
+      .subscribe((data) => {
+        this.ArrayOfEtiquetasForId[this.contador] = data.e_id;
+        this.contador++;
+      });
+    }
+    }
+   
+    this.formElement = document.getElementById("formularioStore");
+    
+    this.formulario = new FormData(this.formElement);
+    this.formulario.append("slug", this.globalSlug.value);
+    this.formulario.append("arrayEtiqueta", this.ArrayOfEtiquetasForId);
      this.request = new XMLHttpRequest();
-     this.request.open("POST", "php/script/store-product.php");
-     console.log(this.request.send(new FormData(this.formElement)));
+     this.request.open("POST", "php/script/store-product.php", true);
+      console.log(this.request.send(this.formulario));
       this.ListContent();    
+   
     }
 
+
+
+
+    // doStoreToEtiquetas(IdInsert){
+    //   console.log("anda toto");
+    //   for(this.i = 0; this.i<this.ArrayOfEtiquetas.length; this.i++){
+    //     if(this.ArrayOfEtiquetas[this.i] != undefined){
+    //       this.etiquetaService.getJsonForName(this.ArrayOfEtiquetas[this.i], this.JsonEtiquetas)
+    //       .subscribe((data) => {
+    //         this.etiquetaService.storeEtiquetaToProduct(IdInsert, data.e_id)
+    //         .subscribe(data => console.log(data));
+    //       });
+    //     }
+    //   }
+    // }
 
   /****************************************************** EDIT COMPONENT ********************************************/
 
@@ -797,7 +870,17 @@ auxDuplicate;
       this.atributoListEdit(this.seccionClickedIDEdit.s_id);
       this.BoolToAtributeEdit = true;
   }
-
+  addSectionEdit(){
+    this.seccionStore = document.getElementById("AgregarSeccionEdit");
+    this.InputStoreSeccion = document.getElementById("buscarSeccionEdit");
+    this.seccionService.CrudFunction(3,0,this.InputStoreSeccion.value,0)
+    .subscribe((data) => {
+      this.InputStoreSeccion.disabled = true;
+      this.seccionStore.disabled = true;
+      this.BooleanToCloseSeccionEdit = false;
+      this.seccionList();
+    }); 
+  }
   filterSectionEdit(value){
 
     this.auxvar = document.getElementById("buscarSeccionEdit");  
@@ -812,11 +895,26 @@ auxDuplicate;
         this.auxvar2.style.display = "none";
       }
     }
+    this.ButtonStoreSeccion = document.getElementById("AgregarSeccionEdit");
+    if(this.contador > 0){
+      this.ButtonStoreSeccion.disabled = true;
+      this.ButtonStoreSeccion.value = "Buscar ";
+      this.ButtonStoreSeccion.style.background = "rgb(67, 67, 67)";
+    }else{
+      this.ButtonStoreSeccion.disabled = false;
+      this.ButtonStoreSeccion.value = "Agregar ";
+      this.ButtonStoreSeccion.style.background = "#007bff";
+    }
   }
   returnSeccionEdit(){
       this.BooleanToCloseSeccionEdit=true;
+      this.seccionNameToAdd = document.getElementById("buscarSeccionEdit");
       this.seccionNameToAdd.value="";
       this.seccionNameToAdd.disabled = false;
+
+      this.seccionStore = document.getElementById("AgregarSeccionEdit")
+      this.seccionStore.value = "Buscar";
+      this.seccionStore.style.background = "rgb(67, 67, 67)";
   }
 
 /********************************************** ATRIBUTOS ********************************************************/
@@ -877,7 +975,7 @@ ShowAtribute(){
 }
 
 subAtributoListEdit(id){
-  this.subatributeService.CrudFunction(1,id,"",0)
+  this.subatributeService.CrudFunction(6,id,"",0)
   .map((response) => response.json())
   .subscribe((data) => {
     this.listSubAtributo = data;

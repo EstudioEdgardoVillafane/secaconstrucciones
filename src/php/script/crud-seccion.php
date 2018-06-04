@@ -6,7 +6,7 @@
 	
 	if($_GET["data"]==1){                   /** List   */
 		$sql="SELECT * FROM seccion WHERE s_status=1";	//falta el atributo
-		$NewConnect->CreateJson($sql);
+		echo $NewConnect->CreateJson($sql);
 	}elseif($_GET["data"]==2){              /** Delete  */
 		$sqld = "UPDATE seccion SET s_status = 0 WHERE s_id = '".$_GET["s_id"]."'";
 		$NewConnect->Borrar($sqld);		

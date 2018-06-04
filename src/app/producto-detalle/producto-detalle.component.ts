@@ -22,8 +22,8 @@ export class ProductoDetalleComponent implements OnInit {
     this.__productosService.listProduct()
     .map((response) => response.json())
     .subscribe((data) => { 
-      const name = this._activatedRoute.snapshot.paramMap.get('nombre');
-      this.__productosService.getJsonForNameTwo(name,data)
+      const slug = this._activatedRoute.snapshot.paramMap.get('slug');
+      this.__productosService.getJsonForSlug(slug,data)
       .subscribe((resultado) => { this.ListOfProducts = resultado });
   });
   }

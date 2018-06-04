@@ -16,14 +16,15 @@ import { BackendSubatributoComponent } from '../backend-subatributo/backend-suba
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
 import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
 import {ContactoComponent} from '../contacto/contacto.component';
+import { ProductoEtiquetaComponent } from '../producto-etiqueta/producto-etiqueta.component';
 
 
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'admin771',
+  { path: 'admin771', component: LoginComponent },
+  { path: 'backend',
   component: BackendComponent,
   children:[
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
@@ -31,12 +32,13 @@ const routes: Routes = [
     { path: 'productos', component: BackendProductsComponent },
     { path: 'seccion', component: BackendSeccionComponent },
     { path: 'atributo', component: BackendAtributoComponent },
+
     { path: 'usuarios', component: BackendUserComponent },
     ]
   },
   { path: 'productos', component: BackendProductsComponent },
-  { path: 'detalle-producto/:nombre', component: ProductoDetalleComponent },
- 
+  { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
+  { path: 'producto-etiqueta/:etiqueta', component:ProductoEtiquetaComponent }
 ];
 
 @NgModule({
