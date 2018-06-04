@@ -18,7 +18,7 @@ export class ProductosComponent implements OnInit {
   ListProducts = new Array();
   ListDestacado = new Array();
   
-  constructor(private productService : ProductosService, private etiquetaService : EtiquetaService) { }
+  constructor(private productService : ProductosService, private etiquetaService : EtiquetaService, private productoService: ProductosService) { }
 
   ngOnInit() {
     this.doListEtiqueta();

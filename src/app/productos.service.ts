@@ -49,6 +49,9 @@ export class ProductosService {
   listProductToFront(){
     return this.http.get('php/script/list-product-front.php');
   }
+  doListOfCategorias(){
+    return this.http.get('php/script/list-categoriafront.php');
+  }
 }
 
 
