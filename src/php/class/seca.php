@@ -3,7 +3,7 @@ class Seca{
 	public function ExecuteSql($sql){
 		$conex = New Connect();
 		$conex -> CreateConnection();
-		$conex -> Execute($sql);
+		return $conex -> Execute($sql);
 		$conex -> CloseConnection();
 	}	  
 	public function Search($sql){
@@ -22,7 +22,6 @@ class Seca{
 			$ArrayJson[$i] = $fila;
 	        $i++;
 		}
-		echo json_encode($ArrayJson);
 		return json_encode($ArrayJson);
 		$con -> CloseConnection();		
 	}
@@ -38,6 +37,12 @@ class Seca{
 	}
 	public function ReadJson(){
 		echo $dataProduct = file_get_contents("productos.json");
+	}
+	public function IDinsert($sql){
+		$con = new Connect();
+		$con->CreateConnection();
+		return $con->ExecuteTr($sql);
+		$con->CloseConnection();
 	}
 }
 

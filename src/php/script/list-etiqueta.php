@@ -5,7 +5,7 @@
     
     $NewConnect = new Seca();
 
-    $sql = "SELECT * FROM etiqueta";
-    $NewConnect->CreateJson($sql);
+    $sql = "SELECT * FROM etiqueta ORDER BY e_uso ASC";
+    echo $NewConnect->CreateJson($sql);
 
 ?>

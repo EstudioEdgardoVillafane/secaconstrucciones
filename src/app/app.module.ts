@@ -4,6 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
+// import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
 //Products
 import { HomeComponent } from './home/home.component';
@@ -38,6 +39,10 @@ import { SubHomeComponent } from './maqueta/sub-home/sub-home.component';
 import { SubFooterComponent } from './maqueta/sub-footer/sub-footer.component';
 import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
 
+import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta.component';
+import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
+
+
 
 
 @NgModule({
@@ -62,7 +67,9 @@ import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
     MaquetaComponent,
     SubHomeComponent,
     SubFooterComponent,
-    SubHeaderComponent
+    SubHeaderComponent,
+    ProductoEtiquetaComponent,
+    MostrarMitadStringPipe
  ],
   imports: [
     BrowserModule,
@@ -70,7 +77,6 @@ import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
     FormsModule,
     HttpModule,
     HttpClientModule
-    
   ],
   providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService], //Services
   bootstrap: [AppComponent]

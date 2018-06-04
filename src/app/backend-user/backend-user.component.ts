@@ -260,7 +260,7 @@ export class BackendUserComponent implements OnInit {
       )
       .subscribe((result)=>{this.var=result;});
       // this.ListBackendUsers();
-      location.reload();
+      window.location.reload();
 
       this.ChangeTemplateEditar=true;
     }else{
