@@ -10,21 +10,21 @@
     border:solid .3px #666;
   
 }
-
+.bg-custom{
+    background-color: #e0e0e0;
+}
 .cont-img{
     height: 250px;
 }
 
-.cont-img img {
-    max-width: 90%;
-    max-height: 250px;
+.img-custom{
+  
 }
 
 .capsule{
     transition: all .5ms ease-in-out;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
-   
   
 }
 
