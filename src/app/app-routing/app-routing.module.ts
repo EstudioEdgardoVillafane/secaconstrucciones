@@ -11,6 +11,7 @@ import { LoginComponent} from '../login/login.component';
 import { BackendSeccionComponent } from '../backend-seccion/backend-seccion.component';
 import { BackendUserComponent } from '../backend-user/backend-user.component';
 import { BackendSubatributoComponent } from '../backend-subatributo/backend-subatributo.component';
+import { MaquetaComponent } from '../maqueta/maqueta.component';
 
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
@@ -18,6 +19,7 @@ import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
 import {ContactoComponent} from '../contacto/contacto.component';
 import { ProductoEtiquetaComponent } from '../producto-etiqueta/producto-etiqueta.component';
 
+import {LoginYRegistroComponent} from '../login-y-registro/login-y-registro.component';
 
 // Rutas                             
 const routes: Routes = [
@@ -37,6 +39,9 @@ const routes: Routes = [
     ]
   },
   { path: 'productos', component: BackendProductsComponent },
+  { path: 'detalle-producto/:nombre', component: ProductoDetalleComponent },
+  { path: 'maqueta', component: MaquetaComponent },
+  { path: 'login-y-registro', component: LoginYRegistroComponent },
   { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
   { path: 'producto-etiqueta/:etiqueta', component:ProductoEtiquetaComponent }
 ];

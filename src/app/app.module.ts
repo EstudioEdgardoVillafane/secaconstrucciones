@@ -33,8 +33,15 @@ import { SubAtributoService } from './sub-atributo.service';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { PrioritySelectPipe } from './priority-select.pipe';
 import { EtiquetaService } from './etiqueta.service';
+import { LoginYRegistroComponent } from './login-y-registro/login-y-registro.component';
+import { MaquetaComponent } from './maqueta/maqueta.component';
+import { SubHomeComponent } from './maqueta/sub-home/sub-home.component';
+import { SubFooterComponent } from './maqueta/sub-footer/sub-footer.component';
+import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
+
 import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta.component';
 import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
+
 
 
 
@@ -56,6 +63,11 @@ import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
     BackendSubatributoComponent,
     SubMenuComponent,
     PrioritySelectPipe,
+    LoginYRegistroComponent,
+    MaquetaComponent,
+    SubHomeComponent,
+    SubFooterComponent,
+    SubHeaderComponent,
     ProductoEtiquetaComponent,
     MostrarMitadStringPipe
  ],
