@@ -41,6 +41,8 @@ import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
 
 import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta.component';
 import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
+import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado.component';
+import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
 
 
 
@@ -69,7 +71,9 @@ import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
     SubFooterComponent,
     SubHeaderComponent,
     ProductoEtiquetaComponent,
-    MostrarMitadStringPipe
+    MostrarMitadStringPipe,
+    ProductoFiltradoComponent,
+    ProductoCategoriaComponent
  ],
   imports: [
     BrowserModule,

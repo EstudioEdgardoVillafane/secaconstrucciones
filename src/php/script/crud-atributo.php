@@ -19,6 +19,13 @@
 		$sql1= "INSERT INTO atributo (a_nombre,a_seccion,a_status) 
 		VALUES ('".$_GET["nombre"]."','".$_GET["seccion"]."','1')";
 		$NewConnect->ExecuteSql($sql1);
+
+		$sql = "SELECT * FROM atributo WHERE a_status=1";
+		$varAux = @$NewConnect->CreateJson($sql);
+		$NewConnect->SaveJsonGeneric('atributo.json',$varAux);
+	}
+	if($_GET["data"]==10){
+		$NewConnect->ReadJsonGeneric("atributo.json");
 	}
   if($_GET["data"]==5){                   /** List    */
 		$sql="SELECT a_id,a_nombre,a_seccion,a_status,s_id,s_nombre FROM atributo,seccion WHERE a_status=1 and s_id=a_seccion";	

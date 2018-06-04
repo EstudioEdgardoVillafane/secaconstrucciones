@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<section class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Productos de {{categoriaName}}</h3>
+      </div>
+    </div>
+
+   <div class="row">
+      <div class="col-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of JsonProducto">
+        <div class="d-flex rounded py-3 cont-img">
+          <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+        </div>
+        <hr id="hr m-0">
+        <div class="text-center ">
+          <h5>${{producto.p_precio}}</h5>
+        </div>
+      </div>  
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

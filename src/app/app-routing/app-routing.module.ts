@@ -20,11 +20,14 @@ import {ContactoComponent} from '../contacto/contacto.component';
 import { ProductoEtiquetaComponent } from '../producto-etiqueta/producto-etiqueta.component';
 
 import {LoginYRegistroComponent} from '../login-y-registro/login-y-registro.component';
-
+import { ProductoFiltradoComponent } from '../producto-filtrado/producto-filtrado.component';
+import { ProductoCategoriaComponent } from '../producto-categoria/producto-categoria.component';
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'productos-seccion/:seccion', component: ProductoFiltradoComponent },
+  { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
   { path: 'admin771', component: LoginComponent },
   { path: 'backend',
   component: BackendComponent,
@@ -43,7 +46,7 @@ const routes: Routes = [
   { path: 'maqueta', component: MaquetaComponent },
   { path: 'login-y-registro', component: LoginYRegistroComponent },
   { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
-  { path: 'producto-etiqueta/:etiqueta', component:ProductoEtiquetaComponent }
+  { path: 'producto-etiqueta/:etiqueta', component: ProductoEtiquetaComponent },
 ];
 
 @NgModule({

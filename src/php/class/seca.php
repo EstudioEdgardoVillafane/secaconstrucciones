@@ -31,6 +31,12 @@ class Seca{
 			$con->Execute($sql);
 			$con->CloseConnection();
 	}
+	public function SaveJsonGeneric($file, $varJson){
+		file_put_contents($file,$varJson);
+	}
+	public function ReadJsonGeneric($file){
+		echo file_get_contents($file);
+	}
 	public function SaveJson($varJson){
 		$file = 'productos.json';
 		file_put_contents($file, $varJson);

@@ -5,20 +5,19 @@
             <div class="row">
               <section class="col-md-4 bg-dark px-0 py-2">
                   <!-- (mouseover)="setClickedItem(categoria)" [class.active]="i == selectedItem"-->
-                <ul class="nav pl-2" *ngFor="let categoria of categorias" >
-                  <li class="nav-item px-2 flex-row">
-                    <a class="nav-link py-2 text-white text-capitalize d-flex align-items-end" (click)="mostrar()">{{categoria.s_nombre}}
-                    </a>
+                <ul class="nav pl-2" *ngFor="let seccion of JsonSecciones" (mouseenter)="overSeccion(seccion.s_id)" (click)="onTabChange('/productos-seccion/'+seccion.s_nombre)" routerLink="/productos-seccion/{{seccion.s_nombre}}">
+                  <li class="nav-item px-2 flex-row"  >
+                    <a class="nav-link py-2 text-white text-capitalize d-flex align-items-end">{{seccion.s_nombre}}</a>
                   </li>
                 </ul>
               </section>
               <section class="col-md-8 bg-light h-100 px-3 py-2">
                 <!-- <p>{{nombre}}</p> -->
-                <!-- <ul class="nav" *ngFor="let itemDerecha of selectedItem.subCategoria">
-                  <li class="nav-item">
-                    <a class="nav-link text-capitalize">{{itemDerecha}} </a>
+                <ul class="nav" *ngFor="let itemDerecha of JsonOfCategoriasListed" (click)="onTabChange('/productos-seccion/'+itemDerecha.a_nombre)">
+                  <li class="nav-item" routerLink="/productos-categoria/{{itemDerecha.a_nombre}}">
+                    <a class="nav-link text-capitalize">{{itemDerecha.a_nombre}} </a>
                   </li>
-                </ul> -->
+                </ul>
               </section>
             </div>
           </div>
