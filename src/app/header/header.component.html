@@ -71,12 +71,7 @@
   <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
     <ul class="navbar-nav text-uppercase text-white">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin771">Categorías&nbsp;
-          <i class="fa fa-angle-down"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="mostrarMegaMenu()">Mega Menú&nbsp;
+        <a class="nav-link" (click)="mostrarMegaMenu()">Categorias&nbsp;
           <i class="fa fa-angle-down"></i>
         </a>
         <div *ngIf="show">
@@ -86,7 +81,7 @@
     </ul>
     <ul class="navbar-nav text-uppercase text-white ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Iniciar sesión</a>
+        <a class="nav-link" routerLink="/admin771">Iniciar sesión</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Registrarse</a>

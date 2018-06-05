@@ -23,6 +23,9 @@ export class ProductoFiltradoComponent implements OnInit {
     console.log(this.Listar());
   }
 
+
+
+
   Listar(){
     this.countGlobal = 0;
     this.__productosService.listProduct()

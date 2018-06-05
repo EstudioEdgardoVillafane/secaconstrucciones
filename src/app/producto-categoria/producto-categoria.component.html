@@ -1,23 +1,68 @@
 <app-header></app-header>
 
-<section class="mt-5">
+<section class="bg-grey">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h3>Productos de {{categoriaName}}</h3>
-      </div>
+  <div class="row">
+    <div class="col-12 mt-3">
+      <p class="text-etiqueta">Etiquetas sugeridas: </p>
     </div>
+  </div>
+
+
+    
 
    <div class="row">
-      <div class="col-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of JsonProducto">
-        <div class="d-flex rounded py-3 cont-img">
-          <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+      <!-- *ngFor="let producto of JsonProducto" -->
+      <div class="col-3">
+      <h6>Seccion</h6>
+      <h4>Productos de Categoria{{categoriaName}}</h4>
+      <h5 class="mt-4">Opciones</h5>
+      <p class="text-etiqueta"></p>
+      </div>
+      <div class="col-8">
+        <div class="row">
+        <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" >
+            <div class="d-flex rounded py-3 cont-img">
+              <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+            </div>
+            <hr id="hr m-0">
+            <div class="text-center ">
+                <!-- {{producto.p_precio}} -->
+              <h5>$99</h5>
+            </div>
+          </div>
+          <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" >
+              <div class="d-flex rounded py-3 cont-img">
+                <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+              </div>
+              <hr id="hr m-0">
+              <div class="text-center ">
+                  <!-- {{producto.p_precio}} -->
+                <h5>$99</h5>
+              </div>
+            </div>
+          <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" >
+              <div class="d-flex rounded py-3 cont-img">
+                <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+              </div>
+              <hr id="hr m-0">
+              <div class="text-center ">
+                  <!-- {{producto.p_precio}} -->
+                <h5>$99</h5>
+              </div>
+            </div>
+            <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" >
+                <div class="d-flex rounded py-3 cont-img">
+                  <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
+                </div>
+                <hr id="hr m-0">
+                <div class="text-center ">
+                    <!-- {{producto.p_precio}} -->
+                  <h5>$99</h5>
+                </div>
+              </div>      
         </div>
-        <hr id="hr m-0">
-        <div class="text-center ">
-          <h5>${{producto.p_precio}}</h5>
-        </div>
-      </div>  
+      </div>
     </div>
   </div>
 </section>
