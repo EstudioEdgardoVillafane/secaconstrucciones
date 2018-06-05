@@ -831,11 +831,13 @@ auxDuplicate;
     
     this.formulario = new FormData(this.formElement);
     this.formulario.append("slug", this.globalSlug.value);
+    this.formulario.append("nameproduct","string de prueba");
     this.formulario.append("arrayEtiqueta", this.ArrayOfEtiquetasForId);
-     this.request = new XMLHttpRequest();
-     this.request.open("POST", "php/script/store-product.php", true);
-      console.log(this.request.send(this.formulario));
-      this.ListContent();    
+
+    this.request = new XMLHttpRequest();
+    this.request.open("POST", "php/script/store-product.php", true);
+    console.log(this.request.send(this.formulario));
+    this.ListContent();    
    
     }
 

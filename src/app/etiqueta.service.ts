@@ -16,6 +16,9 @@ export class EtiquetaService {
   storeEtiqueta(etiqueta){
     return this.http.get('php/script/store-etiqueta.php?nombre='+etiqueta);
   }
+  doListJSON(){
+    return this.http.get('php/script/list-etiqueta-json.php');
+  }
   getJsonForName(name:string, json){
     return of(json.find((primero => primero.e_nombre === name)));
   }
