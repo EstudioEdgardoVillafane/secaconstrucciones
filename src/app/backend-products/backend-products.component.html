@@ -309,15 +309,12 @@
                           </div>  
                         <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributoEdit" (keyup)="filterAtributoEdit()">
                       </div>
-                      <div class="col-12">   
-                        <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributoEdit" (keyup)="filterAtributoEdit()">
-                      </div>
+                      
                     </div>
                     <div class="row mt-2" *ngIf="BooleanToCloseAtributoEdit;else otroAtributoEdit">
                       <div class="list-group col-2" id="contaEdit{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
                         <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClickedEdit(atributo.a_id)" id="atributoEdit{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
                       </div>
-                      <a>Agregar otro atributo</a>
                     </div>
                     <ng-template #otroAtributoEdit>
                         <a (click)="returnAtributoEdit()" style="cursor:pointer; color:cornflowerblue;">Cambiar atributo</a>
@@ -325,9 +322,9 @@
                     </div>
                     <div *ngIf="BoolToSubAtributeEdit">
                     <div class="row mt-4">
-                        <div class="col-8 offset-2">
+                        <div class="col-6">
                           <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center">
-                            <label class="my-0 pt-2 pb-2">Listado de subatributos.</label>
+                            <label class="my-0 pt-2 pb-2">Listado de opciones.</label>
                           </div>
                           <div style="overflow-y: auto; max-height: 120px;">
                               <ul class="list-group">
@@ -336,6 +333,14 @@
                           </div>
                           <div style="border:solid 1px #ced4da;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; height:50px" class="text-center"></div>
                         </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                            <div class="input.group-prepend">
+                              <button  class="input-group-text btn-primary" type="button" id="btn-addoption" (click)="addOpcionEdit()">Agregar</button>
+                            </div>
+                            <input type="text" id="storeOpcionEdit" placeholder="Agregar nueva opcion" class="form-control">
+                          </div>
+                          </div>
                       </div>
                       </div>
                       <div *ngIf="otroBoton">

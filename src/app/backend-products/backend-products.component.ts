@@ -481,11 +481,17 @@ seccionValue;
  }
 
  filterEtiqueta(){
-  
+  this.auxvar = document.getElementById("searchEtiqueta");
+  if(this.auxvar.value != ""){
+    this.limiteEtiqueta = 100;
+  }else{
+    this.limiteEtiqueta = 15;
+  }
+  this.contador = 0;
+
   this.ButtonStoreSeccion = document.getElementById("storeEtiqueta");
 
-  this.auxvar = document.getElementById("searchEtiqueta");  
-  this.contador = 0;
+    
   if(this.JsonEtiquetas != undefined){
   for(this.i=0; this.i < this.JsonEtiquetas.length ; this.i++){
     if(this.JsonEtiquetas[this.i].e_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
@@ -508,11 +514,7 @@ seccionValue;
     this.ButtonStoreSeccion.value = "Agregar ";
     this.ButtonStoreSeccion.style.background = "#007bff";
   }
-  if(this.auxvar.value != ""){
-    this.limiteEtiqueta = 100;
-  }else{
-    this.limiteEtiqueta = 15;
-  }
+  
   console.log(this.contador);
 }
 BooleanToCloseEtiquetas = true;
@@ -584,8 +586,9 @@ addAtributo(){
     this.atributoService.CrudFunction(1,"",this.seccionValue,0)
     .map((response) => response.json())
     .subscribe((data) => {
+      this.atributoService.getJsonForName(this.InputStoreAtributo.value,data)
+      .subscribe((data) => { this.atributoValue = data.a_id})
       this.listAtributo = data;
-      this.atributoValue = this.listAtributo.a_id;
       this.BooleanToCloseAtributo = false;
       this.InputStoreAtributo.disabled = true;
       this.atributoStore.disabled = true;
@@ -930,26 +933,62 @@ atributoClickedEdit(id : string){
     this.atributoNameToAdd = document.getElementById("buscarAtributoEdit"); 
     this.atributoNameToAdd.disabled = true
     this.atributoNameToAdd.value = this.atributoName.value; 
-    this.atributoService.getJsonForName(this.atributoName.value,this.listAtributo)
-    .subscribe(result => this.atributoIDEdit = result  );
-    this.subAtributoListEdit(this.atributoIDEdit.a_id);
-    this.BoolToSubAtributeEdit = true;
+    this.atributoService.getJsonForName(this.atributoNameToAdd.value,this.listAtributo)
+    .subscribe((result) => {
+      this.subAtributoListEdit(result.a_id);
+      console.log(result);
+      this.BoolToSubAtributeEdit = true;
+    });
 }
-
-filterAtributoEdit(value){
+addAtributoEdit(){
+  this.atributoStore = document.getElementById("AgregarAtributoEdit");
+  this.InputStoreAtributo = document.getElementById("buscarAtributoEdit");
+  this.atributoService.CrudFunction(3,this.InputStoreAtributo.value,this.seccionValue,0)
+  .subscribe((data) => {
+    this.atributoService.CrudFunction(1,"",this.seccionValue,0)
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.atributoService.getJsonForName(this.InputStoreAtributo.value,data)
+      .subscribe((data) => {
+        this.subAtributoListEdit(data.a_id);
+        this.BoolToSubAtributeEdit = true;
+        this.atributoValue = data.a_id;
+      })
+      this.listAtributo = data;
+      this.InputStoreAtributo.disabled = true;
+      this.atributoStore.disabled = true;
+      this.BooleanToCloseAtributoEdit = false;
+      console.log(this.atributoValue);
+      
+    });    
+  }); 
+}
+filterAtributoEdit(){
 
   this.auxvar = document.getElementById("buscarAtributoEdit");  
-
+  this.contador = 0;
   for(this.i=0; this.i < this.listAtributo.length ; this.i++){
   
-    if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
-      this.auxvar2 = document.getElementById("contaEdit"+this.listSeccion[this.i].a_id);
+    if(this.listAtributo[this.i].a_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
+      this.auxvar2 = document.getElementById("contaEdit"+this.listAtributo[this.i].a_id);
       this.auxvar2.style.display = "block";
+      this.contador++;
     }else{
-      this.auxvar2 = document.getElementById("contaEdit"+this.listSeccion[this.i].a_id);
+      this.auxvar2 = document.getElementById("contaEdit"+this.listAtributo[this.i].a_id);
       this.auxvar2.style.display = "none";
     }
   }
+  this.ButtonStoreAtributo = document.getElementById("AgregarAtributoEdit");
+
+    if(this.contador > 0){
+      this.ButtonStoreAtributo.disabled = true;
+      this.ButtonStoreAtributo.value = "Buscar ";
+      this.ButtonStoreAtributo.style.background = "rgb(67, 67, 67)";
+    }else{
+      this.ButtonStoreAtributo.disabled = false;
+      this.ButtonStoreAtributo.value = "Agregar ";
+      this.ButtonStoreAtributo.style.background = "#007bff";
+    }
 }
 returnAtributoEdit(){
   this.BooleanToCloseAtributoEdit=true;
@@ -974,8 +1013,17 @@ ShowAtribute(){
   this.otroBoton = true;
 }
 
+addOpcionEdit(){
+  this.varOptionToStore = document.getElementById("storeOpcionEdit");
+  this.subatributeService.CrudFunction(3,0,this.varOptionToStore.value,this.atributoValue)
+  .subscribe((data) => {
+  
+  this.subAtributoList(this.atributoValue);
+  }); 
+}
+
 subAtributoListEdit(id){
-  this.subatributeService.CrudFunction(6,id,"",0)
+  this.subatributeService.CrudFunction(6,0,"",id)
   .map((response) => response.json())
   .subscribe((data) => {
     this.listSubAtributo = data;

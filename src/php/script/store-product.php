@@ -71,6 +71,11 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 		$SQL = "INSERT INTO relacionetiqueta (re_idproducto,re_etiqueta) VALUES ('".$ValueID."','".$seleccion[$x]."')";
 		$NewConnect->ExecuteSql($SQL);
 		 }
+		 
+		 $sql = "SELECT * FROM relacionetiqueta";
+		 $varAux = $NewConnect->CreateJson($sql);
+		 $NewConnect->SaveJsonGeneric("rel-etiqueta.json",$varAux);
+
 
 		 for($x=0;$x<count($seleccion);$x++){
 			$auxVar = 0;
@@ -81,7 +86,7 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 			$NewConnect->ExecuteSql($sql);
 		 }
 
-		 @$sql = "SELECT * FROM producto,relacionetiqueta WHERE p_status = 1 AND p_id=re_idproducto ORDER BY p_orden ASC";
+		 @$sql = "SELECT * FROM producto WHERE p_status = 1  ORDER BY p_orden ASC";
 		 @$varAux = @$NewConnect->CreateJson($sql);
 		 @$NewConnect->SaveJson(@$varAux);
  ?>
