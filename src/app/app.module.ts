@@ -4,11 +4,13 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 //Products
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { LoginComponent } from './login/login.component';
 import { BackendProductsComponent } from './backend-products/backend-products.component';
 import { BackendComponent } from './backend/backend.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,12 +34,12 @@ import { SubAtributoService } from './sub-atributo.service';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 import { PrioritySelectPipe } from './priority-select.pipe';
 import { EtiquetaService } from './etiqueta.service';
-import { LoginYRegistroComponent } from './login-y-registro/login-y-registro.component';
 import { MaquetaComponent } from './maqueta/maqueta.component';
 import { SubHomeComponent } from './maqueta/sub-home/sub-home.component';
 import { SubFooterComponent } from './maqueta/sub-footer/sub-footer.component';
 import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
-
+import { RegistroComponent } from './login-y-registro/registro/registro.component';
+import { LoginComponent} from './login-y-registro/login/login.component';
 
 
 @NgModule({
@@ -58,18 +60,20 @@ import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
     BackendSubatributoComponent,
     SubMenuComponent,
     PrioritySelectPipe,
-    LoginYRegistroComponent,
+    LoginComponent,
     MaquetaComponent,
     SubHomeComponent,
     SubFooterComponent,
-    SubHeaderComponent
+    SubHeaderComponent,
+    RegistroComponent
  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
     
   ],
   providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService], //Services
