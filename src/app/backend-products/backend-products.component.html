@@ -27,7 +27,7 @@
                 <label>¿Cuál es el nombre de tu producto?</label>
               </div>
               <div class="col-8 offset-2 text-center">
-                <input type="text" placeholder="Titulo de tu producto" name="nameproduct" id="nameproduct" class="form-control" >
+                <input type="text" placeholder="Titulo de tu producto" name="nameproduct" id="nombreProducto" class="form-control" >
               </div>
               <div *ngIf="BooleanToAlertTitulo" class="alert alert-danger">
                 <div>
@@ -35,6 +35,15 @@
                 </div>
               </div>
             </div> <!-- ./Row  -->
+
+            <div class="row">
+              <div class="col-12 text-center">
+                <label>Escriba el slug del producto. (URL del producto)</label>
+              </div>
+              <div class="col-8 offset-2 text-center">
+                <input type="text" placeholder="Ejemplo: Placas-antihumendad" name="slugP" id="slugP" class="form-control">
+              </div>
+            </div>
 
             <div class="row"> 
               <div class="col-12">
@@ -134,17 +143,28 @@
                 </div>
               </div>
               <div class="row mt-3">
+                <div class="col-12">
+                  <h3>Etiquetas</h3>
+                </div>
                 <div class="col-12 input-group">
                   
                     <div class="input.group-prepend">
-                      <input (click)="storeEtiqueta()" type="button" class="input-group-text text-white " style="cursor:pointer" id="storeEtiqueta" disabled value="Buscar">
+                      <input (click)="storeEtiqueta()" type="button" class="input-group-text text-white " style="cursor:pointer" id="storeEtiqueta"  value="Buscar">
                     </div>
                     <input type="text" placeholder="Buscar etiqueta" class="form-control" id="searchEtiqueta"  (keyup)="filterEtiqueta()">
                 
                   </div>
                   </div>
+                  <div class="row mt-2"> 
+                    <div class="col-12">
+                      <h5>Etiquetas seleccionadas:</h5>
+                      <a *ngFor="let etiqueta of ArrayOfEtiquetas " class="btn btn-primary text-white mr-1 mt-1" (click)="deleteEtiqueta(etiqueta)">{{etiqueta}} <i class="fa fa-close"></i></a>  
+                    </div>
+                  </div>
+                    
+                    
                   <div class="row mt-2" *ngIf="BooleanToCloseEtiquetas">
-                      <div *ngFor="let jsonEtiqueta of JsonEtiquetas" class="list-group col-2 mt-2" id="EtiquetaShow{{jsonEtiqueta.e_id}}" style="padding-left:15px;" >
+                      <div *ngFor="let jsonEtiqueta of JsonEtiquetas | slice : 0 : limiteEtiqueta" class="list-group col-2 mt-2" id="EtiquetaShow{{jsonEtiqueta.e_id}}" style="padding-left:15px;" >
                           <input type="button" class="list-group-item list-group-item-action text-white" style="background-color: #3429ff; box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="etiquetaClicked(jsonEtiqueta.e_id)" id="Etiqueta{{jsonEtiqueta.e_id}}" value="{{jsonEtiqueta.e_nombre}}" >
                         </div>
                   </div>
@@ -256,19 +276,24 @@
           <div *ngIf="BoolEditAtributes">
 
               <div class="row"> 
+                
                   <div class="col-12">
                     <label>Elija seccion</label>
                   </div>  
-                  <div class="col-12">   
-                    <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccionEdit" (keyup)="filterSection()">
-                  </div>
+                  <div class="col-12 input-group"> 
+                      <div class="input-group-prepend">
+                          <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addSectionEdit()" id="AgregarSeccionEdit" type="button" value="Buscar ">
+      
+                      </div>  
+                      <input class="form-control" name="section" placeholder=" Buscar seccion " id="buscarSeccionEdit" (keyup)="filterSectionEdit()">
+                    </div>
+      
                 </div>
     
                 <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit;else seccionEdit">
                   <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listSeccion">
                     <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="seccionClickedEdit(seccion.s_id)" id="editSection{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
                   </div>
-                  <a>Agregar otra seccion</a>
                 </div> <!-- ./BooleanToCloseSeccion -->
                   <ng-template #seccionEdit>
                     <a (click)="returnSeccionEdit()" style="cursor:pointer; color:cornflowerblue;">Cambiar seccion</a>
@@ -278,15 +303,18 @@
                       <div class="col-12">
                         <label>Elija atributo</label>
                       </div>  
-                      <div class="col-12">   
+                      <div class="col-12 input-group">   
+                          <div class="input-group-prepend">
+                              <input style="cursor:pointer;color:white;" class="input-group-text" (click)="addAtributoEdit()" id="AgregarAtributoEdit" type="button" value="Buscar ">
+                          </div>  
                         <input class="form-control" name="section" placeholder=" Buscar atributo " id="buscarAtributoEdit" (keyup)="filterAtributoEdit()">
                       </div>
+                      
                     </div>
                     <div class="row mt-2" *ngIf="BooleanToCloseAtributoEdit;else otroAtributoEdit">
                       <div class="list-group col-2" id="contaEdit{{atributo.a_id}}" style="padding-left:15px;" *ngFor="let atributo of listAtributo">
                         <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="atributoClickedEdit(atributo.a_id)" id="atributoEdit{{atributo.a_id}}" value="{{atributo.a_nombre}}" >
                       </div>
-                      <a>Agregar otro atributo</a>
                     </div>
                     <ng-template #otroAtributoEdit>
                         <a (click)="returnAtributoEdit()" style="cursor:pointer; color:cornflowerblue;">Cambiar atributo</a>
@@ -294,9 +322,9 @@
                     </div>
                     <div *ngIf="BoolToSubAtributeEdit">
                     <div class="row mt-4">
-                        <div class="col-8 offset-2">
+                        <div class="col-6">
                           <div style="border:solid 1px #ced4da;border-top-left-radius: 15px;border-top-right-radius: 15px;" class="text-center">
-                            <label class="my-0 pt-2 pb-2">Listado de subatributos.</label>
+                            <label class="my-0 pt-2 pb-2">Listado de opciones.</label>
                           </div>
                           <div style="overflow-y: auto; max-height: 120px;">
                               <ul class="list-group">
@@ -305,6 +333,14 @@
                           </div>
                           <div style="border:solid 1px #ced4da;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; height:50px" class="text-center"></div>
                         </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                            <div class="input.group-prepend">
+                              <button  class="input-group-text btn-primary" type="button" id="btn-addoption" (click)="addOpcionEdit()">Agregar</button>
+                            </div>
+                            <input type="text" id="storeOpcionEdit" placeholder="Agregar nueva opcion" class="form-control">
+                          </div>
+                          </div>
                       </div>
                       </div>
                       <div *ngIf="otroBoton">

@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(private productService : ProductosService) { }
 
   ngOnInit() {
+  
+
   }
 
 

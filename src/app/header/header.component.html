@@ -5,64 +5,83 @@
       <img src="../../assets/img/logo.jpg" class=" logo-img img-fluid" alt="">
     </a>
   </div>
-  <!-- img mobile -->
+
   <div class="col-12 d-block d-sm-none">
     <a href="#">
       <img src="../../assets/img/logo.jpg" class="img-fluid d-flex mx-auto img-mobile" alt="">
     </a>
   </div>
 
-  <div class="col-10 col-md-8 col-lg-6 my-2 my-lg-0 p-0 buscador-y-atributos">
-    <div class="d-flex col-12 py-2 pl-0">
-      <input id="searchProduct" class="form-control rounded-0 rounded-left" type="search" placeholder="Buscar producto..." aria-label="Search"
-        aria-describedby="basic-addon2" (blur)="closeList()" (keyup)="SearchEngineProducts()">
+  
+    <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
 
-      <button class="btn px-3 bg-white border-top border-right border-bottom rounded-right" type="submit">
-        <i class="fa fa-search fa-md my-auto p-0"></i>
-      </button>
-    </div>
+      <!-- input -->
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
 
-    <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
-      <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
-        <ul class="pl-0 ml-0 mb-2 mt-2">
-          <li id="cont{{product.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect" *ngFor="let product of jsonSearch" style="display:block; cursor:pointer"
-            (click)="productClicked(product.p_id)">
-            <a id="p{{product.p_id}}">{{product.p_nombre}}</a>
-          </li>
-        </ul>
+          <input id="searchProduct" type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2"  (keyup)="SearchEngineProducts()">
+          <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right"  >
+            <i class="fa fa-search fa-md my-auto p-0"></i>
+          </button>
+         
       </div>
-    </div>
+      <div class="cont-atributos bg-light col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador" *ngIf="BoolList">
+          <ul class="list-group p-0 m-0 text-dark">
+            <li id="cont{{product.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch" (click)="productClicked(product.p_id)">
+              <a id="p{{product.p_id}}" class="text-muted">{{product.p_nombre}}</a>
+           </li>
+          </ul>
+            
+         
+        </div>
 
+      <!-- <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+        <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
+          <ul class="pl-0 ml-0 mb-2 mt-2">
+            <li id="cont{{product.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let product of jsonSearch" style="display:block; cursor:pointer" (click)="productClicked(product.p_id)" >
+              <a id="p{{product.p_id}}">{{product.p_nombre}}</a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+      <!-- botón hamburguesa -->
+
+
+      <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
+        <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-white"></span>
+        </button>
+      </div>
+
+      <!-- barra inferior -->
+   
+
+    
+    
     <!-- atributos -->
-    <div class="cont-atributos bg-light col-12 px-0 py-2" *ngIf="BoolList">
-      <ul class="list-group p-0 m-0 text-dark">
-        <li id="cont{{atributo.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch">
-          <a id="p{{product.p_id}}" class="text-muted">{{atributo.p_nombre}}</a>
-        </li>
-      </ul>
-    </div>
+    
     <!-- fin atributos -->
-    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+  
 
-      <ul class="navbar-nav text-uppercase text-white">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin771">Categorías&nbsp;
-            <i class="fa fa-angle-down"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="mostrarMegaMenu()">Mega Menú&nbsp;
-            <i class="fa fa-angle-down"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
   <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+    <ul class="navbar-nav text-uppercase text-white">
+      <li class="nav-item">
+        <a class="nav-link" (click)="mostrarMegaMenu()">Categorias&nbsp;
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <div *ngIf="show">
+          <app-sub-menu></app-sub-menu>
+        </div>
+      </li>
+    </ul>
     <ul class="navbar-nav text-uppercase text-white ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Iniciar sesión</a>
+        <a class="nav-link" routerLink="/admin771">Iniciar sesión</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Registrarse</a>
@@ -74,14 +93,6 @@
       </li>
     </ul>
   </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</nav>
-
-<!-- Mega Menú -->
-<div class="container-fluid" *ngIf="show">
-  <app-sub-menu></app-sub-menu>
 </div>
+
+</nav>
