@@ -7,13 +7,14 @@ import { HomeComponent } from '../home/home.component';
 import {BackendComponent} from '../backend/backend.component';
 import {BackendProductsComponent} from '../backend-products/backend-products.component';
 import {BackendAtributoComponent} from '../backend-atributo/backend-atributo.component';
-import { LoginComponent} from '../login/login.component';
 import { BackendSeccionComponent } from '../backend-seccion/backend-seccion.component';
 import { BackendUserComponent } from '../backend-user/backend-user.component';
 import { BackendSubatributoComponent } from '../backend-subatributo/backend-subatributo.component';
 import { BackendClienteComponent } from '../backend-cliente/backend-cliente.component';
 import { ValidacionClienteComponent } from '../validacion-cliente/validacion-cliente.component';
 import { MaquetaComponent } from '../maqueta/maqueta.component';
+import { LoginComponent} from '../login-y-registro/login/login.component';
+import { RegistroComponent} from '../login-y-registro/registro/registro.component';
 
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
@@ -34,7 +35,6 @@ const routes: Routes = [
   { path: 'admin771', component: LoginComponent},
   { path: 'productos-seccion/:seccion', component: ProductoFiltradoComponent },
   { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
-  { path: 'admin771', component: LoginComponent },
   { path: 'backend',
   component: BackendComponent,
   children:[
@@ -50,9 +50,12 @@ const routes: Routes = [
   { path: 'productos', component: BackendProductsComponent },
   { path: 'detalle-producto/:nombre', component: ProductoDetalleComponent },
   { path: 'maqueta', component: MaquetaComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: 'login-y-registro', component: LoginYRegistroComponent },
   { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
   { path: 'producto-etiqueta/:etiqueta', component: ProductoEtiquetaComponent },
+
 ];
 
 @NgModule({
