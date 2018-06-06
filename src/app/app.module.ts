@@ -34,7 +34,6 @@ import { BackendClienteService } from './backend-cliente.service';
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { PrioritySelectPipe } from './priority-select.pipe';
 import { ValidacionClienteComponent } from './validacion-cliente/validacion-cliente.component';
-import { EtiquetaService } from './etiqueta.service';
 import { MaquetaComponent } from './maqueta/maqueta.component';
 import { SubHomeComponent } from './maqueta/sub-home/sub-home.component';
 import { SubFooterComponent } from './maqueta/sub-footer/sub-footer.component';
@@ -69,7 +68,6 @@ import { ProductoCategoriaComponent } from './producto-categoria/producto-catego
     LoginComponent,
     BackendClienteComponent,
     ValidacionClienteComponent,
-    LoginYRegistroComponent,
     MaquetaComponent,
     SubHomeComponent,
     SubFooterComponent,

@@ -21,8 +21,6 @@ import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.com
 import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
 import {ContactoComponent} from '../contacto/contacto.component';
 import { ProductoEtiquetaComponent } from '../producto-etiqueta/producto-etiqueta.component';
-
-import {LoginYRegistroComponent} from '../login-y-registro/login-y-registro.component';
 import { ProductoFiltradoComponent } from '../producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from '../producto-categoria/producto-categoria.component';
 // Rutas                             
@@ -52,7 +50,6 @@ const routes: Routes = [
   { path: 'maqueta', component: MaquetaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'login-y-registro', component: LoginYRegistroComponent },
   { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
   { path: 'producto-etiqueta/:etiqueta', component: ProductoEtiquetaComponent },
 
