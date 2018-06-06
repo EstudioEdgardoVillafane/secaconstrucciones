@@ -15,10 +15,6 @@
   
     <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
 
-
-      
-      
-      
       <!-- input -->
       <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
 
@@ -28,9 +24,17 @@
           </button>
          
       </div>
+      <div class="cont-atributos bg-light col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador" *ngIf="BoolList">
+          <ul class="list-group p-0 m-0 text-dark">
+            <li id="cont{{product.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch" (click)="productClicked(product.p_id)">
+              <a id="p{{product.p_id}}" class="text-muted">{{product.p_nombre}}</a>
+           </li>
+          </ul>
+            
+         
+        </div>
 
-
-      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+      <!-- <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
         <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
           <ul class="pl-0 ml-0 mb-2 mt-2">
             <li id="cont{{product.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let product of jsonSearch" style="display:block; cursor:pointer" (click)="productClicked(product.p_id)" >
@@ -38,7 +42,7 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
       <!-- botón hamburguesa -->
 
 
@@ -55,13 +59,7 @@
     
     
     <!-- atributos -->
-    <div class="cont-atributos bg-light col-12 px-0 py-2" *ngIf="BoolList">
-      <ul class="list-group p-0 m-0 text-dark">
-        <li id="cont{{atributo.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch">
-          <a id="p{{product.p_id}}" class="text-muted">{{atributo.p_nombre}}</a>
-        </li>
-      </ul>
-    </div>
+    
     <!-- fin atributos -->
   
 
@@ -73,12 +71,7 @@
   <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
     <ul class="navbar-nav text-uppercase text-white">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin771">Categorías&nbsp;
-          <i class="fa fa-angle-down"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="mostrarMegaMenu()">Mega Menú&nbsp;
+        <a class="nav-link" (click)="mostrarMegaMenu()">Categorias&nbsp;
           <i class="fa fa-angle-down"></i>
         </a>
         <div *ngIf="show">
@@ -88,7 +81,7 @@
     </ul>
     <ul class="navbar-nav text-uppercase text-white ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Iniciar sesión</a>
+        <a class="nav-link" routerLink="/admin771">Iniciar sesión</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Registrarse</a>

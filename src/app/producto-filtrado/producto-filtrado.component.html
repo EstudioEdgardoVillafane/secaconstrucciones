@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<section class="bg-grey pb-5">
+  <div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <p class="text-etiqueta">Etiquetas sugeridas:  <a class="ml-3">Perfileria</a> <a class="ml-3">Construccion</a> <a class="ml-3">Placas Antihumedad</a></p>
+    </div>
+  </div>
+
+
+    
+
+   <div class="row">
+      
+      <div class="col-3">
+      <h6>Seccion</h6>
+      <h4>Productos de {{categoriaName}}</h4>
+      <h5 class="mt-4">Opciones</h5>
+      <p class="text-etiqueta">+ De madera</p>
+      <p class="text-etiqueta">+ De hierro</p>
+      <p class="text-etiqueta">+ Yeso</p>
+      <p class="text-etiqueta">+ Antihumedad</p>
+      <p class="text-etiqueta">+ Con instalación</p>
+      </div>
+      <div class="col-8">
+        <div class="row">
+        <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" *ngFor="let producto of JsonProducto" >
+            <div class="d-flex rounded py-3 cont-img">
+              <img src="{{producto.p_url}}" class="align-self-center mh mx-auto" alt="">
+            </div>
+            <hr id="hr m-0">
+            <div class="text-center ">
+                
+              <h5>${{producto.p_precio}}</h5>
+              <p class="name-producto">{{producto.p_nombre}}</p>
+            </div>
+          </div>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

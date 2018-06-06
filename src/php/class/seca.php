@@ -22,7 +22,6 @@ class Seca{
 			$ArrayJson[$i] = $fila;
 	        $i++;
 		}
-		echo json_encode($ArrayJson);
 		return json_encode($ArrayJson);
 		$con -> CloseConnection();		
 	}
@@ -32,12 +31,24 @@ class Seca{
 			$con->Execute($sql);
 			$con->CloseConnection();
 	}
+	public function SaveJsonGeneric($file, $varJson){
+		file_put_contents($file,$varJson);
+	}
+	public function ReadJsonGeneric($file){
+		echo file_get_contents($file);
+	}
 	public function SaveJson($varJson){
 		$file = 'productos.json';
 		file_put_contents($file, $varJson);
 	}
 	public function ReadJson(){
 		echo $dataProduct = file_get_contents("productos.json");
+	}
+	public function IDinsert($sql){
+		$con = new Connect();
+		$con->CreateConnection();
+		return $con->ExecuteTr($sql);
+		$con->CloseConnection();
 	}
 }
 

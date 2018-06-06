@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
  import { AppComponent } from '../app.component';
+ import { Router, ActivatedRoute } from '@angular/router';
+
  
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private LoginService : LoginService) { }
+  constructor(private LoginService : LoginService, private router : Router, private route : ActivatedRoute) { }
 
   UserOnline = true;
   userValue ;
@@ -53,10 +55,8 @@ export class LoginComponent implements OnInit {
       }else{
         console.log(data);
       //localStorage.setItem("keyTwo","1");    
-        location.href="admin771/productos";
-      
-
-      }
+      this.router.navigate(['../backend'], {relativeTo: this.route});
+    }
     });
   }
 

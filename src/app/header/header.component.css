@@ -102,7 +102,7 @@ ul:first-child li a {
 .cont-atributos {
   border: 1px solid #e0e0e0;
   position: absolute;
-  top:100%; 
+  top:43%; 
   left:0px;
   z-index: 100;
 }
