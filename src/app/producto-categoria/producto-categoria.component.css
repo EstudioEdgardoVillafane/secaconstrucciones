@@ -8,3 +8,10 @@
 .text-etiqueta{
     font-size:13px;
 }
+.name-producto{
+    font-size: 15px;
+}
+.mh{
+    max-width: 90%;
+    max-height: 250px;
+}

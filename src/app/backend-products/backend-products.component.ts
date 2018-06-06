@@ -662,9 +662,10 @@ filterAtributo(){
 
 }
  
-
+nameProductPrivate;
 nextOne(){
-  this.nameProduct =  document.getElementById("nameproduct");
+  this.nameProduct =  document.getElementById("nombreProducto");
+  this.nameProductPrivate = this.nameProduct.value;
   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
   this.globalSlug = document.getElementById("slugP")
   this.VarInput3 = document.getElementById("productName");
@@ -831,7 +832,7 @@ auxDuplicate;
     
     this.formulario = new FormData(this.formElement);
     this.formulario.append("slug", this.globalSlug.value);
-    this.formulario.append("nameproduct","string de prueba");
+    this.formulario.append("nameproduct", this.nameProductPrivate);
     this.formulario.append("arrayEtiqueta", this.ArrayOfEtiquetasForId);
 
     this.request = new XMLHttpRequest();
