@@ -4,10 +4,12 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
+// import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
 //Products
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
 import { BackendProductsComponent } from './backend-products/backend-products.component';
 import { BackendComponent } from './backend/backend.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,18 +36,19 @@ import { BackendClienteService } from './backend-cliente.service';
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { PrioritySelectPipe } from './priority-select.pipe';
 import { ValidacionClienteComponent } from './validacion-cliente/validacion-cliente.component';
+import { LoginYRegistroComponent } from './login-y-registro/login-y-registro.component';
 import { MaquetaComponent } from './maqueta/maqueta.component';
 import { SubHomeComponent } from './maqueta/sub-home/sub-home.component';
 import { SubFooterComponent } from './maqueta/sub-footer/sub-footer.component';
 import { SubHeaderComponent } from './maqueta/sub-header/sub-header.component';
-import { RegistroComponent } from './login-y-registro/registro/registro.component';
-import { LoginComponent} from './login-y-registro/login/login.component';
-
 
 import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta.component';
 import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
 import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
+import { PruebaService } from './prueba.service';
+
+
 
 @NgModule({
   declarations: [
@@ -65,14 +68,12 @@ import { ProductoCategoriaComponent } from './producto-categoria/producto-catego
     BackendSubatributoComponent,
     SubMenuComponent,
     PrioritySelectPipe,
-    LoginComponent,
     BackendClienteComponent,
     ValidacionClienteComponent,
     MaquetaComponent,
     SubHomeComponent,
     SubFooterComponent,
     SubHeaderComponent,
-    RegistroComponent,
     ProductoEtiquetaComponent,
     MostrarMitadStringPipe,
     ProductoFiltradoComponent,
@@ -83,10 +84,9 @@ import { ProductoCategoriaComponent } from './producto-categoria/producto-catego
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    HttpClientModule,
     HttpClientModule
   ],
-  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService,BackendClienteService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService,BackendClienteService,PruebaService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }

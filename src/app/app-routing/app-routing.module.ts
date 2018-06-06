@@ -13,8 +13,7 @@ import { BackendSubatributoComponent } from '../backend-subatributo/backend-suba
 import { BackendClienteComponent } from '../backend-cliente/backend-cliente.component';
 import { ValidacionClienteComponent } from '../validacion-cliente/validacion-cliente.component';
 import { MaquetaComponent } from '../maqueta/maqueta.component';
-import { LoginComponent} from '../login-y-registro/login/login.component';
-import { RegistroComponent} from '../login-y-registro/registro/registro.component';
+import { LoginComponent} from '../login/login.component';
 
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
@@ -49,7 +48,6 @@ const routes: Routes = [
   { path: 'detalle-producto/:nombre', component: ProductoDetalleComponent },
   { path: 'maqueta', component: MaquetaComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent },
   { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
   { path: 'producto-etiqueta/:etiqueta', component: ProductoEtiquetaComponent },
 
