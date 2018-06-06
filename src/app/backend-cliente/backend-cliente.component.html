@@ -1,0 +1,248 @@
+<section class="pt-5 pb-5 my-5">
+  <div class="container mt-5">
+  
+  <!------------Here begins the form of the Store-------------->
+    <ng-template #agregar>
+      <div *ngIf="changeTemplateAgregar;else editar">
+  
+          
+          <h2 align="center">Agregar Nuevo Cliente</h2>
+          <hr>
+        <form id="formStoreCliente">
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_nombre">Nombre completo</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_nombre" id="nameStore" value="" class="form-control" type="text" placeholder="Ingrese su nombre completo">
+            <div *ngIf="nameStoreAlert" class="alert alert-danger">*Ingrese su nombre completo</div></div>
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_apellido">Apellido completo</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_apellido" id="lastNameStore" value="" class="form-control" type="text" placeholder="Ingrese su apellido completo">
+            <div *ngIf="lastNameStoreAlert" class="alert alert-danger">*Ingrese su apellido completo</div></div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_usuario">Usuario</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_usuario" id="userStore" value="" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
+            <div *ngIf="userStoreAlert" class="alert alert-danger">*Ingrese un nombre de usuario</div></div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_provincia">Provincia</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_provincia" id="provinceStore" value="" class="form-control" type="text" placeholder="Ingrese la provincia donde vive">
+            <div *ngIf="provinceStoreAlert" class="alert alert-danger">*Ingrese la provincia donde vive</div></div>
+          </div>
+        
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_localidad">Localidad</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_localidad" id="locationStore" value="" class="form-control" type="text" placeholder="Ingrese la localidad donde vive">
+            <div *ngIf="locationStoreAlert" class="alert alert-danger">*Ingrese la localidad donde vive</div></div>
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_barrio">Barrio</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_barrio" id="neighborhoodStore" value="" class="form-control" type="text" placeholder="Ingrese el barrio donde vieve">
+            <div *ngIf="neighborhoodStoreAlert" class="alert alert-danger">*Ingrese el barrio donde vieve</div></div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_codigo_postal">Codigo postal</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_codigo_postal" id="postalCodeStore" value="" class="form-control" type="text" placeholder="Ingrese el codigo postal">
+            <div *ngIf="postalCodeStoreAlert" class="alert alert-danger">*Ingrese el codigo postal</div></div>
+          </div>
+                
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_email">E-mail</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_email" id="emailStore" value="" class="form-control" type="text" placeholder="Ingrese un E-mail">
+            <div *ngIf="emailStoreAlert" class="alert alert-danger">*Ingrese un mail</div></div>
+          </div>
+    
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="c_contrasena">Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input name="c_contrasena" id="passwordStore" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
+            <div *ngIf="passwordStoreAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>     
+          </div>
+  
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="ConfirmPassword">Confirmar Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input id="ConfirmPassword" id="passwordStoreConfirm" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
+            <div *ngIf="passwordStoreAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>     
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label class="mt-2">Agregar Foto</label></div>
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile" id="imageStore" value="" type="file" class="form-control">
+            <div *ngIf="imageAlert" class="alert alert-danger">*agregar una imagen</div></div> 
+          </div>
+              
+          <div class="row mb-2 text-center">
+            <div class="col-12"><hr></div>
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-12">
+              <button class="btn btn-lg btn-danger pull-right ml-1" (click)="returnToTheTableUsers()">Volver</button>
+              <button class="btn btn-lg btn-info pull-right" (click)="store()">Agregar</button>
+            </div>
+          </div>
+        
+        </form>
+
+
+    </div>
+<!------------------End form Store-------------------->
+<!------------------Here begins the form of the Edit---------------------------->
+    <ng-template #editar>
+  
+        <h2 align="center">Editar Cliente</h2>
+        <hr>
+      
+        <form  id="formEditCliente"><input type="hidden" name="editId" value="{{editCliente.c_id}}">
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editName">Editar nombre</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editName" id="nameEdit" value="{{editCliente.c_nombre}}" class="form-control" type="text" placeholder="Ingrese  su nombre completo">
+            <div *ngIf="nameEditAlert" class="alert alert-danger">*Ingrese su nombre completo</div></div>
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editLastName">Editar apellido</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editLastName" id="lastNameEdit" value="{{editCliente.c_apellido}}" class="form-control" type="text" placeholder="Ingrese su apellido completo">
+            <div *ngIf="lastNameEditAlert" class="alert alert-danger">*Ingrese su apellido completo</div></div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editProvince">Editar provincia</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editProvince" id="provinceEdit" value="{{editCliente.c_provincia}}" class="form-control" type="text" placeholder="Ingrese la provincia donde vive">
+            <div *ngIf="provinceEditAlert" class="alert alert-danger">*Ingrese la provincia donde vive</div></div>
+          </div>
+        
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editLocation">Editar localidad</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editLocation" id="locationEdit" value="{{editCliente.c_localidad}}" class="form-control" type="text" placeholder="Ingrese la localidad donde vive">
+            <div *ngIf="locationEditAlert" class="alert alert-danger">*Ingrese la localidad donde vive</div></div>
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editNeighborhood">Editar barrio</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editNeighborhood" id="neighborhoodEdit" value="{{editCliente.c_barrio}}" class="form-control" type="text" placeholder="Ingrese el barrio donde vieve">
+            <div *ngIf="neighborhoodEditAlert" class="alert alert-danger">*Ingrese el barrio donde vieve</div></div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editPostalCode">Editar codigo postal</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editPostalCode" id="postalCodeEdit" value="{{editCliente.c_codigo_postal}}" class="form-control" type="text" placeholder="Ingrese el codigo postal">
+            <div *ngIf="postalCodeEditAlert" class="alert alert-danger">*Ingrese el codigo postal</div></div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editUsuario">Editar nombre de usuario</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editUsuario" id="userEdit" value="{{editCliente.c_usuario}}" class="form-control" type="text" placeholder="Ingrese un nombre de usuario">
+            <div *ngIf="userEditAlert" class="alert alert-danger">*Ingrese el nombre de usuario</div></div>     
+          </div>
+      
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="editMail">Editar E-mail</label></div>
+            <div class="col-md-6 col-xs-12"><input name="editMail" id="emailEdit" value="{{editCliente.c_email}}" class="form-control" type="text" placeholder="Ingrese un E-mail">
+            <div *ngIf="emailEditAlert" class="alert alert-danger">*Ingresar el Email</div></div> 
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label>Cambiar foto</label></div>
+            <div class="col-md-6 col-xs-12"><input name="uploadedfile-ed" value="" type="file" class="mt-2 form-control" placeholder="Ingrese una Foto"></div> 
+          </div>
+            
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><button (click)="editPassword()">Cambiar contraseña</button></div>
+          </div>
+            
+            
+        <div *ngIf="editPasswordVar">
+              
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="passwordEdit">Nueva Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input id="passwordEdit" name="editPassword" type="password" value="" class="form-control" placeholder="Ingrese una contraseña">
+            <div *ngIf="passwordEditAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>
+          </div>                      
+              
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="passwordEditConfirm">Confirmar Contraseña</label></div>
+            <div class="col-md-6 col-xs-12"><input id="passwordEditConfirm" value="" type="password" class="form-control" placeholder="Confirmar Contraseña">
+            <div *ngIf="passwordEditAlert" class="alert alert-danger">*Las contraseñas no coinciden</div></div>        
+          </div>
+                
+          <div class="row mt-2">
+            <div class="col-md-6 col-xs-12"><label for="oldPassword">Contraseña Actual</label></div>
+            <div class="col-md-6 col-xs-12"><input name="oldPassword" id="oldPassword" value="" type="password" class="form-control" placeholder="Contraseña Actual">
+            <div *ngIf="AlertPassword" class="alert alert-danger">*Contraseña incorrecta</div></div>
+          </div>
+
+        </div>  
+
+        </form>
+                  
+                
+          <div class="row mb-2 text-center">
+            <div class="col-12">
+              <hr>
+            </div>
+          </div>
+          
+          <div class="row mt-2">
+            <div class="col-12">
+              <button class="btn btn-lg btn-danger ml-2" (click)="returnToTheTableUsers()">Volver</button>
+              <button class="btn btn-lg btn-info ml-3" (click)="edit()">Editar</button>
+            </div>
+          </div>
+
+      
+    </ng-template>
+  </ng-template>
+  <!----------End Edit Form---------->
+  
+  <div *ngIf="changeTemplateEditar;else agregar" class="mt-4">
+  
+  
+      <div class="row">
+        <div class="col-5">
+          <h2>Tabla de Clientes.</h2>
+        </div>
+        <div class="col-7">
+          <button class="btn btn-md btn-info pull-right ml-1" (click)="showStoreForm()">Agregar</button>
+          <button class="btn btn-md btn-danger pull-right ml-1" (click)="delete()">Eliminar</button>
+        </div>
+      </div>
+    
+      <table class="table table-bordered mt-3"  width="100%">
+        <thead>
+          <tr>
+            <th style="width: 1px;">#</th>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Provincia</th>
+            <th>E-Mail</th>
+            <th>Validacion</th>
+            <th>Foto</th>
+            <th style="width: 25px">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of listCliente"> 
+            <td><input type="checkbox" class="tilde" value="{{cliente.c_id}}" (click)="checkBox(cliente.c_id)"></td>
+            <td>{{cliente.c_usuario}}</td>
+            <td>{{cliente.c_nombre}}</td>
+            <td>{{cliente.c_apellido}}</td>
+            <td>{{cliente.c_provincia}}</td>            
+            <td>{{cliente.c_email}}</td>
+            <td>{{cliente.c_validacion}}</td>
+            <td style="height:80px" class="text-center"><img src="{{cliente.c_imagen}}" style="max-height: 100%"></td>
+            <td><button value="{{cliente.c_id}}" (click)="showEditForm(cliente.c_id)"><i class="fa fa-pencil"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+</div>
+</section>

@@ -11,6 +11,8 @@ import { LoginComponent} from '../login/login.component';
 import { BackendSeccionComponent } from '../backend-seccion/backend-seccion.component';
 import { BackendUserComponent } from '../backend-user/backend-user.component';
 import { BackendSubatributoComponent } from '../backend-subatributo/backend-subatributo.component';
+import { BackendClienteComponent } from '../backend-cliente/backend-cliente.component';
+import { ValidacionClienteComponent } from '../validacion-cliente/validacion-cliente.component';
 import { MaquetaComponent } from '../maqueta/maqueta.component';
 
 /*                Rutas                             */
@@ -25,7 +27,11 @@ import { ProductoCategoriaComponent } from '../producto-categoria/producto-categ
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'validacion', component: ValidacionClienteComponent},
   { path: 'home', component: HomeComponent },
+  { path: 'clientes', component: BackendClienteComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'admin771', component: LoginComponent},
   { path: 'productos-seccion/:seccion', component: ProductoFiltradoComponent },
   { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
   { path: 'admin771', component: LoginComponent },
