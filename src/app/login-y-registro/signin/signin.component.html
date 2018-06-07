@@ -10,9 +10,9 @@
     <div class="col-lg-4 col-md-6 py-4 mx-auto cont-form-letter">
       <div class="row">
         <div class="w-100  py-3">
-            <h4 class="text-white text-center">Ingrese su Email ó Usuario y la contraseña</h4>
+          <h4 class="text-white text-center">Ingrese su Email ó Usuario y la contraseña</h4>
         </div>
-        <div class="w-100 cont-form p-4">
+        <div class="w-100 cont-form p-4 pb-2">
           <form class="" action="">
             <div class="form-group mb-4">
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email ó Usuario">
@@ -22,6 +22,11 @@
             </div>
             <button type="submit" class="form-control btn bt-block text-white btn-custom">Continuar</button>
           </form>
+          <a [routerLink]="['/registro']">
+            <h6 class="text-center text-white mt-3 mb-0">Crear cuenta</h6>
+          </a>
+
+
         </div>
 
       </div>

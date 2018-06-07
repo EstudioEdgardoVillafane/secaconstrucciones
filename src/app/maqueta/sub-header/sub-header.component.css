@@ -114,11 +114,16 @@ nav {
     content: "\f002""\00a0 ""\00a0";
   }
   
-  
-  
-  
-  
-  
+  .dropdown-menu{
+    position: absolute !important;
+    min-width: 60rem!important;
+    left: 326%!important;
+    top:40px!important;
+    transform: translateX(-50%)!important;
+  }
+  .btn-group #button-basic{
+    background-color: transparent!important;
+  }
   
   /* Rules for mobiles */
   
