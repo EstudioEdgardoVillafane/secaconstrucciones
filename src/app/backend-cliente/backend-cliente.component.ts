@@ -19,6 +19,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 /**Services*/
 import { BackendClienteService } from './../backend-cliente.service';
 
+
 @Component({
   selector: 'app-backend-cliente',
   templateUrl: './backend-cliente.component.html',
@@ -34,7 +35,7 @@ export class BackendClienteComponent implements OnInit {
 /**Functions change the templates */
   editPasswordVar = false;
   changeTemplateEditar = true;
-  changeTemplateAgregar = false; 
+  changeTemplateAgregar = true; 
 
 /**Store function vars */
   formClient
@@ -96,7 +97,7 @@ export class BackendClienteComponent implements OnInit {
   i = 0;
   //delete() 
   aux;
-
+l
   constructor(private backendClienteSrevice : BackendClienteService) { }
 
   ngOnInit() {
@@ -108,9 +109,10 @@ export class BackendClienteComponent implements OnInit {
   listClientes(){
     this.backendClienteSrevice.listClientesInTheTable()
     .map((response) => response.json())
-    .subscribe((data)=>{
+    .subscribe((data) => {
+      console.log(data)
       this.listCliente = data;
-    })
+    });
   }
   /**This function send email from validate acount*/
   sendClienteEmail(){
@@ -241,6 +243,8 @@ export class BackendClienteComponent implements OnInit {
   } 
 /*--------------------Edit--------------------- */
   /**This function edit the client */
+  formEdit
+  requestEdit
   edit(){
     this.userEdit = document.getElementById("userEdit");
     this.emailEdit = document.getElementById("emailEdit");
@@ -253,6 +257,9 @@ export class BackendClienteComponent implements OnInit {
     this.locationEdit = document.getElementById("locationEdit");
     this.neighborhoodEdit = document.getElementById("neighborhoodEdit");
     this.postalCodeEdit = document.getElementById("postalCodeEdit");
+    this.formEditCliente = document.getElementById("formEditCliente");
+
+    this.formEdit = new FormData(this.formEditCliente);
     //Alerts
     if(this.userEdit.value =="" ){
       this.userEditAlert = true;
@@ -304,11 +311,10 @@ export class BackendClienteComponent implements OnInit {
          this.provinceEdit.value != "" && 
          this.lastNameEdit.value != "" && 
          this.nameEdit.value != ""){
-console.log("1er if")
-        this.formEditCliente = document.getElementById("formEditCliente");
-        this.request = new XMLHttpRequest();
-        this.request.open("POST", "php/script/edit-cliente.php");
-        console.log(this.request.send(new FormData(this.formEditCliente)));
+
+        this.requestEdit = new XMLHttpRequest();
+        this.requestEdit.open("POST", "php/script/edit-cliente.php",true);
+        console.log(this.requestEdit.send(this.formEdit));
       }
     }else{
       //Alerts
@@ -327,12 +333,11 @@ console.log("1er if")
          this.provinceEdit.value != "" && 
          this.lastNameEdit.value != "" && 
          this.nameEdit.value != ""){
-console.log("2do if")
+
            
-        this.formEditCliente = document.getElementById("formEditCliente");
-        this.request = new XMLHttpRequest();
-        this.request.open("POST", "php/script/edit-cliente.php");
-        console.log(this.request.send(new FormData(this.formEditCliente)));
+        this.requestEdit = new XMLHttpRequest();
+        this.requestEdit.open("POST", "php/script/edit-cliente.php",true);
+        console.log(this.requestEdit.send(this.formEdit));
       }
     }
     this.listClientes();    
