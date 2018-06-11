@@ -20,9 +20,9 @@
       <p class="text-etiqueta" *ngFor="let opcion of JsonOptions" (click)="filterOption(opcion.su_id)"><i class="fa fa-angle-right"></i>{{opcion.su_nombre}}</p>
       
       </div>
-      <div class="col-8">
+      <div class="col-9">
         <div class="row">
-        <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" *ngFor="let producto of JsonProducto" >
+        <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" *ngFor="let producto of JsonProducto | slice : Desde : Hasta" >
             <div class="d-flex rounded py-3 cont-img">
               <img src="{{producto.p_url}}" class="align-self-center mh mx-auto" alt="">
             </div>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="col-12 text-center mt-3">
-              <a class="ft-14">Pagina 1 de X</a><a class="ml-1 paginador"><</a><a class="paginador ml-1">></a>
+              <a class="ft-14">Pagina {{PaginaActual}} de {{CantidadDePaginas}}</a><a class="ml-1 paginador" (click)="prevPag()"><</a><a class="paginador ml-1" (click)="nextPag()">></a>
             </div>   
         </div>
       </div>

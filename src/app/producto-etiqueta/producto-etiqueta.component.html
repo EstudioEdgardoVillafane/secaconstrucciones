@@ -21,7 +21,7 @@
       <p class="text-etiqueta" *ngFor="let sec of JsonSecciones | slice : 0 : 15" routerLink="/productos-seccion/{{sec.s_nombre}}">{{sec.s_nombre}}</p>
       
       </div>
-      <div class="col-8">
+      <div class="col-9">
         <div class="row">
         <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" *ngFor="let producto of JsonProductos" >
             <div class="d-flex rounded py-3 cont-img">

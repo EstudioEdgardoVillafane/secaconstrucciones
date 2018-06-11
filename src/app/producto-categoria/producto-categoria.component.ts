@@ -16,7 +16,9 @@ export class ProductoCategoriaComponent implements OnInit {
   constructor(private subatributoService : SubAtributoService, private etiquetaService : EtiquetaService ,private _activatedRoute:ActivatedRoute ,private categoriaService : AtributoService , private __productosService:ProductosService, private _location: Location) { }
   Desde = 0;
   Hasta = 9;
-  CantidadHojas;
+  PaginaActual = 1;
+  CantidadDePaginas;
+
   JsonProducto = new Array();
   i;
   countGlobal = 0;
@@ -73,11 +75,26 @@ export class ProductoCategoriaComponent implements OnInit {
             }
           }
           this.doListOfOptions();
-          this.CantidadHojas = this.auxTwoGlobal.length/9;
+          this.CantidadDePaginas = this.JsonProducto.length/9;
+          this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas);
         });
       
       });
   });
+  }
+  nextPag(){
+    if(this.PaginaActual < this.CantidadDePaginas){
+      this.PaginaActual++;
+      this.Desde = this.Desde + 9;
+      this.Hasta = this.Hasta + 9;
+    }
+  }
+  prevPag(){
+    if(this.PaginaActual > 1){
+      this.PaginaActual--;
+      this.Desde = this.Desde - 9;
+      this.Hasta = this.Hasta - 9;
+    }
   }
   doListOfOptions(){
     this.subatributoService.CrudFunction(1,0,"",0)

@@ -16,6 +16,12 @@ import { Location } from '@angular/common';
 export class ProductoBusquedaComponent implements OnInit {
 
   constructor(private router: Router, private seccionService: SeccionService ,private _activatedRoute:ActivatedRoute ,private etiquetaService: EtiquetaService , private __productosService:ProductosService, private _location:Location) { }
+
+  Desde = 0;
+  Hasta = 9;
+  PaginaActual = 1;
+  CantidadDePaginas;
+
   ListProductoEtiqueta = new Array();
   JsonProductos = new Array();
   i;
@@ -63,8 +69,23 @@ export class ProductoBusquedaComponent implements OnInit {
               this.countGlobal++;
             }
           }
-        
+          this.CantidadDePaginas = this.JsonProductos.length/9;
+          this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas);
   });
+  }
+  nextPag(){
+    if(this.PaginaActual < this.CantidadDePaginas){
+      this.PaginaActual++;
+      this.Desde = this.Desde + 9;
+      this.Hasta = this.Hasta + 9;
+    }
+  }
+  prevPag(){
+    if(this.PaginaActual > 1){
+      this.PaginaActual--;
+      this.Desde = this.Desde - 9;
+      this.Hasta = this.Hasta - 9;
+    }
   }
 
 }
