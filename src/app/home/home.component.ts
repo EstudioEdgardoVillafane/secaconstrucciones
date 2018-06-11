@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { catchError, map, tap } from 'rxjs/operators';
 /*** Services ****/
 import {ProductosService} from '../productos.service';
+import { SeccionService } from '../seccion.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,13 +14,19 @@ import {ProductosService} from '../productos.service';
 })
 export class HomeComponent implements OnInit {
 
-
-  constructor(private productService : ProductosService) { }
+listSeccion
+  constructor(private productService : ProductosService, private seccionService : SeccionService) { }
 
   ngOnInit() {
-  
-
+    this.listedSeccionsFronted();
   }
-
+  listedSeccionsFronted(){
+    this.seccionService.CrudFunction(1,0,"0",0)
+    .map((response)=> response.json())
+    .subscribe((data)=>{
+      console.log(data);
+      this.listSeccion = data;
+    })
+  }
 
 }
