@@ -22,6 +22,8 @@ export class AtributoService {
   getJsonForName(name:string, json){
     return of(json.find((primero => primero.a_nombre === name)));
   }
-
+  getJsonForSeccion(idseccion, json){
+    return of(json.find((primero => primero.a_seccion === idseccion)));
+  }
   
 }

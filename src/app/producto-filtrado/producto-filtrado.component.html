@@ -4,7 +4,7 @@
   <div class="container">
   <div class="row">
     <div class="col-12 mt-3">
-      <p class="text-etiqueta">Etiquetas sugeridas:  <a class="ml-3">Perfileria</a> <a class="ml-3">Construccion</a> <a class="ml-3">Placas Antihumedad</a></p>
+      <p class="text-menu-etiqueta">Etiquetas sugeridas:  <a class="ml-3 text-etiqueta" *ngFor="let etiquetas of JsonEtiquetas | slice : 0 : 8" routerLink="/producto-etiqueta/{{etiquetas.e_nombre}}">{{etiquetas.e_nombre}}</a>
     </div>
   </div>
 
@@ -14,14 +14,11 @@
    <div class="row">
       
       <div class="col-3">
-      <h6>Seccion</h6>
-      <h4>Productos de {{categoriaName}}</h4>
-      <h5 class="mt-4">Opciones</h5>
-      <p class="text-etiqueta">+ De madera</p>
-      <p class="text-etiqueta">+ De hierro</p>
-      <p class="text-etiqueta">+ Yeso</p>
-      <p class="text-etiqueta">+ Antihumedad</p>
-      <p class="text-etiqueta">+ Con instalación</p>
+      <h6>SecaConstrucciones</h6>
+      <h4>Productos de {{seccionName}}</h4>
+      <h5 class="mt-4">Categorias</h5>
+      <p class="text-etiqueta" *ngFor="let categoria of JsonCategories" routerLink="/productos-categoria/{{categoria.a_nombre}}"><i class="fa fa-angle-right"></i>
+        {{categoria.a_nombre}}</p>
       </div>
       <div class="col-8">
         <div class="row">
@@ -36,7 +33,9 @@
               <p class="name-producto">{{producto.p_nombre}}</p>
             </div>
           </div>
-              
+          <div class="col-12 text-center">
+            <a class="ft-14">Pagina 1 de X</a><a class="ml-1 paginador"><</a><a class="paginador ml-1">></a>
+          </div>
         </div>
       </div>
     </div>

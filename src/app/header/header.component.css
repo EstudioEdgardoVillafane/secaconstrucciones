@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
 nav {
   min-height: 100px;
-  border-bottom: solid 6px #717171;
+  font-family: 'Abel', sans-serif!important;
 }
 
 nav ul li a {
@@ -8,7 +10,20 @@ nav ul li a {
   font-size: .8rem;
   color: #fff;
 }
-
+.fa-search{
+  color: #2b2b2b!important;
+}
+#searchProduct{
+  border: 0px solid;
+    background: transparent;
+    border-bottom: 1px white solid;
+    border-radius: 0px!important;
+    padding: 0px!important;
+}
+#searchProduct:focus{
+ 
+  outline:0px;
+}
 .title {
   font-family: 'Bitter', serif !important;
   margin-left: 60px;
@@ -16,11 +31,8 @@ nav ul li a {
 }
 
 .logo-img {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
+  position: relative;
+  
 }
 
 .bg-grey {
@@ -28,15 +40,8 @@ nav ul li a {
 }
 
 .bg-custom {
-  background-color: #2f2f2f;
-  background: url('../../assets/img/round.png'), linear-gradient(to bottom, rgba(163, 163, 163, 1) 0%, rgba(51, 51, 51, 1) 100%);
-  background: radial-gradient(to bottom, rgb(122, 125, 216) 0%, rgb(23, 30, 84) 100%);
-  background: radial-gradient(ellipse at center, rgba(122, 127, 216, 1) 0%, rgba(23, 30, 84, 1) 100%);
-  background: linear-gradient(to bottom, rgba(77, 77, 77, 1) 0%, rgba(46, 46, 46, 1) 100%);
-  background: radial-gradient(ellipse at center, rgb(128, 216, 122) 0%, rgb(23, 84, 59) 100%);
-  background: linear-gradient(to bottom, rgb(121, 121, 121) 0%, rgb(58, 58, 58) 100%);
-  background: linear-gradient(to bottom, rgba(122, 127, 216, 1) 0%, rgba(23, 30, 84, 1) 100%);
-  background: linear-gradient(to bottom, rgb(132, 132, 132) 0%, rgb(56, 56, 56) 100%);
+  background-color: #2b2b2b;
+
 }
 
 #barra-inferior a {

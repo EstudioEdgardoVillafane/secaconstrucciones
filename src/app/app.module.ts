@@ -36,7 +36,6 @@ import { BackendClienteService } from './backend-cliente.service';
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { PrioritySelectPipe } from './priority-select.pipe';
 import { ValidacionClienteComponent } from './validacion-cliente/validacion-cliente.component';
-import { EtiquetaService } from './etiqueta.service';
 import { LoginYRegistroComponent } from './login-y-registro/login-y-registro.component';
 import { MaquetaComponent } from './maqueta/maqueta.component';
 import { SubHomeComponent } from './maqueta/sub-home/sub-home.component';
@@ -47,6 +46,7 @@ import { ProductoEtiquetaComponent } from './producto-etiqueta/producto-etiqueta
 import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
 import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
+import { ProductoBusquedaComponent } from './producto-busqueda/producto-busqueda.component';
 
 
 
@@ -78,7 +78,8 @@ import { ProductoCategoriaComponent } from './producto-categoria/producto-catego
     ProductoEtiquetaComponent,
     MostrarMitadStringPipe,
     ProductoFiltradoComponent,
-    ProductoCategoriaComponent
+    ProductoCategoriaComponent,
+    ProductoBusquedaComponent
  ],
   imports: [
     BrowserModule,
