@@ -8,27 +8,35 @@
         <div class="container">
           
           <h2 align="center">Agregar Nueva Seccion</h2>
-  
-    <hr>
-        <div class="row mt-2">
-          <div class="col-md-6 col-xs-12"><label for="s_name">Nombre Sección</label></div>
-          <div class="col-md-6 col-xs-12"><input id="s_name" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
-          <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>
-        </div>
+  <form id="storeForm">
 
+    <hr>
+    <div class="row mt-2">
+      <div class="col-md-6 col-xs-12"><label for="s_name">Nombre</label></div>
+      <div class="col-md-6 col-xs-12"><input name="s_name" value="" class="form-control" type="text" placeholder="Ingrese un Nombre">
+        <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>
+      </div>
+      
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="s_imagen">Imagen</label></div>
+          <div class="col-md-6 col-xs-12"><input name="s_imagen" value="" class="form-control" type="file" placeholder="Ingrese un Nombre">
+          <div *ngIf="alertImagen" class="alert alert-danger">*Ingrese un Nombre</div></div>
+        </div>
+        
         <div class="row mb-2 text-center">
           <div class="col-12"><hr></div>
         </div>
-  
+        
         <div class="row mt-2">
           <div class="col-12">
             <button class="btn btn-lg btn-danger pull-right ml-1" (click)="returnToTheTableUsers()">Volver</button>
             <button class="btn btn-lg btn-info pull-right" (click)="store()">Agregar</button>
           </div>
         </div>
-  
-        </div>
+        
+  </form>
       </div>
+    </div>
       <!------------------End form Store-------------------->
       <!------------------Here begins the form of the Edit---------------------------->
       <ng-template #Editar>
@@ -36,13 +44,21 @@
         <div class="container">
           <h2 align="center">Editar Sección</h2>
           <hr>
-        <div class="row mt-2">
+     <form  id="formEditCliente"><input type="hidden" name="editId" value="{{edit_seccion.s_id}}">  <input type="hidden" name="deleteImg" value="{{edit_seccion.s_imagen}}">
           
-          <div class="col-md-6 col-xs-12"><label for="edit_name">Editar Nombre</label></div>
-          <div class="col-md-6 col-xs-12"><input id="edit_name" value="{{edit_seccion.s_nombre}}" class="form-control" type="text" placeholder="Ingrese un Nombre">
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="edit_name">Editar nombre</label></div>
+          <div class="col-md-6 col-xs-12"><input name="edit_name" id="edit_name" value="{{edit_seccion.s_nombre}}" class="form-control" type="text" placeholder="Ingrese un nombre">
           <div *ngIf="AlertName" class="alert alert-danger">*Ingrese un Nombre</div></div>     
         </div>
-  
+
+        <div class="row mt-2">
+          <div class="col-md-6 col-xs-12"><label for="edit_imagen">Cambiar imagen</label></div>
+          <div class="col-md-6 col-xs-12"><input name="edit_imagen" id="edit_imagen" value="" class="form-control" type="file" placeholder="Ingrese un Nombre">
+          <div *ngIf="alertImagen" class="alert alert-danger">*Ingrese un Nombre</div></div>
+        </div>
+
+     </form>
         <div class="row mb-2 text-center">
             <div class="col-12">
               <hr>
@@ -80,6 +96,7 @@
             <tr>
               <th style="width: 1px;">#</th>
               <th>Sección nombre</th>
+              <th>Imagen</th>
               <th style="width: 25px">Editar</th>
             </tr>
         </thead>
@@ -88,6 +105,7 @@
             <tr *ngFor="let seccion of listado"> <!--put name of the data base-->
               <td><input type="checkbox" class="tilde" value="{{seccion.s_id}}" (click)="check(seccion.s_id)"></td>
               <td>{{seccion.s_nombre}}</td>
+              <td style="height:80px" class="text-center"><img src="{{seccion.s_imagen}}" style="max-height: 100%"></td>
               <td><button value="{{seccion.s_id}}" (click)="showEditForm(seccion.s_id)"><i class="fa fa-pencil"></i></button></td>
             </tr>
           </tbody>

@@ -11,13 +11,13 @@
 *
 */
 
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/map';
-import { catchError, map, tap } from 'rxjs/operators';
-import { SeccionService } from '../seccion.service';
+  import { Component, OnInit } from '@angular/core';
+  import { HttpClient, HttpHeaders } from '@angular/common/http';
+  import { Observable } from 'rxjs/Observable';
+  import { of } from 'rxjs/observable/of';
+  import 'rxjs/add/operator/map';
+  import { catchError, map, tap } from 'rxjs/operators';
+  import { SeccionService } from '../seccion.service';
 
 @Component({
   selector: 'app-backend-seccion',
@@ -33,15 +33,16 @@ export class BackendSeccionComponent implements OnInit {
 
   //these variables are used to take the value of the id of the inputs in the HTML
   //store
+  storeObject = new Object;
   s_name;
-  s_attribute;
+  s_imagen;
 
   //these variable used to listed
   Listed;
   
 //the function of these boleans are for validation alerts
   AlertName = false;
-  AlertAttribute = false;
+  alertimagen = false
 
   var;
   CheckAcumulador = new Array();
@@ -85,23 +86,8 @@ export class BackendSeccionComponent implements OnInit {
     });
   }
 
-/**this function take the values of the iputs and send the values of the data base*/
-  edit(s_id : number){
-    this.s_name = document.getElementById("edit_name");
-    console.log(this.s_name.value);
-    if(this.s_name.value == ""){
-      this.AlertName = true;
-    }else{
-      this.AlertName = false;
-    }
-    if(this.s_name.value != ""){
-      this.SeccionService.CrudFunction(4,s_id,this.s_name.value,0)
-      .subscribe((data)=>{ this.var=data;});
-        location.reload();
-    }
-  }
-
-/** this function accumulates the checks that are in the table to be deleted later*/
+  
+  /** this function accumulates the checks that are in the table to be deleted later*/
   check(s_id : number){
     this.Booleano=true;
     console.log("Contador: " + this.NumberAux);
@@ -127,8 +113,8 @@ export class BackendSeccionComponent implements OnInit {
     }
 
 /** this function delete the backend users of the table that are select whith the chek*/
-  delete(){
-    for(this.i=0; this.i<this.NumberAux; this.i++){
+delete(){
+  for(this.i=0; this.i<this.NumberAux; this.i++){
       if(this.CheckAcumulador[this.i] == undefined){
         console.log("Indefinido");
       }else{
@@ -142,29 +128,65 @@ export class BackendSeccionComponent implements OnInit {
     }
     this.lists();
   }
-
-/**this function add users in to the data base*/
+  storeForm
+  form
+  request
+  /**this function add users in to the data base*/
   store(){
-    this.s_name = document.getElementById("s_name");
-
+    this.storeForm = document.getElementById("storeForm");
+    this.s_name = document.getElementsByName("s_name");
+    this.s_imagen = document.getElementsByName("s_imagen");
+    
+    
+    this.form = new FormData(this.storeForm);
+    
+    
     if(this.s_name.value == ""){
       this.AlertName = true;
     }else{
       this.AlertName = false;
     }
-    if(this.s_name.value != "" ){
-
-      this.SeccionService.CrudFunction(
-        3,
-        0,
-        this.s_name.value,
-        0)
-      .subscribe((result)=>{this.var=result;});
-      location.reload();
+    if(this.s_imagen.value == ""){
+      this.alertimagen = true;
+    }else{
+      this.alertimagen = false;
+    }
+    
+    if(this.s_name.value != "" && this.s_imagen.value != ""){
+      
+      this.request = new XMLHttpRequest();
+      this.request.open("POST", "php/script/store-seccion.php", true);
+      console.log(this.request.send(this.form));
+      
       this.ChangeTemplateEditar=true;
     }else{
       console.log("Falla al agregar");
     }
   }
+  formEdit
+  formEditCliente
+  requestEdit
+  /**this function take the values of the iputs and send the values of the data base*/
+    edit(s_id : number){
+      this.formEditCliente = document.getElementById("formEditCliente");
+      this.s_name = document.getElementById("edit_name");
+    
+      
+      this.formEdit = new FormData(this.formEditCliente);
 
+      if(this.s_name.value == ""){
+        this.AlertName = true;
+      }else{
+        this.AlertName = false;
+      }
+      if(this.s_name.value != ""){
+
+        this.requestEdit = new XMLHttpRequest();
+        this.requestEdit.open("POST", "php/script/edit-seccion.php", true);
+        console.log(this.requestEdit.send(this.formEdit));
+        this.ChangeTemplateEditar=false;
+      }
+      this.lists();
+  }
+  
 }

@@ -28,6 +28,9 @@ export class SeccionService {
   CrudFunction(functionPhp: number, s_id: number, s_name: string, s_attribute:number){
     return this.http.get('php/script/crud-seccion.php?data='+functionPhp+'&s_id='+s_id+'&s_name='+s_name+'&s_attribute='+s_attribute);
   }
+  store(storeObject){
+    return this.http.post("php/script/store-seccion.php",storeObject)
+  }
     getJsonIDSeccion(s_id : number, json){
       return of(json.find(primero => primero.s_id === s_id));
     } 
