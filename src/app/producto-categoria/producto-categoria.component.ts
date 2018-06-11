@@ -4,6 +4,8 @@ import { SeccionService } from '../seccion.service';
 import { ProductosService } from '../productos.service';
 import { Location } from '@angular/common';
 import { AtributoService } from '../atributo.service';
+import { EtiquetaService } from '../etiqueta.service';
+import { SubAtributoService } from '../sub-atributo.service';
 
 @Component({
   selector: 'app-producto-categoria',
@@ -11,15 +13,44 @@ import { AtributoService } from '../atributo.service';
   styleUrls: ['./producto-categoria.component.css']
 })
 export class ProductoCategoriaComponent implements OnInit {
-  constructor(private _activatedRoute:ActivatedRoute ,private categoriaService : AtributoService , private __productosService:ProductosService, private _location: Location) { }
+  constructor(private subatributoService : SubAtributoService, private etiquetaService : EtiquetaService ,private _activatedRoute:ActivatedRoute ,private categoriaService : AtributoService , private __productosService:ProductosService, private _location: Location) { }
+  Desde = 0;
+  Hasta = 9;
+  CantidadHojas;
   JsonProducto = new Array();
   i;
   countGlobal = 0;
   auxGlobal;
   auxTwoGlobal;
   categoriaName;
+  JsonEtiquetas;
+  JsonOptions = new Array();
+  IdCategoriaPrivate;
   ngOnInit() {
     console.log(this.Listar());
+    this.doListOfEtiquetas();
+    this.doListOfOptions();
+  }
+  doListOfEtiquetas(){
+    this.etiquetaService.listEtiquetas()
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.JsonEtiquetas = data;
+    });
+  }
+  filterOption(idSubatributo){
+    this.JsonProducto.length = 0;
+    this.countGlobal = 0;
+    console.log("este es el json");
+    console.log(this.auxTwoGlobal);
+
+    for(this.i in this.auxTwoGlobal){
+      if(this.auxTwoGlobal[this.i].p_subatributo == idSubatributo){
+        this.JsonProducto[this.countGlobal] = this.auxTwoGlobal[this.i];
+        this.countGlobal++;
+      }
+    }
+    console.log(this.JsonProducto);
   }
   Listar(){
     this.countGlobal = 0;
@@ -34,17 +65,31 @@ export class ProductoCategoriaComponent implements OnInit {
       .subscribe((data) => {
         this.categoriaService.getJsonForName(categoria,data)
         .subscribe((data) =>{
+          this.IdCategoriaPrivate = data.a_id;
           for(this.i in this.auxTwoGlobal){
             if(this.auxTwoGlobal[this.i].p_atributo == data.a_id){
               this.JsonProducto[this.countGlobal] = this.auxTwoGlobal[this.i];
               this.countGlobal++;
             }
           }
+          this.doListOfOptions();
+          this.CantidadHojas = this.auxTwoGlobal.length/9;
         });
       
       });
-      console.log(categoria);      
-      console.log(this.JsonProducto);
   });
+  }
+  doListOfOptions(){
+    this.subatributoService.CrudFunction(1,0,"",0)
+    .map((response) => response.json())
+    .subscribe((data)=> {
+      this.countGlobal = 0;
+      for(this.i in data){
+        if(data[this.i].su_atributo == this.IdCategoriaPrivate){
+          this.JsonOptions[this.countGlobal] = data[this.i];
+          this.countGlobal++;
+        }
+      }
+    });
   }
 }

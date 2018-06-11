@@ -24,16 +24,17 @@ import { ProductoEtiquetaComponent } from '../producto-etiqueta/producto-etiquet
 import {LoginYRegistroComponent} from '../login-y-registro/login-y-registro.component';
 import { ProductoFiltradoComponent } from '../producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from '../producto-categoria/producto-categoria.component';
+import { ProductoBusquedaComponent } from '../producto-busqueda/producto-busqueda.component';
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'validacion', component: ValidacionClienteComponent},
   { path: 'home', component: HomeComponent },
-  { path: 'clientes', component: BackendClienteComponent},
   { path: 'login', component: LoginComponent },
   { path: 'admin771', component: LoginComponent},
   { path: 'productos-seccion/:seccion', component: ProductoFiltradoComponent },
   { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
+  { path: 'productos-busqueda/:producto', component: ProductoBusquedaComponent },
   { path: 'admin771', component: LoginComponent },
   { path: 'backend',
   component: BackendComponent,
@@ -43,7 +44,7 @@ const routes: Routes = [
     { path: 'productos', component: BackendProductsComponent },
     { path: 'seccion', component: BackendSeccionComponent },
     { path: 'atributo', component: BackendAtributoComponent },
-
+    { path: 'clientes', component: BackendClienteComponent},
     { path: 'usuarios', component: BackendUserComponent },
     ]
   },

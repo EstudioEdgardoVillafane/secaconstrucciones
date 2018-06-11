@@ -6,7 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 /*** Services ****/
 import {ProductosService} from '../productos.service';
-import { when } from 'q';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   i;
   result;
   searchProducts = false;
-  constructor(private productService : ProductosService) { }
+  constructor(private productService : ProductosService, private router: Router) { }
 
   ngOnInit() {
     this.listedProducts();
@@ -42,6 +42,13 @@ contador
 jsonSearch = new Array();
 searchProductAux;
 show:Boolean;
+
+
+goToSearch(){
+  this.auxVar = document.getElementById("searchProduct");
+  this.router.navigateByUrl('/productos-busqueda/'+this.auxVar.value);
+  
+}
 
   SearchEngineProducts(){
     this.searchProduct = document.getElementById("searchProduct");
