@@ -30,7 +30,7 @@ import { LoginService } from './login.service';
 import { SubatributoService } from './subatributo.service';
 import { BackendUserService } from './backend-user.service';
 import { SubAtributoService } from './sub-atributo.service';
-import { EtiquetaService } from './etiqueta.service';
+// import { EtiquetaService } from './etiqueta.service';
 import { BackendClienteService } from './backend-cliente.service';
 
 import { FilterSecctionPipe } from './filter-secction.pipe';
