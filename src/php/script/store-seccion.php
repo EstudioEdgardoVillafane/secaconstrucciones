@@ -12,8 +12,8 @@
 	@$tmp = $_FILES['s_imagen']['tmp_name'];
 	@$file_name = $_FILES['s_imagen']['name'];
 
-	$ancho_fijo=1920;
-	$alto_fijo=1080;
+	$ancho_fijo=200;
+	$alto_fijo=200;
 	$ext=explode('/',$tipo);
 	$aleatorio=rand(0,999999999);
 	@$nuevo_nombre="port-".$aleatorio.'.'.$ext[1];
