@@ -41,4 +41,7 @@ export class BackendComponent implements OnInit {
   goSubAtributo(){
     this.router.navigate(["subatributo"], {relativeTo: this.route});
   }
+  goClientes(){
+    this.router.navigate(["clientes"], {relativeTo: this.route});    
+  }
 }

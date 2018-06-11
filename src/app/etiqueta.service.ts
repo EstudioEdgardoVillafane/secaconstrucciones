@@ -16,6 +16,9 @@ export class EtiquetaService {
   storeEtiqueta(etiqueta){
     return this.http.get('php/script/store-etiqueta.php?nombre='+etiqueta);
   }
+  /**
+   * This function do a list of reations etiquetas.
+   */
   doListJSON(){
     return this.http.get('php/script/list-etiqueta-json.php');
   }

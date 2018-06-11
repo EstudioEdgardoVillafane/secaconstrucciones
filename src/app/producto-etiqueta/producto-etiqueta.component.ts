@@ -3,6 +3,8 @@ import { ProductosService } from '../productos.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { EtiquetaService } from '../etiqueta.service';
+import { SeccionService } from '../seccion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto-etiqueta',
@@ -11,7 +13,7 @@ import { EtiquetaService } from '../etiqueta.service';
 })
 export class ProductoEtiquetaComponent implements OnInit {
 
-  constructor(private _activatedRoute:ActivatedRoute ,private etiquetaService: EtiquetaService , private __productosService:ProductosService, private _location:Location) { }
+  constructor(private router: Router , private seccionService: SeccionService ,private _activatedRoute:ActivatedRoute ,private etiquetaService: EtiquetaService , private __productosService:ProductosService, private _location:Location) { }
   ListProductoEtiqueta = new Array();
   JsonProductos = new Array();
   i;
@@ -22,9 +24,43 @@ export class ProductoEtiquetaComponent implements OnInit {
   idOfEtiqueta;
   auxTwoGlobal;
   JsonGlobal = new Array();
-  ngOnInit() {
-    console.log(this.Listar());
+  JsonEtiquetas;
+  JsonSecciones;
+
+  onTabChange(ruta) {
+    if (this.router.navigated === false) {
+      // Case when route was not used yet
+      this.router.navigateByUrl(ruta);
+    } else {
+      // Case when route was used once or more
+      this.router.navigateByUrl('/home').then(
+        () => {
+          this.router.navigateByUrl(ruta);
+        });
+    }
   }
+
+  ngOnInit(){
+    console.log(this.Listar());
+    this.doListOfEtiquetas();
+    this.doListOfSecciones();
+  }
+
+  doListOfSecciones(){
+    this.seccionService.CrudFunction(1,0,"",0)
+    .map((response) => response.json())
+    .subscribe((Data) => {
+      this.JsonSecciones = Data;
+    })
+  }
+  doListOfEtiquetas(){
+    this.etiquetaService.listEtiquetas()
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.JsonEtiquetas = data;
+    });
+  }
+
   Listar(){
     this.countGlobal = 0;
     this.__productosService.listProduct() //Listado de productos

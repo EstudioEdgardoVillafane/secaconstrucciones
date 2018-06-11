@@ -1,30 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-custom">
-
-  <div class="col-sm-2 d-none d-sm-block">
-    <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom pt-0 pb-0">
+<div class="container">
+  <div class="col-sm-2 d-none  pl-0 d-sm-block">
+    <a class="navbar-brand pt-0 pb-0" href="#">
       <img src="../../assets/img/logo.jpg" class=" logo-img img-fluid" alt="">
     </a>
-  </div>
-
-  <div class="col-12 d-block d-sm-none">
-    <a href="#">
-      <img src="../../assets/img/logo.jpg" class="img-fluid d-flex mx-auto img-mobile" alt="">
-    </a>
-  </div>
-
-  
+  </div> 
     <div class="col-9 col-md-10 input-group mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
 
       <!-- input -->
-      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
+      <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador pb-3">
 
-          <input id="searchProduct" type="text" class="form-control rounded-left font-italic p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2"  (keyup)="SearchEngineProducts()">
-          <button class="py-0 px-4 bg-white border-top border-right border-bottom rounded-right"  >
+          <input id="searchProduct" type="text" class="p-2 col-md-7" placeholder="Buscar producto..." aria-describedby="basic-addon2"  (keyup)="SearchEngineProducts()">
+          <button class="py-0 px-2 bg-white border-top border-right border-bottom rounded-right" (click)="goToSearch()" >
             <i class="fa fa-search fa-md my-auto p-0"></i>
           </button>
          
       </div>
-      <div class="cont-atributos bg-light col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador" *ngIf="BoolList">
+      <div class="cont-atributos bg-light col pt-1 col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador" *ngIf="BoolList">
           <ul class="list-group p-0 m-0 text-dark">
             <li id="cont{{product.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch" (click)="productClicked(product.p_id)">
               <a id="p{{product.p_id}}" class="text-muted">{{product.p_nombre}}</a>
@@ -33,18 +25,6 @@
             
          
         </div>
-
-      <!-- <div class="col col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador">
-        <div style="border: 1px solid #e0e0e0; background: white; width:58.5%; position:absolute; top:-8px; z-index: 9999999" *ngIf="BoolList">
-          <ul class="pl-0 ml-0 mb-2 mt-2">
-            <li id="cont{{product.p_id}}" class="pl-3 pr-3 pt-1 pb-1 mt-1 productSlect"  *ngFor="let product of jsonSearch" style="display:block; cursor:pointer" (click)="productClicked(product.p_id)" >
-              <a id="p{{product.p_id}}">{{product.p_nombre}}</a>
-            </li>
-          </ul>
-        </div>
-      </div> -->
-      <!-- botón hamburguesa -->
-
 
       <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
         <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
@@ -63,15 +43,11 @@
     <!-- fin atributos -->
   
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
   <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-    <ul class="navbar-nav text-uppercase text-white">
+    <ul class="navbar-nav text-white">
       <li class="nav-item">
-        <a class="nav-link" (click)="mostrarMegaMenu()">Categorias&nbsp;
+        <a class="nav-link pl-0" (click)="mostrarMegaMenu()">Categorias&nbsp;
           <i class="fa fa-angle-down"></i>
         </a>
         <div *ngIf="show">
@@ -79,7 +55,7 @@
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav text-uppercase text-white ml-auto">
+    <ul class="navbar-nav text-white ml-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/admin771">Iniciar sesión</a>
       </li>
@@ -93,6 +69,7 @@
       </li>
     </ul>
   </div>
+</div>
 </div>
 
 </nav>
