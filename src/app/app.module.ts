@@ -47,6 +47,7 @@ import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
 import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
 import { ProductoBusquedaComponent } from './producto-busqueda/producto-busqueda.component';
+import { LoginFrontComponent } from './login-front/login-front.component';
 
 
 
@@ -79,7 +80,8 @@ import { ProductoBusquedaComponent } from './producto-busqueda/producto-busqueda
     MostrarMitadStringPipe,
     ProductoFiltradoComponent,
     ProductoCategoriaComponent,
-    ProductoBusquedaComponent
+    ProductoBusquedaComponent,
+    LoginFrontComponent
  ],
   imports: [
     BrowserModule,

@@ -27,6 +27,10 @@ export class BackendClienteService {
   sendEmailToCliente(userName : string,email : string){
     return this.http.get('php/script/send-mail-validate.php?userName='+userName+'&email='+email);
   }
+  /** We are searching any user and password to do a validation */
+  generateValidationOfUser(Object){
+    return this.http.post("php/script/client-login.php",Object);
+  }
   /**This function send parameter from php to validate acount */
   validationAcout(validationCode : string){
     return this.http.get('php/script/validation-acout.php?validationCode='+validationCode);

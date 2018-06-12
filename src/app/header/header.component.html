@@ -64,16 +64,20 @@
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link pl-0 ml-2" >Ofertas de la semana&nbsp;
+            <a class="nav-link pl-0 ml-2" routerLink="/admin771" >Ofertas de la semana&nbsp;
             </a>
           </li>
     </ul>
     <ul class="navbar-nav text-white ml-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin771">Iniciar sesión</a>
+        <a class="nav-link"  *ngIf="boolToShowClient">Iniciar sesión</a>
+        <a class="nav-link"  *ngIf="!boolToShowClient">{{nameOfUser}}</a>
+
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Registrarse</a>
+        <a class="nav-link" href="#" *ngIf="boolToShowClient">Registrarse</a>
+        <a class="nav-link" href="#" *ngIf="!boolToShowClient">Desconectarse</a>
+
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
