@@ -10,6 +10,12 @@
     border:solid .3px #666;
   
 }
+.contenido:hover{
+    text-decoration:none;
+}
+.contenido{
+    color:rgb(43, 43, 43)!important;
+}
 
 .cont-img{
     height: 250px;
@@ -24,7 +30,7 @@
     transition: all .5ms ease-in-out;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
-   
+    color:rgb(35, 35, 35)!important;
   
 }
 

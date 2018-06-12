@@ -15,13 +15,16 @@
       </div>
      
           <div class="col-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado | slice : 0 : 2">
+              <a routerLink="/detalle-producto/{{producto.p_slug}}">
+
               <div class="d-flex rounded py-3 cont-img">
                 <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
               </div>
               <hr id="hr m-0">
-              <div class="text-center ">
+              <div class="text-center contenido">
                 <h5>${{producto.p_precio}}</h5>
               </div>
+              </a>
             </div>  
      </div>
    </div>
@@ -35,14 +38,14 @@
     </div>
     <div class="row d-flex">
       <div class="col-md-3 p-0 mx-3 border rounded py-3 capsule mt-3" *ngFor="let producto of ListDestacado" >
-        <a routerLink="/detalle-producto/info">
+        <a routerLink="/detalle-producto/{{producto.p_slug}}">
         <div class="d-flex rounded py-3 cont-img">
           <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
         </div>
         <hr id="hr m-0">
-        <div class="text-center ">
+        <div class="text-center contenido">
           <h5>${{producto.p_precio}}</h5>
-          <h2>{{producto.p_slug}}</h2>
+          <h5>{{producto.p_nombre}}</h5>
         </div>
       </a>
       </div>
@@ -65,8 +68,10 @@
                     <img src="{{producto.p_url}}" class="align-self-center mx-auto" alt="">
                   </div>
                   <hr id="hr m-0">
-                  <div class="text-center ">
+                  <div class="text-center contenido">
                     <h5>${{producto.p_precio}}</h5>
+                    <h5>{{producto.p_nombre}}</h5>
+
                   </div>
                   </a>
                 </div>
