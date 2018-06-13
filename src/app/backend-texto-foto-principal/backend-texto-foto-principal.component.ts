@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormularioService} from '../formulario.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -19,34 +18,36 @@ export class BackendTextoFotoPrincipalComponent implements OnInit {
   constructor(private TextoFotoPrincipalService:TextoFotoPrincipalService) { }
 
   ngOnInit() {
-    this.updatesPrincipalImgText();
+    this.listPrincipalImgText();
   }
 
   principalImgText = new Object;
   p_text;
   p_img;
-  storeNewTextImg(){
+  updateNewTextImg(){
     this.p_text = document.getElementById("principalText");
     this.p_img = document.getElementById("principalImg");
     
     if (this.p_text.value == ""){}
     if (this.p_img.value == ""){}
 
-    this.principalImgText ["img"] = this.p_img;
-    this.principalImgText ["text"] = this.p_text;
+    this.principalImgText["img"] = this.p_img.value;
+    this.principalImgText["text"] = this.p_text.value;
 
     this.TextoFotoPrincipalService.changeImgText(this.principalImgText)
   .subscribe((data) => {
     console.log(data);
+  });
   }
-
   updateimgtext;
-  updatesPrincipalImgText(data){
-    this.TextoFotoPrincipalService.changeImgText()()
+  listPrincipalImgText(){
+    this.TextoFotoPrincipalService.listImgText()
     .map((Response) => Response.json())
     .subscribe((data) => {
       console.log(data);
       this.updateimgtext = data;
+  });
   }
+
 }
 

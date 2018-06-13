@@ -56,7 +56,7 @@ imagedestroy ($nueva_img);
 
 
 $sql = "UPDATE /*tabla de la db*/ SET pr_text = '".$request->text."', 
-        pr_img = '".$request->img."'
+        pr_img = '".$URL."'
         WHERE pr_id = 1 ";
 $NewConnect->ExecuteSql($sql);
 

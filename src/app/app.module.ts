@@ -48,12 +48,9 @@ import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
 import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
 import { ProductoBusquedaComponent } from './producto-busqueda/producto-busqueda.component';
-<<<<<<< HEAD
 import { BackendTextoFotoPrincipalComponent } from './backend-texto-foto-principal/backend-texto-foto-principal.component';
-=======
 import { LoginFrontComponent } from './login-front/login-front.component';
 import { RegistroFrontComponent } from './registro-front/registro-front.component';
->>>>>>> master
 
 
 

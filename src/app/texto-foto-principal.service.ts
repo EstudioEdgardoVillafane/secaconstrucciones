@@ -15,7 +15,7 @@ export class TextoFotoPrincipalService {
     return this.http.post("php/script/changeprincipalimgtext.php",data);
   }
   
-  updateImgText(){
+  listImgText(){
     return this.http.get("php/script/update-principal-textimg.php");
   }
 
