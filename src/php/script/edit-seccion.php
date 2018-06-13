@@ -5,9 +5,12 @@ require_once '../class/connect.php';
 $NewConnect = new Seca();
     
     $Id = $_POST["editId"];
-	$editNombre = $_POST["edit_name"];
+	$editNombre = $_POST["edit_name"]; 
+
+	
     // $deleteImg = $_POST["deleteImg"];
-    $deleteImg = "port-850466701";
+// Codigo original. 
+	$deleteImg = "port-850466701";
 echo  $deleteImg;
 	$tipo = $_FILES['edit_imagen']['type'];
 	$tamano = $_FILES['edit_imagen']['size'];
@@ -53,7 +56,7 @@ if($tipo == "image/x-png" || $tipo == "image/png"){
 }	
 imagedestroy ($img_redimensionada);
 imagedestroy ($nueva_img);
-
+// termina codigo original
 if($tamano == 0){
 	$sql="UPDATE seccion SET
 	s_nombre = '".$editNombre."'
