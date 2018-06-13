@@ -1,0 +1,22 @@
+.band{
+    min-height: 35vh;
+}
+.band, nav{
+    background-color: #1b1f84;
+}
+
+.cont-form-letter{
+   font-weight: 200;
+}
+
+.cont-form{
+    background-color: #2151bd;
+}
+
+.btn-custom{
+    background-color: #101350;
+}
+.obli{
+    font-size:13px!important;
+    color:white!important;
+}

@@ -14,11 +14,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-//listedProducts()
-  listProductsInTheSearchEngine;
 
-//searchEngineProducts()
+  listProductsInTheSearchEngine;
+  boolToShowClient = false;
   searchProduct;
+  nameOfUser;
   i;
   result;
   searchProducts = false;
@@ -26,7 +26,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.listedProducts();
+    console.log(localStorage.getItem("usuario-sc"))
+    if(localStorage.getItem("usuario-sc") != null){
+      this.boolToShowClient = true;
+      this.nameOfUser = localStorage.getItem("usuario-sc");
+    }
   }
+
+  handleExitStorage(){
+    localStorage.removeItem("usuario-sc");
+    this.boolToShowClient = false;
+  }
+
+
 /**this function listed the products in the data base */
   listedProducts(){
     this.productService.listProductFront(1,1)

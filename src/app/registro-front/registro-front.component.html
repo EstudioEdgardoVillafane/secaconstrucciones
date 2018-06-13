@@ -1,0 +1,68 @@
+<div class="container-fluid bg-light">
+
+    <nav class="row navbar navbar-light">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/img/logo.jpg" class="img-fluid w-50 d-inline-block align-top" alt="">
+      </a>
+    </nav>
+    <div class="row">
+      <div class="col-md-12 band position-absolute"></div>
+      <div class="col-lg-6 col-md-8 py-4 mx-auto cont-form-letter">
+          <h3 class="text-white text-center">Registro de usuario</h3>
+        <div class="row">
+          <div class="w-100 py-3">
+            <h5 class="text-white text-center">Complete sus datos</h5>
+          </div>
+          <div class="w-100 cont-form p-4 pb-2">
+            <form>
+              <div class="form-row"> 
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="nombre" placeholder="Nombre *">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="apellido" placeholder="Apellido *">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="email" class="form-control" id="email" placeholder="Email *">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="password" class="form-control" id="usuario" placeholder="Usuario *">
+                </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="email" class="form-control" id="contra" placeholder="Constraseña *">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="password" class="form-control" id="contra2" placeholder="Repita la contraseña *">
+                  </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <input type="email" class="form-control" id="provincia" placeholder="Provincia ">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input type="password" class="form-control" id="localidad" placeholder="Localidad ">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="email" class="form-control" id="barrio" placeholder="Barrio ">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input type="password" class="form-control" id="cp" placeholder="Codigo postal ">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <a class="text-muted col-md-6 obli">Los campos con * son obligatorios</a>
+                      <button type="submit" class=" col-md-6 btn btn-custom d-block mx-auto mt-2 text-white" (click)="doNewClient()">Crear cuenta</button>
+                  </div>
+            </form>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
