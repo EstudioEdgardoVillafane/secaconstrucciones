@@ -16,7 +16,7 @@ export class LoginFrontComponent implements OnInit {
   Aux; //With this variable we can get an elements html.
 
   ngOnInit() {
-    if(localStorage.getItem("usuario") != ""){
+    if(localStorage.getItem("usuario-sc") != null){
       this.router.navigateByUrl('/home');
     }
   }
@@ -35,7 +35,7 @@ export class LoginFrontComponent implements OnInit {
     this.loginService.generateValidationOfUser(this.clienteObject)
     .subscribe((data) => {
       if(data.text() == " 1"){
-        localStorage.setItem("usuario", this.clienteObject["nameUser"]);
+        localStorage.setItem("usuario-sc", this.clienteObject["nameUser"]);
         this.router.navigateByUrl('/home');
       }else{
         // Need a validation.

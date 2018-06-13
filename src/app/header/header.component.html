@@ -70,13 +70,13 @@
     </ul>
     <ul class="navbar-nav text-white ml-auto">
       <li class="nav-item">
-        <a class="nav-link"  *ngIf="boolToShowClient">Iniciar sesión</a>
-        <a class="nav-link"  *ngIf="!boolToShowClient">{{nameOfUser}}</a>
+        <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/login">Iniciar sesión</a>
+        <a class="nav-link"  *ngIf="boolToShowClient">{{nameOfUser}}</a>
 
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" *ngIf="boolToShowClient">Registrarse</a>
-        <a class="nav-link" href="#" *ngIf="!boolToShowClient">Desconectarse</a>
+        <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/registro">Registrarse</a>
+        <a class="nav-link"  *ngIf="boolToShowClient" (click)="handleExitStorage()">Desconectarse</a>
 
       </li>
       <li class="nav-item">

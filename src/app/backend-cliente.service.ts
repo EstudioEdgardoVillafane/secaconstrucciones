@@ -35,4 +35,7 @@ export class BackendClienteService {
   validationAcout(validationCode : string){
     return this.http.get('php/script/validation-acout.php?validationCode='+validationCode);
   }
+  storeClient(Object){
+    return this.http.post('php/script/new-client.php', Object);
+  }
 }

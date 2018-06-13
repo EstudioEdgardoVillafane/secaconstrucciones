@@ -26,11 +26,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.listedProducts();
-    if(localStorage.getItem("usuario") != ""){
+    console.log(localStorage.getItem("usuario-sc"))
+    if(localStorage.getItem("usuario-sc") != null){
       this.boolToShowClient = true;
-      this.nameOfUser = localStorage.getItem("usuario");
+      this.nameOfUser = localStorage.getItem("usuario-sc");
     }
   }
+
+  handleExitStorage(){
+    localStorage.removeItem("usuario-sc");
+    this.boolToShowClient = false;
+  }
+
+
 /**this function listed the products in the data base */
   listedProducts(){
     this.productService.listProductFront(1,1)

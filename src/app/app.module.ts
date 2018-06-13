@@ -48,6 +48,7 @@ import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado
 import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
 import { ProductoBusquedaComponent } from './producto-busqueda/producto-busqueda.component';
 import { LoginFrontComponent } from './login-front/login-front.component';
+import { RegistroFrontComponent } from './registro-front/registro-front.component';
 
 
 
@@ -81,7 +82,8 @@ import { LoginFrontComponent } from './login-front/login-front.component';
     ProductoFiltradoComponent,
     ProductoCategoriaComponent,
     ProductoBusquedaComponent,
-    LoginFrontComponent
+    LoginFrontComponent,
+    RegistroFrontComponent
  ],
   imports: [
     BrowserModule,
