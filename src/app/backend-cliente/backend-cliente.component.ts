@@ -27,6 +27,8 @@ import { BackendClienteService } from './../backend-cliente.service';
 })
 export class BackendClienteComponent implements OnInit {
 /**Functions Generics vars */
+  // searchUserClient()
+  searchClient
   //listClientes()
   listCliente
   //sendClienteEmail()
@@ -103,7 +105,71 @@ l
   ngOnInit() {
     this.listClientes();
   }
+  JsonFind
+  searchClienteUsers
+  BoolOfSearchNone = true;
+  BoolOfSearchTrue = false;
 
+  search(searchUserName){
+
+    this.searchClienteUsers = document.getElementById("searchClienteUser");
+    this.searchClienteUsers.value = searchUserName;
+    
+    this.backendClienteSrevice.getJsonForUser(searchUserName,this.listCliente)
+    .subscribe((data) => {
+      this.JsonFind = data;
+      this.showList = false;
+      this.BoolOfSearchTrue = true;
+      this.BoolOfSearchNone = false;
+      console.log(this.JsonFind);
+    });
+  }
+  PaginaActual = 1; 
+  CantidadDePaginas : number;
+  Desde = 0;
+  Hasta = 8;
+  nextPag(){
+    if(this.PaginaActual < this.CantidadDePaginas){
+      this.PaginaActual++;
+      this.Desde = this.Desde + 8;
+      this.Hasta = this.Hasta + 8;
+    }
+  }
+  prevPag(){
+    if(this.PaginaActual > 1){
+      this.PaginaActual--;
+      this.Desde = this.Desde - 8;
+      this.Hasta = this.Hasta - 8;
+    }
+  }
+  searchClienteUser;
+  searchClienteUserAux;
+  contador;
+  showList;
+  jsonSearchClientes = new Array();
+  searchUserCliente(){
+    this.searchClienteUser = document.getElementById("searchClienteUser");
+    if(this.searchClienteUser.value.length >= 3){
+      this.jsonSearchClientes.length = 0;
+      this.contador = 0;
+      this.searchClienteUserAux = document.getElementById("searchClienteUser");
+      for(this.i = 0; this.i < this.listCliente.length; this.i++){
+        if(this.listCliente[this.i].c_usuario.toUpperCase().match(this.searchClienteUserAux.value.toUpperCase())){
+          this.jsonSearchClientes[this.contador] = this.listCliente[this.i];
+          this.contador ++;
+        }
+      }
+    }
+    if(this.searchClienteUser.value.length >= 3 && this.jsonSearchClientes.length != 0){
+      this.showList = true;
+    }else{
+      this.showList = false;
+    }
+    console.log(this.jsonSearchClientes.values);
+  }
+  closeList(){
+    this.showList = false;
+  }
 /*------- Generic Functions------*/
   /**This function list the clients on the table*/  
   listClientes(){
@@ -112,6 +178,9 @@ l
     .subscribe((data) => {
       console.log(data)
       this.listCliente = data;
+
+      this.CantidadDePaginas = this.listCliente.length/8;
+      this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas)
     });
   }
   /**This function send email from validate acount*/

@@ -31,4 +31,7 @@ export class BackendClienteService {
   validationAcout(validationCode : string){
     return this.http.get('php/script/validation-acout.php?validationCode='+validationCode);
   }
+  getJsonForUser(name,json){
+    return of(json.find((jsonCliente => jsonCliente.c_usuario === name)));
+  }
 }

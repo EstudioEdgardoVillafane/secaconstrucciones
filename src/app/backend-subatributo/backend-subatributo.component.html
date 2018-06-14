@@ -95,16 +95,18 @@
   <div *ngIf="ChangeTemplateEditar;else Agregar" class="mt-4">
   
   
-      <div class="row">
-        <div class="col-5">
         <h2>Tabla de Sub-atributo.</h2>
   
-      </div>
-      <div class="col-7">
-        <button class="btn btn-md btn-info pull-right ml-1" (click)="ShowStoreForm()">Agregar</button>
-        <button class="btn btn-md btn-danger pull-right ml-1" (click)="Delete()">Eliminar</button>
-      </div>
-    </div>
+        <hr>
+        <div class="row">
+          <div class="col-6">
+            <input type="hidden" class="form-control pull-left" placeholder="Buscar por usuario">
+          </div>
+          <div class="col-6">
+              <button  class="btn btn-md btn-primary pull-right ml-1"  (click)="showStoreForm()"><i class="fa fa-plus" style="font-size:17px"></i>Agregar</button>
+              <button class="btn btn-md btn-danger pull-right" (click)="delete()"><i class="fa fa-close" style="font-size:20px"></i>Eliminar</button>
+            </div>
+          </div>
     
       <table class="table table-bordered mt-3"  width="100%">
   
