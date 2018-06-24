@@ -32,6 +32,7 @@ import { BackendUserService } from './backend-user.service';
 import { SubAtributoService } from './sub-atributo.service';
 import { EtiquetaService } from './etiqueta.service';
 import { BackendClienteService } from './backend-cliente.service';
+import {TextoFotoPrincipalService} from './texto-foto-principal.service';
 
 import { FilterSecctionPipe } from './filter-secction.pipe';
 import { PrioritySelectPipe } from './priority-select.pipe';
@@ -47,8 +48,12 @@ import { MostrarMitadStringPipe } from './mostrar-mitad-string.pipe';
 import { ProductoFiltradoComponent } from './producto-filtrado/producto-filtrado.component';
 import { ProductoCategoriaComponent } from './producto-categoria/producto-categoria.component';
 import { ProductoBusquedaComponent } from './producto-busqueda/producto-busqueda.component';
+<<<<<<< HEAD
+import { BackendTextoFotoPrincipalComponent } from './backend-texto-foto-principal/backend-texto-foto-principal.component';
+=======
 import { LoginFrontComponent } from './login-front/login-front.component';
 import { RegistroFrontComponent } from './registro-front/registro-front.component';
+>>>>>>> master
 
 
 
@@ -82,6 +87,7 @@ import { RegistroFrontComponent } from './registro-front/registro-front.componen
     ProductoFiltradoComponent,
     ProductoCategoriaComponent,
     ProductoBusquedaComponent,
+    BackendTextoFotoPrincipalComponent,
     LoginFrontComponent,
     RegistroFrontComponent
  ],
@@ -92,7 +98,7 @@ import { RegistroFrontComponent } from './registro-front/registro-front.componen
     HttpModule,
     HttpClientModule
   ],
-  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService,BackendClienteService], //Services
+  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService,BackendClienteService,TextoFotoPrincipalService], //Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
