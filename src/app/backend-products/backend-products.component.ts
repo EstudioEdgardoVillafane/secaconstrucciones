@@ -22,6 +22,7 @@ import { AtributoService } from '../atributo.service';
 import { ProductosService } from '../productos.service';
 import { SubatributoService } from '../subatributo.service';
 import { EtiquetaService } from '../etiqueta.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-backend-products',
   templateUrl: './backend-products.component.html',
@@ -86,7 +87,7 @@ export class BackendProductsComponent implements OnInit {
 
   /** I am defining the services. */
  
- constructor(private seccionService: SeccionService, private productoService : ProductosService, private atributoService : AtributoService, private etiquetaService: EtiquetaService ,private subatributeService : SubatributoService) {}
+ constructor(private router : Router, private seccionService: SeccionService, private productoService : ProductosService, private atributoService : AtributoService, private etiquetaService: EtiquetaService ,private subatributeService : SubatributoService) {}
 
  /** Calling the function ListContent to do the list of content. */
 
@@ -171,7 +172,7 @@ toUp(id : string){
   if( parseInt(this.inputAux.value) >= 0){
     this.inputAux.value = parseInt(this.inputAux.value) + 1;
     this.productoService.updateOrden(id,this.inputAux.value)
-  .subscribe(data => console.log("toto"));
+  .subscribe(data => data );
   }
   
 }
@@ -181,7 +182,7 @@ toDown(id : string){
   if( parseInt(this.inputAux.value) > 0){
   this.inputAux.value = parseInt(this.inputAux.value) - 1;
   this.productoService.updateOrden(id,this.inputAux.value)
-  .subscribe(data => console.log(data) );
+  .subscribe(data => data );
   
   }
 }
@@ -707,9 +708,9 @@ nextOne(){
        .subscribe((data) => { 
          console.log(data)
        this.ListOfContent = data;
-    
        this.CantidadDePaginas = this.ListOfContent.length/8;
-       this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas)
+       this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas);
+       
      });
    }
  
@@ -778,10 +779,10 @@ nextOne(){
        }else{
          this.productoService.CrudFunction(this.CheckAcumulador[this.i])
          .subscribe((data) => { 
+           this.ListContent();
         });
        }
      }
-     this.ListContent();
    }
 
 auxDuplicate;
@@ -826,6 +827,7 @@ auxDuplicate;
         this.contador++;
       });
     }
+
     }
    
     this.formElement = document.getElementById("formularioStore");
@@ -837,10 +839,19 @@ auxDuplicate;
 
     this.request = new XMLHttpRequest();
     this.request.open("POST", "php/script/store-product.php", true);
-    console.log(this.request.send(this.formulario));
-    this.ListContent();    
-   
-    }
+    this.request.onload = () => {
+      this.productoService.listProduct()
+      .map((response) => response.json())
+      .subscribe((data) => {
+      this.ListOfContent = data;
+      this.BoolAddProductTwo = false;
+      this.BooleanTable = true;
+    }); 
+    };
+    this.request.send(this.formulario)
+       
+  }
+    
 
 
 

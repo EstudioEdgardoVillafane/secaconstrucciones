@@ -3,6 +3,7 @@ import { ActivatedRoute,Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProductosService } from '../productos.service';
 import { EtiquetaService } from '../etiqueta.service';
+import { SeccionService } from '../seccion.service';
 
 @Component({
   selector: 'app-productos',
@@ -18,7 +19,7 @@ export class ProductosComponent implements OnInit {
   ListProducts = new Array();
   ListDestacado = new Array();
   
-  constructor(private productService : ProductosService, private etiquetaService : EtiquetaService, private productoService: ProductosService) { }
+  constructor(private seccionService : SeccionService, private productService : ProductosService, private etiquetaService : EtiquetaService, private productoService: ProductosService) { }
 
   ngOnInit() {
     this.doListEtiqueta();
@@ -29,6 +30,8 @@ export class ProductosComponent implements OnInit {
     this.doListDestacados(this.ListOfProducts);
     this.doList(this.ListOfProducts);
     });
+
+    this.listedSeccionsFronted();
   }
 
   /** This function do a filter of the json, to see the products with stars */
@@ -60,6 +63,18 @@ export class ProductosComponent implements OnInit {
     this.ListEtiqueta = data;
   });
   }
+  
+listSeccion
+
+listedSeccionsFronted(){
+  this.seccionService.CrudFunction(1,0,"0",0)
+  .map((response)=> response.json())
+  .subscribe((data)=>{
+    console.log(data);
+    this.listSeccion = data;
+  });
+}
+  
 
   
 }

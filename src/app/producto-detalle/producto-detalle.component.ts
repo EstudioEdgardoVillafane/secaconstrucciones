@@ -16,7 +16,12 @@ export class ProductoDetalleComponent implements OnInit {
   ListOfProducts;
 
   ngOnInit() {  
+    var html = document.documentElement;
+    html.scrollTop = 0;
+
+  
     console.log(this.Listar());
+  
   }
   Listar(){
     this.__productosService.listProduct()

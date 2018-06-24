@@ -23,7 +23,8 @@
       <div class="col-9">
         <div class="row">
         <div class="col-4 p-0 border rounded py-3 capsule p-w mb-3 ml-3 text-center" *ngFor="let producto of JsonProducto" >
-            <div class="d-flex rounded py-3 cont-img">
+          <a routerLink="/detalle-producto/{{producto.p_slug}}"> 
+          <div class="d-flex rounded py-3 cont-img">
               <img src="{{producto.p_url}}" class="align-self-center mh mx-auto" alt="">
             </div>
             <hr id="hr m-0">
@@ -32,9 +33,10 @@
               <h5>${{producto.p_precio}}</h5>
               <p class="name-producto">{{producto.p_nombre}}</p>
             </div>
+            </a>
           </div>
-          <div class="col-12 text-center">
-            <a class="ft-14">Pagina 1 de X</a><a class="ml-1 paginador"><</a><a class="paginador ml-1">></a>
+          <div class="col-12 text-center mt-3">
+            <a class="ft-14">Pagina {{PaginaActual}} de {{CantidadDePaginas}}</a><a class="ml-1 paginador" (click)="prevPag()"><</a><a class="paginador ml-1" (click)="nextPag()">></a>
           </div>
         </div>
       </div>

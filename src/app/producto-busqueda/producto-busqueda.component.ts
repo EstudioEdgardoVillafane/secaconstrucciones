@@ -36,6 +36,8 @@ export class ProductoBusquedaComponent implements OnInit {
   JsonSecciones;
 
   ngOnInit(){
+    var html = document.documentElement;
+    html.scrollTop = 0;
     console.log(this.Listar());
     this.doListOfEtiquetas();
     this.doListOfSecciones();

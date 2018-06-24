@@ -14,6 +14,11 @@ import { AtributoService } from '../atributo.service';
 export class ProductoFiltradoComponent implements OnInit {
 
   constructor(private _activatedRoute:ActivatedRoute ,private etiquetaService: EtiquetaService, private seccionService : SeccionService , private atributoService: AtributoService, private __productosService:ProductosService, private _location: Location) { }
+  Desde = 0;
+  Hasta = 9;
+  PaginaActual = 1;
+  CantidadDePaginas;
+
   JsonProducto = new Array();
   i;
   countGlobal = 0;
@@ -25,6 +30,8 @@ export class ProductoFiltradoComponent implements OnInit {
   JsonEtiquetas;
   ngOnInit() {
     console.log(this.Listar());
+    var html = document.documentElement;
+    html.scrollTop = 0;
   }
 
 
@@ -52,6 +59,8 @@ export class ProductoFiltradoComponent implements OnInit {
           }
           this.doListOfCategories();
           this.doListOfEtiquetas();
+          this.CantidadDePaginas = this.JsonProducto.length/9;
+          this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas);
         });
       
       });
@@ -80,5 +89,18 @@ export class ProductoFiltradoComponent implements OnInit {
       }
     });
   }
-
+ nextPag(){
+    if(this.PaginaActual < this.CantidadDePaginas){
+      this.PaginaActual++;
+      this.Desde = this.Desde + 9;
+      this.Hasta = this.Hasta + 9;
+    }
+  }
+  prevPag(){
+    if(this.PaginaActual > 1){
+      this.PaginaActual--;
+      this.Desde = this.Desde - 9;
+      this.Hasta = this.Hasta - 9;
+    }
+  }
 }

@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Abel');
+/* @import url('https://fonts.googleapis.com/css?family=Abel'); */
 
 nav {
   min-height: 100px;
-  font-family: 'Abel', sans-serif!important;
+  /* font-family: 'Abel', sans-serif!important; */
 }
 
 nav ul li a {
-  font-weight: 700;
-  font-size: .8rem;
+
+  font-size: 14px;
   color: #fff;
 }
 .fa-search{

@@ -17,7 +17,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import { catchError, map, tap } from 'rxjs/operators';
 import { BackendUserService } from '../backend-user.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-backend-user',
   templateUrl: './backend-user.component.html',
@@ -61,7 +61,7 @@ export class BackendUserComponent implements OnInit {
   edit;
   edit_userb;
   listado;
-  constructor( private BackendUserService : BackendUserService ) { }
+  constructor( private router : Router, private BackendUserService : BackendUserService ) { }
 
   ngOnInit() {
     if(localStorage.getItem("keyTwo") != "1"){
@@ -95,23 +95,14 @@ export class BackendUserComponent implements OnInit {
   }
 
 
-  // Listar(){
-  //   this.BackendUserService.validateUser().subscribe((data) => {
-  //     console.log(data.text());
-  //       this.BackendUserService.Conect(5,0,"0","0","0")
-  //         .map((response) => response.json())
-  //         .subscribe((data) => {
-  //         this.listado = data;
-  //       });
-  //    });
-  // }
-    Listar(){
+    Listar() {
         this.BackendUserService.Conect(5,0,"0","0","0")
         .map((response) => response.json())
         .subscribe((data) => {
           console.log(data);
           this.listado = data;
         });
+
       }
 //this function take the values of the iputs and send the values of the data base
   Edit(ub_id : number){
@@ -258,9 +249,11 @@ export class BackendUserComponent implements OnInit {
         this.ub_email.value,
         this.ub_password.value
       )
-      .subscribe((result)=>{this.var=result;});
-      // this.ListBackendUsers();
-      window.location.reload();
+      .subscribe((result)=>{
+        this.Listar();        
+        this.router.navigateByUrl('/backend/usuarios');
+      });
+      
 
       this.ChangeTemplateEditar=true;
     }else{

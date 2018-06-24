@@ -52,7 +52,6 @@ const routes: Routes = [
     ]
   },
   { path: 'productos', component: BackendProductsComponent },
-  { path: 'detalle-producto/:nombre', component: ProductoDetalleComponent },
   { path: 'maqueta', component: MaquetaComponent },
   { path: 'login-y-registro', component: LoginYRegistroComponent },
   { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },

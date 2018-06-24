@@ -29,6 +29,8 @@ export class ProductoCategoriaComponent implements OnInit {
   JsonOptions = new Array();
   IdCategoriaPrivate;
   ngOnInit() {
+    var html = document.documentElement;
+    html.scrollTop = 0;
     console.log(this.Listar());
     this.doListOfEtiquetas();
     this.doListOfOptions();

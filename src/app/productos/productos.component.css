@@ -31,12 +31,31 @@
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
     color:rgb(35, 35, 35)!important;
-  
+    max-width: 23.7%!important;
 }
-
+.capsuled{
+    transition: all .5ms ease-in-out;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+    color:rgb(35, 35, 35)!important;
+    max-width: 24%!important;
+}
+.title-product{
+    font-size: 17px!important;
+    text-decoration: none!important;
+}
+.title-product:hover{
+    text-decoration: none!important;
+}
 .capsule:hover{
     box-shadow: 0px 3px 7px #0000004a;
 }
 #grey-bg{
     background-color: rgb(238, 238, 238);
+}
+@media screen and (max-width: 720px) {
+    .capsuled, .capsule{
+        max-width: 100%!important;
+    }
+
 }

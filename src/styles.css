@@ -2,9 +2,16 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import url('https://fonts.googleapis.com/css?family=Bitter:700|Merriweather+Sans');
 @import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
 
 body{
     /* font-family: 'Merriweather Sans', sans-serif; */
-    font-family: 'Rubik', sans-serif!important;
+    /* font-family: 'Rubik', sans-serif!important; */
+    font-family: 'Work Sans', sans-serif!important;
+
     overflow-x: hidden;  
+}
+
+.cont-img{
+    height: 250px;
 }

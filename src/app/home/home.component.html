@@ -1,31 +1,18 @@
 <app-header></app-header>
 <section style="background-image: url('https://www.seca.com.ar/assets/images/fondo.webp'); height:55vh;
 background-repeat:no-repeat;
-background-size:cover">
-<p class="h1 text-center pt-5 text-white" style="text-shadow: 1px 1px 1px black;">¡Grandes ofertas!
-</p>
-<p class="h1 text-center text-white" style="text-shadow: 1px 1px 1px black;">20% OFF en efectivo</p>
+background-size:cover;
+background-position-y:center;">
+
 </section>
 
 
-  <div class="row text-dark">
-        <app-productos class="col-12">
+  <!-- <div class="row text-dark"> -->
+        <app-productos class="col-12 pr-0" >
     </app-productos>
- </div>
+ <!-- </div> -->
 
-  <section class="cuadricula-iconos pt-5 pb-5">
-      <div class="container">
-    <h2>Secciones</h2>
-    <div class="row">
-        <div class="col-3 p-0 border rounded py-3 capsule mt-3" *ngFor="let listado of listSeccion | slice: 0 : 8" style="cursor:pointer" routerLink="/productos-seccion/{{listado.s_nombre}}">
-            <div class="d-flex rounded py-3 mx-3 cont-img">
-              <img src="{{listado.s_imagen}}" class="align-self-center mx-auto" width="200" height="200" alt="">
-            </div>
-            <p class="text-center text-muted h5">{{listado.s_nombre}}</p>
-        </div>  
-    </div>
-  </div>
-  </section>
+
 
 
 

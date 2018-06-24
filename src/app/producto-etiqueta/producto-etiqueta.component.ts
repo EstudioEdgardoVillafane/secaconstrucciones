@@ -14,10 +14,17 @@ import { Router } from '@angular/router';
 export class ProductoEtiquetaComponent implements OnInit {
 
   constructor(private router: Router , private seccionService: SeccionService ,private _activatedRoute:ActivatedRoute ,private etiquetaService: EtiquetaService , private __productosService:ProductosService, private _location:Location) { }
+  Desde = 0;
+  Hasta = 9;
+  PaginaActual = 1;
+  CantidadDePaginas;
+
   ListProductoEtiqueta = new Array();
   JsonProductos = new Array();
   i;
   k;
+
+  etiquetaName;
   saveIdOfProducts = new Array();
   countGlobal = 0;
   auxGlobal;
@@ -41,6 +48,8 @@ export class ProductoEtiquetaComponent implements OnInit {
   }
 
   ngOnInit(){
+    var html = document.documentElement;
+    html.scrollTop = 0;
     console.log(this.Listar());
     this.doListOfEtiquetas();
     this.doListOfSecciones();
@@ -68,6 +77,7 @@ export class ProductoEtiquetaComponent implements OnInit {
     .subscribe((data) => {
       this.auxTwoGlobal = data;  // Guardamos el listado de los productos en un auxiliar
       const etiqueta = this._activatedRoute.snapshot.paramMap.get('etiqueta');
+      this.etiquetaName = etiqueta;
       this.etiquetaService.listEtiquetas()  //Listado de etiquetas
       .map((response) => response.json())
       .subscribe((data) => {
@@ -96,9 +106,9 @@ export class ProductoEtiquetaComponent implements OnInit {
                 this.countGlobal++;
               }
             }
-          }
-          console.log("este es el listado de productos, creo.");
-          console.log(this.JsonProductos);          
+          }      
+          this.CantidadDePaginas = this.JsonProductos.length/9;
+          this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas);
         });
         });
       
@@ -107,5 +117,18 @@ export class ProductoEtiquetaComponent implements OnInit {
       console.log(this.JsonGlobal);
   });
   }
-
+  nextPag(){
+    if(this.PaginaActual < this.CantidadDePaginas){
+      this.PaginaActual++;
+      this.Desde = this.Desde + 9;
+      this.Hasta = this.Hasta + 9;
+    }
+  }
+  prevPag(){
+    if(this.PaginaActual > 1){
+      this.PaginaActual--;
+      this.Desde = this.Desde - 9;
+      this.Hasta = this.Hasta - 9;
+    }
+  }
 }
