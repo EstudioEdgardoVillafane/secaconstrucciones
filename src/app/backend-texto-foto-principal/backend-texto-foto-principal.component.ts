@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormularioService} from '../formulario.service';
+// import {FormularioService} from '../formulario.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -19,7 +19,7 @@ export class BackendTextoFotoPrincipalComponent implements OnInit {
   constructor(private TextoFotoPrincipalService:TextoFotoPrincipalService) { }
 
   ngOnInit() {
-    this.updatesPrincipalImgText();
+    // this.updatesPrincipalImgText();
   }
 
   principalImgText = new Object;
@@ -38,15 +38,16 @@ export class BackendTextoFotoPrincipalComponent implements OnInit {
     this.TextoFotoPrincipalService.changeImgText(this.principalImgText)
   .subscribe((data) => {
     console.log(data);
+  });
   }
 
   updateimgtext;
-  updatesPrincipalImgText(data){
-    this.TextoFotoPrincipalService.changeImgText()()
-    .map((Response) => Response.json())
-    .subscribe((data) => {
-      console.log(data);
-      this.updateimgtext = data;
-  }
+  // updatesPrincipalImgText(data){
+    // this.TextoFotoPrincipalService.changeImgText()()
+    // .map((Response) => Response.json())
+    // .subscribe((data) => {
+      // console.log(data);
+      // this.updateimgtext = data;
+  // }
 }
 

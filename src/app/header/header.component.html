@@ -1,92 +1,126 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-custom pt-0 pb-0">
-<div class="container">
-  <div class="col-2 d-none  pl-0 d-sm-block">
-    <a class="navbar-brand pt-0 pb-0" href="#">
-      <img src="../../assets/img/logo.jpg" class=" logo-img img-fluid" alt="">
-    </a>
-  </div> 
-    <div class="col-10 mx-auto px-2 px-md-3 px-lg-0 mt-2 mt-md-0 py-0">
-
-      <!-- input -->
-      <div class="col-12 m-0 mt-md-2 p-0 d-flex align-items-center buscador pb-3">
-
-          <input id="searchProduct" type="text" class="form-control col-6" placeholder="Buscar producto..." aria-describedby="basic-addon2"  (keyup)="SearchEngineProducts()">
-          <button class="py-0 px-2 bg-white border-top border-right border-bottom rounded-right" (click)="goToSearch()" >
-            <i class="fa fa-search fa-md my-auto p-0"></i>
-          </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-custom pt-0 pb-0 px-0 py-0">
+    <div class="container">
+      <div class="col-4 col-md-2">
+          <img src="../../assets/img/logo.jpg" class="img-logo " alt="">
+      </div> 
+        <div class="col-8 col-md-10 pl-0">
+    
+          <!-- input -->
+          <div class="col-12 align-items-center buscador pb-3 input-group pl-0 pr-0">
+    
+              <input id="searchProduct" type="text" class="form-control col-12 col-md-8 pl-0 pr-0" placeholder="Buscar producto..." aria-describedby="basic-addon2"  (keyup)="SearchEngineProducts()">
+              <div class="input-group-prepend">
+                <button class="py-0 px-2 bg-white border-top border-right border-bottom rounded-right input-group-text" (click)="goToSearch()" >
+                  <i class="fa fa-search fa-md my-auto p-0"></i>
+                </button>
+                </div>
+             
+          </div>
          
-      </div>
-      
-      
-
+          
     
-      <div class="cont-atributos bg-light col pt-1 col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador" *ngIf="BoolList">
-          <ul class="list-group p-0 m-0 text-dark">
-            <li id="cont{{product.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch" (click)="productClicked(product.p_id)">
-              <a id="p{{product.p_id}}" class="text-muted">{{product.p_nombre}}</a>
-           </li>
-          </ul>
-      </div>
-
-
-
-
-      
-      <div class="col-2 d-flex align-self-center mr-auto d-block d-lg-none">
-        <button class="navbar-toggler boton-barra" type="button" data-toggle="collapse" data-target="#barra-inferior" aria-controls="barra-inferior"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon text-white"></span>
-        </button>
-      </div>
-
-      <!-- barra inferior -->
-   
-
+        
+          <div class="cont-atributos bg-light col pt-1 col-md-10 col-lg-8 m-0 mt-md-2 p-0 d-flex align-items-center buscador" *ngIf="BoolList">
+              <ul class="list-group p-0 m-0 text-dark">
+                <li id="cont{{product.p_id}}" class="px-3 py-1 productSlect" *ngFor="let product of jsonSearch" (click)="productClicked(product.p_id)">
+                  <a id="p{{product.p_id}}" class="text-muted">{{product.p_nombre}}</a>
+               </li>
+              </ul>
+          </div>
     
-    
-    <!-- atributos -->
-    
-    <!-- fin atributos -->
-  
-
-
-  <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-    <ul class="navbar-nav text-white">
-      <li class="nav-item">
-        <a class="nav-link pl-0" (click)="mostrarMegaMenu()">Categorias <i class="fa fa-angle-down" style="position:relative; top:1px"></i>
-        </a>
-        <div *ngIf="show">
-          <app-sub-menu></app-sub-menu>
+          
+          
+          
+          
+          <div class="col-12 pl-0 pr-0">
+            <button class="navbar-toggler menu pl-0 pr-0 boton-barra pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <a class="text-white " style="font-size:16px">Menu <i class="fa fa-bars text-white" style="position: relative;"></i></a>
+          </button>
         </div>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link pl-0 ml-2">Tus compras&nbsp;
-          </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link pl-0 ml-2" routerLink="/admin771" >Ofertas de la semana&nbsp;
+    
+          <!-- barra inferior -->
+          
+          
+          
+          
+          <!-- atributos -->
+          
+        <!-- fin atributos -->
+        
+          
+        
+        
+        <div class="collapse navbar-collapse text-center" id="">
+          <ul class="navbar-nav text-white">
+            <li class="nav-item">
+              <a class="nav-link pl-0" (click)="mostrarMegaMenu()">Categorias <i class="fa fa-angle-down" style="position:relative; top:1px"></i>
+            </a>
+            <div *ngIf="show">
+              <app-sub-menu></app-sub-menu>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link pl-0 ml-2">Tus compras&nbsp;
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link pl-0 ml-2" routerLink="/admin771" >Ofertas de la semana&nbsp;
+                </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav text-white ml-auto">
+              <li class="nav-item">
+                <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/login">Iniciar sesión</a>
+            <a class="nav-link"  *ngIf="boolToShowClient">{{nameOfUser}}</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/registro">Registrarse</a>
+            <a class="nav-link"  *ngIf="boolToShowClient" (click)="handleExitStorage()">Desconectarse</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fa fa-shopping-cart fa-lg"></i>
             </a>
           </li>
-    </ul>
-    <ul class="navbar-nav text-white ml-auto">
-      <li class="nav-item">
-        <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/login">Iniciar sesión</a>
-        <a class="nav-link"  *ngIf="boolToShowClient">{{nameOfUser}}</a>
-
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/registro">Registrarse</a>
-        <a class="nav-link"  *ngIf="boolToShowClient" (click)="handleExitStorage()">Desconectarse</a>
-
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-shopping-cart fa-lg"></i>
-        </a>
-      </li>
-    </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <ul class="navbar-nav text-white">
+          <li class="nav-item">
+            <a class="nav-link pl-0" (click)="mostrarMegaMenu()">Categorias <i class="fa fa-angle-down" style="position:relative; top:1px"></i>
+          </a>
+      
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pl-0 ml-2">Tus compras&nbsp;
+            </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link pl-0 ml-2" routerLink="/admin771" >Ofertas de la semana&nbsp;
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav text-white ml-auto">
+            <li class="nav-item">
+              <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/login">Iniciar sesión</a>
+          <a class="nav-link"  *ngIf="boolToShowClient">{{nameOfUser}}</a>
+          
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  *ngIf="!boolToShowClient" routerLink="/registro">Registrarse</a>
+          <a class="nav-link"  *ngIf="boolToShowClient" (click)="handleExitStorage()">Desconectarse</a>
+          
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-shopping-cart fa-lg"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
-</div>
-
 </nav>

@@ -1,8 +1,19 @@
 /* @import url('https://fonts.googleapis.com/css?family=Abel'); */
-
+.img-logo{
+  max-width: 100%;
+  position:relative;
+}
 nav {
   min-height: 100px;
+  background: black!important;
   /* font-family: 'Abel', sans-serif!important; */
+}
+header{
+  color:white!important;
+
+}
+.items{
+  font-size: 16px;
 }
 
 nav ul li a {
@@ -24,16 +35,16 @@ nav ul li a {
  
   outline:0px;
 }
-.title {
+/* .title {
   font-family: 'Bitter', serif !important;
   margin-left: 60px;
   font-size: 3.4rem;
-}
+} */
 
-.logo-img {
+/* .logo-img {
   position: relative;
   
-}
+} */
 
 .bg-grey {
   background-color: #272727;
@@ -44,11 +55,11 @@ nav ul li a {
 
 }
 
-#barra-inferior a {
+/* #barra-inferior a {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   color: white !important;
-}
+} */
 
 .buscador input,
 .buscador button {
@@ -84,10 +95,10 @@ form button {
   border: none;
   cursor: pointer;
 }
-
+/* 
 .img-mobile {
   width: 20%;
-}
+} */
 
 ul:first-child li a {
   cursor: pointer;
@@ -121,7 +132,11 @@ ul:first-child li a {
   content: "\f002""\00a0 ""\00a0";
 }
 
-
+#navbarSupportedContent{
+  position: absolute;
+  visibility: hidden;
+  /* display: none; */
+}
 
 
 
@@ -129,10 +144,23 @@ ul:first-child li a {
 
 /* Rules for mobiles */
 
-@media screen and (max-width:425px) {
+@media screen and (max-width:720px) {
   .buscador input,
   .buscador button {
     height: 40px !important;
     font-size: initial;
+  }
+  .buscador{
+    margin-top: 8px!important;
+  }
+  #navbarSupportedContent{
+    /* visibility: visible!important; */
+  }
+  .menu{
+    margin-top: -8px!important;
+  }
+  #navbarSupportedContent{
+    position: relative!important;
+    visibility: visible!important;
   }
 }
