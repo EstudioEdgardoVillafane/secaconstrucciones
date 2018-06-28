@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   i;
   result;
   searchProducts = false;
-  constructor(private productService : ProductosService, private router: Router) { }
+  constructor(private productService : ProductosService, private router: Router, private route : ActivatedRoute) { }
 
   ngOnInit() {
     this.listedProducts();

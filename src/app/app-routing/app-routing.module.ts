@@ -28,6 +28,7 @@ import { ProductoBusquedaComponent } from '../producto-busqueda/producto-busqued
 import { LoginFrontComponent } from '../login-front/login-front.component';
 import { RegistroFrontComponent } from '../registro-front/registro-front.component';
 import { MasCategoriaComponent } from '../mas-categoria/mas-categoria.component';
+import { HeaderComponent } from '../header/header.component';
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +41,14 @@ const routes: Routes = [
   { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
   { path: 'productos-busqueda/:producto', component: ProductoBusquedaComponent },
   { path: 'admin771', component: LoginComponent },
+  { path: 'backend2',
+  component: HeaderComponent,
+  children:[
+    { path: '', redirectTo: 'toto', pathMatch: 'full'},
+    { path: 'toto', component: HomeComponent },
+    { path: 'productos', component: BackendProductsComponent },
+    ]
+  },
   { path: 'backend',
   component: BackendComponent,
   children:[

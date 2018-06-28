@@ -8,8 +8,20 @@
 
 .hr{
     border:solid .3px #666;
-  
 }
+
+.example-card {
+    width:300px;
+    height: 350px;
+  }
+ img{
+     
+     max-width: 100%;
+ }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
 .contenido:hover{
     text-decoration:none;
 }
