@@ -89,6 +89,8 @@ import { MatAutocompleteModule,
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { BackendPreguntasComponent } from './backend-preguntas/backend-preguntas.component';
+import { BackendPreguntasEditComponent } from './backend-preguntas-edit/backend-preguntas-edit.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +125,9 @@ import { MatAutocompleteModule,
     BackendTextoFotoPrincipalComponent,
     LoginFrontComponent,
     RegistroFrontComponent,
-    MasCategoriaComponent
+    MasCategoriaComponent,
+    BackendPreguntasComponent,
+    BackendPreguntasEditComponent
   ],
   imports: [
     BrowserAnimationsModule,

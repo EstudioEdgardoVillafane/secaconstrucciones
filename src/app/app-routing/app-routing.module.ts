@@ -28,6 +28,8 @@ import { LoginFrontComponent } from '../login-front/login-front.component';
 import { RegistroFrontComponent } from '../registro-front/registro-front.component';
 import { MasCategoriaComponent } from '../mas-categoria/mas-categoria.component';
 import { HeaderComponent } from '../header/header.component';
+import { BackendPreguntasComponent } from '../backend-preguntas/backend-preguntas.component';
+import { BackendPreguntasEditComponent } from '../backend-preguntas-edit/backend-preguntas-edit.component';
 // Rutas                             
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -60,6 +62,8 @@ const routes: Routes = [
     { path: 'atributo', component: BackendAtributoComponent },
     { path: 'clientes', component: BackendClienteComponent},
     { path: 'usuarios', component: BackendUserComponent },
+    { path: 'preguntas', component: BackendPreguntasComponent },
+    { path: 'preguntas-edit/:id', component: BackendPreguntasEditComponent }
     ]
   },
 
