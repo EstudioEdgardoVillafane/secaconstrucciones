@@ -1,26 +1,33 @@
-<div class="container-fluid pt-4">
-<h2 class="text-center">Productos más vendidos</h2>
+<div class="container-fluid text-center pt-4">
+  <img src="https://djhr6j39qs1q5.cloudfront.net/cdn/recursos/551/520x110/recogerentienda2-520x110.png?15079002831&jpg=1" class="top">
+  <img src="https://djhr6j39qs1q5.cloudfront.net/cdn/recursos/552/520x110/envios2-520x110.png?15079002771&jpg=1" class="top">
+  <img src="https://djhr6j39qs1q5.cloudfront.net/cdn/recursos/553/520x110/sucursales2-520x110.png?15079002431&jpg=1" class="top">
+  <img src="https://djhr6j39qs1q5.cloudfront.net/cdn/recursos/554/520x110/atencion3-520x110.png?15082714251&jpg=1" class="top">
+</div>  
+<div class="container pt-2">
+
+  <h2 class="text-center">Productos más vendidos</h2>
 
 <mat-grid-list cols="4" rowHeight="400px">
     <mat-grid-tile *ngFor="let producto of ListDestacado | slice : 0 : 4"> 
 
-      <mat-card class="example-card">
-        <div style="height: 200px; text-align:center!important">
-        <img src="{{producto.p_url}}" >
-      </div>
-      <mat-divider></mat-divider>
-      
-        <mat-card-content style="height: 60px">
-          <p class="pt-3">
-            {{producto.p_nombre}}
-          </p>
-        </mat-card-content>
-        <mat-card-content>
-          <button mat-raised-button color="primary" routerLink="/detalle/{{producto.p_slug}}" >Ver más</button>
-        </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
-      </mat-card>
+        <mat-card class="example-card">
+            <div style="height: 200px; text-align:center!important">
+            <img src="{{producto.p_url}}" >
+          </div>
+          <mat-divider></mat-divider>
+          
+            <mat-card-content style="height: 90px">
+              <p class="pt-3">
+                {{producto.p_nombre}}
+              </p>
+            </mat-card-content>
+            <mat-card-content>
+              <button mat-raised-button color="primary" routerLink="/detalle/{{producto.p_slug}}">Ver más</button>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+          </mat-card>
     
     </mat-grid-tile>
     
@@ -32,12 +39,13 @@
 
     </div>
     <div class="container-fluid pt-4" style="background-color: #e9e9e9">
+      <div class="container">
         <h2 class="mb-4">Categorias populares</h2>
-    <mat-grid-list class="" cols="8" rowHeight="230px">
+    <mat-grid-list class="" cols="4" rowHeight="230px">
       <mat-grid-tile  *ngFor="let listado of listSeccion | slice: 0 : 8" routerLink="/productos-seccion/{{listado.s_nombre}}"> 
         
         <mat-card class="example-card pt-2" style="width: 300px; height: 220px;" routerLink="/productos-seccion/{{listado.s_nombre}}">
-          <div style="height: 100px; text-align:center!important">
+          <div style="height: 135px; text-align:center!important">
           <img src="{{listado.s_imagen}}" >
         </div>
         <mat-divider></mat-divider>
@@ -63,7 +71,7 @@
         </div>
         <mat-divider></mat-divider>
         
-          <mat-card-content style="height: 60px">
+          <mat-card-content style="height: 90px">
             <p class="pt-3">
               {{producto.p_nombre}}
             </p>
@@ -80,4 +88,5 @@
   </mat-grid-list>
 <mat-paginator [length]="pageLenght"  [pageSize]="pageSize" (page)="console($event)">
 </mat-paginator>
+</div>
 </div>

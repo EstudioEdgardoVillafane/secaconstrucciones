@@ -9,10 +9,12 @@
 .hr{
     border:solid .3px #666;
 }
-
+.top{
+    max-width: 25%!important;
+}
 .example-card {
     width:300px;
-    height: 350px;
+    height: 390px;
   }
  img{
      max-height:100%;
