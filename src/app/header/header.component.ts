@@ -57,7 +57,7 @@ show:Boolean;
 
 
 goToSearch(){
-  this.auxVar = document.getElementById("searchProduct");
+  this.auxVar = document.getElementById("input");
   this.router.navigateByUrl('/productos-busqueda/'+this.auxVar.value);
   
 }

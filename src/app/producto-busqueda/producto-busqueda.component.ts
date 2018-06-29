@@ -57,7 +57,7 @@ export class ProductoBusquedaComponent implements OnInit {
       this.JsonEtiquetas = data;
     });
   }
-
+etiquetaName;
   Listar(){
     this.countGlobal = 0;
     this.__productosService.listProduct() //Listado de productos
@@ -65,7 +65,9 @@ export class ProductoBusquedaComponent implements OnInit {
     .subscribe((data) => {
       this.auxTwoGlobal = data;  // Guardamos el listado de los productos en un auxiliar
       const nombre = this._activatedRoute.snapshot.paramMap.get('producto');
-          for(this.i in data){
+      this.etiquetaName = nombre;
+
+      for(this.i in data){
             if(data[this.i].p_nombre.toUpperCase().match(nombre.toUpperCase())){
               this.JsonProductos[this.countGlobal] = data[this.i];
               this.countGlobal++;

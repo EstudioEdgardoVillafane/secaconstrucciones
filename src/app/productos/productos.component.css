@@ -15,7 +15,7 @@
     height: 350px;
   }
  img{
-     
+     max-height:100%;
      max-width: 100%;
  }
   .example-header-image {

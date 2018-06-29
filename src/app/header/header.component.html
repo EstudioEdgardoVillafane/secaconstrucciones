@@ -4,8 +4,8 @@
     <span class="right">
       <mat-form-field appearance="legacy">
         <mat-label>Buscar producto</mat-label>
-        <input matInput placeholder="">
-        <mat-icon matSuffix class="icon-search">search</mat-icon>
+        <input id="input" matInput placeholder="">
+        <mat-icon (click)="goToSearch()" matSuffix class="icon-search">search</mat-icon>
         
       </mat-form-field>
     </span>
@@ -20,8 +20,8 @@
       <mat-nav-list>
         <mat-list dense>
 
-            <mat-list-item>
-               <mat-icon>dashboard</mat-icon> Categorias 
+            <mat-list-item (click)="snav.toggle()" routerLink="/categorias">
+               <mat-icon>dashboard</mat-icon> <a >Categorias</a> 
             </mat-list-item>
 
             <mat-list-item>

@@ -17,8 +17,7 @@ import { MaquetaComponent } from '../maqueta/maqueta.component';
 
 /*                Rutas                             */
 import {ProductoDetalleComponent} from '../producto-detalle/producto-detalle.component';
-import {ComoLlegarComponent} from '../como-llegar/como-llegar.component';
-import {ContactoComponent} from '../contacto/contacto.component';
+
 import { ProductoEtiquetaComponent } from '../producto-etiqueta/producto-etiqueta.component';
 
 import {LoginYRegistroComponent} from '../login-y-registro/login-y-registro.component';
@@ -31,23 +30,25 @@ import { MasCategoriaComponent } from '../mas-categoria/mas-categoria.component'
 import { HeaderComponent } from '../header/header.component';
 // Rutas                             
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'validacion', component: ValidacionClienteComponent},
-  { path: 'home', component: HomeComponent },
   { path: 'admin771', component: LoginComponent},
   { path: 'login', component: LoginFrontComponent},
   { path: 'registro', component: RegistroFrontComponent},
-  { path: 'productos-seccion/:seccion', component: ProductoFiltradoComponent },
-  { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
-  { path: 'productos-busqueda/:producto', component: ProductoBusquedaComponent },
+  
   { path: 'admin771', component: LoginComponent },
-  { path: 'backend2',
+  { path: '',
   component: HeaderComponent,
   children:[
-    { path: '', redirectTo: 'toto', pathMatch: 'full'},
-    { path: 'toto', component: HomeComponent },
-    { path: 'productos', component: BackendProductsComponent },
-    ]
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'home', component: HomeComponent },
+    { path: 'categorias', component: MasCategoriaComponent },
+    { path: 'detalle/:slug', component: ProductoDetalleComponent },
+    { path: 'productos-seccion/:seccion', component: ProductoFiltradoComponent },
+    { path: 'productos-categoria/:categoria', component: ProductoCategoriaComponent },
+    { path: 'productos-busqueda/:producto', component: ProductoBusquedaComponent },
+    { path: 'producto-etiqueta/:etiqueta', component: ProductoEtiquetaComponent },
+  ]
   },
   { path: 'backend',
   component: BackendComponent,
@@ -61,12 +62,8 @@ const routes: Routes = [
     { path: 'usuarios', component: BackendUserComponent },
     ]
   },
-  { path: 'productos', component: BackendProductsComponent },
-  { path: 'categorias', component: MasCategoriaComponent },
-  { path: 'maqueta', component: MaquetaComponent },
-  { path: 'login-y-registro', component: LoginYRegistroComponent },
-  { path: 'detalle-producto/:slug', component: ProductoDetalleComponent },
-  { path: 'producto-etiqueta/:etiqueta', component: ProductoEtiquetaComponent },
+
+
 ];
 
 @NgModule({
