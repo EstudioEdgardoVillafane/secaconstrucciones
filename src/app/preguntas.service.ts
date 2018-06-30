@@ -25,4 +25,7 @@ export class PreguntasService {
   doDelete(idResponse){
     return this.http.post("php/script/archivar-response.php", idResponse);
   }
+  doRow(){
+    return this.http.get("php/script/lenght-pregunta.php");
+  }
 }

@@ -13,6 +13,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PreguntasService } from '../preguntas.service';
 @Component({
   selector: 'app-backend',
   templateUrl: './backend.component.html',
@@ -20,11 +21,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class BackendComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute, private router : Router) { }
+  constructor(private route : ActivatedRoute, private router : Router, private preguntaService : PreguntasService) { }
 
   ngOnInit() {
+    this.preguntaService.doRow()
+    .map((response) => response.json())
+    .subscribe((data) => {
+      this.Messages = Number(data.toString());
+    });
   }
-
+  Messages = 0;
   /**** Go to admin771/productos ***/
   goProductos(){
     this.router.navigate(['productos'], {relativeTo: this.route});
