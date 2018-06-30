@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule} from '@angular/router';
 
-//Componentes                       
+// Componentes
 import { HomeComponent } from '../home/home.component';
 import {BackendComponent} from '../backend/backend.component';
 import {BackendProductsComponent} from '../backend-products/backend-products.component';
@@ -29,7 +29,7 @@ import { LoginFrontComponent } from '../login-front/login-front.component';
 import { RegistroFrontComponent } from '../registro-front/registro-front.component';
 import { MasCategoriaComponent } from '../mas-categoria/mas-categoria.component';
 import { HeaderComponent } from '../header/header.component';
-// Rutas                             
+// Rutas
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'validacion', component: ValidacionClienteComponent},
@@ -43,15 +43,16 @@ const routes: Routes = [
   { path: 'admin771', component: LoginComponent },
   { path: 'backend2',
   component: HeaderComponent,
-  children:[
+  children: [
     { path: '', redirectTo: 'toto', pathMatch: 'full'},
     { path: 'toto', component: HomeComponent },
     { path: 'productos', component: BackendProductsComponent },
+    { path: 'detalle', component: ProductoDetalleComponent },
     ]
   },
   { path: 'backend',
   component: BackendComponent,
-  children:[
+  children: [
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
     { path: 'subatributo', component: BackendSubatributoComponent },
     { path: 'productos', component: BackendProductsComponent },

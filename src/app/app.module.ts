@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 // import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
-//Products
+// Products
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +22,7 @@ import { BackendSeccionComponent } from './backend-seccion/backend-seccion.compo
 import { BackendUserComponent } from './backend-user/backend-user.component';
 import { BackendClienteComponent } from './backend-cliente/backend-cliente.component';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
-//Services
+// Services
 import { ProductosService } from './productos.service';
 import { SeccionService } from './seccion.service';
 import { AtributoService } from './atributo.service';
@@ -89,6 +89,8 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MatFormFieldModule,
+  matFormFieldAnimations,
 } from '@angular/material';
 
 @NgModule({
@@ -127,6 +129,15 @@ import {
     MasCategoriaComponent
   ],
   imports: [
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTabsModule,
+    MatBadgeModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatIconModule,
+    MatGridListModule,
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
@@ -172,7 +183,17 @@ import {
   MatTooltipModule,
   MatTreeModule,
   ],
-  providers: [SeccionService,AtributoService,BackendUserService,ProductosService,SubatributoService,SubAtributoService,EtiquetaService,LoginService,BackendClienteService,TextoFotoPrincipalService], //Services
+  providers: [
+    SeccionService,
+    AtributoService,
+    BackendUserService,
+    ProductosService,
+    SubatributoService,
+    SubAtributoService,
+    EtiquetaService,
+    LoginService,
+    BackendClienteService,
+    TextoFotoPrincipalService], // Services
   bootstrap: [AppComponent]
 })
 export class AppModule { }
