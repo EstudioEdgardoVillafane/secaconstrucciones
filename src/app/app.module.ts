@@ -130,13 +130,13 @@ import { BackendPreguntasEditComponent } from './backend-preguntas-edit/backend-
     BackendPreguntasEditComponent
   ],
   imports: [
+    FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpModule,
     HttpClientModule,
     MatAutocompleteModule,

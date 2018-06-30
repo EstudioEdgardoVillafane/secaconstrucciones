@@ -17,6 +17,12 @@ export class PreguntasService {
     return this.http.get("php/script/list-pregunta.php");
   }
   getJsonForID(id,json){
-    return of(json.find((primero => primero.pr_ir === id)));
+    return of(json.find((primero => primero.pr_id === id)));
+  }
+  doResponse(dataResponse){
+    return this.http.post("php/script/update-pregunta.php", dataResponse);
+  }
+  doDelete(idResponse){
+    return this.http.post("php/script/archivar-response.php", idResponse);
   }
 }

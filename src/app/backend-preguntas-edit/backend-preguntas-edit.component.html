@@ -1,12 +1,20 @@
-<div class="container-fluid mt-5">
+<div class="container-fluid margin-top">
 <form>
-    <div>
+    <div class="mt-5">
+        <b><h3>Pregunta del cliente</h3></b>
+        <hr>
         <p>{{mensaje.pr_mensaje}}</p>
+        <p>El mensaje fue emitido el {{mensaje.pr_fecha}} a las {{mensaje.pr_hora}}</p>
     </div>
-        <mat-form-field>
-          <textarea matInput placeholder="Tu respuesta"></textarea>
+        <p>
+        <mat-form-field style="width:100%">
+          <input matInput placeholder="Tu respuesta" [(ngModel)]="responseToSend.response" name="response">
         </mat-form-field>
-        <button mat-raised-button color="primary"> Contestar mensaje </button>
-</form>
+        </p>
+     
+        <button mat-raised-button color="primary" class="mr-1" (click)="handdleMessage()"> Contestar mensaje </button>
+        <button mat-raised-button color="warn" routerLink="../../preguntas"> Volver </button>
+
+    </form>
      
 </div>
