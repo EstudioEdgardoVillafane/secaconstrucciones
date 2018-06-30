@@ -23,6 +23,9 @@ export class BackendClienteService {
   getJsonID(id : number,json){
     return of(json.find(cliente => cliente.c_id === id));
   }
+  getJsonName(email, json){
+    return of(json.find(cliente => cliente.c_email === email));
+  }
   /**This function send email from client */
   sendEmailToCliente(userName : string,email : string){
     return this.http.get('php/script/send-mail-validate.php?userName='+userName+'&email='+email);

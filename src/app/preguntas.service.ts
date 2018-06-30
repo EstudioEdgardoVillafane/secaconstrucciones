@@ -19,11 +19,17 @@ export class PreguntasService {
   getJsonForID(id,json){
     return of(json.find((primero => primero.pr_id === id)));
   }
+  getJsonForProduct(producto,json){
+    return of(json.find((primero => primero.pr_producto === producto)));
+  }
   doResponse(dataResponse){
     return this.http.post("php/script/update-pregunta.php", dataResponse);
   }
   doDelete(idResponse){
     return this.http.post("php/script/archivar-response.php", idResponse);
+  }
+  doAsk(dataMessage){
+    return this.http.post('php/script/store-pregunta.php', dataMessage);
   }
   doRow(){
     return this.http.get("php/script/lenght-pregunta.php");
