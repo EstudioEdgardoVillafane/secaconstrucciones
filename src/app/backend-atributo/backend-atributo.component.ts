@@ -1,5 +1,5 @@
 /**
-*  
+*
 *******************************************
 *** Project Name: Seca Construcciones   ***
 *** @Description: Ecomerce              ***
@@ -27,49 +27,48 @@ import { BackendUserService } from '../backend-user.service';
 })
 export class BackendAtributoComponent implements OnInit {
 
-  //these variables are used to change the back-end user table to the form of editing or the form of store
-  ChangeTemplateEditar=true;
-  ChangeTemplateAgregar=true;
+  // these variables are used to change the back-end user table to the form of editing or the form of store
+  ChangeTemplateEditar = true;
+  ChangeTemplateAgregar = true;
 
-  //these variables are used to take the value of the id of the inputs in the HTML
-  //store
+  // these variables are used to take the value of the id of the inputs in the HTML
+  // store
   a_nombre;
   a_seccion;
   seccionValue;
-  BooleanToCloseSeccionEdit=true;
+  BooleanToCloseSeccionEdit = true;
   seccionName;
   seccionNameToAdd;
   seccionClickedIDEdit;
   atributoListEdit;
   BoolToAtributeEdit;
-  buscarSeccion
+  buscarSeccion;
   valorseccion;
-  //edit
- 
+  // edit
+
   a_id;
 
   Listed;
-//the function of these boleans are for validation alerts
+// the function of these boleans are for validation alerts
 AlertNombre = false;
 AlertSection = false;
- 
-  
+
 
 
 
 
   var;
   CheckAcumulador = new Array();
-  NumberAux=0;
+  NumberAux = 0;
   PositionAux = 0;
-  i=0;
+  i = 0;
   Booleano = true;
   edit;
   edit_atributo;
   listado;
   listadoseccion;
   listadoseccioneditar;
-  constructor( private AtributoService:AtributoService,private seccionService:SeccionService) { }
+  constructor( private AtributoService : AtributoService, private seccionService: SeccionService) { }
 
   ngOnInit() {
     if(localStorage.getItem("keyTwo") != "1"){
@@ -79,7 +78,7 @@ AlertSection = false;
     this.Listarseccion();
   }
 
- 
+
 //this function show the Store form
   ShowStoreForm(){
     this.ChangeTemplateEditar= false;
@@ -96,15 +95,15 @@ ShowEditForm(a_id : number){
     this.AtributoService.getJsonID(a_id,this.listado)
     .subscribe(resultado => this.edit_atributo = resultado);
 
-    
-   
+
+
   }
 
 //this funtion returns of the backend users table
   ReturnToTheTableUsers(){
     this.ChangeTemplateEditar=true;
     this.ChangeTemplateAgregar=true;
-   
+
   }
 
     Listar(){
@@ -132,26 +131,26 @@ varaux;
 
     this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
     .subscribe(data => this.varaux=data);
-  
-    
-     
 
-      
-      
+
+
+
+
+
         this.AtributoService.CrudFunction(4,this.a_nombre.value,this.varaux.s_id,a_id)
-        .subscribe((data)=>{ 
+        .subscribe((data)=>{
           this.var=data;
          // console.log(data);
          //this.Listar();
          location.reload();
-        
+
          this.Listar();
 
         });
             // this.ListBackendUsers();
-          
-      
-     
+
+
+
   }
 // this function accumulates the checks that are in the table to be deleted later
   Check(a_id : number){
@@ -190,19 +189,19 @@ varaux;
           console.log(data);
           this.Listar();
         });
-        
+
       }
 
   }
-    
+
   }
 
 //this function add users in to the data base
   Store(){
     this.a_nombre = document.getElementById("a_nombre");
     this.a_seccion = document.getElementById("buscarSeccion");
-   
-   
+
+
 
     if(this.a_nombre.value == ""){
       this.AlertNombre= true;
@@ -214,26 +213,26 @@ varaux;
     }else{
       this.AlertSection = false;
     }
-    
+
     if(this.a_nombre.value != "" && this.a_seccion.value != ""){
 this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
 .subscribe(result=>this.valorseccion=result);
       this.AtributoService.CrudFunction(
         3,
-       
+
         this.a_nombre.value,
         this.valorseccion.s_id,
         0
       )
       .subscribe((result)=>{this.var=result;});
       // this.ListBackendUsers();
-     //location.reload(); 
+     //location.reload();
       console.log(this.var);
       this.ChangeTemplateEditar=true;
     }else{
       console.log("Falla al agregar");
     }
-    
+
     this.Listar();
     location.reload();
     }
@@ -242,38 +241,38 @@ this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
       this.seccionValue = number;
       this.BooleanToCloseSeccionEdit = false;
       this.seccionName = document.getElementById(number);
-      this.seccionNameToAdd = document.getElementById("buscarSeccion"); 
+      this.seccionNameToAdd = document.getElementById("buscarSeccion");
       this.seccionNameToAdd.disabled = true;
-      this.seccionNameToAdd.value = this.seccionName.value; 
+      this.seccionNameToAdd.value = this.seccionName.value;
       this.seccionService.getJsonForName(this.seccionName.value,this.listadoseccion)
       .subscribe(result => this.seccionClickedIDEdit = result);
       this.atributoListEdit = this.seccionClickedIDEdit.s_id;
-      
+
       this.BoolToAtributeEdit = true;
   }
   EditarClicked(number : string){
     this.seccionValue = number;
     this.BooleanToCloseSeccionEdit = false;
     this.seccionName = document.getElementById(number);
-    this.seccionNameToAdd = document.getElementById("editarSeccion"); 
+    this.seccionNameToAdd = document.getElementById("editarSeccion");
     this.seccionNameToAdd.disabled = true;
-    this.seccionNameToAdd.value = this.seccionName.value; 
+    this.seccionNameToAdd.value = this.seccionName.value;
     this.seccionService.getJsonForName(this.seccionName.value,this.listadoseccion)
     .subscribe(result => this.seccionClickedIDEdit = result);
     this.atributoListEdit = this.seccionClickedIDEdit.s_id;
-    
+
     this.BoolToAtributeEdit = true;
 }
   auxvar;
-  
+
   auxvar2;
 
   filterSection(value){
 
-    this.auxvar = document.getElementById("buscarSeccion");  
-  
+    this.auxvar = document.getElementById("buscarSeccion");
+
     for(this.i=0; this.i < this.listadoseccion.length ; this.i++){
-    
+
       if(this.listadoseccion[this.i].s_nombre.match(this.auxvar.value)){
         this.auxvar2 = document.getElementById("cont"+this.listadoseccion[this.i].s_id);
         this.auxvar2.style.display = "block";
@@ -284,16 +283,16 @@ this.seccionService.getJsonForName(this.a_seccion.value,this.listadoseccion)
     }
   }
 
-  
+
   auxvareditaratr;
   auxvareditaratr2;
 
   filtersectioneditar(value){
 
-    this.auxvareditaratr = document.getElementById("editarSeccion");  
-  
+    this.auxvareditaratr = document.getElementById("editarSeccion");
+
     for(this.i=0; this.i < this.listadoseccion.length ; this.i++){
-    
+
       if(this.listadoseccion[this.i].s_nombre.match(this.auxvareditaratr.value)){
         this.auxvareditaratr2 = document.getElementById("cont"+this.listadoseccion[this.i].s_id);
         this.auxvareditaratr2.style.display = "block";

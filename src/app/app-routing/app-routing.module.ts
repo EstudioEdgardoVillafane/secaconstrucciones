@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule} from '@angular/router';
 
-//Componentes                       
+// Componentes
 import { HomeComponent } from '../home/home.component';
 import {BackendComponent} from '../backend/backend.component';
 import {BackendProductsComponent} from '../backend-products/backend-products.component';
@@ -28,9 +28,10 @@ import { LoginFrontComponent } from '../login-front/login-front.component';
 import { RegistroFrontComponent } from '../registro-front/registro-front.component';
 import { MasCategoriaComponent } from '../mas-categoria/mas-categoria.component';
 import { HeaderComponent } from '../header/header.component';
+
 import { BackendPreguntasComponent } from '../backend-preguntas/backend-preguntas.component';
 import { BackendPreguntasEditComponent } from '../backend-preguntas-edit/backend-preguntas-edit.component';
-// Rutas                             
+
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'validacion', component: ValidacionClienteComponent},
@@ -53,7 +54,7 @@ const routes: Routes = [
   },
   { path: 'backend',
   component: BackendComponent,
-  children:[
+  children: [
     { path: '', redirectTo: 'productos', pathMatch: 'full'},
     { path: 'subatributo', component: BackendSubatributoComponent },
     { path: 'productos', component: BackendProductsComponent },

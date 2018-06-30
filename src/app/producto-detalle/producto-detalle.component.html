@@ -1,66 +1,99 @@
-<div class="container-fluid py-5">
 
-  <div class="row text-dark">
-    <div class="col-md-11 mx-auto border bg-white">
-      <div class="row">
+<div class="general">
+<div class="container text-dark"style="background-color:white!important">
 
-        <!-- parte izquierda -->
-        <div class="col-md-7 border-right">
-          <div class="row p-4">
-            <div class="py-3 mx-auto">
-              <img src="{{ListOfProducts.p_url}}" class="img-fluid" alt="">
-            </div>
-            <div class="">
-              <h3 class="">Características</h3>
-              <p>{{ListOfProducts.p_descripcion}}</p>
-            </div>
-          </div>
-          <div id="preguntas" class="flex-column p-4">
-              <h4 class="mb-3">Preguntas al vendedor</h4>
-                <i class="fa fa-question-circle fa-lg float-left mr-3 "></i>
-                <p class="p-0">Lorem ipsum?</p>
-              <div class="">
-                <i class="fa fa-question-circle fa-lg float-left mr-3" ></i>
-                <p class="p-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse distinctio tempora nostrum libero, rem iste
-                  quibusdam sit soluta exercitationem saepe ipsam dicta, fugiat voluptatibus quod. Recusandae eius laudantium
-                  quia maxime!</p>
-              </div>
-          </div>
-         
-        </div>
 
-        <!-- parte derecha -->
-        <div class="col-md-5 py-3">
-          <div class="d-flex flex-column">
-            <h2 class="mb-1 mb-lg-2">{{ListOfProducts.p_nombre}}</h2>
-            <h2 class="mb-2 mb-lg-3">{{ListOfProducts.p_precio}}</h2>
-            <div class="flex-row">
-              <i class="fa fa-star fa-lg"></i>
-              <i class="fa fa-star fa-lg"></i>
-              <i class="fa fa-star fa-lg"></i>
-              <i class="fa fa-star fa-lg"></i>
-              <i class="fa fa-star-o fa-lg"></i>
-            </div>
-            <br>
-            <div class="">
-              <i class="fa fa-credit-card fa-lg float-left mr-3"></i>
-              <p class="p-0">Pagá hasta en 12 cuotas
-              </p>
-            </div>
-
-            <div>
-              <i class="fa fa-credit-card fa-lg float-left mr-3"></i>
-              <p class="p-0">Envío a todo el país
-              </p>
-            </div>
-          </div>
-        </div>
+  <!-- primer fila, contiene foto principal + precio,nombre,etc -->
+  <mat-grid-list cols="2" rowHeight="400px">
+    <!-- foto principal del producto -->
+    <mat-grid-tile>
+      <div class="contenedor-imagen">
+        <img class="imagen-prod" src="http://beta.secaconstrucciones.com.ar/uploads/port-187596268.jpeg">
       </div>
+    </mat-grid-tile>
 
-    </div>
-    <div>
+    <!-- nombre prod + precio + detalle de envios y pagos + botones -->
+    <mat-grid-tile>
+      <div class="contenedor-venta">
+        <h2 class="nombre-prod">Nombre Producto</h2>
+        <h1 class="precio">$645</h1>
+        <p>
+          <mat-icon>credit_card</mat-icon>Paga hasta en 12 cuotas
+        </p>
+        <p>
+          <mat-icon>local_shipping</mat-icon>Envios a todo el pais
+        </p>
+          <button   mat-raised-button color="primary"
+                    matBadge="1" matBadgePosition="before" matBadgeColor="accent">
+                    Agregar al carrito
+          </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    </div>
-  </div>
+
+  <!-- segunda fila, contiene descripcion del producto y metodos de pagos -->
+  <mat-grid-list cols="2" rowHeight="300px">
+    <!-- descripcion del producto -->
+    <mat-grid-tile>
+      <div class="descripcion">
+        <h2>Descripcion</h2>
+        <p style="text-align: justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile>
+
+      <div class="medios-pago">
+        <h2>Medios de pago</h2>
+        <mat-tab-group>
+          <mat-tab label="En Efectivo">
+            <p class="text-dark">
+              Podra acercarse a una de nuestras sucursales y pagar en efectivo, puediendo retirar la mercaderia en el momento o fiajando una fecha de entrega
+            </p>
+          </mat-tab>
+          <mat-tab label="Tarjetas de Credito">
+            <p class="text-dark">
+              Una vez realizado el pago podra ponerse en contacto con algun representante de ventas nuestro, para asi coordinar una entrega
+            </p>
+          </mat-tab>
+          <mat-tab label="Transferencia Bancaria">
+            <p class="text-dark">
+                Una vez acreditada la transferencia podra ponerse en contacto con algun representante de ventas nuestro, para asi coordinar una entrega
+            </p>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" >
+    <mat-grid-tile>
+      <div class="preguntas">
+        <h2>Preguntas</h2>
+        <h6>Realice las preguntas que considere necesarias, a la brevedad le responderemos!</h6>
+        <form class="form-consulta">
+            <mat-form-field class="escribir-consulta">
+              <textarea matInput placeholder="Consulta"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Enviar</button>
+          </form>
+
+
+        <h5>Ultimas preguntas</h5>
+        <p>
+            <mat-icon>mail</mat-icon> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?
+        </p>
+        <p class="text-muted">
+            <mat-icon>message</mat-icon>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur a
+        </p>
+        <br>
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 </div>
 <app-footer></app-footer>
