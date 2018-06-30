@@ -1,49 +1,53 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-sh" id="mainNav">
-      <a class="navbar-brand eslogan" href="#"> Seca Construcciones </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav ml-auto" id="exampleAccordion">
-          <li>
-            <p>
-              <button mat-raised-button color="primary"
-              matBadge="{{Messages}}" matBadgePosition="before" matBadgeColor="accent" routerLink="../preguntas">
-            Mensajes
-          </button>
-        </p>
-          </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Panel">
-                <a class="nav-link" style="cursor: pointer">
-                  <span class="nav-link-text">Cerrar sessión</span>
-                </a>
-              </li>
-        </ul>
-         
-      </div>
-    </nav>
-    </header>
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-2 pl-0" style="height:100vh" >
-      <ul id="list-adm" class="navbar-nav ">
-        <li class="nav-item to" style="margin-top:50%"><a class="nav-link to"  (click)="goUsuarios()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Usuarios</p></a></li>
-        <li class="nav-item to"><a class="nav-link to" (click)="goProductos()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Productos </p></a></li>
-        <li class="nav-item to"><a class="nav-link to" (click)="goSeccion()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Secciones </p></a></li>
-        <li class="nav-item to"><a class="nav-link to" (click)="goAtributo()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Categorias </p></a></li>
-        <li class="nav-item to"><a class="nav-link to" (click)="goSubAtributo()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> SubCategorias </p></a></li>
-        <li class="nav-item to"><a class="nav-link to" (click)="goClientes()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Clientes </p></a></li>
-        <li class="nav-item to"><a class="nav-link to" (click)="goPreguntas()" style="cursor:pointer"><p><i class="fa fa-shopping-cart"></i> Preguntas </p></a></li>
+<div class="example-container" >
+  <mat-toolbar class="example-toolbar">
+    <span class="full-right"><h3>Seca Construcciones</h3></span>
+    <button mat-raised-button color="primary" class="ov-y mr-1"
+    matBadge="9" matBadgePosition="before" matBadgeColor="accent" routerLink="preguntas">
+    <mat-icon>message</mat-icon>
+      Mensajes
+    </button>
+    <span>
+      <button mat-raised-button color="warn"> Cerrar sessión </button>
+    </span>
+  </mat-toolbar>
+  <mat-sidenav-container  opened class="example-sidenav-container" style="background-color:transparent!important;">
 
-      </ul>
-     
-       
-      
-    </div>
-    <div class="col-10" style="height: 100vh; overflow-y:auto!important">
-        <router-outlet></router-outlet>
-    </div>
-  </div>
-  </div>
+      <mat-sidenav #snav opened mode="side">
+        <mat-nav-list>
+          <mat-list dense>
   
+              <mat-list-item (click)="goUsuarios()">
+                 <mat-icon>dashboard</mat-icon> <a >Usuarios</a> 
+              </mat-list-item>
+  
+              <mat-list-item (click)="goProductos()">
+                  <mat-icon>style</mat-icon> Productos 
+                </mat-list-item>
+  
+              <mat-list-item (click)="goSeccion()">
+                <mat-icon>shopping_cart</mat-icon> Secciones
+               </mat-list-item>
+    
+               <mat-list-item (click)="goAtributo()">
+                 <mat-icon>supervised_user_circle</mat-icon> Categorias
+               </mat-list-item>
+  
+               <mat-list-item (click)="goSubAtributo()">
+                 <mat-icon>label_important</mat-icon> Opciones
+               </mat-list-item>
+               <mat-list-item (click)="goClientes()">
+                  <mat-icon>label_important</mat-icon> Clientes
+                </mat-list-item>
+                <mat-list-item (click)="goPreguntas()">
+                    <mat-icon>label_important</mat-icon> Preguntas
+                  </mat-list-item>
+               
+        </mat-list>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

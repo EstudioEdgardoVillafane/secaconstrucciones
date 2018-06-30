@@ -37,7 +37,6 @@ const routes: Routes = [
   { path: 'admin771', component: LoginComponent},
   { path: 'login', component: LoginFrontComponent},
   { path: 'registro', component: RegistroFrontComponent},
-  
   { path: 'admin771', component: LoginComponent },
   { path: '',
   component: HeaderComponent,

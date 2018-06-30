@@ -3,17 +3,7 @@
 header{
     font-family: 'Abel', sans-serif;
 }
-#list-adm{
-    height: 140%;
-    background-color: #343a40;
-}
-nav{
-    background-color: white!important;
-    box-shadow: 1px 0px 6px 0px grey;
-}
-li, .nav-link{
-    color:black!important;
-}
+
 td{
     font-size: 15px;
 }
@@ -21,9 +11,20 @@ td{
     padding-left:8px;
     color:#868e96!important;
 }
-.eslogan{
-    color:black!important;
+
+.full-right{
+    flex: 0.99 1 auto;
 }
-*{
-    overflow-y: hidden!important;
-}
+.example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  background-color: transparent;
+       flex: 1;
+  }
+  mat-sidenav{
+      background-color: #343a40!important;
+      color:white!important;
+  }
+  mat-list-item{
+      color:#eaeaea!important;
+  }
