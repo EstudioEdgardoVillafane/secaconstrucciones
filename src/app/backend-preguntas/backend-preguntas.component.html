@@ -1,0 +1,59 @@
+<div class="margin-top container">
+<div class="row mt-5">
+  <div class="col-12">
+    <h2>Administrador de mensajes</h2>
+    <hr>
+  </div>
+  </div>
+       
+  
+<div class="row">  
+  <div class=" offset-9 col-3 mb-2">
+      <button mat-raised-button color="warn" class="mr-1" (click)="handdleDelete()"><mat-icon>play_for_work</mat-icon>  Archivar</button>
+      <button mat-raised-button color="primary" (click)="handdleView()"><mat-icon>visibility</mat-icon> Ver mensaje</button>
+  </div>
+</div>  
+</div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%"> 
+<!-- dataSource is the JSON -->
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="pr_id">
+          <!-- matColumnDef is the first position of the array displayedColumns -->
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+      
+        
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="pr_cliente">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.pr_cliente}} </td>
+        </ng-container>
+        <ng-container matColumnDef="p_nombre">
+            <th mat-header-cell *matHeaderCellDef> Producto </th>
+            <td mat-cell *matCellDef="let element"> {{element.p_nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="cp_nombre">
+              <th mat-header-cell *matHeaderCellDef> Estado </th>
+              <td mat-cell *matCellDef="let element"> {{element.cp_nombre}} </td>
+            </ng-container>
+                
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+

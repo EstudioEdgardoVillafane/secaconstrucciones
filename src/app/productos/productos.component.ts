@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { ProductosService } from '../productos.service';
 import { EtiquetaService } from '../etiqueta.service';
 import { SeccionService } from '../seccion.service';
+import {PageEvent} from '@angular/material';
+
 
 @Component({
   selector: 'app-productos',
@@ -18,8 +20,15 @@ export class ProductosComponent implements OnInit {
   ListEtiqueta;
   ListProducts = new Array();
   ListDestacado = new Array();
-  
-  constructor(private seccionService : SeccionService, private productService : ProductosService, private etiquetaService : EtiquetaService, private productoService: ProductosService) { }
+  CantidadProductos : number;
+  pageSize = 8;
+  pageFinish = 8;
+  pageStart = 0;
+  pageLenght : number;
+  pageEvent: PageEvent;
+
+
+  constructor(private seccionService : SeccionService, private productService : ProductosService, private etiquetaService : EtiquetaService, private productoService: ProductosService, private route : ActivatedRoute, private router : Router) { }
 
   ngOnInit() {
     this.doListEtiqueta();
@@ -53,9 +62,25 @@ export class ProductosComponent implements OnInit {
         this.k++;
       }
     }
+    this.pageLenght = this.ListProducts.length;
   }
 
-  
+  console(any){
+    console.log(any)
+    if(any.previousPageIndex < any.pageIndex){
+      this.pageStart = this.pageStart + this.pageSize;
+      this.pageFinish = this.pageFinish + this.pageSize;
+    }else{
+      this.pageStart = this.pageStart - this.pageSize;
+      this.pageFinish = this.pageFinish - this.pageSize;
+    }
+  }
+  goTo(url){
+    this.router.navigateByUrl(url);
+  }
+  // goProductos(){
+  //   this.router.navigate(['productos'], {relativeTo: this.route});
+  // }
   doListEtiqueta(){
   this.etiquetaService.listEtiquetas()
   .map((response) => response.json())
