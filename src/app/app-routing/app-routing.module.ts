@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'admin771', component: LoginComponent },
   { path: '',
   component: HeaderComponent,
-  children:[
+  children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'categorias', component: MasCategoriaComponent },

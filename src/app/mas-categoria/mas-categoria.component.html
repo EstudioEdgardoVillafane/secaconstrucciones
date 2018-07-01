@@ -1,24 +1,41 @@
-<app-header></app-header>
-<section>
-  <div class="container">
-      <div class="row">
-          <div class="col-12 pt-3">
-            <h3>Busqueda por categoria.</h3>
+<div class="general">
+  <div class=" container text-dark">
+    <h3>Categorias</h3>
+    <mat-grid-list cols="4" rowHeight ="1:2" >
+
+      <mat-grid-tile >
+        <div style="width:100%" class="categoria">
+          <div style="width:33%">
+          <a>hola</a>
           </div>
-        </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile >
+            <div style="width:100%" class="categoria">
+              <div style="width:33%">
+              <a>hola</a>
+            </div>
+            </div>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <div style="width:100%" class="categoria">
+                  <div style="width:33%">
+                  <a>hola</a>
+                </div>
+                </div>
+                </mat-grid-tile>
+                <mat-grid-tile >
+                    <div style="width:100%" class="categoria">
+                      <div style="width:33%">
+                      <a>hola</a>
+                    </div>
+                    </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
   </div>
-  <div class="container pt-3 pb-3 my-1 capsula">
-  <div class="row pd-15">
-      <!-- *ngFor="let seccion of JsonSecciones" -->
-      <!-- *ngFor="let categoria of JsonCategorias" -->
-    <div class="col-6" *ngFor="let seccion of JsonSecciones">
-      <div class="row color-select">
-        <div class="col-12"> <h4>{{seccion.s_nombre}}</h4> </div>
-        <div class="col-12" *ngFor="let categoria of JsonCategorias" > <h6>{{categoria.a_nombre}}</h6></div>
-      </div>
-    </div>
-    
-  </div>
-  </div>
-</section>
+
+</div>
+
+<!-- matTreeNodeToggle -->
 <app-footer></app-footer>

@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { SeccionService } from '../seccion.service';
 import { AtributoService } from '../atributo.service';
+import { MatTreeNestedDataSource } from '@angular/material';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
+
+export class FileNode {
+  children: FileNode[];
+  filename: string;
+  type: any;
+}
 
 @Component({
   selector: 'app-mas-categoria',
@@ -8,8 +17,14 @@ import { AtributoService } from '../atributo.service';
   styleUrls: ['./mas-categoria.component.css']
 })
 export class MasCategoriaComponent implements OnInit {
+  nestedTreeControl: NestedTreeControl<FileNode>;
+  nestedDataSource: MatTreeNestedDataSource<FileNode>;
+  dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
 
-  constructor(private seccionService : SeccionService, private atributoService : AtributoService) { }
+  constructor(private seccionService: SeccionService, private atributoService: AtributoService) {
+
+  }
+
 
   JsonSecciones;
   JsonCategorias;
@@ -17,7 +32,7 @@ export class MasCategoriaComponent implements OnInit {
   ngOnInit() {
     this.doListOfCategorias();
     this.doListOfSeccion();
-    
+
   }
 
   doListOfSeccion() {
@@ -35,4 +50,5 @@ export class MasCategoriaComponent implements OnInit {
     console.log(data);
     })
   }
+
 }
