@@ -2,7 +2,7 @@
   <mat-toolbar class="example-toolbar">
     <span class="full-right"><h3>Seca Construcciones</h3></span>
     <button mat-raised-button color="primary" class="ov-y mr-1"
-    matBadge="9" matBadgePosition="before" matBadgeColor="accent" routerLink="preguntas">
+    matBadge="{{Messages}}" matBadgePosition="before" matBadgeColor="accent" routerLink="preguntas">
     <mat-icon>message</mat-icon>
       Mensajes
     </button>
@@ -47,7 +47,9 @@
       </mat-sidenav>
 
       <mat-sidenav-content>
-        <router-outlet></router-outlet>
+        <section class="backend">
+          <router-outlet></router-outlet>
+        </section>
       </mat-sidenav-content>
 </mat-sidenav-container>
 </div>

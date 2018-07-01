@@ -11,7 +11,7 @@
     $User = $result->nameUser;
 	$Pass = $result->passUser; 
 
-    $SQL = "SELECT * FROM cliente WHERE c_usuario = '".$User."' AND c_contrasena = '".md5($Pass)."' AND c_status=1";	
+    $SQL = "SELECT * FROM cliente WHERE c_email = '".$User."' AND c_contrasena = '".md5($Pass)."' AND c_status=1";	
 	$Row = $NewConnect->Search($SQL);
 
     if($Row == 1){
