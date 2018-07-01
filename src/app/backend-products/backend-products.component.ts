@@ -1,5 +1,5 @@
 /**
-*  
+*
 *******************************************
 *** Project Name: Seca Construcciones   ***
 *** @Description: Ecomerce              ***
@@ -78,7 +78,7 @@ export class BackendProductsComponent implements OnInit {
 
   auxvar;       //Variables to filterSection();
   auxvar2;      //Variables to filterSection();
-  
+
   varAuxInput;  //Variable to change the value of someone input
 
   VarInput3;    //Variable nextOne();
@@ -86,12 +86,12 @@ export class BackendProductsComponent implements OnInit {
   AuxVarInput4; //Variable nextOne();
 
   /** I am defining the services. */
- 
+
  constructor(private router : Router, private seccionService: SeccionService, private productoService : ProductosService, private atributoService : AtributoService, private etiquetaService: EtiquetaService ,private subatributeService : SubatributoService) {}
 
  /** Calling the function ListContent to do the list of content. */
 
- 
+
 ngOnInit() {
   this.ListContent();
   this.seccionList();
@@ -160,8 +160,8 @@ prevPagSeccion(){
 /**
  * When someone div with class "cont+id" is clicked, return a background color;
  * @param value get an id froma a click
- * 
- *  
+ *
+ *
  * */
 
  inputAux;
@@ -174,7 +174,7 @@ toUp(id : string){
     this.productoService.updateOrden(id,this.inputAux.value)
   .subscribe(data => data );
   }
-  
+
 }
 toDown(id : string){
   this.inputAux = document.getElementById("ordenP"+id);
@@ -183,7 +183,7 @@ toDown(id : string){
   this.inputAux.value = parseInt(this.inputAux.value) - 1;
   this.productoService.updateOrden(id,this.inputAux.value)
   .subscribe(data => data );
-  
+
   }
 }
 
@@ -198,7 +198,7 @@ addSection(){
     this.seccionStore.disabled = true;
     this.BooleanToCloseSeccion = false;
     this.seccionList();
-  }); 
+  });
 }
 
 atributoStore;
@@ -207,10 +207,10 @@ InputStoreAtributo;
 contador = 0;
 ButtonStoreSeccion;
 filterSection(value){
-  this.auxvar = document.getElementById("buscarSeccion");  
+  this.auxvar = document.getElementById("buscarSeccion");
   this.contador = 0;
   for(this.i=0; this.i < this.listSeccion.length ; this.i++){
-    
+
     if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
       this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
       this.auxvar2.style.display = "block";
@@ -218,7 +218,7 @@ filterSection(value){
     }else{
       this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
       this.auxvar2.style.display = "none";
-    } 
+    }
   }
   this.ButtonStoreSeccion = document.getElementById("AgregarSeccion");
   if(this.contador > 0){
@@ -248,7 +248,7 @@ BoolForSearchForSeccion =false;
 DesdeSeccion = 0;
 HastaSeccion = 8;
 filterSeccionToProduct(){
- 
+
   this.k = 0;
   this.JsonFilterSeccion.length = 0;
   this.auxSelectFilter = document.getElementById("filterToSection");
@@ -259,7 +259,7 @@ filterSeccionToProduct(){
     for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
       if(this.ListOfContent[this.i].p_section.match(this.sectionValueFilter)){
         this.JsonFilterSeccion[this.k] = this.ListOfContent[this.i];
-        this.k++;    
+        this.k++;
       }
     }
     if(this.k > 0){
@@ -290,10 +290,10 @@ searchNameProduct(){
   if(this.inputToSearchProduct.value.length > 2){
   this.jsonSearch.length = 0;
  this.anyContador = 0;
-  this.auxvar = document.getElementById("searchProductName");  
-  for(this.i=0; this.i < this.ListOfContent.length ; this.i++){    
+  this.auxvar = document.getElementById("searchProductName");
+  for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
     if(this.ListOfContent[this.i].p_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
-      this.jsonSearch[this.anyContador] = this.ListOfContent[this.i];    
+      this.jsonSearch[this.anyContador] = this.ListOfContent[this.i];
       this.anyContador++;
     }
   }
@@ -315,7 +315,7 @@ clickOnList(productName){
 
   this.inputOfSearchProduct = document.getElementById("searchProductName");
   this.inputOfSearchProduct.value = productName;
-  
+
   this.productoService.getJsonForNameTwo(productName,this.ListOfContent)
   .subscribe((data) => {
     this.JsonFind = data;
@@ -328,20 +328,20 @@ clickOnList(productName){
 }
 
  /** In this function, we get the values of the input fields to update the regist. */
- 
+
  EditReg(){
    this.formElement = document.getElementById("formularioEdit");
    this.request = new XMLHttpRequest();
    this.request.open("POST", "php/script/edit-producto.php");
    console.log(this.request.send(new FormData(this.formElement)));
-   this.ListContent();   
+   this.ListContent();
  }
 
 
  /** This function is to change the list to the add form */
  ShowAdd(){
    this.BooleanTable = false;
-   this.BooleanToCloseSeccion = true;   
+   this.BooleanToCloseSeccion = true;
    this.BoolAddProductOne = true;
  }
 
@@ -360,7 +360,7 @@ selectCategoria(){
     .map((response) => response.json())
     .subscribe((data) => {
       this.listadoSelect = data;
-    });    
+    });
   }else if(this.inputFiltler.value == 0){
     this.auxProd = document.getElementsByClassName("hereVisi");
     for(this.i = 0; this.i < this.auxProd.length; this.i++) {
@@ -370,7 +370,7 @@ selectCategoria(){
       }
     }
     this.listadoSelect = null;
-  }else{    
+  }else{
       this.listFilterAtributo();
       this.seccionBool = false;
   }
@@ -390,9 +390,9 @@ sectionValueFilter;
       this.subatributoClick.className = "list-group-item active";
       this.subatributoCliked = this.subatributoClick;
 
-  
+
       for(this.i=0; this.i < this.ListOfContent.length ; this.i++){
-      
+
         if(this.ListOfContent[this.i].p_atributo.match(id)){
           this.auxvar2 = document.getElementById("listProductCont"+this.ListOfContent[this.i].p_id);
           this.auxvar2.style.display = "table-row";
@@ -405,7 +405,7 @@ sectionValueFilter;
 
   }
 
- /** This function is to change the list to the edit form 
+ /** This function is to change the list to the edit form
   *  *
   * @param id Get a id from click to filter the json
   * */
@@ -425,7 +425,7 @@ sectionValueFilter;
    this.ListContent();
  }
  /**  This function do a select from of the seccion json.
-  * 
+  *
   * @param number Get an id from the tag in (onClick)
   */
 seccionValue;
@@ -434,10 +434,10 @@ seccionValue;
   this.seccionValue = number;
   document.getElementById(number).style.backgroundColor = '#80ff80';
   this.seccionName = document.getElementById(number);
-  this.seccionNameToAdd = document.getElementById("buscarSeccion"); 
+  this.seccionNameToAdd = document.getElementById("buscarSeccion");
   document.getElementById("buscarSeccion");
   this.seccionNameToAdd.disabled = true
-  this.seccionNameToAdd.value = this.seccionName.value; 
+  this.seccionNameToAdd.value = this.seccionName.value;
   this.atributoList(number);
  }
 
@@ -492,7 +492,7 @@ seccionValue;
 
   this.ButtonStoreSeccion = document.getElementById("storeEtiqueta");
 
-    
+
   if(this.JsonEtiquetas != undefined){
   for(this.i=0; this.i < this.JsonEtiquetas.length ; this.i++){
     if(this.JsonEtiquetas[this.i].e_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
@@ -515,7 +515,7 @@ seccionValue;
     this.ButtonStoreSeccion.value = "Agregar ";
     this.ButtonStoreSeccion.style.background = "#007bff";
   }
-  
+
   console.log(this.contador);
 }
 BooleanToCloseEtiquetas = true;
@@ -534,7 +534,7 @@ this.auxvar2 = document.getElementById("storeEtiqueta");
       console.log(this.ArrayOfEtiquetas[this.CountOfEtiquetas]);
       this.CountOfEtiquetas++;
     });
-    
+
   });
 }
 returnEtiqueta(){
@@ -553,9 +553,9 @@ atributoClicked(id : string){
   this.atributoValue = id;
   this.BooleanToCloseAtributo = false;
   this.atributoName = document.getElementById("atributo"+id);
-  this.atributoNameToAdd = document.getElementById("buscarAtributo"); 
+  this.atributoNameToAdd = document.getElementById("buscarAtributo");
   this.atributoNameToAdd.disabled = true
-  this.atributoNameToAdd.value = this.atributoName.value; 
+  this.atributoNameToAdd.value = this.atributoName.value;
   this.atributoService.getJsonForName(this.atributoName.value,this.listAtributo)
   .subscribe(result => this.atributoID = result  );
   console.log(this.atributoID);
@@ -577,7 +577,7 @@ subatributoClicked(id:string){
     console.log(this.atributoValue);
     console.log(this.seccionValue);
     this.subatributoCliked = this.subatributoClick;
-    
+
 }
 addAtributo(){
   this.atributoStore = document.getElementById("AgregarAtributoT");
@@ -595,8 +595,8 @@ addAtributo(){
       this.atributoStore.disabled = true;
       this.BooleanToCloseAtributo = false;
       console.log(this.atributoValue);
-    });    
-  }); 
+    });
+  });
 }
 
 varOptionToStore;
@@ -613,7 +613,7 @@ ButtonStoreAtributo;
 
 filterAtributo(){
 
-  this.auxvar = document.getElementById("buscarAtributo");  
+  this.auxvar = document.getElementById("buscarAtributo");
   this.contador = 0;
   if(this.listAtributo != undefined){
   for(this.i=0; this.i < this.listAtributo.length ; this.i++){
@@ -637,7 +637,7 @@ filterAtributo(){
       this.ButtonStoreAtributo.disabled = false;
       this.ButtonStoreAtributo.value = "Agregar ";
       this.ButtonStoreAtributo.style.background = "#007bff";
-    }  
+    }
 }
 
 
@@ -662,7 +662,7 @@ filterAtributo(){
   this.ButtonStoreAtributo.style.background = "rgb(67, 67, 67)";
 
 }
- 
+
 nameProductPrivate;
 nextOne(){
   this.nameProduct =  document.getElementById("nombreProducto");
@@ -670,11 +670,11 @@ nextOne(){
   document.getElementById("addproduct").innerHTML = this.nameProduct.value;
   this.globalSlug = document.getElementById("slugP")
   this.VarInput3 = document.getElementById("productName");
-  this.VarInput3.value = this.nameProduct.value; 
+  this.VarInput3.value = this.nameProduct.value;
   this.AuxVarInput4 = document.getElementById("buscarSeccion");
   this.BoolAddProductTwo = true;
   this.BoolAddProductOne =false;
-  this.BooleanToCloseSeccion=false; 
+  this.BooleanToCloseSeccion=false;
   this.InputStoreSeccion = document.getElementById("buscarSeccion");
   this.seccionService.getJsonForName(this.InputStoreSeccion.value,this.listSeccion)
   .subscribe(result => this.seccionValue = result.s_id);
@@ -684,9 +684,9 @@ nextOne(){
   this.listAtributo = data;
   this.filterAtributo();
   });
-  
-  
-  
+
+
+
 //   if(this.listAtributo == undefined){
 //     this.VarInput4 = document.getElementById("AgregarAtributo");
 // console.log(this.VarInput4.value);
@@ -705,20 +705,20 @@ nextOne(){
  ListContent(){
      this.productoService.listProduct()
        .map((response) => response.json())
-       .subscribe((data) => { 
+       .subscribe((data) => {
          console.log(data)
        this.ListOfContent = data;
        this.CantidadDePaginas = this.ListOfContent.length/8;
        this.CantidadDePaginas = Math.ceil(this.CantidadDePaginas);
-       
+
      });
    }
- 
+
 
  /**
   * Get a json to do a list.
   */
- seccionList(){ 
+ seccionList(){
     this.seccionService.CrudFunction(1,0,"0",0)//cambie esto (1,"",0,0) por que si no no compila, cualquier cosa cambienlo
     .map((response) => response.json())
     .subscribe((data) => {
@@ -751,9 +751,9 @@ nextOne(){
     });
   }
  /** When we do a click on a checkbox, we add it in an array and after is delete. */
- onCheck(id : number){  
+ onCheck(id : number){
    console.log(this.CheckAcumulador);
-   this.Booleano=true;    
+   this.Booleano=true;
    if(this.NumberAux == 0){
      this.CheckAcumulador[0] = id;
      this.NumberAux++;
@@ -778,7 +778,7 @@ nextOne(){
          console.log("Indefinido");
        }else{
          this.productoService.CrudFunction(this.CheckAcumulador[this.i])
-         .subscribe((data) => { 
+         .subscribe((data) => {
            this.ListContent();
         });
        }
@@ -829,9 +829,9 @@ auxDuplicate;
     }
 
     }
-   
+
     this.formElement = document.getElementById("formularioStore");
-    
+
     this.formulario = new FormData(this.formElement);
     this.formulario.append("slug", this.globalSlug.value);
     this.formulario.append("nameproduct", this.nameProductPrivate);
@@ -846,12 +846,12 @@ auxDuplicate;
       this.ListOfContent = data;
       this.BoolAddProductTwo = false;
       this.BooleanTable = true;
-    }); 
+    });
     };
     this.request.send(this.formulario)
-       
+
   }
-    
+
 
 
 
@@ -879,9 +879,9 @@ auxDuplicate;
       this.seccionValue = number;
       this.BooleanToCloseSeccionEdit = false;
       this.seccionName = document.getElementById("editSection"+number);
-      this.seccionNameToAdd = document.getElementById("buscarSeccionEdit"); 
+      this.seccionNameToAdd = document.getElementById("buscarSeccionEdit");
       this.seccionNameToAdd.disabled = true;
-      this.seccionNameToAdd.value = this.seccionName.value; 
+      this.seccionNameToAdd.value = this.seccionName.value;
       this.seccionService.getJsonForName(this.seccionName.value,this.listSeccion)
       .subscribe(result => this.seccionClickedIDEdit = result  );
       this.atributoListEdit(this.seccionClickedIDEdit.s_id);
@@ -896,14 +896,14 @@ auxDuplicate;
       this.seccionStore.disabled = true;
       this.BooleanToCloseSeccionEdit = false;
       this.seccionList();
-    }); 
+    });
   }
   filterSectionEdit(value){
 
-    this.auxvar = document.getElementById("buscarSeccionEdit");  
-  
+    this.auxvar = document.getElementById("buscarSeccionEdit");
+
     for(this.i=0; this.i < this.listSeccion.length ; this.i++){
-    
+
       if(this.listSeccion[this.i].s_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
         this.auxvar2 = document.getElementById("cont"+this.listSeccion[this.i].s_id);
         this.auxvar2.style.display = "block";
@@ -944,9 +944,9 @@ atributoClickedEdit(id : string){
     this.atributoValue = id;
     this.BooleanToCloseAtributoEdit = false;
     this.atributoName = document.getElementById("atributoEdit"+id);
-    this.atributoNameToAdd = document.getElementById("buscarAtributoEdit"); 
+    this.atributoNameToAdd = document.getElementById("buscarAtributoEdit");
     this.atributoNameToAdd.disabled = true
-    this.atributoNameToAdd.value = this.atributoName.value; 
+    this.atributoNameToAdd.value = this.atributoName.value;
     this.atributoService.getJsonForName(this.atributoNameToAdd.value,this.listAtributo)
     .subscribe((result) => {
       this.subAtributoListEdit(result.a_id);
@@ -973,16 +973,16 @@ addAtributoEdit(){
       this.atributoStore.disabled = true;
       this.BooleanToCloseAtributoEdit = false;
       console.log(this.atributoValue);
-      
-    });    
-  }); 
+
+    });
+  });
 }
 filterAtributoEdit(){
 
-  this.auxvar = document.getElementById("buscarAtributoEdit");  
+  this.auxvar = document.getElementById("buscarAtributoEdit");
   this.contador = 0;
   for(this.i=0; this.i < this.listAtributo.length ; this.i++){
-  
+
     if(this.listAtributo[this.i].a_nombre.toUpperCase().match(this.auxvar.value.toUpperCase())){
       this.auxvar2 = document.getElementById("contaEdit"+this.listAtributo[this.i].a_id);
       this.auxvar2.style.display = "block";
@@ -1031,9 +1031,9 @@ addOpcionEdit(){
   this.varOptionToStore = document.getElementById("storeOpcionEdit");
   this.subatributeService.CrudFunction(3,0,this.varOptionToStore.value,this.atributoValue)
   .subscribe((data) => {
-  
+
   this.subAtributoList(this.atributoValue);
-  }); 
+  });
 }
 
 subAtributoListEdit(id){
@@ -1056,7 +1056,7 @@ subatributoClickedEdit(id:string){
       console.log(this.subatributoValue);
       console.log(this.atributoValue);
       console.log(this.seccionValue);
-      this.subatributoCliked = this.subatributoClick; 
+      this.subatributoCliked = this.subatributoClick;
 }
 
 }
