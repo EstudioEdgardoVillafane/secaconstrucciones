@@ -8,10 +8,10 @@ $NewConnect = new Seca();
 	$editNombre = $_POST["edit_name"]; 
 
 	
-    // $deleteImg = $_POST["deleteImg"];
+    $deleteImg = $_POST["deleteImg"];
 // Codigo original. 
-	$deleteImg = "port-850466701";
-echo  $deleteImg;
+// 	$deleteImg = "port-850466701";
+echo  $deleteImg = "../../$deleteImg";
 	$tipo = $_FILES['edit_imagen']['type'];
 	$tamano = $_FILES['edit_imagen']['size'];
 	$tmp = $_FILES['edit_imagen']['tmp_name'];

@@ -77,14 +77,14 @@
             </div>  
             <div class="col-12">   
               
-              <input class="form-control" name="section" placeholder="Buscar seccion" id="editarSeccion" (keyup)="filtersectioneditar()" value="{{edit_atributo.s_nombre}}">
+              <input class="form-control" name="section" placeholder="Buscar seccion" id="editarSeccion" (keyup)="filtersectioneditar()" value="{{edit_atributo.s_nombre | replaceLine}}">
               <div *ngIf="AlertSection" class="alert alert-danger">*Ingrese seccion</div></div>
             </div>
           </div>
   
           <div class="row mt-2" *ngIf="BooleanToCloseSeccionEdit;else otra">
             <div class="list-group col-2" id="cont{{seccion.s_id}}" style="padding-left:15px;" *ngFor="let seccion of listadoseccion">
-              <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="EditarClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre}}" >
+              <input type="button" class="list-group-item list-group-item-action" style=" box-shadow:1px 1px 5px grey; cursor:pointer;" (click)="EditarClicked(seccion.s_id)" id="{{seccion.s_id}}" value="{{seccion.s_nombre | replaceLine}}" >
             </div>
   
           </div>
