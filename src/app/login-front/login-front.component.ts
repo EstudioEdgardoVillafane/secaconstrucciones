@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login-front.component.css']
 })
 export class LoginFrontComponent implements OnInit {
-
   constructor(private loginService : BackendClienteService, private route : ActivatedRoute, private router : Router) { }
 
   clienteObject = new Object();
@@ -39,7 +38,7 @@ export class LoginFrontComponent implements OnInit {
         this.router.navigateByUrl('/home');
       }else{
         // Need a validation.
-      } 
+      }
       console.log(data.text());
     })
 

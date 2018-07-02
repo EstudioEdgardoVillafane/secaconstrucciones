@@ -132,6 +132,7 @@ import { BackendPreguntasEditComponent } from './backend-preguntas-edit/backend-
     BackendPreguntasEditComponent
   ],
   imports: [
+    MatChipsModule,
     MatTreeModule,
     MatSelectModule,
     MatFormFieldModule,

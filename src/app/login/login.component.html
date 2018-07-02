@@ -5,7 +5,7 @@
         <input type="text" id="ub_user" placeholder="Usuario">
         <div *ngIf="AlertUser" class="alert alert-danger">*Ingrese un nombre de usuario</div>
         <input type="password" id="ub_password" placeholder="contraseña">
-        <div *ngIf="BooleanAlertLogin" class="alert alert-danger">*Contraseña o usuario incorrecto.</div>        
+        <div *ngIf="BooleanAlertLogin" class="alert alert-danger">*Contraseña o usuario incorrecto.</div>
         <div *ngIf="AlertPassword" class="alert alert-danger">*Ingrese contraseña</div>
         <input type="submit" name="login" class="login loginmodal-submit clientes-login" (click)="onClick()" value="Acceder">
         <button type="button" class="btn btn-sm btn-outline-info d-block ml-auto mt-3" style="cursor:pointer" routerLink="/home">Volver</button>
