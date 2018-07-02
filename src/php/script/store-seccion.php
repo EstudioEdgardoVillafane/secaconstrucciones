@@ -6,7 +6,14 @@
         
 	$s_nombre = $_POST["s_name"];
 
-    
+    $s_nombre = str_replace(" ","-",$s_nombre);
+	$s_nombre = str_replace("ñ","n",$s_nombre);
+	$s_nombre = str_replace("á","a",$s_nombre);
+	$s_nombre = str_replace("é","e",$s_nombre);
+	$s_nombre = str_replace("í","i",$s_nombre);
+	$s_nombre = str_replace("ó","o",$s_nombre);
+	$s_nombre = str_replace("ú","u",$s_nombre);
+
 	@$tipo = $_FILES['s_imagen']['type'];
 	@$tamano = $_FILES['s_imagen']['size'];
 	@$tmp = $_FILES['s_imagen']['tmp_name'];

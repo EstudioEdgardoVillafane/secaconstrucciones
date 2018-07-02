@@ -16,8 +16,17 @@
 		 $sql="UPDATE atributo SET a_nombre='".$_GET["nombre"]."',a_seccion='".$_GET["seccion"]."' WHERE a_id='".$_GET["id"]."'";
 		$NewConnect->ExecuteSql($sql);
 	}elseif($_GET["data"]==3){
+		$a_nombre = $_GET["nombre"];
+		$a_nombre = str_replace(" ","-",$a_nombre);
+		$a_nombre = str_replace("ñ","n",$a_nombre);
+		$a_nombre = str_replace("á","a",$a_nombre);
+		$a_nombre = str_replace("é","e",$a_nombre);
+		$a_nombre = str_replace("í","i",$a_nombre);
+		$a_nombre = str_replace("ó","o",$a_nombre);
+		$a_nombre = str_replace("ú","u",$a_nombre);
+
 		$sql1= "INSERT INTO atributo (a_nombre,a_seccion,a_status) 
-		VALUES ('".$_GET["nombre"]."','".$_GET["seccion"]."','1')";
+		VALUES ('".$a_nombre."','".$_GET["seccion"]."','1')";
 		$NewConnect->ExecuteSql($sql1);
 
 		$sql = "SELECT * FROM atributo WHERE a_status=1";

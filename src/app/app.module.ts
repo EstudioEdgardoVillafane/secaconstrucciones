@@ -93,6 +93,7 @@ import { MatAutocompleteModule,
 } from '@angular/material';
 import { BackendPreguntasComponent } from './backend-preguntas/backend-preguntas.component';
 import { BackendPreguntasEditComponent } from './backend-preguntas-edit/backend-preguntas-edit.component';
+import { ReplaceLinePipe } from './replace-line.pipe';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import { BackendPreguntasEditComponent } from './backend-preguntas-edit/backend-
     RegistroFrontComponent,
     MasCategoriaComponent,
     BackendPreguntasComponent,
-    BackendPreguntasEditComponent
+    BackendPreguntasEditComponent,
+    ReplaceLinePipe
   ],
   imports: [
     MatChipsModule,
