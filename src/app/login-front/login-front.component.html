@@ -1,35 +1,58 @@
-<div class="container-fluid bg-light">
 
-    <nav class="row navbar navbar-light">
-      <a class="navbar-brand" href="#">
-        <img src="../../assets/img/logo.jpg" class="img-fluid w-50 d-inline-block align-top" alt="">
-      </a>
-    </nav>
-    <div class="row">
-      <div class="col-md-12 band position-absolute"></div>
-      <div class="col-lg-4 col-md-6 py-4 mx-auto cont-form-letter">
-        <div class="row">
-          <div class="w-100  py-3">
-            <h4 class="text-white text-center">Ingrese su usuario y contraseña</h4>
-          </div>
-          <div class="w-100 cont-form p-4 pb-2">
-            <form class="" action="">
-              <div class="form-group mb-4">
-                <input type="email" class="form-control name" id="name" aria-describedby="emailHelp" placeholder="Email ó Usuario">
-              </div>
-              <div class="form-group mb-4">
-                <input type="password" class="form-control pass" id="pass" placeholder="Contraseña">
-              </div>
-              <button type="submit" class="form-control btn bt-block text-white btn-custom" (click)="handleSearchUserInBD()">Continuar</button>
-            </form>
-            <a>
-              <h6 class="text-center text-white mt-3 mb-0">Crear cuenta</h6>
-            </a>
-  
-  
-          </div>
-  
+<div class="container-fluid" style="background-color: lightgray">
+<mat-grid-list cols="3" rowHeight="700">
+    <mat-grid-tile></mat-grid-tile>
+
+
+    <mat-grid-tile class='login-element'>
+        <div class="login-container">
+
+              <!-- Template Header starts -->
+            <div class="login-box-header">
+                <h3>Ingrese su Usuario y Contraseña</h3>
+            </div>
+            <!-- Template Header ends -->
+
+            <!-- Template Body starts -->
+            <div class="login-box-body">
+
+                <!-- Markup for getting Username starts -->
+                <mat-grid-list cols="9" rowHeight="75px">
+                    <mat-grid-tile [rowspan]="1" class="login-icon">
+                        <mat-icon>lock</mat-icon>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="7">
+                        <mat-form-field class="justifier">
+                            <input matInput placeholder="Usuario" text="text" >
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <!-- Markup for getting Username ends -->
+
+                <!-- Markup for getting Password starts -->
+                <mat-grid-list cols="9" rowHeight="100px">
+                    <mat-grid-tile [rowspan]="1"  class="login-icon">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="7">
+                        <mat-form-field class="justifier">
+                            <input matInput placeholder="Contraseña" [type]="'password'">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <!-- Markup for getting Password ends -->
+
+                <button mat-raised-button class="login-button" color="warn">
+                    <mat-icon>input</mat-icon> Login
+                </button>
+
+            </div>
+            <!-- Template Body ends -->
+
         </div>
-      </div>
-    </div>
-  </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+</mat-grid-list>
+</div>
